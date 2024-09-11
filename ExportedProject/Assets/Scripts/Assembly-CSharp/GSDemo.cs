@@ -7048,14 +7048,7 @@ public static class GSDemo
 				switch (message_work.op_work[0])
 				{
 				case 0:
-					if (GSStatic.global_work_.language == Language.JAPAN)
-					{
-						bgCtrl.instance.SetSprite("bg0fa");
-					}
-					else
-					{
-						bgCtrl.instance.SetSprite("bg0fau");
-					}
+					bgCtrl.instance.SetSprite("bg0fa" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
 					bgCtrl.instance.SetSubSprite("bg133");
 					bgCtrl.instance.sub_bg_pos_x = -384f;
 					message_work.op_work[0]++;

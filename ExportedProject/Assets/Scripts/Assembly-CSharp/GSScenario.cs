@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class GSScenario
 {
 	public delegate void sce_proc(GlobalWork global_work);
@@ -39,6 +41,36 @@ public static class GSScenario
 	private static readonly string[] GS2_scenario_mdt_path_table_u;
 
 	private static readonly string[] GS3_scenario_mdt_path_table_u;
+
+	private static readonly string[] GS1_scenario_mdt_path_table_f;
+
+	private static readonly string[] GS2_scenario_mdt_path_table_f;
+
+	private static readonly string[] GS3_scenario_mdt_path_table_f;
+
+	private static readonly string[] GS1_scenario_mdt_path_table_g;
+
+	private static readonly string[] GS2_scenario_mdt_path_table_g;
+
+	private static readonly string[] GS3_scenario_mdt_path_table_g;
+
+	private static readonly string[] GS1_scenario_mdt_path_table_k;
+
+	private static readonly string[] GS2_scenario_mdt_path_table_k;
+
+	private static readonly string[] GS3_scenario_mdt_path_table_k;
+
+	private static readonly string[] GS1_scenario_mdt_path_table_s;
+
+	private static readonly string[] GS2_scenario_mdt_path_table_s;
+
+	private static readonly string[] GS3_scenario_mdt_path_table_s;
+
+	private static readonly string[] GS1_scenario_mdt_path_table_t;
+
+	private static readonly string[] GS2_scenario_mdt_path_table_t;
+
+	private static readonly string[] GS3_scenario_mdt_path_table_t;
 
 	private static readonly byte[] GS1_scenario_part_data;
 
@@ -266,6 +298,101 @@ public static class GSScenario
 			"GS3/scenario/sc0_0_text_u.mdt", "GS3/scenario/sc0_1_text_u.mdt", "GS3/scenario/sc1_0_text_u.mdt", "GS3/scenario/sc1_1_text_u.mdt", "GS3/scenario/sc1_2_text_u.mdt", "GS3/scenario/sc1_3_0_text_u.mdt", "GS3/scenario/sc1_3_1_text_u.mdt", "GS3/scenario/sc2_0_text_u.mdt", "GS3/scenario/sc2_1_text_u.mdt", "GS3/scenario/sc2_2_text_u.mdt",
 			"GS3/scenario/sc2_3_0_text_u.mdt", "GS3/scenario/sc2_3_1_text_u.mdt", "GS3/scenario/sc3_0_0_text_u.mdt", "GS3/scenario/sc3_0_1_text_u.mdt", "GS3/scenario/sc4_0_0_text_u.mdt", "GS3/scenario/sc4_0_1_text_u.mdt", "GS3/scenario/sc4_1_0_text_u.mdt", "GS3/scenario/sc4_1_1_text_u.mdt", "GS3/scenario/sc4_2_0_text_u.mdt", "GS3/scenario/sc4_2_1_text_u.mdt",
 			"GS3/scenario/sc4_3_0_text_u.mdt", "GS3/scenario/sc4_3_1_text_u.mdt", "GS3/scenario/sc4_3_2_text_u.mdt"
+		};
+		GS1_scenario_mdt_path_table_f = new string[36]
+		{
+			"GS1/scenario/sc0_text_f.mdt", "GS1/scenario/sc1_0_text_f.mdt", "GS1/scenario/sc1_1_text_f.mdt", "GS1/scenario/sc1_2_text_f.mdt", "GS1/scenario/sc1_3_text_f.mdt", "GS1/scenario/sc2_0_text_f.mdt", "GS1/scenario/sc2_1_text_f.mdt", "GS1/scenario/sc2_2_text_f.mdt", "GS1/scenario/sc2_3_text_f.mdt", "GS1/scenario/sc2_4_text_f.mdt",
+			"GS1/scenario/sc2_5_text_f.mdt", "GS1/scenario/sc3_0_text_f.mdt", "GS1/scenario/sc3_1_text_f.mdt", "GS1/scenario/sc3_2_text_f.mdt", "GS1/scenario/sc3_3_text_f.mdt", "GS1/scenario/sc3_4_text_f.mdt", "GS1/scenario/sc3_5_text_f.mdt", "GS1/scenario/sc4_0a_text_f.mdt", "GS1/scenario/sc4_0b_text_f.mdt", "GS1/scenario/sc4_1a_text_f.mdt",
+			"GS1/scenario/sc4_1b_text_f.mdt", "GS1/scenario/sc4_1c_text_f.mdt", "GS1/scenario/sc4_2a_text_f.mdt", "GS1/scenario/sc4_2b_text_f.mdt", "GS1/scenario/sc4_2c_text_f.mdt", "GS1/scenario/sc4_3a_text_f.mdt", "GS1/scenario/sc4_3b_text_f.mdt", "GS1/scenario/sc4_3c_text_f.mdt", "GS1/scenario/sc4_4a_text_f.mdt", "GS1/scenario/sc4_4b_text_f.mdt",
+			"GS1/scenario/sc4_4c_text_f.mdt", "GS1/scenario/sc4_5a_text_f.mdt", "GS1/scenario/sc4_5b_text_f.mdt", "GS1/scenario/sc4_5c_text_f.mdt", "GS1/scenario/sc4_5d_text_f.mdt", "GS1/scenario/ev0_mes_f.mdt"
+		};
+		GS2_scenario_mdt_path_table_f = new string[22]
+		{
+			"GS2/scenario/sc0_0_text_f.mdt", "GS2/scenario/sc0_1_text_f.mdt", "GS2/scenario/sc1_0_text_f.mdt", "GS2/scenario/sc1_1_0_text_f.mdt", "GS2/scenario/sc1_1_1_text_f.mdt", "GS2/scenario/sc1_2_text_f.mdt", "GS2/scenario/sc1_3_0_text_f.mdt", "GS2/scenario/sc1_3_1_text_f.mdt", "GS2/scenario/sc2_0_text_f.mdt", "GS2/scenario/sc2_1_0_text_f.mdt",
+			"GS2/scenario/sc2_1_1_text_f.mdt", "GS2/scenario/sc2_2_text_f.mdt", "GS2/scenario/sc2_3_0_text_f.mdt", "GS2/scenario/sc2_3_1_text_f.mdt", "GS2/scenario/sc3_0_0_text_f.mdt", "GS2/scenario/sc3_0_1_text_f.mdt", "GS2/scenario/sc3_1_0_text_f.mdt", "GS2/scenario/sc3_1_1_text_f.mdt", "GS2/scenario/sc3_2_0_text_f.mdt", "GS2/scenario/sc3_2_1_text_f.mdt",
+			"GS2/scenario/sc3_3_0_text_f.mdt", "GS2/scenario/sc3_3_1_text_f.mdt"
+		};
+		GS3_scenario_mdt_path_table_f = new string[23]
+		{
+			"GS3/scenario/sc0_0_text_f.mdt", "GS3/scenario/sc0_1_text_f.mdt", "GS3/scenario/sc1_0_text_f.mdt", "GS3/scenario/sc1_1_text_f.mdt", "GS3/scenario/sc1_2_text_f.mdt", "GS3/scenario/sc1_3_0_text_f.mdt", "GS3/scenario/sc1_3_1_text_f.mdt", "GS3/scenario/sc2_0_text_f.mdt", "GS3/scenario/sc2_1_text_f.mdt", "GS3/scenario/sc2_2_text_f.mdt",
+			"GS3/scenario/sc2_3_0_text_f.mdt", "GS3/scenario/sc2_3_1_text_f.mdt", "GS3/scenario/sc3_0_0_text_f.mdt", "GS3/scenario/sc3_0_1_text_f.mdt", "GS3/scenario/sc4_0_0_text_f.mdt", "GS3/scenario/sc4_0_1_text_f.mdt", "GS3/scenario/sc4_1_0_text_f.mdt", "GS3/scenario/sc4_1_1_text_f.mdt", "GS3/scenario/sc4_2_0_text_f.mdt", "GS3/scenario/sc4_2_1_text_f.mdt",
+			"GS3/scenario/sc4_3_0_text_f.mdt", "GS3/scenario/sc4_3_1_text_f.mdt", "GS3/scenario/sc4_3_2_text_f.mdt"
+		};
+		GS1_scenario_mdt_path_table_g = new string[36]
+		{
+			"GS1/scenario/sc0_text_g.mdt", "GS1/scenario/sc1_0_text_g.mdt", "GS1/scenario/sc1_1_text_g.mdt", "GS1/scenario/sc1_2_text_g.mdt", "GS1/scenario/sc1_3_text_g.mdt", "GS1/scenario/sc2_0_text_g.mdt", "GS1/scenario/sc2_1_text_g.mdt", "GS1/scenario/sc2_2_text_g.mdt", "GS1/scenario/sc2_3_text_g.mdt", "GS1/scenario/sc2_4_text_g.mdt",
+			"GS1/scenario/sc2_5_text_g.mdt", "GS1/scenario/sc3_0_text_g.mdt", "GS1/scenario/sc3_1_text_g.mdt", "GS1/scenario/sc3_2_text_g.mdt", "GS1/scenario/sc3_3_text_g.mdt", "GS1/scenario/sc3_4_text_g.mdt", "GS1/scenario/sc3_5_text_g.mdt", "GS1/scenario/sc4_0a_text_g.mdt", "GS1/scenario/sc4_0b_text_g.mdt", "GS1/scenario/sc4_1a_text_g.mdt",
+			"GS1/scenario/sc4_1b_text_g.mdt", "GS1/scenario/sc4_1c_text_g.mdt", "GS1/scenario/sc4_2a_text_g.mdt", "GS1/scenario/sc4_2b_text_g.mdt", "GS1/scenario/sc4_2c_text_g.mdt", "GS1/scenario/sc4_3a_text_g.mdt", "GS1/scenario/sc4_3b_text_g.mdt", "GS1/scenario/sc4_3c_text_g.mdt", "GS1/scenario/sc4_4a_text_g.mdt", "GS1/scenario/sc4_4b_text_g.mdt",
+			"GS1/scenario/sc4_4c_text_g.mdt", "GS1/scenario/sc4_5a_text_g.mdt", "GS1/scenario/sc4_5b_text_g.mdt", "GS1/scenario/sc4_5c_text_g.mdt", "GS1/scenario/sc4_5d_text_g.mdt", "GS1/scenario/ev0_mes_g.mdt"
+		};
+		GS2_scenario_mdt_path_table_g = new string[22]
+		{
+			"GS2/scenario/sc0_0_text_g.mdt", "GS2/scenario/sc0_1_text_g.mdt", "GS2/scenario/sc1_0_text_g.mdt", "GS2/scenario/sc1_1_0_text_g.mdt", "GS2/scenario/sc1_1_1_text_g.mdt", "GS2/scenario/sc1_2_text_g.mdt", "GS2/scenario/sc1_3_0_text_g.mdt", "GS2/scenario/sc1_3_1_text_g.mdt", "GS2/scenario/sc2_0_text_g.mdt", "GS2/scenario/sc2_1_0_text_g.mdt",
+			"GS2/scenario/sc2_1_1_text_g.mdt", "GS2/scenario/sc2_2_text_g.mdt", "GS2/scenario/sc2_3_0_text_g.mdt", "GS2/scenario/sc2_3_1_text_g.mdt", "GS2/scenario/sc3_0_0_text_g.mdt", "GS2/scenario/sc3_0_1_text_g.mdt", "GS2/scenario/sc3_1_0_text_g.mdt", "GS2/scenario/sc3_1_1_text_g.mdt", "GS2/scenario/sc3_2_0_text_g.mdt", "GS2/scenario/sc3_2_1_text_g.mdt",
+			"GS2/scenario/sc3_3_0_text_g.mdt", "GS2/scenario/sc3_3_1_text_g.mdt"
+		};
+		GS3_scenario_mdt_path_table_g = new string[23]
+		{
+			"GS3/scenario/sc0_0_text_g.mdt", "GS3/scenario/sc0_1_text_g.mdt", "GS3/scenario/sc1_0_text_g.mdt", "GS3/scenario/sc1_1_text_g.mdt", "GS3/scenario/sc1_2_text_g.mdt", "GS3/scenario/sc1_3_0_text_g.mdt", "GS3/scenario/sc1_3_1_text_g.mdt", "GS3/scenario/sc2_0_text_g.mdt", "GS3/scenario/sc2_1_text_g.mdt", "GS3/scenario/sc2_2_text_g.mdt",
+			"GS3/scenario/sc2_3_0_text_g.mdt", "GS3/scenario/sc2_3_1_text_g.mdt", "GS3/scenario/sc3_0_0_text_g.mdt", "GS3/scenario/sc3_0_1_text_g.mdt", "GS3/scenario/sc4_0_0_text_g.mdt", "GS3/scenario/sc4_0_1_text_g.mdt", "GS3/scenario/sc4_1_0_text_g.mdt", "GS3/scenario/sc4_1_1_text_g.mdt", "GS3/scenario/sc4_2_0_text_g.mdt", "GS3/scenario/sc4_2_1_text_g.mdt",
+			"GS3/scenario/sc4_3_0_text_g.mdt", "GS3/scenario/sc4_3_1_text_g.mdt", "GS3/scenario/sc4_3_2_text_g.mdt"
+		};
+		GS1_scenario_mdt_path_table_k = new string[36]
+		{
+			"GS1/scenario/sc0_text_k.mdt", "GS1/scenario/sc1_0_text_k.mdt", "GS1/scenario/sc1_1_text_k.mdt", "GS1/scenario/sc1_2_text_k.mdt", "GS1/scenario/sc1_3_text_k.mdt", "GS1/scenario/sc2_0_text_k.mdt", "GS1/scenario/sc2_1_text_k.mdt", "GS1/scenario/sc2_2_text_k.mdt", "GS1/scenario/sc2_3_text_k.mdt", "GS1/scenario/sc2_4_text_k.mdt",
+			"GS1/scenario/sc2_5_text_k.mdt", "GS1/scenario/sc3_0_text_k.mdt", "GS1/scenario/sc3_1_text_k.mdt", "GS1/scenario/sc3_2_text_k.mdt", "GS1/scenario/sc3_3_text_k.mdt", "GS1/scenario/sc3_4_text_k.mdt", "GS1/scenario/sc3_5_text_k.mdt", "GS1/scenario/sc4_0a_text_k.mdt", "GS1/scenario/sc4_0b_text_k.mdt", "GS1/scenario/sc4_1a_text_k.mdt",
+			"GS1/scenario/sc4_1b_text_k.mdt", "GS1/scenario/sc4_1c_text_k.mdt", "GS1/scenario/sc4_2a_text_k.mdt", "GS1/scenario/sc4_2b_text_k.mdt", "GS1/scenario/sc4_2c_text_k.mdt", "GS1/scenario/sc4_3a_text_k.mdt", "GS1/scenario/sc4_3b_text_k.mdt", "GS1/scenario/sc4_3c_text_k.mdt", "GS1/scenario/sc4_4a_text_k.mdt", "GS1/scenario/sc4_4b_text_k.mdt",
+			"GS1/scenario/sc4_4c_text_k.mdt", "GS1/scenario/sc4_5a_text_k.mdt", "GS1/scenario/sc4_5b_text_k.mdt", "GS1/scenario/sc4_5c_text_k.mdt", "GS1/scenario/sc4_5d_text_k.mdt", "GS1/scenario/ev0_mes_k.mdt"
+		};
+		GS2_scenario_mdt_path_table_k = new string[22]
+		{
+			"GS2/scenario/sc0_0_text_k.mdt", "GS2/scenario/sc0_1_text_k.mdt", "GS2/scenario/sc1_0_text_k.mdt", "GS2/scenario/sc1_1_0_text_k.mdt", "GS2/scenario/sc1_1_1_text_k.mdt", "GS2/scenario/sc1_2_text_k.mdt", "GS2/scenario/sc1_3_0_text_k.mdt", "GS2/scenario/sc1_3_1_text_k.mdt", "GS2/scenario/sc2_0_text_k.mdt", "GS2/scenario/sc2_1_0_text_k.mdt",
+			"GS2/scenario/sc2_1_1_text_k.mdt", "GS2/scenario/sc2_2_text_k.mdt", "GS2/scenario/sc2_3_0_text_k.mdt", "GS2/scenario/sc2_3_1_text_k.mdt", "GS2/scenario/sc3_0_0_text_k.mdt", "GS2/scenario/sc3_0_1_text_k.mdt", "GS2/scenario/sc3_1_0_text_k.mdt", "GS2/scenario/sc3_1_1_text_k.mdt", "GS2/scenario/sc3_2_0_text_k.mdt", "GS2/scenario/sc3_2_1_text_k.mdt",
+			"GS2/scenario/sc3_3_0_text_k.mdt", "GS2/scenario/sc3_3_1_text_k.mdt"
+		};
+		GS3_scenario_mdt_path_table_k = new string[23]
+		{
+			"GS3/scenario/sc0_0_text_k.mdt", "GS3/scenario/sc0_1_text_k.mdt", "GS3/scenario/sc1_0_text_k.mdt", "GS3/scenario/sc1_1_text_k.mdt", "GS3/scenario/sc1_2_text_k.mdt", "GS3/scenario/sc1_3_0_text_k.mdt", "GS3/scenario/sc1_3_1_text_k.mdt", "GS3/scenario/sc2_0_text_k.mdt", "GS3/scenario/sc2_1_text_k.mdt", "GS3/scenario/sc2_2_text_k.mdt",
+			"GS3/scenario/sc2_3_0_text_k.mdt", "GS3/scenario/sc2_3_1_text_k.mdt", "GS3/scenario/sc3_0_0_text_k.mdt", "GS3/scenario/sc3_0_1_text_k.mdt", "GS3/scenario/sc4_0_0_text_k.mdt", "GS3/scenario/sc4_0_1_text_k.mdt", "GS3/scenario/sc4_1_0_text_k.mdt", "GS3/scenario/sc4_1_1_text_k.mdt", "GS3/scenario/sc4_2_0_text_k.mdt", "GS3/scenario/sc4_2_1_text_k.mdt",
+			"GS3/scenario/sc4_3_0_text_k.mdt", "GS3/scenario/sc4_3_1_text_k.mdt", "GS3/scenario/sc4_3_2_text_k.mdt"
+		};
+		GS1_scenario_mdt_path_table_s = new string[36]
+		{
+			"GS1/scenario/sc0_text_s.mdt", "GS1/scenario/sc1_0_text_s.mdt", "GS1/scenario/sc1_1_text_s.mdt", "GS1/scenario/sc1_2_text_s.mdt", "GS1/scenario/sc1_3_text_s.mdt", "GS1/scenario/sc2_0_text_s.mdt", "GS1/scenario/sc2_1_text_s.mdt", "GS1/scenario/sc2_2_text_s.mdt", "GS1/scenario/sc2_3_text_s.mdt", "GS1/scenario/sc2_4_text_s.mdt",
+			"GS1/scenario/sc2_5_text_s.mdt", "GS1/scenario/sc3_0_text_s.mdt", "GS1/scenario/sc3_1_text_s.mdt", "GS1/scenario/sc3_2_text_s.mdt", "GS1/scenario/sc3_3_text_s.mdt", "GS1/scenario/sc3_4_text_s.mdt", "GS1/scenario/sc3_5_text_s.mdt", "GS1/scenario/sc4_0a_text_s.mdt", "GS1/scenario/sc4_0b_text_s.mdt", "GS1/scenario/sc4_1a_text_s.mdt",
+			"GS1/scenario/sc4_1b_text_s.mdt", "GS1/scenario/sc4_1c_text_s.mdt", "GS1/scenario/sc4_2a_text_s.mdt", "GS1/scenario/sc4_2b_text_s.mdt", "GS1/scenario/sc4_2c_text_s.mdt", "GS1/scenario/sc4_3a_text_s.mdt", "GS1/scenario/sc4_3b_text_s.mdt", "GS1/scenario/sc4_3c_text_s.mdt", "GS1/scenario/sc4_4a_text_s.mdt", "GS1/scenario/sc4_4b_text_s.mdt",
+			"GS1/scenario/sc4_4c_text_s.mdt", "GS1/scenario/sc4_5a_text_s.mdt", "GS1/scenario/sc4_5b_text_s.mdt", "GS1/scenario/sc4_5c_text_s.mdt", "GS1/scenario/sc4_5d_text_s.mdt", "GS1/scenario/ev0_mes_s.mdt"
+		};
+		GS2_scenario_mdt_path_table_s = new string[22]
+		{
+			"GS2/scenario/sc0_0_text_s.mdt", "GS2/scenario/sc0_1_text_s.mdt", "GS2/scenario/sc1_0_text_s.mdt", "GS2/scenario/sc1_1_0_text_s.mdt", "GS2/scenario/sc1_1_1_text_s.mdt", "GS2/scenario/sc1_2_text_s.mdt", "GS2/scenario/sc1_3_0_text_s.mdt", "GS2/scenario/sc1_3_1_text_s.mdt", "GS2/scenario/sc2_0_text_s.mdt", "GS2/scenario/sc2_1_0_text_s.mdt",
+			"GS2/scenario/sc2_1_1_text_s.mdt", "GS2/scenario/sc2_2_text_s.mdt", "GS2/scenario/sc2_3_0_text_s.mdt", "GS2/scenario/sc2_3_1_text_s.mdt", "GS2/scenario/sc3_0_0_text_s.mdt", "GS2/scenario/sc3_0_1_text_s.mdt", "GS2/scenario/sc3_1_0_text_s.mdt", "GS2/scenario/sc3_1_1_text_s.mdt", "GS2/scenario/sc3_2_0_text_s.mdt", "GS2/scenario/sc3_2_1_text_s.mdt",
+			"GS2/scenario/sc3_3_0_text_s.mdt", "GS2/scenario/sc3_3_1_text_s.mdt"
+		};
+		GS3_scenario_mdt_path_table_s = new string[23]
+		{
+			"GS3/scenario/sc0_0_text_s.mdt", "GS3/scenario/sc0_1_text_s.mdt", "GS3/scenario/sc1_0_text_s.mdt", "GS3/scenario/sc1_1_text_s.mdt", "GS3/scenario/sc1_2_text_s.mdt", "GS3/scenario/sc1_3_0_text_s.mdt", "GS3/scenario/sc1_3_1_text_s.mdt", "GS3/scenario/sc2_0_text_s.mdt", "GS3/scenario/sc2_1_text_s.mdt", "GS3/scenario/sc2_2_text_s.mdt",
+			"GS3/scenario/sc2_3_0_text_s.mdt", "GS3/scenario/sc2_3_1_text_s.mdt", "GS3/scenario/sc3_0_0_text_s.mdt", "GS3/scenario/sc3_0_1_text_s.mdt", "GS3/scenario/sc4_0_0_text_s.mdt", "GS3/scenario/sc4_0_1_text_s.mdt", "GS3/scenario/sc4_1_0_text_s.mdt", "GS3/scenario/sc4_1_1_text_s.mdt", "GS3/scenario/sc4_2_0_text_s.mdt", "GS3/scenario/sc4_2_1_text_s.mdt",
+			"GS3/scenario/sc4_3_0_text_s.mdt", "GS3/scenario/sc4_3_1_text_s.mdt", "GS3/scenario/sc4_3_2_text_s.mdt"
+		};
+		GS1_scenario_mdt_path_table_t = new string[36]
+		{
+			"GS1/scenario/sc0_text_t.mdt", "GS1/scenario/sc1_0_text_t.mdt", "GS1/scenario/sc1_1_text_t.mdt", "GS1/scenario/sc1_2_text_t.mdt", "GS1/scenario/sc1_3_text_t.mdt", "GS1/scenario/sc2_0_text_t.mdt", "GS1/scenario/sc2_1_text_t.mdt", "GS1/scenario/sc2_2_text_t.mdt", "GS1/scenario/sc2_3_text_t.mdt", "GS1/scenario/sc2_4_text_t.mdt",
+			"GS1/scenario/sc2_5_text_t.mdt", "GS1/scenario/sc3_0_text_t.mdt", "GS1/scenario/sc3_1_text_t.mdt", "GS1/scenario/sc3_2_text_t.mdt", "GS1/scenario/sc3_3_text_t.mdt", "GS1/scenario/sc3_4_text_t.mdt", "GS1/scenario/sc3_5_text_t.mdt", "GS1/scenario/sc4_0a_text_t.mdt", "GS1/scenario/sc4_0b_text_t.mdt", "GS1/scenario/sc4_1a_text_t.mdt",
+			"GS1/scenario/sc4_1b_text_t.mdt", "GS1/scenario/sc4_1c_text_t.mdt", "GS1/scenario/sc4_2a_text_t.mdt", "GS1/scenario/sc4_2b_text_t.mdt", "GS1/scenario/sc4_2c_text_t.mdt", "GS1/scenario/sc4_3a_text_t.mdt", "GS1/scenario/sc4_3b_text_t.mdt", "GS1/scenario/sc4_3c_text_t.mdt", "GS1/scenario/sc4_4a_text_t.mdt", "GS1/scenario/sc4_4b_text_t.mdt",
+			"GS1/scenario/sc4_4c_text_t.mdt", "GS1/scenario/sc4_5a_text_t.mdt", "GS1/scenario/sc4_5b_text_t.mdt", "GS1/scenario/sc4_5c_text_t.mdt", "GS1/scenario/sc4_5d_text_t.mdt", "GS1/scenario/ev0_mes_t.mdt"
+		};
+		GS2_scenario_mdt_path_table_t = new string[22]
+		{
+			"GS2/scenario/sc0_0_text_t.mdt", "GS2/scenario/sc0_1_text_t.mdt", "GS2/scenario/sc1_0_text_t.mdt", "GS2/scenario/sc1_1_0_text_t.mdt", "GS2/scenario/sc1_1_1_text_t.mdt", "GS2/scenario/sc1_2_text_t.mdt", "GS2/scenario/sc1_3_0_text_t.mdt", "GS2/scenario/sc1_3_1_text_t.mdt", "GS2/scenario/sc2_0_text_t.mdt", "GS2/scenario/sc2_1_0_text_t.mdt",
+			"GS2/scenario/sc2_1_1_text_t.mdt", "GS2/scenario/sc2_2_text_t.mdt", "GS2/scenario/sc2_3_0_text_t.mdt", "GS2/scenario/sc2_3_1_text_t.mdt", "GS2/scenario/sc3_0_0_text_t.mdt", "GS2/scenario/sc3_0_1_text_t.mdt", "GS2/scenario/sc3_1_0_text_t.mdt", "GS2/scenario/sc3_1_1_text_t.mdt", "GS2/scenario/sc3_2_0_text_t.mdt", "GS2/scenario/sc3_2_1_text_t.mdt",
+			"GS2/scenario/sc3_3_0_text_t.mdt", "GS2/scenario/sc3_3_1_text_t.mdt"
+		};
+		GS3_scenario_mdt_path_table_t = new string[23]
+		{
+			"GS3/scenario/sc0_0_text_t.mdt", "GS3/scenario/sc0_1_text_t.mdt", "GS3/scenario/sc1_0_text_t.mdt", "GS3/scenario/sc1_1_text_t.mdt", "GS3/scenario/sc1_2_text_t.mdt", "GS3/scenario/sc1_3_0_text_t.mdt", "GS3/scenario/sc1_3_1_text_t.mdt", "GS3/scenario/sc2_0_text_t.mdt", "GS3/scenario/sc2_1_text_t.mdt", "GS3/scenario/sc2_2_text_t.mdt",
+			"GS3/scenario/sc2_3_0_text_t.mdt", "GS3/scenario/sc2_3_1_text_t.mdt", "GS3/scenario/sc3_0_0_text_t.mdt", "GS3/scenario/sc3_0_1_text_t.mdt", "GS3/scenario/sc4_0_0_text_t.mdt", "GS3/scenario/sc4_0_1_text_t.mdt", "GS3/scenario/sc4_1_0_text_t.mdt", "GS3/scenario/sc4_1_1_text_t.mdt", "GS3/scenario/sc4_2_0_text_t.mdt", "GS3/scenario/sc4_2_1_text_t.mdt",
+			"GS3/scenario/sc4_3_0_text_t.mdt", "GS3/scenario/sc4_3_1_text_t.mdt", "GS3/scenario/sc4_3_2_text_t.mdt"
 		};
 		GS1_Note_init_data = new uint[35][]
 		{
@@ -1034,21 +1161,14 @@ public static class GSScenario
 
 	public static string GetSystemScenarioMdtPath()
 	{
-		if (GSStatic.global_work_.language == Language.JAPAN)
-		{
-			return "sys_mes.mdt";
-		}
-		if (GSStatic.global_work_.language == Language.USA)
-		{
-			return "sys_mes_u.mdt";
-		}
-		return string.Empty;
+		return "sys_mes" + GSUtility.GetScenarioLanguage(GSStatic.global_work_.language) + ".mdt";
 	}
 
 	public static string[] GetScenarioMdtPathTable(TitleId title)
 	{
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		switch (GSStatic.global_work_.language)
 		{
+		case Language.JAPAN:
 			switch (title)
 			{
 			case TitleId.GS1:
@@ -1057,10 +1177,11 @@ public static class GSScenario
 				return GS2_scenario_mdt_path_table;
 			case TitleId.GS3:
 				return GS3_scenario_mdt_path_table;
+			default:
+				Debug.LogWarning("Not TitleId");
+				return null;
 			}
-		}
-		else if (GSStatic.global_work_.language == Language.USA)
-		{
+		case Language.USA:
 			switch (title)
 			{
 			case TitleId.GS1:
@@ -1069,9 +1190,79 @@ public static class GSScenario
 				return GS2_scenario_mdt_path_table_u;
 			case TitleId.GS3:
 				return GS3_scenario_mdt_path_table_u;
+			default:
+				Debug.LogWarning("Not TitleId");
+				return null;
 			}
+		case Language.FRANCE:
+			switch (title)
+			{
+			case TitleId.GS1:
+				return GS1_scenario_mdt_path_table_f;
+			case TitleId.GS2:
+				return GS2_scenario_mdt_path_table_f;
+			case TitleId.GS3:
+				return GS3_scenario_mdt_path_table_f;
+			default:
+				Debug.LogWarning("Not TitleId");
+				return null;
+			}
+		case Language.GERMAN:
+			switch (title)
+			{
+			case TitleId.GS1:
+				return GS1_scenario_mdt_path_table_g;
+			case TitleId.GS2:
+				return GS2_scenario_mdt_path_table_g;
+			case TitleId.GS3:
+				return GS3_scenario_mdt_path_table_g;
+			default:
+				Debug.LogWarning("Not TitleId");
+				return null;
+			}
+		case Language.KOREA:
+			switch (title)
+			{
+			case TitleId.GS1:
+				return GS1_scenario_mdt_path_table_k;
+			case TitleId.GS2:
+				return GS2_scenario_mdt_path_table_k;
+			case TitleId.GS3:
+				return GS3_scenario_mdt_path_table_k;
+			default:
+				Debug.LogWarning("Not TitleId");
+				return null;
+			}
+		case Language.CHINA_S:
+			switch (title)
+			{
+			case TitleId.GS1:
+				return GS1_scenario_mdt_path_table_s;
+			case TitleId.GS2:
+				return GS2_scenario_mdt_path_table_s;
+			case TitleId.GS3:
+				return GS3_scenario_mdt_path_table_s;
+			default:
+				Debug.LogWarning("Not TitleId");
+				return null;
+			}
+		case Language.CHINA_T:
+			switch (title)
+			{
+			case TitleId.GS1:
+				return GS1_scenario_mdt_path_table_t;
+			case TitleId.GS2:
+				return GS2_scenario_mdt_path_table_t;
+			case TitleId.GS3:
+				return GS3_scenario_mdt_path_table_t;
+			default:
+				Debug.LogWarning("Not TitleId");
+				return null;
+			}
+		default:
+			Debug.LogWarning("Not Language");
+			return null;
 		}
-		return null;
 	}
 
 	public static EXPL_CK_DATA GetExplChData(int arg)

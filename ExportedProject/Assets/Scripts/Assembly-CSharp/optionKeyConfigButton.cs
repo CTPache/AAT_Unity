@@ -11,6 +11,7 @@ public class optionKeyConfigButton : optionItem
 
 	public KeyCode current_key_code;
 
+	[SerializeField]
 	private KeyConfigButtonSprite button_sprite_;
 
 	private bool init_;
@@ -60,12 +61,10 @@ public class optionKeyConfigButton : optionItem
 		return TextDataCtrl.GetText(in_text_id);
 	}
 
-	public void InitButton(KeyConfigButtonSprite sprite_prefab, bool quarter)
+	public void InitButton(bool quarter)
 	{
 		if (!init_)
 		{
-			button_sprite_ = UnityEngine.Object.Instantiate(sprite_prefab);
-			button_sprite_.transform.SetParent(base.transform, false);
 			option_title_ = button_sprite_.option_title_;
 			item_bg_ = button_sprite_.item_bg_;
 			touch_list_ = button_sprite_.touch_list_;
@@ -90,6 +89,16 @@ public class optionKeyConfigButton : optionItem
 		{
 			button_sprite_.SetSprite(current_key_code);
 		}
+	}
+
+	public override void SetText(string text)
+	{
+		string text2 = text;
+		if (GSStatic.global_work_.language == Language.KOREA)
+		{
+			text2 = text.Replace(".", "・");
+		}
+		base.SetText(text2);
 	}
 
 	public override void ChangeValue(int val)
@@ -154,7 +163,7 @@ public class optionKeyConfigButton : optionItem
 	public override void PlayDecide()
 	{
 		base.play_decide = true;
-		StartCoroutine(play_config());
+		coroutineCtrl.instance.Play(play_config());
 	}
 
 	private IEnumerator play_config()

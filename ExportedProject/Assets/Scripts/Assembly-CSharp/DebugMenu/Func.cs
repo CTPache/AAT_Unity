@@ -20,7 +20,7 @@ namespace DebugMenu
 			}
 		}
 
-		public override void Update(Menu menu)
+		public override void Process(Menu menu)
 		{
 			if ((menu.input_down & Input.Decide) != 0)
 			{

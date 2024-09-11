@@ -83,7 +83,7 @@ public class seriesTitleSelectCtrl : sceneCtrl
 	{
 		base.End();
 		enumerator_state_ = stateCoroutine();
-		StartCoroutine(enumerator_state_);
+		coroutineCtrl.instance.Play(enumerator_state_);
 	}
 
 	private void Init()
@@ -91,27 +91,30 @@ public class seriesTitleSelectCtrl : sceneCtrl
 		base.body.SetActive(true);
 		title_list_body_.SetActive(true);
 		title_back_.active = true;
-		string text = string.Empty;
-		int textFontsize = 0;
-		Vector3 textPosition = Vector3.zero;
+		int num = 0;
+		Vector3 zero = Vector3.zero;
 		switch (GSStatic.global_work_.language)
 		{
 		case Language.JAPAN:
-			text = string.Empty;
-			textFontsize = 46;
-			textPosition = new Vector3(0f, 0f, -30f);
+		case Language.CHINA_S:
+			num = 46;
+			zero = new Vector3(0f, 0f, -30f);
 			break;
-		case Language.USA:
-			text = "u";
-			textFontsize = 37;
-			textPosition = new Vector3(0f, 4f, -30f);
+		default:
+			num = 37;
+			zero = new Vector3(0f, 4f, -30f);
+			break;
+		case Language.KOREA:
+		case Language.CHINA_T:
+			num = 40;
+			zero = new Vector3(0f, 0f, -30f);
 			break;
 		}
 		for (int i = 0; i < title_list_.Count; i++)
 		{
-			string text2 = (i + 1).ToString("D1");
-			title_list_[i].title_.load("/GS" + text2 + "/BG/", "titlegs" + text2 + text, true);
-			title_list_[i].copyright_.load("/GS" + text2 + "/BG/", "copygs" + text2, true);
+			string text = (i + 1).ToString("D1");
+			title_list_[i].title_.load("/GS" + text + "/BG/", "titlegs" + text + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language), true);
+			title_list_[i].copyright_.load("/GS" + text + "/BG/", "copygs" + text, true);
 		}
 		title_back_.load("/menu/title/", "title_back");
 		changeTitle(title_no_);
@@ -119,8 +122,8 @@ public class seriesTitleSelectCtrl : sceneCtrl
 		select_plate_.mainTitleInit(new string[1] { TextDataCtrl.GetText(TextDataCtrl.TitleTextID.PLAY_TITLE) }, "select_window", 0);
 		select_plate_.playCursor();
 		select_plate_.igunore_input = true;
-		select_plate_.SetTextFontsize(textFontsize);
-		select_plate_.SetTextPosition(textPosition);
+		select_plate_.SetTextFontsize(num);
+		select_plate_.SetTextPosition(zero);
 		arrow_ctrl_.load();
 		arrow_ctrl_.arrowAll(true);
 		arrow_ctrl_.SetTouchKeyType(KeyType.Right, 0);
@@ -173,7 +176,7 @@ public class seriesTitleSelectCtrl : sceneCtrl
 	{
 		if (coroutine_copyrightfade_ != null)
 		{
-			StopCoroutine(coroutine_copyrightfade_);
+			coroutineCtrl.instance.Stop(coroutine_copyrightfade_);
 		}
 		if (_playmode)
 		{
@@ -183,7 +186,7 @@ public class seriesTitleSelectCtrl : sceneCtrl
 		{
 			coroutine_copyrightfade_ = CoroutineCopyrightFade(_playmode, 1);
 		}
-		StartCoroutine(coroutine_copyrightfade_);
+		coroutineCtrl.instance.Play(coroutine_copyrightfade_);
 	}
 
 	private IEnumerator CoroutineCopyrightFade(bool in_fade_type, int in_fade_time)
@@ -226,7 +229,7 @@ public class seriesTitleSelectCtrl : sceneCtrl
 				title_no_ = ((title_no_ <= TitleId.GS3) ? title_no_ : TitleId.GS1);
 			}
 			soundCtrl.instance.PlaySE(42);
-			yield return StartCoroutine(CoroutineSlideMove(in_dir));
+			yield return coroutineCtrl.instance.Play(CoroutineSlideMove(in_dir));
 		}
 		while ((in_dir > 0 && (padCtrl.instance.GetKey(KeyType.Left) || padCtrl.instance.GetKey(KeyType.StickL_Left))) || (in_dir < 0 && (padCtrl.instance.GetKey(KeyType.Right) || padCtrl.instance.GetKey(KeyType.StickL_Right))));
 		arrow_ctrl_.arrowAll(true);
@@ -239,8 +242,11 @@ public class seriesTitleSelectCtrl : sceneCtrl
 	{
 		Init();
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_IN, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
-		titleGuideCtrl.instance.open(keyGuideBase.Type.GS_SELECT);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
+		coroutineCtrl.instance.Play(titleGuideCtrl.instance.open(keyGuideBase.Type.GS_SELECT));
 		bool is_push = false;
 		is_decide_ = false;
 		select_plate_.igunore_input = false;
@@ -267,11 +273,11 @@ public class seriesTitleSelectCtrl : sceneCtrl
 				{
 					if (padCtrl.instance.GetKeyDown(KeyType.Left) || padCtrl.instance.GetKeyDown(KeyType.StickL_Left) || padCtrl.instance.GetWheelMoveUp())
 					{
-						yield return StartCoroutine(CoroutineSlideState(1));
+						yield return coroutineCtrl.instance.Play(CoroutineSlideState(1));
 					}
 					else if (padCtrl.instance.GetKeyDown(KeyType.Right) || padCtrl.instance.GetKeyDown(KeyType.StickL_Right) || padCtrl.instance.GetWheelMoveDown())
 					{
-						yield return StartCoroutine(CoroutineSlideState(-1));
+						yield return coroutineCtrl.instance.Play(CoroutineSlideState(-1));
 					}
 				}
 			}
@@ -283,10 +289,16 @@ public class seriesTitleSelectCtrl : sceneCtrl
 			yield return null;
 		}
 		is_decide_ = true;
-		titleGuideCtrl.instance.close();
+		coroutineCtrl.instance.Play(titleGuideCtrl.instance.close());
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
-		yield return new WaitWhile(titleGuideCtrl.instance.CheckClose);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
+		while (titleGuideCtrl.instance.CheckClose())
+		{
+			yield return null;
+		}
 		titleCtrlRoot.instance.data_system.title_no = (int)title_no_;
 		if (is_push)
 		{

@@ -87,10 +87,7 @@ public class GSDemo_gs3_op4
 			animationObject = AnimationSystem.Instance.PlayObject(1, 0, 53);
 			animationObject.gameObject.SetActive(false);
 			animationObject.transform.localPosition = Vector3.up * 304f;
-			if (GSStatic.global_work_.language == Language.USA)
-			{
-				animationObject.transform.localPosition += Vector3.right * 48f;
-			}
+			animationObject.transform.localPosition += PcViewCtrl.instance.Get_OBJ_OP4_008_DiffPosition();
 			animationObject = AnimationSystem.Instance.PlayObject(1, 0, 54);
 			animationObject.gameObject.SetActive(false);
 			dsp.com_proc = 10;
@@ -154,7 +151,7 @@ public class GSDemo_gs3_op4
 			if (++dsp.timer >= 120)
 			{
 				dsp.wait = dsp.buff[dsp.bcount];
-				if (GSStatic.global_work_.language == Language.JAPAN)
+				if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.JAPAN)
 				{
 					dsp.bcount++;
 					dsp.count++;
@@ -267,10 +264,7 @@ public class GSDemo_gs3_op4
 				PcViewCtrl.instance.DellIcon();
 				AnimationObject animationObject = AnimationSystem.Instance.FindObject(1, 0, 53);
 				animationObject.transform.localPosition = Vector3.up * 304f;
-				if (GSStatic.global_work_.language == Language.USA)
-				{
-					animationObject.transform.localPosition += Vector3.right * 48f;
-				}
+				animationObject.transform.localPosition += PcViewCtrl.instance.Get_OBJ_OP4_008_DiffPosition();
 				message_work.op_para = 13;
 			}
 			break;
@@ -325,7 +319,7 @@ public class GSDemo_gs3_op4
 	private static void Face_Disp(ushort type)
 	{
 		float num = 252f;
-		if (GSStatic.global_work_.language != 0)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != 0)
 		{
 			num += 12f;
 		}

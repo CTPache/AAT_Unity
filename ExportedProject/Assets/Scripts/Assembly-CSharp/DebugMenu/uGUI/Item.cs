@@ -21,7 +21,7 @@ namespace DebugMenu.uGUI
 		{
 		}
 
-		public virtual void Update(Menu menu)
+		public virtual void Process(Menu menu)
 		{
 		}
 	}

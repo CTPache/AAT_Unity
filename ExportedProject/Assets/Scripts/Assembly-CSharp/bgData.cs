@@ -947,25 +947,6 @@ public class bgData : MonoBehaviour
 		return data[in_bg_no].name_;
 	}
 
-	public string GetBGIcon(int in_bg_no)
-	{
-		if (in_bg_no >= data.Count)
-		{
-			return string.Empty;
-		}
-		bool flag = (long)in_bg_no != 117;
-		if (data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language != 0 && flag)
-		{
-			Language language = GSStatic.global_work_.language;
-			if (language == Language.USA)
-			{
-				return data[in_bg_no].icon_ + "u";
-			}
-			return string.Empty;
-		}
-		return data[in_bg_no].icon_;
-	}
-
 	public uint GetBGType(int in_bg_no)
 	{
 		if (in_bg_no >= data.Count)

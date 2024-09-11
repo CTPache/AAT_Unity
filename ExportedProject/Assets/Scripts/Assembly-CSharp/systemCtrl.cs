@@ -39,7 +39,7 @@ public class systemCtrl : MonoBehaviour
 
 	private float key_wait_ = 10f;
 
-	private int save_ver_ = 4096;
+	private int save_ver_ = 4097;
 
 	private List<ScreenData> screen_list_ = new List<ScreenData>();
 
@@ -125,6 +125,14 @@ public class systemCtrl : MonoBehaviour
 		}
 	}
 
+	public WaitForEndOfFrame wait_time
+	{
+		get
+		{
+			return null;
+		}
+	}
+
 	public void EnableDoubleQuotationAdjustoment(bool enable)
 	{
 		foreach (DoubleQuotationAdjustment item in doublequotation_adjustment_list_)
@@ -144,6 +152,7 @@ public class systemCtrl : MonoBehaviour
 		{
 			instance_ = this;
 		}
+		Time.fixedDeltaTime = 1f / 60f;
 		Application.targetFrameRate = 60;
 		InitScreen();
 		GSStatic.option_work.resolution_w = (uint)screen_list_[0].width;
@@ -157,6 +166,19 @@ public class systemCtrl : MonoBehaviour
 	{
 		doublequotation_adjustment_list_ = (Resources.FindObjectsOfTypeAll(typeof(DoubleQuotationAdjustment)) as DoubleQuotationAdjustment[]).Where((DoubleQuotationAdjustment c) => c.hideFlags == HideFlags.None).ToList();
 		EnableDoubleQuotationAdjustoment(GSStatic.save_slot_language_ == Language.JAPAN);
+	}
+
+	private void Update()
+	{
+	}
+
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
+	{
 	}
 
 	public void InitScreen()

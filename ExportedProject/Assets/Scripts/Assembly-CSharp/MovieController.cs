@@ -32,6 +32,8 @@ public class MovieController : MonoBehaviour
 
 	private float now_speed;
 
+	public IEnumerator play_enumerator;
+
 	public Coroutine play_coroutine;
 
 	public bool auto_play;
@@ -123,7 +125,8 @@ public class MovieController : MonoBehaviour
 		now_speed = 1f;
 		frame_rate = 1;
 		isPausing = false;
-		play_coroutine = StartCoroutine(PlaySandStorm(assetBundle));
+		play_enumerator = PlaySandStorm(assetBundle);
+		coroutineCtrl.instance.Play(play_enumerator);
 	}
 
 	public void SetVideo()
@@ -136,7 +139,8 @@ public class MovieController : MonoBehaviour
 		auto_play = true;
 		now_speed = 1f;
 		frame_rate = 1;
-		play_coroutine = StartCoroutine(PlayTaihokun(taiho_bundle));
+		play_enumerator = PlayTaihokun(taiho_bundle);
+		coroutineCtrl.instance.Play(play_enumerator);
 	}
 
 	public void Play(AssetBundle bundle)
@@ -144,7 +148,8 @@ public class MovieController : MonoBehaviour
 		screen.rectTransform.sizeDelta = new Vector2(1440f, 1080f);
 		use_camera_.clearFlags = CameraClearFlags.Color;
 		frame_rate = 2;
-		play_coroutine = StartCoroutine(PlaySecurityCamera(bundle));
+		play_enumerator = PlaySecurityCamera(bundle);
+		coroutineCtrl.instance.Play(play_enumerator);
 		State = PlayState.Playback;
 		isPausing = false;
 		video_pause = false;
@@ -154,12 +159,12 @@ public class MovieController : MonoBehaviour
 	{
 		Cinema.cinema_end();
 		State = PlayState.Paused;
-		if (play_coroutine != null)
+		if (play_enumerator != null)
 		{
-			StopCoroutine(play_coroutine);
+			coroutineCtrl.instance.Stop(play_enumerator);
 		}
 		is_play = false;
-		play_coroutine = null;
+		play_enumerator = null;
 	}
 
 	public void Clear()
@@ -195,24 +200,24 @@ public class MovieController : MonoBehaviour
 		{
 			loop_play = true;
 		}
-		goto IL_0125;
+		goto IL_0129;
 		IL_00c2:
 		now_speed = 1f * speed_rate;
 		State = PlayState.Rewinding;
-		goto IL_0125;
+		goto IL_0129;
 		IL_00e0:
-		if (play_coroutine != null)
+		if (play_enumerator != null)
 		{
-			StopCoroutine(play_coroutine);
+			coroutineCtrl.instance.Stop(play_enumerator);
 			is_play = false;
-			play_coroutine = null;
+			play_enumerator = null;
 		}
 		Cinema.cinema_end();
-		goto IL_0125;
+		goto IL_0129;
 		IL_0060:
 		now_speed = 1f * speed_rate;
 		State = PlayState.Playback;
-		goto IL_0125;
+		goto IL_0129;
 		IL_007e:
 		is_play = false;
 		if (bundle != null)
@@ -221,8 +226,8 @@ public class MovieController : MonoBehaviour
 		}
 		ConfrontWithMovie.instance.CheckEndPlay();
 		Cinema.cinema_end();
-		goto IL_0125;
-		IL_0125:
+		goto IL_0129;
+		IL_0129:
 		if (((ulong)type & 0x8000uL) != 0)
 		{
 			loop_play = true;
@@ -255,7 +260,7 @@ public class MovieController : MonoBehaviour
 		return;
 		IL_00b6:
 		isPausing = true;
-		goto IL_0125;
+		goto IL_0129;
 	}
 
 	public void SetAutoPlayFrame(int frame)
@@ -379,7 +384,7 @@ public class MovieController : MonoBehaviour
 			bundle = null;
 			screen.texture = null;
 		}
-		play_coroutine = null;
+		play_enumerator = null;
 	}
 
 	public IEnumerator PlaySandStorm(AssetBundle bundle)
@@ -537,7 +542,17 @@ public class MovieController : MonoBehaviour
 				{
 					if (!auto_play || ConfrontWithMovie.instance.IsDetailing)
 					{
-						yield return new WaitForSeconds(2f);
+						float frame = 0f;
+						float wait = 2f;
+						while (true)
+						{
+							frame += Time.deltaTime;
+							if (frame > wait)
+							{
+								break;
+							}
+							yield return null;
+						}
 					}
 					idx = 0;
 					if (!loop_play && !ConfrontWithMovie.instance.IsDetailing)

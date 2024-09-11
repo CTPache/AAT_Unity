@@ -41,11 +41,59 @@ public class judgmentCtrl : MonoBehaviour
 
 	private bool is_guilty_play_;
 
-	private const int not_guilty_count_u_ = 9;
-
-	private const int guilty_count_u_ = 6;
-
 	public static judgmentCtrl instance { get; private set; }
+
+	private int not_count_
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.JAPAN:
+				return 1;
+			case Language.KOREA:
+				return 1;
+			case Language.CHINA_S:
+				return 1;
+			case Language.CHINA_T:
+				return 1;
+			case Language.USA:
+				return 3;
+			case Language.FRANCE:
+				return 3;
+			case Language.GERMAN:
+				return 5;
+			default:
+				return 3;
+			}
+		}
+	}
+
+	private int guilty_count_
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.JAPAN:
+				return 1;
+			case Language.KOREA:
+				return 1;
+			case Language.CHINA_S:
+				return 1;
+			case Language.CHINA_T:
+				return 1;
+			case Language.USA:
+				return 6;
+			case Language.FRANCE:
+				return 8;
+			case Language.GERMAN:
+				return 8;
+			default:
+				return 6;
+			}
+		}
+	}
 
 	public bool is_not_guilty_play
 	{
@@ -126,7 +174,7 @@ public class judgmentCtrl : MonoBehaviour
 	public void load()
 	{
 		string in_path = "/GS1/etc/";
-		string in_name = "etc014" + ((GSStatic.global_work_.language != 0) ? "u" : string.Empty);
+		string in_name = "etc014" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
 		AssetBundle assetBundle = AssetBundleCtrl.instance.load(in_path, in_name);
 		sprite_data_ = new List<Sprite>();
 		sprite_data_.AddRange(assetBundle.LoadAllAssets<Sprite>());
@@ -153,19 +201,19 @@ public class judgmentCtrl : MonoBehaviour
 	{
 		stop();
 		enumerator_play_ = CoroutinePlay(in_type);
-		StartCoroutine(enumerator_play_);
+		coroutineCtrl.instance.Play(enumerator_play_);
 	}
 
 	private void stop()
 	{
 		if (enumerator_play_ != null)
 		{
-			StopCoroutine(enumerator_play_);
+			coroutineCtrl.instance.Stop(enumerator_play_);
 			enumerator_play_ = null;
 		}
 		if (enumerator_sub_ != null)
 		{
-			StopCoroutine(enumerator_sub_);
+			coroutineCtrl.instance.Stop(enumerator_sub_);
 			enumerator_sub_ = null;
 		}
 	}
@@ -179,7 +227,7 @@ public class judgmentCtrl : MonoBehaviour
 			item.transform.localScale = localScale;
 			item.active = false;
 		}
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.JAPAN)
 		{
 			sprite_L.sprite_renderer_.sprite = sprite_data_[(in_type != 1) ? 2 : 0];
 			sprite_R.sprite_renderer_.sprite = sprite_data_[(in_type == 1) ? 1 : 3];
@@ -190,43 +238,82 @@ public class judgmentCtrl : MonoBehaviour
 			sprite_flash_.active = true;
 			return;
 		}
-		int num = 0;
-		Vector2[] array;
-		if (in_type == 0)
+		Vector2[] array = ((GSStatic.global_work_.language == Language.FRANCE) ? ((in_type != 0) ? new Vector2[8]
 		{
-			array = new Vector2[9]
-			{
-				new Vector2(-730f, 80f),
-				new Vector2(-500f, 80f),
-				new Vector2(-330f, 80f),
-				new Vector2(-40f, 75f),
-				new Vector2(180f, 70f),
-				new Vector2(350f, 80f),
-				new Vector2(480f, 80f),
-				new Vector2(610f, 75f),
-				new Vector2(790f, 22f)
-			};
-		}
-		else
+			new Vector2(-740f, 30f),
+			new Vector2(-490f, 30f),
+			new Vector2(-270f, 30f),
+			new Vector2(-30f, -80f),
+			new Vector2(200f, 30f),
+			new Vector2(410f, 30f),
+			new Vector2(590f, 30f),
+			new Vector2(750f, 30f)
+		} : new Vector2[11]
 		{
-			array = new Vector2[6]
-			{
-				new Vector2(-370f, 75f),
-				new Vector2(-150f, 70f),
-				new Vector2(20f, 80f),
-				new Vector2(150f, 80f),
-				new Vector2(280f, 75f),
-				new Vector2(460f, 22f)
-			};
-			num = 9;
-		}
-		Vector3 localPosition = new Vector3(-960f, 80f, 0f);
+			new Vector2(-680f, 200f),
+			new Vector2(-430f, 200f),
+			new Vector2(-200f, 200f),
+			new Vector2(-720f, -200f),
+			new Vector2(-490f, -200f),
+			new Vector2(-270f, -200f),
+			new Vector2(-30f, -310f),
+			new Vector2(200f, -200f),
+			new Vector2(410f, -200f),
+			new Vector2(590f, -200f),
+			new Vector2(750f, -200f)
+		}) : ((GSStatic.global_work_.language == Language.GERMAN) ? ((in_type != 0) ? new Vector2[8]
+		{
+			new Vector2(-770f, 30f),
+			new Vector2(-530f, 30f),
+			new Vector2(-290f, 30f),
+			new Vector2(-40f, 30f),
+			new Vector2(160f, 30f),
+			new Vector2(360f, 30f),
+			new Vector2(560f, 30f),
+			new Vector2(750f, -20f)
+		} : new Vector2[13]
+		{
+			new Vector2(-700f, 200f),
+			new Vector2(-470f, 200f),
+			new Vector2(-300f, 200f),
+			new Vector2(-60f, 200f),
+			new Vector2(130f, 200f),
+			new Vector2(-750f, -200f),
+			new Vector2(-530f, -200f),
+			new Vector2(-290f, -200f),
+			new Vector2(-40f, -200f),
+			new Vector2(160f, -200f),
+			new Vector2(360f, -200f),
+			new Vector2(560f, -200f),
+			new Vector2(750f, -250f)
+		}) : ((in_type != 0) ? new Vector2[6]
+		{
+			new Vector2(-370f, 75f),
+			new Vector2(-150f, 70f),
+			new Vector2(20f, 80f),
+			new Vector2(150f, 80f),
+			new Vector2(280f, 75f),
+			new Vector2(460f, 22f)
+		} : new Vector2[9]
+		{
+			new Vector2(-730f, 80f),
+			new Vector2(-500f, 80f),
+			new Vector2(-330f, 80f),
+			new Vector2(-40f, 75f),
+			new Vector2(180f, 70f),
+			new Vector2(350f, 80f),
+			new Vector2(480f, 80f),
+			new Vector2(610f, 75f),
+			new Vector2(790f, 22f)
+		})));
+		int num = ((in_type != 0) ? (not_count_ + guilty_count_) : 0);
+		Vector3 zero = Vector3.zero;
 		for (int i = 0; i < array.Length; i++)
 		{
 			sprite_list_[i].sprite_renderer_.sprite = sprite_data_[i + num];
-			localPosition.x = array[i].x;
-			localPosition.y = array[i].y;
-			sprite_list_[i].transform.localPosition = localPosition;
+			zero.x = array[i].x;
+			zero.y = array[i].y;
+			sprite_list_[i].transform.localPosition = zero;
 			sprite_list_[i].active = true;
 		}
 		sprite_flash_.active = false;
@@ -239,7 +326,7 @@ public class judgmentCtrl : MonoBehaviour
 		is_not_guilty_play_ = true;
 		is_guilty_play_ = true;
 		result_active = true;
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.JAPAN)
 		{
 			enumerator_sub_ = CoroutineJapanese(in_type);
 		}
@@ -247,7 +334,7 @@ public class judgmentCtrl : MonoBehaviour
 		{
 			enumerator_sub_ = CoroutineUSA(in_type);
 		}
-		yield return StartCoroutine(enumerator_sub_);
+		yield return coroutineCtrl.instance.Play(enumerator_sub_);
 		result_active = false;
 		is_not_guilty_play_ = false;
 		yield return null;
@@ -263,7 +350,17 @@ public class judgmentCtrl : MonoBehaviour
 			{
 				eff_active = true;
 				soundCtrl.instance.PlaySE(102);
-				yield return new WaitForSeconds(5f);
+				float time = 0f;
+				float wait = 5f;
+				while (true)
+				{
+					time += Time.deltaTime;
+					if (time > wait)
+					{
+						break;
+					}
+					yield return null;
+				}
 			}
 		}
 		is_guilty_play_ = false;
@@ -331,11 +428,11 @@ public class judgmentCtrl : MonoBehaviour
 				float curve_R_evaluate = curve_USA_.Evaluate((float)(time - 70) / (float)max_time);
 				Vector3 scalel_L = new Vector3(curve_L_evaluate, curve_L_evaluate, 1f);
 				Vector3 scalel_R = new Vector3(curve_R_evaluate, curve_R_evaluate, 1f);
-				for (int i = 0; i < 3; i++)
+				for (int i = 0; i < not_count_; i++)
 				{
 					sprite_list_[i].transform.localScale = scalel_L;
 				}
-				for (int j = 3; j < 9; j++)
+				for (int j = not_count_; j < not_count_ + guilty_count_; j++)
 				{
 					sprite_list_[j].transform.localScale = scalel_R;
 				}
@@ -353,7 +450,7 @@ public class judgmentCtrl : MonoBehaviour
 					soundCtrl.instance.PlaySE(86);
 					se_count++;
 				}
-				for (int k = 0; k < 6; k++)
+				for (int k = 0; k < not_count_ + guilty_count_; k++)
 				{
 					float curve_USA_evaluate = curve_USA_.Evaluate((float)(time - k * 10) / (float)max_time);
 					Vector3 sprite_scale_ = new Vector3(curve_USA_evaluate, curve_USA_evaluate, 1f);

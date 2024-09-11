@@ -103,19 +103,22 @@ public class advCtrl : MonoBehaviour
 		}
 		TrophyCtrl.set_tropthy(26);
 		debugLogger.instance.Log("adv", "advCtrl.Play > title[" + in_title_id + "] story[" + in_story_id + "] scenario[" + in_scenario_id + "]");
-		StartCoroutine(stateCoroutine(in_title_id, in_story_id, in_scenario_id, false));
+		coroutineCtrl.instance.Play(stateCoroutine(in_title_id, in_story_id, in_scenario_id, false));
 	}
 
 	public void play(int in_title_id, int in_story_id, int in_scenario_id, bool continue_data)
 	{
-		StartCoroutine(stateCoroutine(in_title_id, in_story_id, in_scenario_id, continue_data));
+		coroutineCtrl.instance.Play(stateCoroutine(in_title_id, in_story_id, in_scenario_id, continue_data));
 	}
 
 	private IEnumerator stateCoroutine(int in_title_id, int in_story_id, int in_scenario_id, bool continue_data)
 	{
 		active = true;
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_IN, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
 		string syste_mes_mdt = string.Empty;
 		string message_header = string.Empty;
 		string cho_data = string.Empty;
@@ -123,12 +126,7 @@ public class advCtrl : MonoBehaviour
 		string ba_data = string.Empty;
 		string nolb_data2 = string.Empty;
 		string note_data2 = string.Empty;
-		string language_text = string.Empty;
-		Language language = GSStatic.global_work_.language;
-		if (language != 0 && language == Language.USA)
-		{
-			language_text = "_u";
-		}
+		string language_text = GSUtility.GetScenarioLanguage(GSStatic.global_work_.language);
 		syste_mes_mdt = "GS" + (in_title_id + 1).ToString("D1") + "/scenario/" + GSScenario.GetSystemScenarioMdtPath();
 		message_header = "GS" + (in_title_id + 1).ToString("D1") + "/scenario/gs" + (in_title_id + 1).ToString("D1") + ".mh";
 		cho_data = "GS" + (in_title_id + 1).ToString("D1") + "/scenario/gs" + (in_title_id + 1).ToString("D1") + language_text + ".cho";
@@ -160,15 +158,21 @@ public class advCtrl : MonoBehaviour
 		}
 		if (scenario_enumerator_ != null)
 		{
-			StopCoroutine(scenario_enumerator_);
+			coroutineCtrl.instance.Stop(scenario_enumerator_);
 			scenario_enumerator_ = null;
 		}
 		scenario_enumerator_ = scenarioCoroutine(continue_data, false);
-		StartCoroutine(scenario_enumerator_);
-		yield return new WaitWhile(() => scenario_enumerator_ != null);
+		coroutineCtrl.instance.Play(scenario_enumerator_);
+		while (scenario_enumerator_ != null)
+		{
+			yield return null;
+		}
 		active = false;
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_IN, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
 		titleCtrlRoot.instance.active = true;
 		titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Top);
 	}
@@ -336,7 +340,7 @@ public class advCtrl : MonoBehaviour
 					selectPlateCtrl.instance.entryCursor(num2, selectPlateCtrl.FromEntryRequest.TALK);
 				}
 				selectPlateCtrl.instance.playCursor(1);
-				keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_TALK);
+				coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_TALK));
 			}
 			inspectCtrl.instance.SetCursorPos(GSStatic.tantei_work_.inspect_cursor_x, GSStatic.tantei_work_.inspect_cursor_y);
 			if (GSStatic.menu_work.inspect_is_play)
@@ -424,7 +428,19 @@ public class advCtrl : MonoBehaviour
 		{
 			yield return null;
 		}
-		yield return new WaitForSeconds(1f);
+		Debug.Log("----ChildCoroutine Time Start:" + Time.time);
+		float time = 0f;
+		float wait = 1f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
+		Debug.Log("----ChildCoroutine Time End:" + Time.time);
 		if (GSStatic.global_work_.r.no_0 == 1)
 		{
 			GSMain.End();
@@ -436,11 +452,11 @@ public class advCtrl : MonoBehaviour
 			yield return null;
 			if (scenario_enumerator_ != null)
 			{
-				StopCoroutine(scenario_enumerator_);
+				coroutineCtrl.instance.Stop(scenario_enumerator_);
 				scenario_enumerator_ = null;
 			}
 			scenario_enumerator_ = scenarioCoroutine(false, true);
-			StartCoroutine(scenario_enumerator_);
+			coroutineCtrl.instance.Play(scenario_enumerator_);
 		}
 	}
 

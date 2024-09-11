@@ -123,7 +123,7 @@ public class GSMapIcon : MonoBehaviour
 		{
 			localPosition.z += 0.5f;
 		}
-		if (GSStatic.global_work_.title == TitleId.GS1 && (sprite.name == "itb001" || sprite.name == "itb001u") && is_expl_higaisha_move_)
+		if (GSStatic.global_work_.title == TitleId.GS1 && id == 1 && is_expl_higaisha_move_)
 		{
 			localPosition.y -= 28f;
 			is_expl_higaisha_move_ = false;

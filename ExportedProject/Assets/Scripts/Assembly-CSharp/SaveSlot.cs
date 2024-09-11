@@ -41,6 +41,10 @@ public class SaveSlot : MonoBehaviour
 
 	private Color num_color = Color.white;
 
+	private const int DEFAULT_FONT_SIZE = 44;
+
+	private const int FRANCE_FONT_SIZE = 40;
+
 	private Vector3 slot_num_def_pos_ = default(Vector3);
 
 	[SerializeField]
@@ -66,7 +70,7 @@ public class SaveSlot : MonoBehaviour
 	{
 		get
 		{
-			switch (GSStatic.global_work_.language)
+			switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 			{
 			case Language.JAPAN:
 				return title_text_fontsize_jpn_;
@@ -74,6 +78,22 @@ public class SaveSlot : MonoBehaviour
 				return title_text_fontsize_usa_;
 			default:
 				return title_text_fontsize_usa_;
+			}
+		}
+	}
+
+	private float time_text_lineSpacing_
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.KOREA:
+				return 0.8f;
+			case Language.CHINA_S:
+				return 0.7f;
+			default:
+				return 0.6f;
 			}
 		}
 	}
@@ -156,6 +176,15 @@ public class SaveSlot : MonoBehaviour
 
 	private void SlotTextSet(int slot_num)
 	{
+		if (GSStatic.global_work_.language == Language.FRANCE)
+		{
+			slot.scenario_.fontSize = 40;
+		}
+		else
+		{
+			slot.scenario_.fontSize = 44;
+		}
+		slot.time_.lineSpacing = time_text_lineSpacing_;
 		slot.time_.text = GSStatic.save_data[slot_num].time;
 		slot.title_.text = GetTitleText((TitleId)GSStatic.save_data[slot_num].title);
 		slot.scenario_.text = GetScenarioText((TitleId)GSStatic.save_data[slot_num].title, GSStatic.save_data[slot_num].scenario);

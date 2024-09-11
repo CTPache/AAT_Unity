@@ -49,7 +49,7 @@ public class vibrationCtrl : MonoBehaviour
 			if (num > 0)
 			{
 				enumerator_play_ = coroutine_play(num);
-				StartCoroutine(enumerator_play_);
+				coroutineCtrl.instance.Play(enumerator_play_);
 			}
 		}
 	}
@@ -58,7 +58,7 @@ public class vibrationCtrl : MonoBehaviour
 	{
 		if (enumerator_play_ != null)
 		{
-			StopCoroutine(enumerator_play_);
+			coroutineCtrl.instance.Stop(enumerator_play_);
 		}
 		padCtrl.instance.vibration_stop();
 		is_play_ = false;

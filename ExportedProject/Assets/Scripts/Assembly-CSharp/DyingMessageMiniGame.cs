@@ -32,6 +32,8 @@ public class DyingMessageMiniGame : MonoBehaviour
 
 	private Vector2[] touch_range_USA_ = new Vector2[12];
 
+	private Vector2[] touch_range_KOREA_ = new Vector2[15];
+
 	private Vector2 cursor_scroll_limit_ = Vector2.zero;
 
 	private ushort DIE_Rno_2;
@@ -98,7 +100,12 @@ public class DyingMessageMiniGame : MonoBehaviour
 		return null;
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		switch (SwDiemesProcState_)
 		{
@@ -135,14 +142,24 @@ public class DyingMessageMiniGame : MonoBehaviour
 		body_.SetActive(true);
 		if (DIE_Rno_2 == 0)
 		{
-			StartCoroutine(init_col());
+			coroutineCtrl.instance.Play(init_col());
 			DIE_Rno_2++;
 		}
 	}
 
 	private IEnumerator init_col()
 	{
-		yield return new WaitForSeconds(1f);
+		float time2 = 0f;
+		float wait = 1f;
+		while (true)
+		{
+			time2 += Time.deltaTime;
+			if (time2 > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		messageBoardCtrl.instance.board(false, false);
 		DyingMessageUtil.instance.init_die_message();
 		float appear_time_ = 1f;
@@ -161,7 +178,7 @@ public class DyingMessageMiniGame : MonoBehaviour
 		_setSpritePosition();
 		SetPointRange();
 		main_canvas_.sortingOrder = 1;
-		yield return keyGuideCtrl.instance.open(keyGuideBase.Type.DYING_MESSAGE);
+		yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.DYING_MESSAGE));
 		MiniGameCursor.instance.cursor_exception_limit = Vector2.zero;
 		cursor_scroll_limit_ = MiniGameCursor.instance.cursor_exception_limit;
 		DIE_Rno_2 = 0;
@@ -280,17 +297,27 @@ public class DyingMessageMiniGame : MonoBehaviour
 
 	private bool _checkDieMessage(Language in_language)
 	{
-		if (in_language == Language.JAPAN)
+		switch (in_language)
 		{
+		case Language.JAPAN:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
 			return DyingMessageUtil.instance.checkDieMessage_jp();
+		case Language.KOREA:
+			return DyingMessageUtil.instance.checkDieMessage_korea();
+		default:
+			return DyingMessageUtil.instance.checkDieMessage_us();
 		}
-		return DyingMessageUtil.instance.checkDieMessage_us();
 	}
 
 	private void _loadAssetBundle(Language in_language)
 	{
 		List<string> list2;
-		if (in_language == Language.JAPAN)
+		switch (in_language)
+		{
+		case Language.JAPAN:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
 		{
 			List<string> list = new List<string>();
 			list.Add("eff029");
@@ -309,8 +336,30 @@ public class DyingMessageMiniGame : MonoBehaviour
 			list.Add("eff036");
 			list.Add("eff037");
 			list2 = list;
+			break;
 		}
-		else
+		case Language.KOREA:
+		{
+			List<string> list = new List<string>();
+			list.Add("eff029k");
+			list.Add("eff02ak");
+			list.Add("eff02bk");
+			list.Add("eff02ck");
+			list.Add("eff02dk");
+			list.Add("eff02ek");
+			list.Add("eff02fk");
+			list.Add("eff030k");
+			list.Add("eff031k");
+			list.Add("eff032k");
+			list.Add("eff033k");
+			list.Add("eff034k");
+			list.Add("eff035k");
+			list.Add("eff036k");
+			list.Add("eff037k");
+			list2 = list;
+			break;
+		}
+		default:
 		{
 			List<string> list = new List<string>();
 			list.Add("eff03e");
@@ -326,6 +375,8 @@ public class DyingMessageMiniGame : MonoBehaviour
 			list.Add("eff048");
 			list.Add("eff049");
 			list2 = list;
+			break;
+		}
 		}
 		foreach (string item in list2)
 		{
@@ -361,8 +412,11 @@ public class DyingMessageMiniGame : MonoBehaviour
 
 	private void _setSpritePosition()
 	{
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		switch (GSStatic.global_work_.language)
 		{
+		case Language.JAPAN:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
 			sprite_list_[0].Key.transform.localPosition = new Vector3(-28f, 374f, -10f);
 			sprite_list_[1].Key.transform.localPosition = new Vector3(-335f, 306f, -10f);
 			sprite_list_[2].Key.transform.localPosition = new Vector3(192f, 294f, -10f);
@@ -378,9 +432,25 @@ public class DyingMessageMiniGame : MonoBehaviour
 			sprite_list_[12].Key.transform.localPosition = new Vector3(-279f, 113f, -10f);
 			sprite_list_[13].Key.transform.localPosition = new Vector3(545f, -440f, -10f);
 			sprite_list_[14].Key.transform.localPosition = new Vector3(-66f, -433f, -10f);
-		}
-		else
-		{
+			break;
+		case Language.KOREA:
+			sprite_list_[0].Key.transform.localPosition = new Vector3(-571f, 324f, -10f);
+			sprite_list_[1].Key.transform.localPosition = new Vector3(-565f, -156f, -10f);
+			sprite_list_[2].Key.transform.localPosition = new Vector3(-440f, 264f, -10f);
+			sprite_list_[3].Key.transform.localPosition = new Vector3(-447f, -66f, -10f);
+			sprite_list_[4].Key.transform.localPosition = new Vector3(-270f, 281f, -10f);
+			sprite_list_[5].Key.transform.localPosition = new Vector3(-249f, -19f, -10f);
+			sprite_list_[6].Key.transform.localPosition = new Vector3(-84f, 100f, -10f);
+			sprite_list_[7].Key.transform.localPosition = new Vector3(-87f, -413f, -10f);
+			sprite_list_[8].Key.transform.localPosition = new Vector3(89f, 18f, -10f);
+			sprite_list_[9].Key.transform.localPosition = new Vector3(79f, -323f, -10f);
+			sprite_list_[10].Key.transform.localPosition = new Vector3(249f, -309f, -10f);
+			sprite_list_[11].Key.transform.localPosition = new Vector3(397f, 266f, -10f);
+			sprite_list_[12].Key.transform.localPosition = new Vector3(385f, 81f, -10f);
+			sprite_list_[13].Key.transform.localPosition = new Vector3(390f, -193f, -10f);
+			sprite_list_[14].Key.transform.localPosition = new Vector3(395f, -291f, -10f);
+			break;
+		default:
 			sprite_list_[0].Key.transform.localPosition = new Vector3(-386f, 355f, -10f);
 			sprite_list_[1].Key.transform.localPosition = new Vector3(-84f, 382f, -10f);
 			sprite_list_[2].Key.transform.localPosition = new Vector3(403f, 101f, -10f);
@@ -393,11 +463,27 @@ public class DyingMessageMiniGame : MonoBehaviour
 			sprite_list_[9].Key.transform.localPosition = new Vector3(179f, -246f, -10f);
 			sprite_list_[10].Key.transform.localPosition = new Vector3(274f, -373f, -10f);
 			sprite_list_[11].Key.transform.localPosition = new Vector3(660f, -375f, -10f);
+			break;
 		}
 	}
 
 	private void SetPointRange()
 	{
+		Vector2[] array;
+		switch (GSStatic.global_work_.language)
+		{
+		case Language.JAPAN:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
+			array = touch_range_JPN_;
+			break;
+		case Language.KOREA:
+			array = touch_range_KOREA_;
+			break;
+		default:
+			array = touch_range_USA_;
+			break;
+		}
 		int count = sprite_list_.Count;
 		for (int i = 0; i < count; i++)
 		{
@@ -405,49 +491,52 @@ public class DyingMessageMiniGame : MonoBehaviour
 			touch_range_list_[i].transform.SetParent(touch_points_.transform, false);
 			SetPointRangeOffset(i);
 			InputTouch component = touch_range_list_[i].GetComponent<InputTouch>();
-			if (GSStatic.global_work_.language == Language.JAPAN)
-			{
-				component.SetColliderSize(touch_range_JPN_[i]);
-			}
-			else
-			{
-				component.SetColliderSize(touch_range_USA_[i]);
-			}
+			component.SetColliderSize(array[i]);
 			component.touch_key_type = KeyType.A;
 		}
 	}
 
 	private void SetPointRangeOffset(int _no)
 	{
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		switch (GSStatic.global_work_.language)
+		{
+		case Language.JAPAN:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
 		{
 			touch_range_list_[_no].transform.localPosition = sprite_list_[_no].Key.transform.localPosition;
-			float x = touch_range_JPN_[_no].x / 2f;
-			float num = touch_range_JPN_[_no].y / 2f;
+			float x2 = touch_range_JPN_[_no].x / 2f;
+			float num3 = touch_range_JPN_[_no].y / 2f;
+			touch_range_list_[_no].transform.localPosition += new Vector3(x2, 0f - num3, 6f);
+			float num4 = sprite_list_[_no].Value.sprite_renderer_.sprite.rect.size.x / 2f;
+			float y2 = sprite_list_[_no].Value.sprite_renderer_.sprite.rect.size.y / 2f;
+			touch_range_list_[_no].transform.localPosition += new Vector3(0f - num4, y2, 0f);
+			float num5 = 0f;
+			float num6 = 0f;
+			if (_no == 10)
+			{
+				num5 = 30f;
+			}
+			if (num5 != 0f || num6 != 0f)
+			{
+				touch_range_list_[_no].transform.localPosition += new Vector3(num5, num6, 0f);
+			}
+			break;
+		}
+		case Language.KOREA:
+			touch_range_list_[_no].transform.localPosition = sprite_list_[_no].Key.transform.localPosition;
+			break;
+		default:
+		{
+			touch_range_list_[_no].transform.localPosition = sprite_list_[_no].Key.transform.localPosition;
+			float x = touch_range_USA_[_no].x / 2f;
+			float num = touch_range_USA_[_no].y / 2f;
 			touch_range_list_[_no].transform.localPosition += new Vector3(x, 0f - num, 6f);
 			float num2 = sprite_list_[_no].Value.sprite_renderer_.sprite.rect.size.x / 2f;
 			float y = sprite_list_[_no].Value.sprite_renderer_.sprite.rect.size.y / 2f;
 			touch_range_list_[_no].transform.localPosition += new Vector3(0f - num2, y, 0f);
-			float num3 = 0f;
-			float num4 = 0f;
-			if (_no == 10)
-			{
-				num3 = 30f;
-			}
-			if (num3 != 0f || num4 != 0f)
-			{
-				touch_range_list_[_no].transform.localPosition += new Vector3(num3, num4, 0f);
-			}
+			break;
 		}
-		else
-		{
-			touch_range_list_[_no].transform.localPosition = sprite_list_[_no].Key.transform.localPosition;
-			float x2 = touch_range_USA_[_no].x / 2f;
-			float num5 = touch_range_USA_[_no].y / 2f;
-			touch_range_list_[_no].transform.localPosition += new Vector3(x2, 0f - num5, 6f);
-			float num6 = sprite_list_[_no].Value.sprite_renderer_.sprite.rect.size.x / 2f;
-			float y2 = sprite_list_[_no].Value.sprite_renderer_.sprite.rect.size.y / 2f;
-			touch_range_list_[_no].transform.localPosition += new Vector3(0f - num6, y2, 0f);
 		}
 	}
 
@@ -455,8 +544,11 @@ public class DyingMessageMiniGame : MonoBehaviour
 	{
 		float num = 0f;
 		float num2 = 0f;
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		switch (GSStatic.global_work_.language)
 		{
+		case Language.JAPAN:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
 			switch (_count)
 			{
 			case 0:
@@ -467,10 +559,13 @@ public class DyingMessageMiniGame : MonoBehaviour
 				break;
 			}
 			touch_range_JPN_[_count] = new Vector2(_x + num, _y + num2);
-		}
-		else
-		{
+			break;
+		case Language.KOREA:
+			touch_range_KOREA_[_count] = new Vector2(_x + num, _y + num2);
+			break;
+		default:
 			touch_range_USA_[_count] = new Vector2(_x + num, _y + num2);
+			break;
 		}
 	}
 }

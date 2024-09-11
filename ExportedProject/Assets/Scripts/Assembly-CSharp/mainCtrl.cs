@@ -47,16 +47,57 @@ public class mainCtrl : MonoBehaviour
 
 	private void Start()
 	{
-		StartCoroutine(SystemInitialization());
+		coroutineCtrl.instance.Play(SystemInitialization());
 		MouseCursorMonitoringCtrl mouseCursorMonitoringCtrl = base.gameObject.AddComponent<MouseCursorMonitoringCtrl>();
 		mouseCursorMonitoringCtrl.RegisterHideCursorTimeOverCallBack(delegate(bool p)
 		{
 			Cursor.visible = p;
 		});
 		mouseCursorMonitoringCtrl.hide_cursor_time = 2f;
+		coroutineCtrl.instance.Play(GSMainLoop());
 	}
 
-	private void Update()
+	private IEnumerator ParentCoroutine()
+	{
+		Debug.Log("----ParentCoroutine Start");
+		yield return coroutineCtrl.instance.Play(ChildCoroutine());
+		Debug.Log("----ParentCoroutine End");
+	}
+
+	private IEnumerator ChildCoroutine()
+	{
+		Debug.Log("----ChildCoroutine Start:");
+		Debug.Log("----ChildCoroutine Wait Start:" + Time.time);
+		yield return new WaitForSeconds(1f);
+		Debug.Log("----ChildCoroutine Wait End:" + Time.time);
+		Debug.Log("----ChildCoroutine Time Start:" + Time.time);
+		float time = 0f;
+		float wait = 1f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
+		Debug.Log("----ChildCoroutine Time End:" + Time.time);
+		yield return systemCtrl.instance.wait_time;
+		Debug.Log("----ChildCoroutine End");
+	}
+
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
+	{
+
+    }
+
+	private IEnumerator GSMainLoop()
 	{
 		while (true)
 		{
@@ -64,9 +105,11 @@ public class mainCtrl : MonoBehaviour
 			if (MessageSystem.GetActiveMessageWork().code == 27 && !bgCtrl.instance.is_scrolling_court)
 			{
 				MessageSystem.GetActiveMessageWork().code = 0;
-				continue;
 			}
-			break;
+			else
+			{
+				yield return null;
+			}
 		}
 	}
 
@@ -97,7 +140,10 @@ public class mainCtrl : MonoBehaviour
 		GSStatic.global_work_.Random_seed = 3383;
 		GSStatic.global_work_.system_language = SteamCtrl.ConvertLanguage();
 		AnimationIdentifier.instance.LoadDictionary();
-		yield return new WaitWhile(() => !AnimationIdentifier.instance.isInitialized);
+		while (!AnimationIdentifier.instance.isInitialized)
+		{
+			yield return null;
+		}
 		AssetBundleCtrl.instance.load("/menu/common/", "select_button", true);
 		AssetBundleCtrl.instance.load("/menu/common/", "select_window", true);
 		AssetBundleCtrl.instance.load("/menu/option/", "option_count_bg01", true);
@@ -118,6 +164,8 @@ public class mainCtrl : MonoBehaviour
 		string in_name = "symbol" + GSUtility.GetPlatformResourceName();
 		AssetBundleCtrl.instance.load("/menu/common/", in_name, true);
 		AssetBundleCtrl.instance.load("/menu/common/", "symbol_xbox", true);
+		ReplaceLanguage.Init();
+		ReplaceFont.instance.Init();
 		advCtrl.instance.init();
 		vibrationCtrl.instance.init();
 		signedInCtrl.instance.init();

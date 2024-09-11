@@ -1,15 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1635810751452652
+--- !u!1 &1593412257976755
 GameObject:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_Component:
-  - component: {fileID: 4105354083273980}
-  - component: {fileID: 61098798260477313}
-  - component: {fileID: 114771449374182316}
+  - component: {fileID: 4493650077061496}
+  - component: {fileID: 61055645506971883}
+  - component: {fileID: 114105413842413522}
   m_Layer: 8
   m_Name: TouchRange
   m_TagString: NotHitSome
@@ -17,12 +17,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4105354083273980
+--- !u!4 &4493650077061496
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1635810751452652}
+  m_GameObject: {fileID: 1593412257976755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,13 +30,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!61 &61098798260477313
+--- !u!61 &61055645506971883
 BoxCollider2D:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1635810751452652}
+  m_GameObject: {fileID: 1593412257976755}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -55,18 +55,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114771449374182316
+--- !u!114 &114105413842413522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1635810751452652}
+  m_GameObject: {fileID: 1593412257976755}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec72c585a84d8ae2ea1f65667d15c2fd, type: 3}
   m_Name:
   m_EditorClassIdentifier:
-  box_collider_2d_: {fileID: 61098798260477313}
+  box_collider_2d_: {fileID: 61055645506971883}
 --- !u!1001 &100100000
 Prefab:
   serializedVersion: 2
@@ -76,5 +76,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1635810751452652}
+  m_RootGameObject: {fileID: 1593412257976755}
   m_IsPrefabParent: 1

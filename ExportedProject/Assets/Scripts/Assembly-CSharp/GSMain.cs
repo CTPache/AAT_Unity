@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class GSMain
@@ -69,9 +70,9 @@ public static class GSMain
 			bgCtrl.instance.BG256_main();
 			if (GSStatic.global_work_.title == TitleId.GS2)
 			{
-				GS2_OpObjCtrl.instance.Update();
+				GS2_OpObjCtrl.instance.Process();
 			}
-			advCtrl.instance.sub_window_.Update();
+			advCtrl.instance.sub_window_.Process();
 			if (GSStatic.global_work_.title == TitleId.GS3)
 			{
 				butterflyCtrl.instance.Butterfly();
@@ -117,13 +118,31 @@ public static class GSMain
 			if (!loadingCtrl.instance.is_wait)
 			{
 				loadingCtrl.instance.stop();
+				if (SaveControl.is_save_error)
+				{
+					messageBoxCtrl.instance.init();
+					messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+					messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.SAVE_ERROR));
+					messageBoxCtrl.instance.SetTextPosCenter();
+					messageBoxCtrl.instance.OpenWindow();
+				}
 				global_work.r.no_1++;
 			}
 			break;
 		case 3:
-			bgCtrl.instance.SetSprite(4095);
-			advCtrl.instance.message_system_.is_end = true;
-			global_work.r.no_1++;
+			if (SaveControl.is_save_error && messageBoxCtrl.instance.active)
+			{
+				if (padCtrl.instance.GetKeyDown(KeyType.A))
+				{
+					messageBoxCtrl.instance.CloseWindow();
+				}
+			}
+			else
+			{
+				bgCtrl.instance.SetSprite(4095);
+				advCtrl.instance.message_system_.is_end = true;
+				global_work.r.no_1++;
+			}
 			break;
 		}
 	}
@@ -184,13 +203,31 @@ public static class GSMain
 			if (!loadingCtrl.instance.is_wait)
 			{
 				loadingCtrl.instance.stop();
+				if (SaveControl.is_save_error)
+				{
+					messageBoxCtrl.instance.init();
+					messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+					messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.SAVE_ERROR));
+					messageBoxCtrl.instance.SetTextPosCenter();
+					messageBoxCtrl.instance.OpenWindow();
+				}
 				global_work.r.no_1++;
 			}
 			break;
 		case 3:
-			TouchSystem.TouchInActive();
-			SaveLoadUICtrl.instance.SaveConfirmation();
-			global_work.r.no_1++;
+			if (SaveControl.is_save_error && messageBoxCtrl.instance.active)
+			{
+				if (padCtrl.instance.GetKeyDown(KeyType.A))
+				{
+					messageBoxCtrl.instance.CloseWindow();
+				}
+			}
+			else
+			{
+				TouchSystem.TouchInActive();
+				SaveLoadUICtrl.instance.SaveConfirmation();
+				global_work.r.no_1++;
+			}
 			break;
 		case 4:
 			if (!SaveLoadUICtrl.instance.is_input_wait)
@@ -230,9 +267,14 @@ public static class GSMain
 			break;
 		}
 		case 1:
+			global_work.r.no_1++;
+			break;
+		case 2:
 			soundCtrl.instance.PlaySE(49);
 			fadeCtrl.instance.play(0, true);
 			global_work.r.no_1++;
+			break;
+		case 3:
 			break;
 		}
 	}
@@ -365,5 +407,6 @@ public static class GSMain
 		GSStatic.message_work_2_.message_type = WindowType.SUB;
 		GSStatic.message_work_.message_trans_flag = 0;
 		GSStatic.message_work_2_.message_trans_flag = 0;
+		GC.Collect();
 	}
 }

@@ -1166,7 +1166,7 @@ public class soundCtrl : MonoBehaviour
 		}
 		foreach (AssetBundleClip item in asset_SE_)
 		{
-			audioClip = item.clip(soundData2.name);
+			audioClip = ((GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA) ? item.clip(ReplaceLanguage.GetFileName(soundData2.path, soundData2.name)) : item.clip(soundData2.name));
 			if (audioClip != null)
 			{
 				return audioClip;
@@ -1175,7 +1175,11 @@ public class soundCtrl : MonoBehaviour
 		AssetBundleClip assetBundleClip = new AssetBundleClip();
 		assetBundleClip.load(soundData2.path, soundData2.name);
 		asset_SE_.Add(assetBundleClip);
-		return assetBundleClip.clip(soundData2.name);
+		if (GSStatic.global_work_.language == Language.JAPAN || GSStatic.global_work_.language == Language.USA)
+		{
+			return assetBundleClip.clip(soundData2.name);
+		}
+		return assetBundleClip.clip(ReplaceLanguage.GetFileName(soundData2.path, soundData2.name));
 	}
 
 	private AudioClip GetClipBGM(int in_bgm_no)
@@ -1284,7 +1288,7 @@ public class soundCtrl : MonoBehaviour
 			}
 			if (enumerator_fade_SE_ != null)
 			{
-				StopCoroutine(enumerator_fade_SE_);
+				coroutineCtrl.instance.Stop(enumerator_fade_SE_);
 				enumerator_fade_SE_ = null;
 			}
 		}
@@ -1343,7 +1347,7 @@ public class soundCtrl : MonoBehaviour
 					}
 					if (enumerator_fade_BGM_ != null && is_bgm_fade_ == BGMFadeState.FADE_OUT)
 					{
-						StopCoroutine(enumerator_fade_BGM_);
+						coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 						enumerator_fade_BGM_ = null;
 						is_bgm_fade_ = BGMFadeState.FADE_NONE;
 						playFadeBGM(list_BGM_[i].volume, current_volume * option_set_bgm_rate, in_time);
@@ -1379,7 +1383,7 @@ public class soundCtrl : MonoBehaviour
 					}
 					if (enumerator_fade_BGM_ != null && is_bgm_fade_ != 0)
 					{
-						StopCoroutine(enumerator_fade_BGM_);
+						coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 						enumerator_fade_BGM_ = null;
 						is_bgm_fade_ = BGMFadeState.FADE_NONE;
 						if (in_time > 0)
@@ -1486,7 +1490,7 @@ public class soundCtrl : MonoBehaviour
 			{
 				return;
 			}
-			StopCoroutine(enumerator_fade_BGM_);
+			coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 			enumerator_fade_BGM_ = null;
 			is_bgm_fade_ = BGMFadeState.FADE_NONE;
 		}
@@ -1521,7 +1525,7 @@ public class soundCtrl : MonoBehaviour
 		{
 			if (enumerator_fade_BGM_ != null)
 			{
-				StopCoroutine(enumerator_fade_BGM_);
+				coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 				enumerator_fade_BGM_ = null;
 				is_bgm_fade_ = BGMFadeState.FADE_NONE;
 				playFadeBGM(list_BGM_[play_bgm_audio_index].volume * option_set_bgm_rate, 0f, in_time);
@@ -1540,14 +1544,14 @@ public class soundCtrl : MonoBehaviour
 	private void playFadeBGM(float start_volume, float end_volume, int in_time, bool in_ispause = true)
 	{
 		enumerator_fade_BGM_ = CoroutineFadeBGM(start_volume, end_volume, in_time, play_bgm_audio_index, in_ispause);
-		StartCoroutine(enumerator_fade_BGM_);
+		coroutineCtrl.instance.Play(enumerator_fade_BGM_);
 	}
 
 	private void stopFadeBGM()
 	{
 		if (enumerator_fade_BGM_ != null)
 		{
-			StopCoroutine(enumerator_fade_BGM_);
+			coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 			enumerator_fade_BGM_ = null;
 			is_bgm_fade_ = BGMFadeState.FADE_NONE;
 		}
@@ -1623,15 +1627,15 @@ public class soundCtrl : MonoBehaviour
 			{
 				if (enumerator_fade_SE_ != null)
 				{
-					StopCoroutine(enumerator_fade_SE_);
+					coroutineCtrl.instance.Stop(enumerator_fade_SE_);
 					enumerator_fade_SE_ = null;
 				}
 				enumerator_fade_SE_ = FadeOutLoopSE(item, fade_time);
-				StartCoroutine(enumerator_fade_SE_);
+				coroutineCtrl.instance.Play(enumerator_fade_SE_);
 			}
 			else
 			{
-				StartCoroutine(FadeOutSE(item, fade_time));
+				coroutineCtrl.instance.Play(FadeOutSE(item, fade_time));
 			}
 		}
 		if (loop_se_no[0] == in_se_no)
@@ -1676,7 +1680,7 @@ public class soundCtrl : MonoBehaviour
 			}
 			if (enumerator_fade_BGM_ != null)
 			{
-				StopCoroutine(enumerator_fade_BGM_);
+				coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 				enumerator_fade_BGM_ = null;
 				is_bgm_fade_ = BGMFadeState.FADE_NONE;
 			}
@@ -1697,7 +1701,7 @@ public class soundCtrl : MonoBehaviour
 			}
 			if (enumerator_fade_BGM_ != null)
 			{
-				StopCoroutine(enumerator_fade_BGM_);
+				coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 				enumerator_fade_BGM_ = null;
 				is_bgm_fade_ = BGMFadeState.FADE_NONE;
 			}
@@ -1722,7 +1726,7 @@ public class soundCtrl : MonoBehaviour
 	{
 		if (enumerator_fade_BGM_ != null)
 		{
-			StopCoroutine(enumerator_fade_BGM_);
+			coroutineCtrl.instance.Stop(enumerator_fade_BGM_);
 			enumerator_fade_BGM_ = null;
 			is_bgm_fade_ = BGMFadeState.FADE_NONE;
 		}

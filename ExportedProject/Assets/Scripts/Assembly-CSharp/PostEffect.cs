@@ -37,12 +37,12 @@ public class PostEffect : MonoBehaviour
 		}
 		if (rec == PostEffectRec.MosaicIN)
 		{
-			StartCoroutine(MosaicIn());
+			coroutineCtrl.instance.Play(MosaicIn());
 			base.enabled = true;
 		}
 		if (rec == PostEffectRec.MosaicOut)
 		{
-			StartCoroutine(MosaicOut());
+			coroutineCtrl.instance.Play(MosaicOut());
 			base.enabled = true;
 		}
 	}

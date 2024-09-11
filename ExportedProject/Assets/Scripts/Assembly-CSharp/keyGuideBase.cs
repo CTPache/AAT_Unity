@@ -53,24 +53,6 @@ public class keyGuideBase : MonoBehaviour
 	}
 
 	[Serializable]
-	public class Curve
-	{
-		public AnimationCurve open_ = new AnimationCurve();
-
-		public AnimationCurve close_ = new AnimationCurve();
-
-		public float speed_open_ = 0.05f;
-
-		public float speed_close_ = 0.05f;
-
-		public void init()
-		{
-			open_ = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-			close_ = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
-		}
-	}
-
-	[Serializable]
 	public class GuideIcon
 	{
 		public AssetBundleSprite sprite_;
@@ -80,6 +62,18 @@ public class keyGuideBase : MonoBehaviour
 		public InputTouch touch_;
 
 		public GameObject symbol_;
+
+		public Vector3 text_position_
+		{
+			get
+			{
+				return text_.transform.localPosition;
+			}
+			set
+			{
+				text_.transform.localPosition = value;
+			}
+		}
 
 		public bool active
 		{
@@ -323,7 +317,29 @@ public class keyGuideBase : MonoBehaviour
 		}
 	}
 
+	[Serializable]
+	public class Curve
+	{
+		public AnimationCurve open_ = new AnimationCurve();
+
+		public AnimationCurve close_ = new AnimationCurve();
+
+		public float speed_open_ = 0.05f;
+
+		public float speed_close_ = 0.05f;
+
+		public void init()
+		{
+			open_ = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+			close_ = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
+		}
+	}
+
 	public static bool keyguid_pad_;
+
+	protected TextAnchor guide_text_alignment_;
+
+	protected float guide_text_position_y_;
 
 	protected float guide_space_ = 100f;
 
@@ -382,6 +398,12 @@ public class keyGuideBase : MonoBehaviour
 		{
 			creditCtrl.instance.guide_ctrl.ReLoadGuid();
 		}
+	}
+
+	protected virtual void Awake()
+	{
+		guide_text_alignment_ = guide_list_[0].text_.alignment;
+		guide_text_position_y_ = guide_list_[0].text_.transform.localPosition.y;
 	}
 
 	public void SymbolLoad()
@@ -452,6 +474,74 @@ public class keyGuideBase : MonoBehaviour
 		{
 			guide_list_[index].touch_.SetColliderOffset(LAST_GUIDE_TOUCH_OFFSET);
 			guide_list_[index].touch_.SetColliderSize(LAST_GUIDE_TOUCH_SIZE);
+		}
+	}
+
+	protected void SetLanguageLayout()
+	{
+		int languageTextFontSize = GetLanguageTextFontSize(GSStatic.global_work_.language);
+		TextAnchor languageTextAnchor = GetLanguageTextAnchor(GSStatic.global_work_.language);
+		float languageTextPositionY = GetLanguageTextPositionY(GSStatic.global_work_.language);
+		for (int i = 0; i < guide_list_.Count; i++)
+		{
+			guide_list_[i].text_.fontSize = languageTextFontSize;
+			guide_list_[i].text_.alignment = languageTextAnchor;
+			Vector3 text_position_ = guide_list_[i].text_position_;
+			text_position_.y = languageTextPositionY;
+			guide_list_[i].text_position_ = text_position_;
+		}
+	}
+
+	protected virtual int GetLanguageTextFontSize(Language language)
+	{
+		switch (language)
+		{
+		case Language.JAPAN:
+			return 26;
+		case Language.USA:
+			return 26;
+		case Language.FRANCE:
+			return 20;
+		case Language.GERMAN:
+			return 20;
+		case Language.KOREA:
+			return 22;
+		case Language.CHINA_S:
+			return 24;
+		case Language.CHINA_T:
+			return 22;
+		default:
+			return 26;
+		}
+	}
+
+	private TextAnchor GetLanguageTextAnchor(Language language)
+	{
+		switch (language)
+		{
+		default:
+			return guide_text_alignment_;
+		case Language.FRANCE:
+		case Language.GERMAN:
+		case Language.KOREA:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
+			return TextAnchor.MiddleLeft;
+		}
+	}
+
+	private float GetLanguageTextPositionY(Language language)
+	{
+		switch (language)
+		{
+		default:
+			return guide_text_position_y_;
+		case Language.FRANCE:
+		case Language.GERMAN:
+		case Language.KOREA:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
+			return 0f;
 		}
 	}
 }

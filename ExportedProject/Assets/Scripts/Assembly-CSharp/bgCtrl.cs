@@ -111,8 +111,6 @@ public class bgCtrl : MonoBehaviour
 
 	private IEnumerator enumerator_slider_;
 
-	private Coroutine coroutine_slider_;
-
 	private IEnumerator spef_enumerator_court_;
 
 	private bool is_scrolling_court_;
@@ -489,16 +487,11 @@ public class bgCtrl : MonoBehaviour
 
 	public string GetBGName(int in_bg_no)
 	{
-		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language != 0)
+		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == Language.USA)
 		{
 			return bg_data_.data_language[(int)bg_data_.data[in_bg_no].language_];
 		}
 		return bg_data_.GetBGName(in_bg_no);
-	}
-
-	public string GetBGIcon(int in_bg_no)
-	{
-		return bg_data_.GetBGIcon(in_bg_no);
 	}
 
 	public void SetForeSprite(int fore_no)
@@ -878,7 +871,7 @@ public class bgCtrl : MonoBehaviour
 			path_ = bg_path_;
 			name_ = bg_data_.data[in_bg_no].name_;
 		}
-		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language != 0)
+		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == Language.USA)
 		{
 			targetRenderer.sprite = SetCourtSprite(bg_path_, bg_data_.data_language[(int)bg_data_.data[in_bg_no].language_]);
 		}
@@ -1002,7 +995,7 @@ public class bgCtrl : MonoBehaviour
 
 	public void SetSpriteDelay(int in_delay_time)
 	{
-		StartCoroutine(CroutineSetSpriteDelay(in_delay_time));
+		coroutineCtrl.instance.Play(CroutineSetSpriteDelay(in_delay_time));
 	}
 
 	private IEnumerator CroutineSetSpriteDelay(int in_delay_time)
@@ -1029,14 +1022,14 @@ public class bgCtrl : MonoBehaviour
 			target = body_.transform;
 		}
 		enumerator_scroll_ = CoroutineScroll(speed_x, speed_y, center_stop, target);
-		StartCoroutine(enumerator_scroll_);
+		coroutineCtrl.instance.Play(enumerator_scroll_);
 	}
 
 	public void stopScroll()
 	{
 		if (enumerator_scroll_ != null)
 		{
-			StopCoroutine(enumerator_scroll_);
+			coroutineCtrl.instance.Stop(enumerator_scroll_);
 			enumerator_scroll_ = null;
 		}
 		is_scroll_ = false;
@@ -1193,13 +1186,13 @@ public class bgCtrl : MonoBehaviour
 	{
 		stopCourtScrol();
 		enumerator_court_ = CoroutineCourt(in_mov_no, in_play, next_char, in_start, in_time, in_adr);
-		StartCoroutine(enumerator_court_);
+		coroutineCtrl.instance.Play(enumerator_court_);
 	}
 
 	public void darkness_scroll()
 	{
 		enumerator_court_ = Coroutine_darkness_scroll();
-		StartCoroutine(enumerator_court_);
+		coroutineCtrl.instance.Play(enumerator_court_);
 	}
 
 	private void stopCourtScrol()
@@ -1207,7 +1200,7 @@ public class bgCtrl : MonoBehaviour
 		SetBodyPosition(Vector3.zero);
 		if (enumerator_court_ != null)
 		{
-			StopCoroutine(enumerator_court_);
+			coroutineCtrl.instance.Stop(enumerator_court_);
 			enumerator_court_ = null;
 		}
 	}
@@ -1215,7 +1208,7 @@ public class bgCtrl : MonoBehaviour
 	private Sprite SetCourtSprite(string in_path, string in_name)
 	{
 		AssetBundle assetBundle = AssetBundleCtrl.instance.load(in_path, in_name);
-		return assetBundle.LoadAsset<Sprite>(in_name);
+		return assetBundle.LoadAllAssets<Sprite>()[0];
 	}
 
 	private IEnumerator CoroutineCourt(uint in_mov_no, uint in_play, uint next_char, uint in_start, uint in_time, uint in_adr)
@@ -1591,14 +1584,13 @@ public class bgCtrl : MonoBehaviour
 		is_scrolling_court_ = false;
 	}
 
-	public Coroutine Slider()
+	public IEnumerator Slider()
 	{
-		if (coroutine_slider_ == null)
+		if (enumerator_slider_ == null)
 		{
 			enumerator_slider_ = CoroutineSlider();
-			coroutine_slider_ = StartCoroutine(enumerator_slider_);
 		}
-		return coroutine_slider_;
+		return enumerator_slider_;
 	}
 
 	private IEnumerator CoroutineSlider()
@@ -1650,14 +1642,13 @@ public class bgCtrl : MonoBehaviour
 		}
 		is_reverse_ = !is_reverse_;
 		is_slider_ = false;
-		coroutine_slider_ = null;
 		enumerator_slider_ = null;
 	}
 
 	public void StartCutUpScroll(int _face_no)
 	{
 		is_cutup_scroll_ = true;
-		StartCoroutine(CoroutineCutUpScroll(_face_no));
+		coroutineCtrl.instance.Play(CoroutineCutUpScroll(_face_no));
 	}
 
 	public void StopCutUpScroll()
@@ -1783,7 +1774,7 @@ public class bgCtrl : MonoBehaviour
 		Color color = sprite_renderer_.color;
 		Color color2 = sub_sprite_.color;
 		fadeCtrl.instance.status = (fadeCtrl.Status)in_status;
-		StartCoroutine(play_speed_coroutine(in_time, in_speed, in_type, color, color2));
+		coroutineCtrl.instance.Play(play_speed_coroutine(in_time, in_speed, in_type, color, color2));
 	}
 
 	public IEnumerator play_speed_coroutine(uint in_time, uint in_speed, bool in_type, Color in_color_main, Color in_color_sub)
@@ -2007,7 +1998,7 @@ public class bgCtrl : MonoBehaviour
 	{
 		if (spef_enumerator_court_ != null)
 		{
-			AnimationSystem.Instance.StopCoroutine(spef_enumerator_court_);
+			coroutineCtrl.instance.Stop(spef_enumerator_court_);
 			spef_enumerator_court_ = null;
 		}
 		current_sw_ = sw;
@@ -2048,7 +2039,7 @@ public class bgCtrl : MonoBehaviour
 		{
 			spef_enumerator_court_ = SetSpefRet(time, speed);
 		}
-		AnimationSystem.Instance.StartCoroutine(spef_enumerator_court_);
+		coroutineCtrl.instance.Play(spef_enumerator_court_);
 	}
 
 	private IEnumerator SetSpef(ushort time, ushort speed)

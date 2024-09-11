@@ -72,6 +72,10 @@ public class picePlateCtrl : MonoBehaviour
 
 	private Vector3 name_position_usa_ = new Vector3(150f, 67f, -50f);
 
+	private Vector3 name_position_chi_s_ = new Vector3(180f, 80f, -50f);
+
+	private Vector3 name_position_chi_t_ = new Vector3(180f, 85f, -50f);
+
 	private Vector2 name_size_jpn_ = new Vector2(640f, 120f);
 
 	private Vector2 name_size_usa_ = new Vector2(950f, 120f);
@@ -84,6 +88,8 @@ public class picePlateCtrl : MonoBehaviour
 
 	private Vector3 comment_position_usa_ = new Vector3(130f, -122f, -50f);
 
+	private Vector3 comment_position_chi_t_ = new Vector3(210f, -115f, -50f);
+
 	private Vector2 comment_size_jpn_ = new Vector2(700f, 60f);
 
 	private Vector2 comment_size_usa_ = new Vector2(900f, 60f);
@@ -91,6 +97,10 @@ public class picePlateCtrl : MonoBehaviour
 	private int comment_fontsize_jpn_ = 50;
 
 	private int comment_fontsize_usa_ = 42;
+
+	private int comment_fontsize_chi_s_ = 46;
+
+	private int comment_fontsize_chi_t_ = 44;
 
 	private bool keep_note_off_flag_;
 
@@ -150,8 +160,9 @@ public class picePlateCtrl : MonoBehaviour
 
 	public void load()
 	{
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		switch (GSStatic.global_work_.language)
 		{
+		case Language.JAPAN:
 			board_.load("/menu/common/", "evidence_01");
 			icon_obj_.transform.localPosition = icon_pos_jpn_;
 			icon_name_.rectTransform.localPosition = name_position_jpn_;
@@ -163,9 +174,8 @@ public class picePlateCtrl : MonoBehaviour
 				item.rectTransform.sizeDelta = comment_size_jpn_;
 				item.fontSize = comment_fontsize_jpn_;
 			}
-		}
-		else
-		{
+			break;
+		default:
 			board_.load("/menu/common/", "evidence_01u");
 			icon_obj_.transform.localPosition = icon_pos_usa_;
 			icon_name_.rectTransform.localPosition = name_position_usa_;
@@ -177,6 +187,33 @@ public class picePlateCtrl : MonoBehaviour
 				item2.rectTransform.sizeDelta = comment_size_usa_;
 				item2.fontSize = comment_fontsize_usa_;
 			}
+			break;
+		case Language.CHINA_S:
+			board_.load("/menu/common/", "evidence_01");
+			icon_obj_.transform.localPosition = icon_pos_jpn_;
+			icon_name_.rectTransform.localPosition = name_position_chi_s_;
+			icon_name_.rectTransform.sizeDelta = name_size_jpn_;
+			icon_name_.fontSize = name_fontsize_jpn_;
+			comment_.rect_transform.localPosition = comment_position_jpn_;
+			foreach (Text item3 in comment_.line_)
+			{
+				item3.rectTransform.sizeDelta = comment_size_jpn_;
+				item3.fontSize = comment_fontsize_chi_s_;
+			}
+			break;
+		case Language.CHINA_T:
+			board_.load("/menu/common/", "evidence_01");
+			icon_obj_.transform.localPosition = icon_pos_jpn_;
+			icon_name_.rectTransform.localPosition = name_position_chi_t_;
+			icon_name_.rectTransform.sizeDelta = name_size_jpn_;
+			icon_name_.fontSize = name_fontsize_jpn_;
+			comment_.rect_transform.localPosition = comment_position_chi_t_;
+			foreach (Text item4 in comment_.line_)
+			{
+				item4.rectTransform.sizeDelta = comment_size_jpn_;
+				item4.fontSize = comment_fontsize_chi_t_;
+			}
+			break;
 		}
 		icon_base_.load("/menu/common/", "evidence_base");
 		board_.spriteNo(2);
@@ -218,7 +255,7 @@ public class picePlateCtrl : MonoBehaviour
 		enumerator_pice_ = CoroutinePice(in_wait);
 		touch_.SetColliderSize(new Vector2(1980f, 1080f));
 		touch_.touch_key_type = KeyType.A;
-		StartCoroutine(enumerator_pice_);
+		coroutineCtrl.instance.Play(enumerator_pice_);
 	}
 
 	public bool closePice()
@@ -226,7 +263,7 @@ public class picePlateCtrl : MonoBehaviour
 		if (enumerator_pice_ == null)
 		{
 			enumerator_pice_ = CoroutineClosePice();
-			StartCoroutine(enumerator_pice_);
+			coroutineCtrl.instance.Play(enumerator_pice_);
 			return true;
 		}
 		return false;
@@ -265,7 +302,7 @@ public class picePlateCtrl : MonoBehaviour
 	{
 		if (enumerator_pice_ != null)
 		{
-			StopCoroutine(enumerator_pice_);
+			coroutineCtrl.instance.Stop(enumerator_pice_);
 			enumerator_pice_ = null;
 		}
 	}

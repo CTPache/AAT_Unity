@@ -7,7 +7,7 @@ public static class GS3_mess
 		{
 			activeMessageWork.sc_no = no;
 		}
-		string text = ((GSStatic.global_work_.language != 0) ? "_u" : string.Empty);
+		string scenarioLanguage = GSUtility.GetScenarioLanguage(GSStatic.global_work_.language);
 		switch (no)
 		{
 		default:
@@ -15,82 +15,82 @@ public static class GS3_mess
 		case 2:
 			return;
 		case 1:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc0_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc0_1b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 3:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_1b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 4:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_2_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_2_text" + scenarioLanguage + ".mdt");
 			return;
 		case 5:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_2b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_2b_text" + scenarioLanguage + ".mdt");
 			return;
 		case 6:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_2c_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_2c_text" + scenarioLanguage + ".mdt");
 			return;
 		case 7:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_0_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_0_text" + scenarioLanguage + ".mdt");
 			return;
 		case 8:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_0b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_0b_text" + scenarioLanguage + ".mdt");
 			return;
 		case 9:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_3_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc1_3_1b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 10:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_0_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_0_text" + scenarioLanguage + ".mdt");
 			return;
 		case 11:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_0b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_0b_text" + scenarioLanguage + ".mdt");
 			return;
 		case 12:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_2_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_2_text" + scenarioLanguage + ".mdt");
 			return;
 		case 13:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_2b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_2b_text" + scenarioLanguage + ".mdt");
 			return;
 		case 14:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_2c_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_2c_text" + scenarioLanguage + ".mdt");
 			return;
 		case 15:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_3_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_3_1b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 16:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc3_0_0b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc3_0_0b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 17:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc2_1b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 18:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_0_1_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_0_1_text" + scenarioLanguage + ".mdt");
 			return;
 		case 19:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_0_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_0_1b_text" + scenarioLanguage + ".mdt");
 			return;
 		case 20:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc3_0_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc3_0_1b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 21:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_0_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_0_text" + scenarioLanguage + ".mdt");
 			return;
 		case 22:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_0b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_0b_text" + scenarioLanguage + ".mdt");
 			return;
 		case 23:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_1_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_1_text" + scenarioLanguage + ".mdt");
 			return;
 		case 24:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_1b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_2_1b_text" + scenarioLanguage + ".mdt");
 			return;
 		case 25:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_3_0b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_3_0b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 26:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_3_2b_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_3_2b_text" + scenarioLanguage + ".mdt");
 			break;
 		case 27:
-			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_3_2c_text" + text + ".mdt");
+			advCtrl.instance.message_system_.LoadScenarioMdtFromStreamingAssets("GS3/scenario/sc4_3_2c_text" + scenarioLanguage + ".mdt");
 			break;
 		}
 		if (flag != 0)

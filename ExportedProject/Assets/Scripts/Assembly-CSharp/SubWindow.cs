@@ -606,7 +606,7 @@ public class SubWindow
 		GSStructUtility.FillArrayNewInstance(sprite_routine_);
 	}
 
-	public void Update()
+	public void Process()
 	{
 		Routine routine = routine_[stack_];
 		sub_window_proc_table[routine.r.no_0](this);
@@ -865,15 +865,12 @@ public class SubWindow
 				if (obj_num == 5 && (GSStatic.global_work_.status_flag & 0x10u) != 0)
 				{
 					bar_req_ = BarReq.PLANE;
-					ObjFlag[] array;
-					(array = obj_flag_)[5] = array[5] & ~ObjFlag.DISP;
+                    obj_flag_[5] = obj_flag_[5] & ~ObjFlag.DISP;
 					objRoutine.r.no_0 = 7;
 				}
 				else
 				{
-					ObjFlag[] array;
-					int num4;
-					(array = obj_flag_)[num4 = obj_num] = array[num4] & ~ObjFlag.OUT;
+                    obj_flag_[obj_num] = obj_flag_[obj_num] & ~ObjFlag.OUT;
 					objRoutine.r.no_0++;
 				}
 			}
@@ -883,9 +880,8 @@ public class SubWindow
 			{
 				objRoutine.x = subWindowObjInfo.x;
 				objRoutine.y = subWindowObjInfo.y;
-				ObjFlag[] array;
-				int num7;
-				(array = obj_flag_)[num7 = obj_num] = array[num7] | ObjFlag.IN;
+
+                obj_flag_[obj_num] = obj_flag_[obj_num] | ObjFlag.IN;
 				if (subWindowObjInfo.proc != null)
 				{
 					objRoutine.r.no_0++;
@@ -907,11 +903,8 @@ public class SubWindow
 			{
 				if ((obj_num == 17 && (obj_flag_[51] & ObjFlag.DISP) != 0) || (obj_num == 14 && (obj_flag_[52] & ObjFlag.DISP) != 0) || (obj_num == 14 && (obj_flag_[54] & ObjFlag.DISP) != 0))
 				{
-					int num5;
-					ObjFlag[] array;
-					(array = obj_flag_)[num5 = obj_num] = array[num5] & ~ObjFlag.IN;
-					int num6;
-					(array = obj_flag_)[num6 = obj_num] = array[num6] | ObjFlag.OUT;
+					obj_flag_[obj_num] = obj_flag_[obj_num] & ~ObjFlag.IN;
+                    obj_flag_[obj_num] = obj_flag_[obj_num] | ObjFlag.OUT;
 					objRoutine.r.no_0 = 0;
 					objRoutine.r.no_2 = 0;
 					switch ((ObjId)obj_num)
@@ -994,8 +987,7 @@ public class SubWindow
 			if ((GSStatic.global_work_.status_flag & 0x10u) != 0)
 			{
 				bar_req_ = BarReq.PLANE;
-				ObjFlag[] array;
-				(array = obj_flag_)[5] = array[5] & ~ObjFlag.DISP;
+				obj_flag_[5] = obj_flag_[5] & ~ObjFlag.DISP;
 				objRoutine.r.no_0 = 6;
 			}
 			else if (routine_[0].r.no_0 == 5)
@@ -1013,11 +1005,8 @@ public class SubWindow
 		case 3:
 			if (objRoutine.r.no_1 == 0)
 			{
-				int num11;
-				ObjFlag[] array;
-				(array = obj_flag_)[num11 = obj_num] = array[num11] & ~ObjFlag.IN;
-				int num12;
-				(array = obj_flag_)[num12 = obj_num] = array[num12] | ObjFlag.OUT;
+				obj_flag_[obj_num] = obj_flag_[obj_num] & ~ObjFlag.IN;
+				obj_flag_[obj_num] = obj_flag_[obj_num] | ObjFlag.OUT;
 				objRoutine.r.no_0 = 0;
 				objRoutine.r.no_2 = 0;
 				switch ((ObjId)obj_num)
@@ -1059,13 +1048,9 @@ public class SubWindow
 		case 6:
 			if (objRoutine.r.no_1 == 0)
 			{
-				int num8;
-				ObjFlag[] array;
-				(array = obj_flag_)[num8 = obj_num] = array[num8] & ~ObjFlag.IN;
-				int num9;
-				(array = obj_flag_)[num9 = obj_num] = array[num9] | ObjFlag.OUT;
-				int num10;
-				(array = obj_flag_)[num10 = obj_num] = array[num10] & ~ObjFlag.DISP;
+                obj_flag_[obj_num] = obj_flag_[obj_num] & ~ObjFlag.IN;
+                obj_flag_[obj_num] = obj_flag_[obj_num] | ObjFlag.OUT;
+                obj_flag_[obj_num] = obj_flag_[obj_num] & ~ObjFlag.DISP;
 				objRoutine.r.no_0++;
 			}
 			else
@@ -1089,26 +1074,20 @@ public class SubWindow
 					if ((GSStatic.message_work_.status & (MessageSystem.Status.RT_WAIT | MessageSystem.Status.RT_GO | MessageSystem.Status.LOOP)) != 0)
 					{
 						bar_req_ = BarReq.TANTEI;
-						ObjFlag[] array;
-						int num;
-						(array = obj_flag_)[num = obj_num] = array[num] | ObjFlag.DISP;
+						obj_flag_[obj_num] = obj_flag_[obj_num] | ObjFlag.DISP;
 						objRoutine.r.no_0 = 0;
 					}
 				}
 				else if (routine_[0].r.no_0 == 2 && (GSStatic.message_work_.status & MessageSystem.Status.RT_WAIT) != 0)
 				{
 					bar_req_ = BarReq.TANTEI;
-					ObjFlag[] array;
-					int num2;
-					(array = obj_flag_)[num2 = obj_num] = array[num2] | ObjFlag.DISP;
+					obj_flag_[obj_num] = obj_flag_[obj_num] | ObjFlag.DISP;
 					objRoutine.r.no_0 = 0;
 				}
 			}
 			else
 			{
-				ObjFlag[] array;
-				int num3;
-				(array = obj_flag_)[num3 = obj_num] = array[num3] & ~ObjFlag.DISP;
+				obj_flag_[obj_num] = obj_flag_[obj_num] & ~ObjFlag.DISP;
 				if (bar_req_ == BarReq.TANTEI)
 				{
 					bar_req_ = BarReq.PLANE;
@@ -1522,15 +1501,11 @@ public class SubWindow
 		{
 			if ((obj_flag_[num] & ObjFlag.DISP) != 0)
 			{
-				ObjFlag[] array;
-				int num2;
-				(array = obj_flag_)[num2 = num] = array[num2] | ObjFlag.DISP_PREV;
+				obj_flag_[num] = obj_flag_[num] | ObjFlag.DISP_PREV;
 			}
 			else
 			{
-				ObjFlag[] array;
-				int num3;
-				(array = obj_flag_)[num3 = num] = array[num3] & ~ObjFlag.DISP_PREV;
+				obj_flag_[num] = obj_flag_[num] & ~ObjFlag.DISP_PREV;
 			}
 		}
 	}
@@ -1539,9 +1514,7 @@ public class SubWindow
 	{
 		for (ushort num = 0; num < 80; num++)
 		{
-			ObjFlag[] array;
-			int num2;
-			(array = obj_flag_)[num2 = num] = array[num2] & ~ObjFlag.DISP;
+			obj_flag_[num] = obj_flag_[num] & ~ObjFlag.DISP;
 		}
 	}
 
@@ -1551,16 +1524,12 @@ public class SubWindow
 		{
 		case 0:
 		{
-			ObjFlag[] array;
-			int num2;
-			(array = obj_flag_)[num2 = obj_id] = (ObjFlag)((int)array[num2] | (int)flag);
+			obj_flag_[obj_id] = (ObjFlag)((int)obj_flag_[obj_id] | (int)flag);
 			break;
 		}
 		case 1:
 		{
-			ObjFlag[] array;
-			int num;
-			(array = obj_flag_)[num = obj_id] = (ObjFlag)((int)array[num] & ~flag);
+			obj_flag_[obj_id] = (ObjFlag)((int)obj_flag_[obj_id] & ~flag);
 			break;
 		}
 		}
@@ -1637,27 +1606,6 @@ public class SubWindow
 			case 3:
 				break;
 			}
-			break;
-		case 3:
-			switch (routine.r.no_2)
-			{
-			}
-			break;
-		case 4:
-			break;
-		case 5:
-			switch (routine.r.no_2)
-			{
-			}
-			break;
-		case 6:
-			break;
-		case 7:
-			switch (routine.r.no_2)
-			{
-			}
-			break;
-		case 8:
 			break;
 		}
 	}

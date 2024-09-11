@@ -190,7 +190,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 
 	public void SaveConfirmation()
 	{
-		StartCoroutine(CoroutineConfirmation());
+		coroutineCtrl.instance.Play(CoroutineConfirmation());
 	}
 
 	public void ClearSaveOpen()
@@ -207,12 +207,12 @@ public class SaveLoadUICtrl : MonoBehaviour
 		Init();
 		if (coroutine_ != null)
 		{
-			StopCoroutine(coroutine_);
+			coroutineCtrl.instance.Stop(coroutine_);
 		}
 		coroutine_ = CoroutineSaveLoad();
 		key_guide_.guideIconSet(false, guideCtrl.GuideType.SAVE);
 		slot_list_body_.SetActive(true);
-		StartCoroutine(coroutine_);
+		coroutineCtrl.instance.Play(coroutine_);
 	}
 
 	public void Close()
@@ -271,13 +271,13 @@ public class SaveLoadUICtrl : MonoBehaviour
 	private IEnumerator CoroutineConfirmation()
 	{
 		is_input_wait = true;
-		yield return fadeCtrl.instance.play(0.5f, false);
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, false));
 		prior_cfm_.OpenConfirmation();
 		while (!prior_cfm_.is_end)
 		{
 			yield return null;
 		}
-		yield return fadeCtrl.instance.play(0.5f, true);
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, true));
 		is_input_wait = false;
 	}
 
@@ -349,7 +349,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 			touch.item.up_event = delegate
 			{
 				scroll_acceleration_enumerator_ = ScrollAcceleration();
-				StartCoroutine(scroll_acceleration_enumerator_);
+				coroutineCtrl.instance.Play(scroll_acceleration_enumerator_);
 			};
 			touch.item.ActiveCollider();
 		}
@@ -366,7 +366,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 	private IEnumerator ScrollAcceleration()
 	{
 		Transform t = slot_list_body_.transform;
-		yield return new WaitWhile(delegate
+		while (true)
 		{
 			if (scroll_acceleration_ > 0f)
 			{
@@ -378,28 +378,33 @@ public class SaveLoadUICtrl : MonoBehaviour
 			}
 			scroll_acceleration_ = ((!(Mathf.Abs(scroll_acceleration_) <= 1f)) ? scroll_acceleration_ : 0f);
 			t.localPosition += new Vector3(0f, scroll_acceleration_, 0f);
-			Vector3 localPosition = t.localPosition;
-			if (localPosition.y > scroll_lengh_)
+			Vector3 pos = t.localPosition;
+			if (pos.y > scroll_lengh_)
 			{
-				t.localPosition = new Vector3(localPosition.x, scroll_lengh_, localPosition.z);
+				t.localPosition = new Vector3(pos.x, scroll_lengh_, pos.z);
 				scroll_acceleration_ = 0f;
 			}
-			else if (localPosition.y < 0f)
+			else if (pos.y < 0f)
 			{
-				t.localPosition = new Vector3(localPosition.x, 0f, localPosition.z);
+				t.localPosition = new Vector3(pos.x, 0f, pos.z);
 				scroll_acceleration_ = 0f;
 			}
 			UpdateCursorwithScroll();
 			scrl_bar_.scroll_bar_normalize = scroll_list_normalize;
-			return Mathf.Abs(scroll_acceleration_) > 0f;
-		});
+			if (Mathf.Abs(scroll_acceleration_) > 0f)
+			{
+				yield return null;
+				continue;
+			}
+			break;
+		}
 	}
 
 	private void StopScrollAcceleration()
 	{
 		if (scroll_acceleration_enumerator_ != null)
 		{
-			StopCoroutine(scroll_acceleration_enumerator_);
+			coroutineCtrl.instance.Stop(scroll_acceleration_enumerator_);
 			scroll_acceleration_enumerator_ = null;
 		}
 	}
@@ -421,20 +426,49 @@ public class SaveLoadUICtrl : MonoBehaviour
 		float num2 = 600f;
 		float num3 = Mathf.Abs(cursor_.transform.localPosition.y - 220f);
 		float num4 = num3 - localPosition.y;
-		if (is_drag_ || 0f < scroll_acceleration_ || is_touch_scroll_bar_)
+		if (!is_drag_ && !(0f < scroll_acceleration_) && !is_touch_scroll_bar_)
 		{
-			if (num4 < num)
+			return;
+		}
+		if (num4 < num)
+		{
+			select_num_++;
+			UpdateCursorPosition();
+			while (true)
 			{
-				select_num_++;
-				UpdateCursorPosition();
-				soundCtrl.instance.PlaySE(42);
+				num3 = Mathf.Abs(cursor_.transform.localPosition.y - 220f);
+				num4 = num3 - localPosition.y;
+				if (num4 < num)
+				{
+					select_num_++;
+					UpdateCursorPosition();
+					continue;
+				}
+				break;
 			}
-			else if (num2 < num4)
+			soundCtrl.instance.PlaySE(42);
+		}
+		else
+		{
+			if (!(num2 < num4))
 			{
-				select_num_--;
-				UpdateCursorPosition();
-				soundCtrl.instance.PlaySE(42);
+				return;
 			}
+			select_num_--;
+			UpdateCursorPosition();
+			while (true)
+			{
+				num3 = Mathf.Abs(cursor_.transform.localPosition.y - 220f);
+				num4 = num3 - localPosition.y;
+				if (num2 < num4)
+				{
+					select_num_--;
+					UpdateCursorPosition();
+					continue;
+				}
+				break;
+			}
+			soundCtrl.instance.PlaySE(42);
 		}
 	}
 
@@ -561,7 +595,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 				while (true)
 				{
 					StopScrollAcceleration();
-					yield return StartCoroutine(SlotMove(dir));
+					yield return coroutineCtrl.instance.Play(SlotMove(dir));
 					UpdateScrollBar();
 					float timer = 0f;
 					float wait_time2 = 0.2f;
@@ -614,23 +648,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 			else if (is_over_move_)
 			{
 				StopScrollAcceleration();
-				Func<bool, IEnumerator> over_move = delegate(bool d)
-				{
-					SaveLoadUICtrl saveLoadUICtrl = this;
-					soundCtrl.instance.PlaySE(42);
-					float last_time = over_move_curve_.keys[over_move_curve_.length - 1].time;
-					float timer_ = ((!d) ? 0f : last_time);
-					Vector3 pos = slot_list_body_.transform.localPosition;
-					return new WaitWhile(delegate
-					{
-						timer_ += ((!d) ? Time.deltaTime : (0f - Time.deltaTime));
-						float num = saveLoadUICtrl.over_move_curve_.Evaluate(timer_);
-						saveLoadUICtrl.slot_list_body_.transform.localPosition = new Vector3(pos.x, saveLoadUICtrl.scroll_lengh_ * num, pos.z);
-						saveLoadUICtrl.UpdateScrollBarToList();
-						return (!d) ? (timer_ < last_time) : (timer_ > 0f);
-					});
-				};
-				yield return StartCoroutine(over_move(select_num_ == 0));
+				yield return coroutineCtrl.instance.Play(over_move(select_num_ == 0));
 				UpdateCursorPosition();
 				is_over_move_ = false;
 				yield return null;
@@ -672,7 +690,10 @@ public class SaveLoadUICtrl : MonoBehaviour
 				save_window_.End();
 				mask_.active = false;
 				fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
-				yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+				while (!fadeCtrl.instance.is_end)
+				{
+					yield return null;
+				}
 				GSMain.End();
 				if (instance.is_open)
 				{
@@ -700,7 +721,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 					SaveControl.DeleteSaveData();
 					GSStatic.init();
 					TrophyCtrl.reset();
-					yield return loadingCtrl.instance.wait();
+					yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
 					loadingCtrl.instance.stop();
 					GSStatic.global_work_.system_language = SteamCtrl.ConvertLanguage();
 					loadingCtrl.instance.play(loadingCtrl.Type.SAVEING);
@@ -709,9 +730,24 @@ public class SaveLoadUICtrl : MonoBehaviour
 					{
 						yield return null;
 					}
-					SaveControl.SaveSystemData();
-					yield return loadingCtrl.instance.wait();
+					yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
 					loadingCtrl.instance.stop();
+					if (SaveControl.is_save_error)
+					{
+						messageBoxCtrl.instance.init();
+						messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+						messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.CREATE_ERROR));
+						messageBoxCtrl.instance.SetTextPosCenter();
+						messageBoxCtrl.instance.OpenWindow();
+						while (messageBoxCtrl.instance.active)
+						{
+							yield return null;
+							if (padCtrl.instance.GetKeyDown(KeyType.A))
+							{
+								messageBoxCtrl.instance.CloseWindow();
+							}
+						}
+					}
 				}
 				else
 				{
@@ -733,7 +769,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 			{
 				Debug.LogWarning("data loading failed");
 			}
-			yield return save_window_.LoadingWait();
+			yield return coroutineCtrl.instance.Play(save_window_.LoadingWait());
 			optionCtrl.instance.OptionSet();
 			save_window_.LoadingStop();
 			save_window_.End();
@@ -742,6 +778,27 @@ public class SaveLoadUICtrl : MonoBehaviour
 		}
 		Close();
 		is_open = false;
+	}
+
+	private IEnumerator over_move(bool in_time)
+	{
+		soundCtrl.instance.PlaySE(42);
+		float last_time = over_move_curve_.keys[over_move_curve_.length - 1].time;
+		float timer_ = ((!in_time) ? 0f : last_time);
+		Vector3 pos = slot_list_body_.transform.localPosition;
+		while (true)
+		{
+			timer_ += ((!in_time) ? Time.deltaTime : (0f - Time.deltaTime));
+			float curve_normal = over_move_curve_.Evaluate(timer_);
+			slot_list_body_.transform.localPosition = new Vector3(pos.x, scroll_lengh_ * curve_normal, pos.z);
+			UpdateScrollBarToList();
+			if ((!in_time) ? (timer_ < last_time) : (timer_ > 0f))
+			{
+				yield return null;
+				continue;
+			}
+			break;
+		}
 	}
 
 	private IEnumerator SlotMove(int in_dir)
@@ -883,7 +940,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 			string time = GSStatic.save_data[i].time;
 			if (!string.IsNullOrEmpty(time))
 			{
-				DateTime dateTime2 = DateTime.Parse(time);
+				DateTime dateTime2 = GSUtility.DateTimeParse(time, GSStatic.global_work_.language);
 				if (dateTime.CompareTo(dateTime2) == -1)
 				{
 					dateTime = dateTime2;
@@ -902,7 +959,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 			string time = GSStatic.save_data[i].time;
 			if (!string.IsNullOrEmpty(time))
 			{
-				DateTime value = DateTime.Parse(time);
+				DateTime value = GSUtility.DateTimeParse(time, GSStatic.global_work_.language);
 				if (latest_save_time.CompareTo(value) == -1)
 				{
 					latest_save_time = value;

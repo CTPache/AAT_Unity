@@ -22,8 +22,19 @@ public class recordGuideCtrl : guideCtrl
 	public override void load()
 	{
 		base.load();
-		guide_offset_x = ((GSStatic.global_work_.language != 0) ? 26f : 0f);
-		string in_name = "court_record_02" + GSUtility.GetPlatformResourceName() + ((GSStatic.global_work_.language != 0) ? "u" : string.Empty);
+		switch (GSStatic.global_work_.language)
+		{
+		default:
+			guide_offset_x = 0f;
+			break;
+		case Language.USA:
+		case Language.FRANCE:
+		case Language.GERMAN:
+		case Language.KOREA:
+			guide_offset_x = 26f;
+			break;
+		}
+		string in_name = "court_record_02" + GSUtility.GetPlatformResourceName() + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
 		foreach (AssetBundleSprite item in page_guide_list_)
 		{
 			item.load("/menu/common/", in_name);

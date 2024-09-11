@@ -84,7 +84,7 @@ public class optionCredit : optionItem
 	{
 		base.PlayDecide();
 		base.play_decide = true;
-		StartCoroutine(PlayDecideInner());
+		coroutineCtrl.instance.Play(PlayDecideInner());
 	}
 
 	private IEnumerator PlayDecideInner()

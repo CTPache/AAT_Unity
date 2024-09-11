@@ -203,7 +203,7 @@ namespace DebugMenu
 			menu.current = base.parent;
 		}
 
-		public override void Update(Menu menu)
+		public override void Process(Menu menu)
 		{
 			if (menu.current == this)
 			{
@@ -221,7 +221,7 @@ namespace DebugMenu
 				}
 				else if (selected_ != null)
 				{
-					selected_.Update(menu);
+					selected_.Process(menu);
 				}
 			}
 			else if ((menu.input_down & Input.Decide) != 0)

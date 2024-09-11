@@ -39,7 +39,7 @@ public class sceneCtrl : MonoBehaviour
 		body_.SetActive(false);
 		if (enumerator_state_ != null)
 		{
-			StopCoroutine(enumerator_state_);
+			coroutineCtrl.instance.Stop(enumerator_state_);
 			enumerator_state_ = null;
 		}
 	}

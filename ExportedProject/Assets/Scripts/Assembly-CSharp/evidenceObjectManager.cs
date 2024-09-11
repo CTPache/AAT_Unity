@@ -267,13 +267,13 @@ public class evidenceObjectManager : MonoBehaviour
 		SetScaleRatio(scale_ratio_ + in_scale_ratio);
 	}
 
-	public Coroutine RequestTo(Vector3 in_pos, Vector3 in_angle, float in_scale_ratio, float in_time)
+	public IEnumerator RequestTo(Vector3 in_pos, Vector3 in_angle, float in_scale_ratio, float in_time)
 	{
 		request_pos_ = in_pos;
 		request_angle_ = in_angle;
 		request_scale_ = in_scale_ratio;
 		busy_request_ = true;
-		return StartCoroutine(RequestCoroutine(in_time));
+		return RequestCoroutine(in_time);
 	}
 
 	private IEnumerator RequestCoroutine(float in_time)
@@ -292,7 +292,7 @@ public class evidenceObjectManager : MonoBehaviour
 				ratio2 = ((!(((!(ratio2 < 0f)) ? ratio2 : 0f) > 1f)) ? ratio2 : 1f);
 				float value = curve_.Evaluate(ratio2);
 				LerpParams(last_pos, last_euler, last_scale, value);
-				yield return 0;
+				yield return null;
 			}
 		}
 		LerpParams(last_pos, last_euler, last_scale, 1f);

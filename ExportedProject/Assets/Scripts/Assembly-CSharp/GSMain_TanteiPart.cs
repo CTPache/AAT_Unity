@@ -272,7 +272,7 @@ public static class GSMain_TanteiPart
 				if ((bGType == 1 || bGType == 2) && padCtrl.instance.GetKeyDown(KeyType.L) && IsBGSlide(bgCtrl.instance.bg_no))
 				{
 					soundCtrl.instance.PlaySE(43);
-					bgCtrl.instance.Slider();
+					coroutineCtrl.instance.Play(bgCtrl.instance.Slider());
 				}
 			}
 		}

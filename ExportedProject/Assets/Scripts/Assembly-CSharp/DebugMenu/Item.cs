@@ -84,7 +84,7 @@ namespace DebugMenu
 			next_ = null;
 		}
 
-		public virtual void Update(Menu menu)
+		public virtual void Process(Menu menu)
 		{
 		}
 	}

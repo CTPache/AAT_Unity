@@ -43,6 +43,28 @@ public class SaveConfirmationWindow : MonoBehaviour
 
 	public bool is_loaded { get; private set; }
 
+	private float save_text_lineSpacing_
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.FRANCE:
+				return 0.65f;
+			case Language.GERMAN:
+				return 0.65f;
+			case Language.KOREA:
+				return 1f;
+			case Language.CHINA_S:
+				return 1f;
+			case Language.CHINA_T:
+				return 0.8f;
+			default:
+				return 0.5f;
+			}
+		}
+	}
+
 	public void Load()
 	{
 		if (type_ == SaveLoadUICtrl.SlotType.SAVE)
@@ -74,6 +96,7 @@ public class SaveConfirmationWindow : MonoBehaviour
 		window_.window_.sprite_renderer_.size = new Vector2(1114f, 584f);
 		window_.confirmation_text_.text = confirmation_text_[(int)type_];
 		window_.save_text_.text = io_text_[(int)type_];
+		window_.save_text_.lineSpacing = save_text_lineSpacing_;
 		window_.select_plate_.mainTitleInit(new string[2]
 		{
 			TextDataCtrl.GetText(TextDataCtrl.TitleTextID.YES),
@@ -104,11 +127,11 @@ public class SaveConfirmationWindow : MonoBehaviour
 		window_.anim_.active = false;
 		if (is_confirmation)
 		{
-			StartCoroutine(CoroutineConfirmation());
+			coroutineCtrl.instance.Play(CoroutineConfirmation());
 		}
 		else
 		{
-			StartCoroutine(CoroutineNotConfirmation());
+			coroutineCtrl.instance.Play(CoroutineNotConfirmation());
 		}
 	}
 
@@ -123,7 +146,7 @@ public class SaveConfirmationWindow : MonoBehaviour
 				if (window_.select_plate_.cursor_no == 0)
 				{
 					IEnumerator coroutine = ((type_ != 0) ? CoroutineLoad() : CoroutineSave());
-					yield return StartCoroutine(coroutine);
+					yield return coroutineCtrl.instance.Play(coroutine);
 				}
 				else
 				{
@@ -148,7 +171,7 @@ public class SaveConfirmationWindow : MonoBehaviour
 	{
 		window_.select_plate_.body_active = false;
 		IEnumerator coroutine = ((type_ != 0) ? CoroutineLoad() : CoroutineSave());
-		yield return StartCoroutine(coroutine);
+		yield return coroutineCtrl.instance.Play(coroutine);
 		CloseWindow();
 	}
 
@@ -173,7 +196,7 @@ public class SaveConfirmationWindow : MonoBehaviour
 	public void LoadingPlay()
 	{
 		is_save = true;
-		StartCoroutine(CoroutineSaveAnim());
+		coroutineCtrl.instance.Play(CoroutineSaveAnim());
 		start_time_ = Time.time;
 	}
 
@@ -221,7 +244,28 @@ public class SaveConfirmationWindow : MonoBehaviour
 	private IEnumerator CoroutineSave()
 	{
 		LoadingPlay();
-		GSStatic.save_data[slot_num_].time = DateTime.Now.ToString("yyyy/MM/dd\nHH:mm:ss");
+		SaveData save_slot_temp = new SaveData
+		{
+			time = GSStatic.save_data[slot_num_].time,
+			title = GSStatic.save_data[slot_num_].title,
+			scenario = GSStatic.save_data[slot_num_].scenario,
+			progress = GSStatic.save_data[slot_num_].progress,
+			in_data = GSStatic.save_data[slot_num_].in_data
+		};
+		string time_text;
+		switch (GSStatic.global_work_.language)
+		{
+		case Language.FRANCE:
+			time_text = DateTime.Now.ToString("dd/MM/yyyy\nHH:mm:ss");
+			break;
+		case Language.GERMAN:
+			time_text = DateTime.Now.ToString("dd.MM.yyyy\nHH:mm:ss");
+			break;
+		default:
+			time_text = DateTime.Now.ToString("yyyy/MM/dd\nHH:mm:ss");
+			break;
+		}
+		GSStatic.save_data[slot_num_].time = time_text;
 		GSStatic.save_data[slot_num_].title = (ushort)GSStatic.global_work_.title;
 		GSStatic.save_data[slot_num_].scenario = GSStatic.global_work_.story;
 		GSStatic.save_data[slot_num_].progress = GSStatic.global_work_.scenario;
@@ -231,8 +275,33 @@ public class SaveConfirmationWindow : MonoBehaviour
 		{
 			yield return null;
 		}
-		yield return LoadingWait();
+		SaveControl.SaveGameData();
+		if (SaveControl.is_save_error)
+		{
+			GSStatic.save_data[slot_num_].time = save_slot_temp.time;
+			GSStatic.save_data[slot_num_].title = save_slot_temp.title;
+			GSStatic.save_data[slot_num_].scenario = save_slot_temp.scenario;
+			GSStatic.save_data[slot_num_].progress = save_slot_temp.progress;
+			GSStatic.save_data[slot_num_].in_data = save_slot_temp.in_data;
+		}
+		yield return coroutineCtrl.instance.Play(LoadingWait());
 		LoadingStop();
+		if (SaveControl.is_save_error)
+		{
+			messageBoxCtrl.instance.init();
+			messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+			messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.SAVE_ERROR));
+			messageBoxCtrl.instance.SetTextPosCenter();
+			messageBoxCtrl.instance.OpenWindow();
+			while (messageBoxCtrl.instance.active)
+			{
+				yield return null;
+				if (padCtrl.instance.GetKeyDown(KeyType.A))
+				{
+					messageBoxCtrl.instance.CloseWindow();
+				}
+			}
+		}
 		End();
 	}
 

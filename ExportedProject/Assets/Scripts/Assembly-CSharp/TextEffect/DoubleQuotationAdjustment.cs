@@ -9,11 +9,22 @@ namespace TextEffect
 		private float alignment_upperleft_quotation_diff_ = 34f;
 
 		[SerializeField]
+		private float alignment_upperleft_quotation_diff_china_s_ = 32f;
+
+		[SerializeField]
 		private float alignment_uppercenter_quotation_diff_ = 25f;
+
+		[SerializeField]
+		private float alignment_uppercenter_quotation_diff_china_s_ = 24f;
+
+		[SerializeField]
+		private float diaeresis_i_diff_ = 2.8f;
 
 		private const char BEGIN_QUOTATION = '“';
 
 		private const char END_QUOTATION = '”';
+
+		private const char DIAERESIS_I = 'ï';
 
 		public override void MessageModifyMesh(ref List<UIVertex> stream)
 		{
@@ -38,11 +49,22 @@ namespace TextEffect
 				Vector2 centerPosition = GetCenterPosition(num4, stream);
 				if (text_.text[num5] == '“')
 				{
-					num3 += ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_);
+					num3 = ((GSStatic.global_work_.language != Language.CHINA_S) ? (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_)) : (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_china_s_ : alignment_upperleft_quotation_diff_china_s_)));
 				}
 				else if (num5 > 0 && text_.text[num5 - 1] == '”')
 				{
-					num3 += ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_);
+					num3 = ((GSStatic.global_work_.language != Language.CHINA_S) ? (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_)) : (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_china_s_ : alignment_upperleft_quotation_diff_china_s_)));
+				}
+				else if (GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA)
+				{
+					if (text_.text[num5] == 'ï')
+					{
+						num3 += diaeresis_i_diff_;
+					}
+					if (num5 > 0 && text_.text[num5 - 1] == 'ï')
+					{
+						num3 += diaeresis_i_diff_;
+					}
 				}
 				for (int i = 0; i < 6; i++)
 				{

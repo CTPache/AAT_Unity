@@ -22,8 +22,9 @@ public static class SteamCtrl
 			Application.Quit();
 			return;
 		}
-		if (SteamAPI.RestartAppIfNecessary(AppId_t.Invalid) || !SteamApps.BIsSubscribed())
+		if (!SteamApps.BIsSubscribed())
 		{
+			Debug.Log("BIsSubscribed = False");
 			Application.Quit();
 			return;
 		}
@@ -42,7 +43,8 @@ public static class SteamCtrl
 		stringBuilder.AppendLine("Is VAC Banned : " + SteamApps.BIsVACBanned());
 		Debug.Log(stringBuilder);
 		SteamAuthSessionScript.Instance.Init();
-		if (IsOnline())
+
+        if (IsOnline())
 		{
 			SteamAuthSessionScript.Instance.StartAuthSession(delegate(bool ok)
 			{
@@ -65,7 +67,9 @@ public static class SteamCtrl
 			SteamStorageScript.Instance.Init();
 			LoadAchievement();
 		}
-	}
+        IsReady = true;
+        IsFailed = true;
+    }
 
 	public static SystemLanguage ConvertLanguage()
 	{
@@ -106,11 +110,18 @@ public static class SteamCtrl
 			yield break;
 		}
 		IsShareFilesError = false;
+		string savedata_filename = SaveControl.GetSystemDataFileName();
 		int filecount = SteamRemoteStorage.GetFileCount();
 		for (int i = 0; i < filecount; i++)
 		{
 			int bytesize;
 			string filename = SteamRemoteStorage.GetFileNameAndSize(i, out bytesize);
+			if (filename != savedata_filename && filename != string.Empty)
+			{
+				SteamRemoteStorage.FileDelete(filename);
+				Debug.Log("Delete unused file : " + filename);
+				continue;
+			}
 			bool next_file = false;
 			if (SteamStorageScript.Instance.RequestShareFile(filename, delegate(byte[] data)
 			{
@@ -176,13 +187,13 @@ public static class SteamCtrl
 	{
 		bool flag = SteamUser.BLoggedOn();
 		Debug.Log("SteamCtrl IsOnline = " + flag);
-		return flag;
+		return false;
 	}
 
 	public static bool IsCloudEnabled()
 	{
 		bool flag = SteamRemoteStorage.IsCloudEnabledForAccount() && SteamRemoteStorage.IsCloudEnabledForApp();
 		Debug.Log("SteamCtrl IsCloudEnabled = " + flag);
-		return flag;
+		return false;
 	}
 }

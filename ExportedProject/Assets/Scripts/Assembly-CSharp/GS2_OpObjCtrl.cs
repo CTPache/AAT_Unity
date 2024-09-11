@@ -38,7 +38,7 @@ public class GS2_OpObjCtrl
 			updateTransform_ = updateTransform;
 		}
 
-		public void Update()
+		public void Process()
 		{
 			if ((intervals_ == 0 || Time.frameCount % intervals_ == 1) && updateTransform_ != null)
 			{
@@ -551,12 +551,12 @@ public class GS2_OpObjCtrl
 		objList_.Clear();
 	}
 
-	public void Update()
+	public void Process()
 	{
 		for (int i = 0; i < objList_.Count; i++)
 		{
 			Obj obj = objList_[i];
-			obj.Update();
+			obj.Process();
 		}
 	}
 

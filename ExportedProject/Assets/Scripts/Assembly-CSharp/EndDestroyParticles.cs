@@ -8,12 +8,15 @@ public class EndDestroyParticles : MonoBehaviour
 
 	private void OnEnable()
 	{
-		StartCoroutine(ParticleWorking());
+		coroutineCtrl.instance.Play(ParticleWorking());
 	}
 
 	private IEnumerator ParticleWorking()
 	{
-		yield return new WaitWhile(() => parical_system_.IsAlive(true));
+		while (parical_system_.IsAlive(true))
+		{
+			yield return null;
+		}
 		Object.Destroy(base.gameObject);
 	}
 }

@@ -323,6 +323,27 @@ public class tanteiMenu : MonoBehaviour
 		speak_touch_.touch_key_type = KeyType.A;
 		point_out_touch_.touch_event = PointTouch;
 		point_out_touch_.touch_key_type = KeyType.A;
+		int fontSize;
+		switch (GSStatic.global_work_.language)
+		{
+		default:
+			fontSize = 46;
+			break;
+		case Language.FRANCE:
+		case Language.GERMAN:
+			fontSize = 36;
+			break;
+		case Language.KOREA:
+			fontSize = 38;
+			break;
+		case Language.CHINA_T:
+			fontSize = 40;
+			break;
+		}
+		for (int i = 0; i < select_list_.Count; i++)
+		{
+			select_list_[i].text_.fontSize = fontSize;
+		}
 	}
 
 	public void setMenu(int in_type)
@@ -405,11 +426,11 @@ public class tanteiMenu : MonoBehaviour
 		select_animation_playing_ = false;
 		if (GSMain_TanteiPart.IsBGSlide(bgCtrl.instance.bg_no))
 		{
-			keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_SLIDE);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_SLIDE));
 		}
 		else
 		{
-			keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI));
 		}
 		float time2 = 0f;
 		is_loop_ = true;
@@ -478,7 +499,7 @@ public class tanteiMenu : MonoBehaviour
 		TouchSystem.TouchInActive();
 		soundCtrl.instance.PlaySE(43);
 		select_animation_playing_ = true;
-		keyGuideCtrl.instance.close();
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 		float time = 0f;
 		bool is_loop = true;
 		while (is_loop)
@@ -525,14 +546,14 @@ public class tanteiMenu : MonoBehaviour
 		stop();
 		TouchSystem.TouchInActive();
 		enumerator_play_ = CoroutinePlay(in_type);
-		StartCoroutine(enumerator_play_);
+		coroutineCtrl.instance.Play(enumerator_play_);
 	}
 
 	private void stop()
 	{
 		if (enumerator_play_ != null)
 		{
-			StopCoroutine(enumerator_play_);
+			coroutineCtrl.instance.Stop(enumerator_play_);
 			enumerator_play_ = null;
 		}
 		active = false;

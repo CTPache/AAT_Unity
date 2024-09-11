@@ -134,7 +134,7 @@ public class fadeCtrl : MonoBehaviour
 
 	public void play(int in_time, bool in_type)
 	{
-		StartCoroutine(play_coroutine(in_time, in_type, Color.black));
+		coroutineCtrl.instance.Play(play_coroutine(in_time, in_type, Color.black));
 	}
 
 	public IEnumerator play(float in_time, bool in_type)
@@ -185,12 +185,12 @@ public class fadeCtrl : MonoBehaviour
 				{
 					status = Status.WFADE_DUMMY;
 					dummy_flash_enumerator_ = DummyFlashCoroutine();
-					StartCoroutine(dummy_flash_enumerator_);
+					coroutineCtrl.instance.Play(dummy_flash_enumerator_);
 				}
 				return;
 			}
 			flash_timer_enumerator_ = FlashTimerCoroutine();
-			StartCoroutine(flash_timer_enumerator_);
+			coroutineCtrl.instance.Play(flash_timer_enumerator_);
 		}
 		int num;
 		switch (in_status)
@@ -265,11 +265,11 @@ public class fadeCtrl : MonoBehaviour
 			}
 			if (bldy_enumerator_ != null)
 			{
-				StopCoroutine(bldy_enumerator_);
+				coroutineCtrl.instance.Stop(bldy_enumerator_);
 				bldy_enumerator_ = null;
 			}
 			bldy_enumerator_ = ((!flag2) ? BLDYFadeoutCoroutine(in_time, (int)in_speed) : BLDYFadeinCoroutine(in_time, (int)in_speed));
-			StartCoroutine(bldy_enumerator_);
+			coroutineCtrl.instance.Play(bldy_enumerator_);
 		}
 	}
 
@@ -279,11 +279,11 @@ public class fadeCtrl : MonoBehaviour
 		{
 			if (enumerator_[in_index] != null)
 			{
-				StopCoroutine(enumerator_[in_index]);
+				coroutineCtrl.instance.Stop(enumerator_[in_index]);
 				enumerator_[in_index] = null;
 			}
 			enumerator_[in_index] = FadeCoroutine(in_index, in_time, in_speed, in_type, in_color, under_other_fade);
-			StartCoroutine(enumerator_[in_index]);
+			coroutineCtrl.instance.Play(enumerator_[in_index]);
 		}
 	}
 

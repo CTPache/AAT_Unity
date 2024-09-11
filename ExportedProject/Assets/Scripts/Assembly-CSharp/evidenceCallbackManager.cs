@@ -202,21 +202,41 @@ public class evidenceCallbackManager : MonoBehaviour
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private IEnumerator Event_itmsp_open_board()
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		messageBoardCtrl.instance.board(true, true);
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private IEnumerator RequestTo(float in_time = 0.5f)
@@ -225,7 +245,7 @@ public class evidenceCallbackManager : MonoBehaviour
 		evidenceObjectManager mng = ctrl.evidence_manager;
 		request_posture_ang_.x *= -1f;
 		request_posture_ang_.y *= -1f;
-		yield return mng.RequestTo(request_posture_pos_, request_posture_ang_, request_posture_scale_, in_time);
+		yield return coroutineCtrl.instance.Play(mng.RequestTo(request_posture_pos_, request_posture_ang_, request_posture_scale_, in_time));
 	}
 
 	private IEnumerator EventRunScript()
@@ -236,17 +256,17 @@ public class evidenceCallbackManager : MonoBehaviour
 			if (scienceInvestigationCtrl.instance.IsEnding())
 			{
 				int fade_time = 90;
-				yield return StartCoroutine(fadeCtrl.instance.play_coroutine(fade_time, false, Color.black));
+				yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(fade_time, false, Color.black));
 			}
 			if (request_scenario_mes_ != 0)
 			{
 				advCtrl.instance.message_system_.AddScript2(GSStatic.global_work_.scenario, 0u);
-				yield return StartCoroutine(EventRunScript(request_scenario_mes_, false));
+				yield return coroutineCtrl.instance.Play(EventRunScript(request_scenario_mes_, false));
 			}
 			else if (request_event_mes_ != 0)
 			{
 				advCtrl.instance.message_system_.AddScript2(65535u, 0u);
-				yield return StartCoroutine(EventRunScript(request_event_mes_, true));
+				yield return coroutineCtrl.instance.Play(EventRunScript(request_event_mes_, true));
 			}
 			request_scenario_mes_ = 0u;
 			request_event_mes_ = 0u;
@@ -276,18 +296,14 @@ public class evidenceCallbackManager : MonoBehaviour
 		}
 		runnning_mesasge = true;
 		advCtrl.instance.sub_window_.req_ = SubWindow.Req.NONE;
-		yield return new WaitWhile(delegate
+		while (advCtrl.instance.sub_window_.req_ != SubWindow.Req.MESS_EXIT)
 		{
-			if (advCtrl.instance.sub_window_.req_ == SubWindow.Req.MESS_EXIT)
-			{
-				advCtrl.instance.sub_window_.req_ = SubWindow.Req.NONE;
-				runnning_mesasge = false;
-				messageBoardCtrl.instance.board(false, false);
-				GSStatic.global_work_.Mess_move_flag = 0;
-				return false;
-			}
-			return true;
-		});
+			yield return null;
+		}
+		advCtrl.instance.sub_window_.req_ = SubWindow.Req.NONE;
+		runnning_mesasge = false;
+		messageBoardCtrl.instance.board(false, false);
+		GSStatic.global_work_.Mess_move_flag = 0;
 		request_scenario_mes_ = 0u;
 		request_event_mes_ = 0u;
 	}
@@ -296,20 +312,30 @@ public class evidenceCallbackManager : MonoBehaviour
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		state = 3;
-		yield return new WaitForSeconds(0.5f);
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		request_posture_pos_ = Vector3.zero;
 		request_posture_ang_ = Vector3.zero;
 		request_posture_scale_ = 1f;
 		if (request_force_close_)
 		{
 			state = 5;
-			ctrl.Close();
+			coroutineCtrl.instance.Play(ctrl.Close());
 		}
 		else
 		{
 			bool flag = request_reset_posture_ || !string.IsNullOrEmpty(request_change_model_);
 			state = ((!flag) ? 4 : 0);
-			ctrl.Resume(flag);
+			coroutineCtrl.instance.Play(ctrl.Resume(flag));
 		}
 	}
 
@@ -367,7 +393,7 @@ public class evidenceCallbackManager : MonoBehaviour
 				ratio2 = ((!(((!(ratio2 < 0f)) ? ratio2 : 0f) > 1f)) ? ratio2 : 1f);
 				float value = curve.Evaluate(ratio2);
 				LerpPosition(trans, last_pos, in_to_pos, value);
-				yield return 0;
+				yield return null;
 			}
 		}
 		LerpPosition(trans, last_pos, in_to_pos, 1f);
@@ -396,7 +422,7 @@ public class evidenceCallbackManager : MonoBehaviour
 				ratio3 = ((!(((!(ratio3 < 0f)) ? ratio3 : 0f) > 1f)) ? ratio3 : 1f);
 				float value = curve.Evaluate(ratio3);
 				LerpRotate(trans, last_euler, in_angle, value);
-				yield return 0;
+				yield return null;
 			}
 		}
 		LerpRotate(trans, last_euler, in_angle, 1f);
@@ -422,7 +448,7 @@ public class evidenceCallbackManager : MonoBehaviour
 				ratio3 = ((!(((!(ratio3 < 0f)) ? ratio3 : 0f) > 1f)) ? ratio3 : 1f);
 				float value = curve.Evaluate(ratio3);
 				LerpScale(trans, last_scale, in_to_scale, value);
-				yield return 0;
+				yield return null;
 			}
 		}
 		LerpScale(trans, last_scale, in_to_scale, 1f);
@@ -449,7 +475,7 @@ public class evidenceCallbackManager : MonoBehaviour
 				ratio2 = ((!(((!(ratio2 < 0f)) ? ratio2 : 0f) > 1f)) ? ratio2 : 1f);
 				float value = curve.Evaluate(ratio2);
 				trans.localPosition = BezierCurve(last_pos, in_to_pos, ctrlPt, value);
-				yield return 0;
+				yield return null;
 			}
 		}
 		trans.localPosition = BezierCurve(last_pos, in_to_pos, ctrlPt, 1f);
@@ -744,7 +770,7 @@ public class evidenceCallbackManager : MonoBehaviour
 		{
 			scienceInvestigationCtrl scienceInvestigationCtrl2 = scienceInvestigationCtrl.instance;
 			evidenceObjectManager evidence_manager = scienceInvestigationCtrl2.evidence_manager;
-			string in_prefab_name = ((GSStatic.global_work_.language != 0) ? "itm0463u" : "itm0463");
+			string in_prefab_name = ((GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA) ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0463") : ("itm0463" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
 			GameObject @object = evidence_manager.GetObject(in_prefab_name);
 			StModelSet stModelSet = evidence_manager.AddLoadEventModel(31);
 			stModelSet.active = true;
@@ -823,39 +849,91 @@ public class evidenceCallbackManager : MonoBehaviour
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private IEnumerator Event_itm0465_TakeOut()
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
-		yield return StartCoroutine(MoveTo(anim_trans_[1], new Vector3(0f, -10f, 0f), liner_, 0.5f));
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
+		yield return coroutineCtrl.instance.Play(MoveTo(anim_trans_[1], new Vector3(0f, -10f, 0f), liner_, 0.5f));
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private IEnumerator Event_0460_1_OpenAndTakeOut()
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time3 = 0f;
+		float wait3 = 0.5f;
+		while (true)
+		{
+			time3 += Time.deltaTime;
+			if (time3 > wait3)
+			{
+				break;
+			}
+			yield return null;
+		}
 		soundCtrl.instance.PlaySE(421);
-		yield return StartCoroutine(RotateTo(anim_trans_[0], new Vector3(181f, 0f, 0f), liner_, 0.3f));
-		yield return new WaitForSeconds(0.5f);
-		StartCoroutine(MoveTo(in_to_pos: anim_trans_[2].InverseTransformVector(new Vector3(0f, -6f, 0f)), trans: anim_trans_[2], curve: liner_, in_time: 0.3f));
-		yield return StartCoroutine(MoveTo(anim_trans_[1], new Vector3(0f, 4f, 0f), curve_, 0.3f));
-		StartCoroutine(ScaleTo(anim_trans_[1], 2f, liner_, 0.3f));
-		yield return StartCoroutine(MoveTo(in_to_pos: new Vector3(-1f, 3.5f, 0f), trans: anim_trans_[1], curve: liner_, in_time: 0.3f));
-		yield return new WaitForSeconds(0.5f);
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(RotateTo(anim_trans_[0], new Vector3(181f, 0f, 0f), liner_, 0.3f));
+		float time2 = 0f;
+		float wait2 = 0.5f;
+		while (true)
+		{
+			time2 += Time.deltaTime;
+			if (time2 > wait2)
+			{
+				break;
+			}
+			yield return null;
+		}
+		Vector3 outside = anim_trans_[2].InverseTransformVector(new Vector3(0f, -6f, 0f));
+		coroutineCtrl.instance.Play(MoveTo(anim_trans_[2], outside, liner_, 0.3f));
+		yield return coroutineCtrl.instance.Play(MoveTo(anim_trans_[1], new Vector3(0f, 4f, 0f), curve_, 0.3f));
+		coroutineCtrl.instance.Play(ScaleTo(anim_trans_[1], 2f, liner_, 0.3f));
+		Vector3 adjust = new Vector3(-1f, 3.5f, 0f);
+		yield return coroutineCtrl.instance.Play(MoveTo(anim_trans_[1], adjust, liner_, 0.3f));
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private static void Init_itm04e0()
@@ -900,17 +978,37 @@ public class evidenceCallbackManager : MonoBehaviour
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
-		yield return StartCoroutine(RotateTo(anim_trans_[0], new Vector3(-168f, 0f, 0f), liner_, 0.2f));
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time2 = 0f;
+		float wait2 = 0.5f;
+		while (true)
+		{
+			time2 += Time.deltaTime;
+			if (time2 > wait2)
+			{
+				break;
+			}
+			yield return null;
+		}
+		yield return coroutineCtrl.instance.Play(RotateTo(anim_trans_[0], new Vector3(-168f, 0f, 0f), liner_, 0.2f));
 		soundCtrl.instance.PlaySE(427);
-		yield return new WaitForSeconds(0.5f);
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		if (instance.request_scenario_mes_ != 0)
 		{
 			messageBoardCtrl.instance.board(true, true);
 		}
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private static void Init_itm0520()
@@ -978,13 +1076,23 @@ public class evidenceCallbackManager : MonoBehaviour
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		soundCtrl.instance.PlaySE(419);
-		yield return StartCoroutine(MoveTo(anim_trans_[0], new Vector3(0f, 0f, 0f), liner_, 0.1f));
+		yield return coroutineCtrl.instance.Play(MoveTo(anim_trans_[0], new Vector3(0f, 0f, 0f), liner_, 0.1f));
 		messageBoardCtrl.instance.board(true, true);
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private static void Init_itm0820()
@@ -1030,9 +1138,19 @@ public class evidenceCallbackManager : MonoBehaviour
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
-		string model_name = "itm0820" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time2 = 0f;
+		float wait2 = 0.5f;
+		while (true)
+		{
+			time2 += Time.deltaTime;
+			if (time2 > wait2)
+			{
+				break;
+			}
+			yield return null;
+		}
+		string model_name = ((GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA) ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0820") : ("itm0820" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
 		GameObject model = mng.GetObject(model_name);
 		model.SetActive(false);
 		for (int i = 1; i <= 3; i++)
@@ -1042,19 +1160,49 @@ public class evidenceCallbackManager : MonoBehaviour
 		anim_trans_[1].localPosition = model.transform.localPosition;
 		anim_trans_[1].localRotation = model.transform.localRotation;
 		anim_trans_[1].Rotate(new Vector3(0f, -180f, 0f));
-		yield return StartCoroutine(RotateTo(anim_trans_[0], new Vector3(0f, -179.9f, 0f), liner_, 0.5f));
-		yield return new WaitForSeconds(0.5f);
+		yield return coroutineCtrl.instance.Play(RotateTo(anim_trans_[0], new Vector3(0f, -179.9f, 0f), liner_, 0.5f));
+		float time3 = 0f;
+		float wait3 = 0.5f;
+		while (true)
+		{
+			time3 += Time.deltaTime;
+			if (time3 > wait3)
+			{
+				break;
+			}
+			yield return null;
+		}
 		soundCtrl.instance.PlaySE(14);
-		yield return new WaitForSeconds(0.5f);
+		float time4 = 0f;
+		float wait4 = 0.5f;
+		while (true)
+		{
+			time4 += Time.deltaTime;
+			if (time4 > wait4)
+			{
+				break;
+			}
+			yield return null;
+		}
 		Transform photo_trans = anim_trans_[3];
 		photo_trans.parent = anim_trans_[1].parent;
-		StartCoroutine(MoveTo(anim_trans_[1], new Vector3(0f, -5f, 0f), liner_, 0.4f));
-		StartCoroutine(ScaleTo(photo_trans, 3f, liner_, 0.4f));
-		StartCoroutine(BezierMoveTo(photo_trans, new Vector3(1.5f, 0f, photo_trans.localPosition.z), new Vector3(0.5f, -1f, photo_trans.localPosition.z), liner_, 0.4f));
-		yield return new WaitForSeconds(1f);
+		coroutineCtrl.instance.Play(MoveTo(anim_trans_[1], new Vector3(0f, -5f, 0f), liner_, 0.4f));
+		coroutineCtrl.instance.Play(ScaleTo(photo_trans, 3f, liner_, 0.4f));
+		coroutineCtrl.instance.Play(BezierMoveTo(photo_trans, new Vector3(1.5f, 0f, photo_trans.localPosition.z), new Vector3(0.5f, -1f, photo_trans.localPosition.z), liner_, 0.4f));
+		float time = 0f;
+		float wait = 1f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		anim_trans_[1].gameObject.SetActive(false);
-		yield return StartCoroutine(EventRunScript());
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(EventRunScript());
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 
 	private static void Init_itm0830()
@@ -1116,9 +1264,19 @@ public class evidenceCallbackManager : MonoBehaviour
 	{
 		scienceInvestigationCtrl ctrl = scienceInvestigationCtrl.instance;
 		evidenceObjectManager mng = ctrl.evidence_manager;
-		yield return StartCoroutine(RequestTo());
-		yield return new WaitForSeconds(0.5f);
-		string object_name = ((GSStatic.global_work_.language != 0) ? "itm0830u" : "itm0830");
+		yield return coroutineCtrl.instance.Play(RequestTo());
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
+		string object_name = ((GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA) ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0830") : ("itm0830" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
 		GameObject model = mng.GetObject(object_name);
 		model.SetActive(false);
 		for (int i = 1; i <= 6; i++)
@@ -1128,24 +1286,64 @@ public class evidenceCallbackManager : MonoBehaviour
 		anim_trans_[1].localPosition = model.transform.localPosition;
 		anim_trans_[1].localRotation = model.transform.localRotation;
 		anim_trans_[1].Rotate(new Vector3(0f, -180f, 0f));
-		yield return StartCoroutine(RotateTo(anim_trans_[0], new Vector3(0f, -179.9f, 0f), liner_, 0.5f));
-		yield return new WaitForSeconds(0.5f);
+		yield return coroutineCtrl.instance.Play(RotateTo(anim_trans_[0], new Vector3(0f, -179.9f, 0f), liner_, 0.5f));
+		float time2 = 0f;
+		float wait3 = 0.5f;
+		while (true)
+		{
+			time2 += Time.deltaTime;
+			if (time2 > wait3)
+			{
+				break;
+			}
+			yield return null;
+		}
 		soundCtrl.instance.PlaySE(14);
-		yield return new WaitForSeconds(0.5f);
+		float time4 = 0f;
+		float wait5 = 0.5f;
+		while (true)
+		{
+			time4 += Time.deltaTime;
+			if (time4 > wait5)
+			{
+				break;
+			}
+			yield return null;
+		}
 		Transform envelope_trans = anim_trans_[4];
 		envelope_trans.parent = anim_trans_[1].parent;
-		StartCoroutine(MoveTo(anim_trans_[1], new Vector3(0f, -5f, 0f), liner_, 0.4f));
-		StartCoroutine(ScaleTo(envelope_trans, 2f, liner_, 0.6f));
-		yield return StartCoroutine(BezierMoveTo(envelope_trans, new Vector3(1.5f, -0.7f, envelope_trans.localPosition.z), new Vector3(envelope_trans.localPosition.x - 2f, envelope_trans.localPosition.y, envelope_trans.localPosition.z), liner_, 0.6f));
-		yield return new WaitForSeconds(0.5f);
+		coroutineCtrl.instance.Play(MoveTo(anim_trans_[1], new Vector3(0f, -5f, 0f), liner_, 0.4f));
+		coroutineCtrl.instance.Play(ScaleTo(envelope_trans, 2f, liner_, 0.6f));
+		yield return coroutineCtrl.instance.Play(BezierMoveTo(envelope_trans, new Vector3(1.5f, -0.7f, envelope_trans.localPosition.z), new Vector3(envelope_trans.localPosition.x - 2f, envelope_trans.localPosition.y, envelope_trans.localPosition.z), liner_, 0.6f));
+		float time5 = 0f;
+		float wait4 = 0.5f;
+		while (true)
+		{
+			time5 += Time.deltaTime;
+			if (time5 > wait4)
+			{
+				break;
+			}
+			yield return null;
+		}
 		anim_trans_[1].gameObject.SetActive(false);
-		yield return StartCoroutine(RotateTo(envelope_trans, new Vector3(0f, 0f, -90f), liner_, 0.4f));
-		yield return StartCoroutine(RotateTo(anim_trans_[6], new Vector3(0f, 180f, 0f), liner_, 0.5f));
-		yield return new WaitForSeconds(0.5f);
+		yield return coroutineCtrl.instance.Play(RotateTo(envelope_trans, new Vector3(0f, 0f, -90f), liner_, 0.4f));
+		yield return coroutineCtrl.instance.Play(RotateTo(anim_trans_[6], new Vector3(0f, 180f, 0f), liner_, 0.5f));
+		float time3 = 0f;
+		float wait2 = 0.5f;
+		while (true)
+		{
+			time3 += Time.deltaTime;
+			if (time3 > wait2)
+			{
+				break;
+			}
+			yield return null;
+		}
 		anim_trans_[5].localPosition += new Vector3(0f, 0f, -0.02f);
 		Transform photo_trans = anim_trans_[3];
 		photo_trans.parent = anim_trans_[1].parent;
-		yield return StartCoroutine(MoveTo(photo_trans, new Vector3(photo_trans.localPosition.x, 5f, photo_trans.localPosition.z), liner_, 1f));
-		yield return StartCoroutine(Finish());
+		yield return coroutineCtrl.instance.Play(MoveTo(photo_trans, new Vector3(photo_trans.localPosition.x, 5f, photo_trans.localPosition.z), liner_, 1f));
+		yield return coroutineCtrl.instance.Play(Finish());
 	}
 }

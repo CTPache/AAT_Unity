@@ -219,11 +219,11 @@ public class inspectCtrl : MonoBehaviour
 		Set_InspectCursor();
 		if (GSMain_TanteiPart.IsBGSlide(bgCtrl.instance.bg_no))
 		{
-			keyGuideCtrl.instance.open(keyGuideBase.Type.INSPECT_SLIDE);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.INSPECT_SLIDE));
 		}
 		else
 		{
-			keyGuideCtrl.instance.open(keyGuideBase.Type.INSPECT);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.INSPECT));
 		}
 		debug_line_start();
 		float key_wait = systemCtrl.instance.key_wait;
@@ -298,7 +298,7 @@ public class inspectCtrl : MonoBehaviour
 				{
 					soundCtrl.instance.PlaySE(43);
 					cursor_.spriteNo(0);
-					yield return bgCtrl.instance.Slider();
+					yield return coroutineCtrl.instance.Play(bgCtrl.instance.Slider());
 					is_cursor = true;
 					if (debug_area_root_ != null)
 					{
@@ -336,7 +336,7 @@ public class inspectCtrl : MonoBehaviour
 		}
 		select_animation_playing_ = true;
 		debug_line_end();
-		yield return keyGuideCtrl.instance.close();
+		yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 		InspectCashReset();
 		active = false;
 		is_play_ = false;
@@ -347,14 +347,14 @@ public class inspectCtrl : MonoBehaviour
 	{
 		stop();
 		enumerator_play_ = CoroutinePlay();
-		StartCoroutine(enumerator_play_);
+		coroutineCtrl.instance.Play(enumerator_play_);
 	}
 
 	public void stop()
 	{
 		if (enumerator_play_ != null)
 		{
-			StopCoroutine(enumerator_play_);
+			coroutineCtrl.instance.Stop(enumerator_play_);
 			enumerator_play_ = null;
 		}
 		active = false;

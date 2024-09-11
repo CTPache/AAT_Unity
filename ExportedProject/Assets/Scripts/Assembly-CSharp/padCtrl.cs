@@ -72,6 +72,10 @@ public class padCtrl : MonoBehaviour
 
 	private bool first_right_stick_input;
 
+	private int wait_time_ = 10;
+
+	private int key_wait_;
+
 	private const string input_key_vertical = "Vertical";
 
 	private const string input_key_horizontal = "Horizontal";
@@ -296,9 +300,18 @@ public class padCtrl : MonoBehaviour
 		}
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
-		if (Input.GetKey(KeyCode.Numlock))
+		Process();
+	}
+
+	private void Process()
+	{
+		if (key_wait_ > 0)
+		{
+			key_wait_--;
+		}
+		if (InputCtrl.instance.GetKey(KeyCode.Numlock))
 		{
 			Input.ResetInputAxes();
 		}
@@ -798,7 +811,7 @@ public class padCtrl : MonoBehaviour
 		}
 		for (int i = 0; i < ext; i++)
 		{
-			if (key_type_[(int)type][i] < 65536 && key_type_[(int)type][i] != 0 && ((int)key_type_[(int)type][i] != 306 || !Input.GetKey(KeyCode.AltGr)) && Input.GetKey((KeyCode)key_type_[(int)type][i]))
+			if (key_type_[(int)type][i] < 65536 && key_type_[(int)type][i] != 0 && ((int)key_type_[(int)type][i] != 306 || !InputCtrl.instance.GetKey(KeyCode.AltGr)) && InputCtrl.instance.GetKey((KeyCode)key_type_[(int)type][i]))
 			{
 				return true;
 			}
@@ -808,6 +821,10 @@ public class padCtrl : MonoBehaviour
 
 	public bool GetKeyDown(KeyType type, int ext = 2, bool is_debug = true, KeyType is_controller_type = KeyType.None)
 	{
+		if (key_wait_ > 0)
+		{
+			return false;
+		}
 		if (is_debug && debug_menu_.menu.IsOpen())
 		{
 			return false;
@@ -834,7 +851,7 @@ public class padCtrl : MonoBehaviour
 		{
 			return true;
 		}
-		if (type == KeyType.B && Input.GetMouseButtonDown(1))
+		if (type == KeyType.B && InputGetMouseButtonDown(1))
 		{
 			return true;
 		}
@@ -846,6 +863,10 @@ public class padCtrl : MonoBehaviour
 			}
 			if (GetStick(type, 1, ext))
 			{
+				if (type == KeyType.StickL_Left || type == KeyType.StickL_Up || type == KeyType.StickL_Right || type == KeyType.StickL_Down || type == KeyType.StickR_Left || type == KeyType.StickR_Up || type == KeyType.StickR_Right || type == KeyType.StickR_Down)
+				{
+					key_wait_ = wait_time_;
+				}
 				return true;
 			}
 		}
@@ -857,18 +878,27 @@ public class padCtrl : MonoBehaviour
 			}
 			if (GetStick(is_controller_type, 1, ext))
 			{
+				if (is_controller_type == KeyType.StickL_Left || is_controller_type == KeyType.StickL_Up || is_controller_type == KeyType.StickL_Right || is_controller_type == KeyType.StickL_Down || is_controller_type == KeyType.StickR_Left || is_controller_type == KeyType.StickR_Up || is_controller_type == KeyType.StickR_Right || is_controller_type == KeyType.StickR_Down)
+				{
+					key_wait_ = wait_time_;
+				}
 				return true;
 			}
 		}
 		for (int i = 0; i < ext; i++)
 		{
-			if (type != 0)
+			if (type == KeyType.None)
 			{
-				long num = key_type_[(int)type][i];
-				if (num < 65536 && ((int)num != 306 || !Input.GetKeyDown(KeyCode.AltGr)) && Input.GetKeyDown((KeyCode)num))
+				continue;
+			}
+			long num = key_type_[(int)type][i];
+			if (num < 65536 && ((int)num != 306 || !InputCtrl.instance.GetKeyDown(KeyCode.AltGr)) && InputCtrl.instance.GetKeyDown((KeyCode)num))
+			{
+				if ((int)num == 273 || (int)num == 274 || (int)num == 275 || (int)num == 276)
 				{
-					return true;
+					key_wait_ = wait_time_;
 				}
+				return true;
 			}
 		}
 		return result;
@@ -914,7 +944,7 @@ public class padCtrl : MonoBehaviour
 		}
 		for (int i = 0; i < ext; i++)
 		{
-			if (key_type_[(int)type][i] < 65536 && key_type_[(int)type][i] != 0 && ((int)key_type_[(int)type][i] != 306 || !Input.GetKeyUp(KeyCode.AltGr)) && Input.GetKeyUp((KeyCode)key_type_[(int)type][i]))
+			if (key_type_[(int)type][i] < 65536 && key_type_[(int)type][i] != 0 && ((int)key_type_[(int)type][i] != 306 || !InputCtrl.instance.GetKeyUp(KeyCode.AltGr)) && InputCtrl.instance.GetKeyUp((KeyCode)key_type_[(int)type][i]))
 			{
 				return true;
 			}
@@ -1229,16 +1259,16 @@ public class padCtrl : MonoBehaviour
 	{
 		for (int i = 0; i < configuration_key_list_.Count; i++)
 		{
-			if (Input.GetKeyDown(configuration_key_list_[i]))
+			if (InputCtrl.instance.GetKeyDown(configuration_key_list_[i]))
 			{
 				return true;
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Backspace))
+		if (InputCtrl.instance.GetKeyDown(KeyCode.Return) || InputCtrl.instance.GetKeyDown(KeyCode.Backspace))
 		{
 			return true;
 		}
-		if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
+		if (InputCtrl.instance.GetKeyDown(KeyCode.Mouse0) || InputCtrl.instance.GetKeyDown(KeyCode.Mouse1))
 		{
 			return true;
 		}
@@ -1452,7 +1482,7 @@ public class padCtrl : MonoBehaviour
 		{
 			return false;
 		}
-		return Input.GetKey(_keycode);
+		return InputCtrl.instance.GetKey(_keycode);
 	}
 
 	public bool InputGetKeyUp(KeyCode _keycode)
@@ -1461,7 +1491,7 @@ public class padCtrl : MonoBehaviour
 		{
 			return false;
 		}
-		return Input.GetKeyUp(_keycode);
+		return InputCtrl.instance.GetKeyUp(_keycode);
 	}
 
 	public bool InputGetKeyDown(KeyCode _keycode)
@@ -1470,7 +1500,7 @@ public class padCtrl : MonoBehaviour
 		{
 			return false;
 		}
-		return Input.GetKeyDown(_keycode);
+		return InputCtrl.instance.GetKeyDown(_keycode);
 	}
 
 	public bool InputGetMouseButton(int _button)
@@ -1479,7 +1509,7 @@ public class padCtrl : MonoBehaviour
 		{
 			return false;
 		}
-		return Input.GetMouseButton(_button);
+		return InputCtrl.instance.GetKey((_button != 0) ? KeyCode.Mouse1 : KeyCode.Mouse0);
 	}
 
 	public bool InputGetMouseButtonUp(int _button)
@@ -1488,7 +1518,7 @@ public class padCtrl : MonoBehaviour
 		{
 			return false;
 		}
-		return Input.GetMouseButtonUp(_button);
+		return InputCtrl.instance.GetKeyUp((_button != 0) ? KeyCode.Mouse1 : KeyCode.Mouse0);
 	}
 
 	public bool InputGetMouseButtonDown(int _button)
@@ -1497,7 +1527,7 @@ public class padCtrl : MonoBehaviour
 		{
 			return false;
 		}
-		return Input.GetMouseButtonDown(_button);
+		return InputCtrl.instance.GetKeyDown((_button != 0) ? KeyCode.Mouse1 : KeyCode.Mouse0);
 	}
 
 	public UnityEngine.Touch InputGetTouch(int _index)

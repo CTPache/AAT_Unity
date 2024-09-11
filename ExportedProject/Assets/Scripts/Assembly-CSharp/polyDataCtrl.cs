@@ -172,6 +172,34 @@ public class polyDataCtrl : MonoBehaviour
 		new usPolyData("itm05a2", "itm05a2u")
 	};
 
+	private List<multilingualPolyData> multi_replace_table_ = new List<multilingualPolyData>
+	{
+		new multilingualPolyData("itm0060", "itm0060u", "itm0060f", "itm0060g", "itm0060k", "itm0060", "itm0060"),
+		new multilingualPolyData("itm0463", "itm0463u", "itm0463f", "itm0463g", "itm0463k", "itm0463s", "itm0463t"),
+		new multilingualPolyData("itm0466", "itm0466u", "itm0466f", "itm0466g", "itm0466k", "itm0466s", "itm0466t"),
+		new multilingualPolyData("itm0469", "itm0469u", "itm0469f", "itm0469g", "itm0469k", "itm0469s", "itm0469t"),
+		new multilingualPolyData("itm0480", "itm0480u", "itm0480f", "itm0480g", "itm0480k", "itm0480s", "itm0480t"),
+		new multilingualPolyData("itm04a0", "itm04a0u", "itm04a0f", "itm04a0g", "itm04a0k", "itm04a0s", "itm04a0t"),
+		new multilingualPolyData("itm04c0", "itm04c0u", "itm04c0f", "itm04c0g", "itm04c0k", "itm04c0s", "itm04c0t"),
+		new multilingualPolyData("itm0540", "itm0540u", "itm0540u", "itm0540u", "itm0540k", "itm0540s", "itm0540t"),
+		new multilingualPolyData("itm0550", "itm0550u", "itm0550f", "itm0550u", "itm0550k", "itm0550s", "itm0550t"),
+		new multilingualPolyData("itm0600", "itm0600u", "itm0600f", "itm0600u", "itm0600k", "itm0600", "itm0600"),
+		new multilingualPolyData("itm0610", "itm0610u", "itm0610f", "itm0610g", "itm0610k", "itm0610s", "itm0610t"),
+		new multilingualPolyData("itm0820", "itm0820u", "itm0820f", "itm0820g", "itm0820k", "itm0820s", "itm0820t"),
+		new multilingualPolyData("itm0821", "itm0821u", "itm0821f", "itm0821g", "itm0821k", "itm0821s", "itm0821t"),
+		new multilingualPolyData("itm0822", "itm0822u", "itm0822f", "itm0822g", "itm0822k", "itm0822s", "itm0822t"),
+		new multilingualPolyData("itm0830", "itm0830u", "itm0830f", "itm0830g", "itm0830k", "itm0830s", "itm0830t"),
+		new multilingualPolyData("itm0831", "itm0831u", "itm0831f", "itm0831g", "itm0831k", "itm0831s", "itm0831t"),
+		new multilingualPolyData("itm0832", "itm0832u", "itm0832f", "itm0832g", "itm0832k", "itm0832s", "itm0832t"),
+		new multilingualPolyData("itm0833", "itm0833u", "itm0833f", "itm0833g", "itm0833k", "itm0833s", "itm0833t"),
+		new multilingualPolyData("itm05a0", "itm05a0u", "itm05a0u", "itm05a0u", "itm05a0k", "itm05a0", "itm05a0"),
+		new multilingualPolyData("itm05f0", "itm05f0u", "itm05f0u", "itm05f0u", "itm05f0", "itm05f0", "itm05f0"),
+		new multilingualPolyData("itm082a", "itm082au", "itm082af", "itm082ag", "itm082a", "itm082a", "itm082a"),
+		new multilingualPolyData("itm0061", "itm0061u", "itm0061f", "itm0061g", "itm0061k", "itm0061", "itm0061"),
+		new multilingualPolyData("itm083c", "itm083cu", "itm083cf", "itm083cg", "itm083c", "itm083c", "itm083c"),
+		new multilingualPolyData("itm05a2", "itm05a2u", "itm05a2u", "itm05a2u", "itm05a2k", "itm05a2", "itm05a2")
+	};
+
 	public static polyDataCtrl instance { get; private set; }
 
 	public List<polyData> obj_table
@@ -197,6 +225,14 @@ public class polyDataCtrl : MonoBehaviour
 			if (usPolyData2 != null)
 			{
 				poly_prefab_name = usPolyData2.jp_name;
+			}
+		}
+		else if (GSStatic.global_work_.language != 0)
+		{
+			multilingualPolyData multilingualPolyData2 = multi_replace_table_.Find((multilingualPolyData p) => p.GetNameList().Contains(poly.prefab_name));
+			if (multilingualPolyData2 != null)
+			{
+				poly_prefab_name = multilingualPolyData2.jp_name;
 			}
 		}
 		List<polyData> finds = obj_table_.FindAll((polyData p) => p.common_name == poly.common_name && p.prefab_name == poly_prefab_name);
@@ -226,6 +262,16 @@ public class polyDataCtrl : MonoBehaviour
 		return GetData(obj_sub_table_, num);
 	}
 
+	public string GetMultiObjNameFromJP(string jp_name)
+	{
+		multilingualPolyData multilingualPolyData2 = multi_replace_table_.Find((multilingualPolyData p) => p.jp_name == jp_name);
+		if (multilingualPolyData2 != null)
+		{
+			return GetLanguagePolyName(multilingualPolyData2);
+		}
+		return jp_name;
+	}
+
 	private polyData GetData(List<polyData> table, int obj_id)
 	{
 		polyData polyData2 = table[obj_id];
@@ -234,9 +280,13 @@ public class polyDataCtrl : MonoBehaviour
 		{
 			ReplaceNameToUS(polyData3);
 		}
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		else if (GSStatic.global_work_.language == Language.JAPAN)
 		{
 			ReplaceNameToJP(polyData3);
+		}
+		else
+		{
+			ReplaceName(polyData3);
 		}
 		return polyData3;
 	}
@@ -260,7 +310,7 @@ public class polyDataCtrl : MonoBehaviour
 
 	private void ReplaceNameToJP(polyData poly)
 	{
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		if (GSStatic.global_work_.language != Language.USA)
 		{
 			usPolyData usPolyData2 = replace_table_.Find((usPolyData p) => p.us_name == poly.prefab_name);
 			if (usPolyData2 != null)
@@ -272,6 +322,41 @@ public class polyDataCtrl : MonoBehaviour
 			{
 				poly.sub_prefab_name = usPolyData2.jp_name;
 			}
+		}
+	}
+
+	private void ReplaceName(polyData poly)
+	{
+		multilingualPolyData multilingualPolyData2 = multi_replace_table_.Find((multilingualPolyData p) => p.jp_name == poly.prefab_name);
+		if (multilingualPolyData2 != null)
+		{
+			poly.prefab_name = GetLanguagePolyName(multilingualPolyData2);
+		}
+		multilingualPolyData2 = multi_replace_table_.Find((multilingualPolyData p) => p.jp_name == poly.sub_prefab_name);
+		if (multilingualPolyData2 != null)
+		{
+			poly.sub_prefab_name = GetLanguagePolyName(multilingualPolyData2);
+		}
+	}
+
+	private string GetLanguagePolyName(multilingualPolyData poly)
+	{
+		switch (GSStatic.global_work_.language)
+		{
+		case Language.JAPAN:
+			return poly.jp_name;
+		default:
+			return poly.us_name;
+		case Language.FRANCE:
+			return poly.fr_name;
+		case Language.GERMAN:
+			return poly.ge_name;
+		case Language.KOREA:
+			return poly.ko_name;
+		case Language.CHINA_S:
+			return poly.ch_s_name;
+		case Language.CHINA_T:
+			return poly.ch_t_name;
 		}
 	}
 }

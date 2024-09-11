@@ -64,6 +64,7 @@ public class optionKeyGuide : guideCtrl
 				break;
 			}
 			UpdateTouchArea();
+			SetLanguageLayout();
 			int num = guide_list_.Count((GuideIcon guide) => guide.sprite_.active);
 			sprite_guide_.transform.localPosition = new Vector3(slide_out_pos_x_ - base.guide_width_ * (float)num, guide_pos_y_, 0f);
 		}

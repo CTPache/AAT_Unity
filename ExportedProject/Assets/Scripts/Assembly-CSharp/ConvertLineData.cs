@@ -58,11 +58,8 @@ public class ConvertLineData
 				case Language.JAPAN:
 					text = stringBuilder.ToString();
 					break;
-				case Language.USA:
-					text = MessageSystem.EnToHalf(stringBuilder.ToString(), language);
-					break;
 				default:
-					text = stringBuilder.ToString();
+					text = MessageSystem.EnToHalf(stringBuilder.ToString(), language);
 					break;
 				}
 				text = text.Replace('φ', ' ');

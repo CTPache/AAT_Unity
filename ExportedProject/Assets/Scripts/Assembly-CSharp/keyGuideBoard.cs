@@ -609,6 +609,7 @@ public class keyGuideBoard : keyGuideBase
 		}
 		UpdateTouchArea();
 		SetRotGuideArea();
+		SetLanguageLayout();
 		guide_cnt_ = guide_list_.Count((GuideIcon guide) => guide.active);
 		Vector3 localPosition = board_.transform.localPosition;
 		localPosition.x = board_pos_x_ - board_width_ * (float)guide_cnt_;
@@ -677,36 +678,36 @@ public class keyGuideBoard : keyGuideBase
 		active = false;
 	}
 
-	public Coroutine open(Type in_type)
+	public IEnumerator open(Type in_type)
 	{
 		if (enumerator_open_ != null)
 		{
-			StopCoroutine(enumerator_open_);
+			coroutineCtrl.instance.Stop(enumerator_open_);
 			enumerator_open_ = null;
 		}
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
-			enumerator_open_ = null;
+			coroutineCtrl.instance.Stop(enumerator_close_);
+			enumerator_close_ = null;
 		}
 		enumerator_open_ = CoroutineOpen(in_type);
-		return StartCoroutine(enumerator_open_);
+		return enumerator_open_;
 	}
 
-	public Coroutine close()
+	public IEnumerator close()
 	{
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
+			coroutineCtrl.instance.Stop(enumerator_close_);
 			enumerator_close_ = null;
 		}
 		if (enumerator_open_ != null)
 		{
-			StopCoroutine(enumerator_open_);
-			enumerator_close_ = null;
+			coroutineCtrl.instance.Stop(enumerator_open_);
+			enumerator_open_ = null;
 		}
 		enumerator_close_ = CoroutineClose();
-		return StartCoroutine(enumerator_close_);
+		return enumerator_close_;
 	}
 
 	public bool CheckOpen()

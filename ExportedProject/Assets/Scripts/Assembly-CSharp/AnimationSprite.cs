@@ -35,7 +35,12 @@ public class AnimationSprite : MonoBehaviour
 		}
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		dTime += Time.deltaTime;
 		if (changeFrameSecond < dTime)

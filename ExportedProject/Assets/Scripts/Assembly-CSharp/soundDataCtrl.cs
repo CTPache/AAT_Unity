@@ -216,7 +216,7 @@ public static class soundDataCtrl
 
 	public static soundData sound_data_bgm_title = new soundData("bgm200", "/Sound/bgm/", 400, true);
 
-	public static soundData sound_data_bgm_credit = new soundData("mayoi_short_inst", "/Sound/bgm/", 600, false);
+	public static soundData sound_data_bgm_credit = new soundData("mayoi_short_inst_long", "/Sound/bgm/", 600, false);
 
 	public static soundData[] sound_data_se_common = new soundData[174]
 	{
@@ -487,21 +487,21 @@ public static class soundDataCtrl
 		new soundData("se0ae", "/Sound/se/wsd/", 407, true)
 	};
 
-	public static uint[,] se_change_tbl = new uint[13, 2]
+	public static uint[,] se_change_tbl = new uint[13, 7]
 	{
-		{ 81u, 500u },
-		{ 71u, 501u },
-		{ 55u, 505u },
-		{ 56u, 503u },
-		{ 367u, 508u },
-		{ 368u, 507u },
-		{ 57u, 502u },
-		{ 369u, 511u },
-		{ 370u, 512u },
-		{ 371u, 510u },
-		{ 150u, 506u },
-		{ 372u, 509u },
-		{ 65u, 504u }
+		{ 81u, 500u, 81u, 81u, 81u, 81u, 81u },
+		{ 71u, 501u, 71u, 71u, 71u, 71u, 71u },
+		{ 55u, 505u, 55u, 55u, 55u, 55u, 55u },
+		{ 56u, 503u, 56u, 56u, 56u, 56u, 56u },
+		{ 367u, 508u, 367u, 367u, 367u, 367u, 367u },
+		{ 368u, 507u, 368u, 368u, 368u, 368u, 368u },
+		{ 57u, 502u, 57u, 57u, 57u, 57u, 57u },
+		{ 369u, 511u, 369u, 369u, 369u, 369u, 369u },
+		{ 370u, 512u, 370u, 370u, 370u, 370u, 370u },
+		{ 371u, 510u, 371u, 371u, 371u, 371u, 371u },
+		{ 150u, 506u, 150u, 150u, 150u, 150u, 150u },
+		{ 372u, 509u, 372u, 372u, 372u, 372u, 372u },
+		{ 65u, 504u, 65u, 65u, 65u, 65u, 65u }
 	};
 
 	private static soundData sound_data_dummy = new soundData("dammy", "/Sound/bgm/", 4095, false);

@@ -752,7 +752,7 @@ public static class SubWindow_Status
 		Routine currentRoutine = sub_window.GetCurrentRoutine();
 		if (global_work_.psy_menu_active_flag != 0)
 		{
-			if (global_work_.language != 0)
+			if (GSUtility.GetLanguageLayoutType(global_work_.language) != 0)
 			{
 				switch (currentRoutine.r.no_2)
 				{
@@ -797,7 +797,7 @@ public static class SubWindow_Status
 				}
 			}
 		}
-		else if (global_work_.language != 0)
+		else if (GSUtility.GetLanguageLayoutType(global_work_.language) != 0)
 		{
 			switch (currentRoutine.r.no_2)
 			{
@@ -884,7 +884,7 @@ public static class SubWindow_Status
 		switch (currentRoutine.r.no_2)
 		{
 		case 0:
-			if (global_work_.language != 0)
+			if (GSUtility.GetLanguageLayoutType(global_work_.language) != 0)
 			{
 				if (routine_3d[0].h - 16 > -48)
 				{

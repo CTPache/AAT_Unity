@@ -186,7 +186,7 @@ public class TanchikiMiniGame : MonoBehaviour
 
 	public void UpdateCursor()
 	{
-		cursor_.Update();
+		cursor_.Process();
 		set_level();
 		radio_wave_.update();
 		radio_wave_.position = new Vector2(cursor_.cursor_position.x, 0f - cursor_.cursor_position.y);

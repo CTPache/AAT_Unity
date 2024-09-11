@@ -17,16 +17,6 @@ public class KinkoMiniGame : MonoBehaviour
 		EndFadeIn = 8
 	}
 
-	private enum file_name_index
-	{
-		label0 = 0,
-		label1 = 1,
-		label2 = 2,
-		eff054 = 3,
-		eff054_l = 4,
-		bg122 = 5
-	}
-
 	private KinkoState state_;
 
 	private uint correct_next_message_ = scenario.SC4_67640;
@@ -124,16 +114,6 @@ public class KinkoMiniGame : MonoBehaviour
 
 	[SerializeField]
 	private List<AssetBundleSprite> lamp_ = new List<AssetBundleSprite>();
-
-	private readonly string[,] file_name_ = new string[6, 2]
-	{
-		{ "label0", "label0u" },
-		{ "label1", "label1u" },
-		{ "label2", "label2u" },
-		{ "eff054", "eff054u" },
-		{ "eff054_l", "eff054_lu" },
-		{ "bg122", "bg122u" }
-	};
 
 	private int trans_frame;
 
@@ -235,10 +215,10 @@ public class KinkoMiniGame : MonoBehaviour
 		AssetBundle assetBundle = null;
 		comp_cur_down_.load("/GS1/minigame/", "comp_cur_d");
 		comp_cur_up_.load("/GS1/minigame/", "comp_cur_u");
-		label_text_.load("/GS1/minigame/", file_name_[0, (int)GSStatic.global_work_.language]);
-		bg_sprite_.load("/GS1/BG/", file_name_[5, (int)GSStatic.global_work_.language]);
+		label_text_.load("/GS1/minigame/", "label0" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
+		bg_sprite_.load("/GS1/BG/", "bg122" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
 		cursor_sprite_.load("/GS1/minigame/", "cur");
-		open_bg_sprite_.load("/GS1/BG/", "bg10c" + ((GSStatic.global_work_.language != 0) ? "u" : string.Empty));
+		open_bg_sprite_.load("/GS1/BG/", "bg10c" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
 		opne_handle_sprite_.load("/GS1/minigame/", "spr424");
 		for (int i = 0; i < 10; i++)
 		{
@@ -257,7 +237,7 @@ public class KinkoMiniGame : MonoBehaviour
 			cursor_sprite_data_.Add(assetBundle.LoadAllAssets<Sprite>()[0]);
 			active_cursor_sprite_data_.Add(assetBundle.LoadAllAssets<Sprite>()[1]);
 		}
-		assetBundle = asset_bundle_ctrl_.load("/GS1/minigame/", file_name_[4, (int)GSStatic.global_work_.language]);
+		assetBundle = asset_bundle_ctrl_.load("/GS1/minigame/", "eff054_l" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
 		cursor_sprite_data_.Add(assetBundle.LoadAllAssets<Sprite>()[0]);
 		active_cursor_sprite_data_.Add(assetBundle.LoadAllAssets<Sprite>()[1]);
 		for (int l = 1; l < 10; l++)
@@ -270,7 +250,12 @@ public class KinkoMiniGame : MonoBehaviour
 		lamp_[1].load("/GS1/minigame/", "lamp_r");
 	}
 
-	public void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		if (!is_end_)
 		{
@@ -381,7 +366,7 @@ public class KinkoMiniGame : MonoBehaviour
 
 	private void SetNumber(int num)
 	{
-		StartCoroutine(CoroutineEnable(num));
+		coroutineCtrl.instance.Play(CoroutineEnable(num));
 		if (num == 10)
 		{
 			soundCtrl.instance.PlaySE(432);
@@ -420,7 +405,17 @@ public class KinkoMiniGame : MonoBehaviour
 			break;
 		}
 		button_list_[num].sprite = active_cursor_sprite_data_[index2];
-		yield return new WaitForSeconds(0.1f);
+		float time = 0f;
+		float wait = 0.1f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		button_list_[num].sprite = cursor_sprite_data_[index2];
 	}
 
@@ -530,7 +525,7 @@ public class KinkoMiniGame : MonoBehaviour
 			result_sprite_.obj.SetActive(true);
 			if (is_equal_)
 			{
-				result_sprite_.load("/GS1/minigame/", file_name_[1, (int)GSStatic.global_work_.language]);
+				result_sprite_.load("/GS1/minigame/", "label1" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
 				SetInputNumVisible(false);
 				SetLamp(1u);
 				opne_lamp_sprite_.obj.SetActive(true);
@@ -538,7 +533,7 @@ public class KinkoMiniGame : MonoBehaviour
 			}
 			else
 			{
-				result_sprite_.load("/GS1/minigame/", file_name_[2, (int)GSStatic.global_work_.language]);
+				result_sprite_.load("/GS1/minigame/", "label2" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
 				SetInputNumVisible(false);
 				SetLampVisible(false);
 			}

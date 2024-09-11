@@ -149,8 +149,6 @@ public class AnimationObject : MonoBehaviour
 
 	private IEnumerator playingCycle_;
 
-	private Coroutine playingCoroutine_;
-
 	private IEnumerator fadeEnumerator;
 
 	private bool in_centor;
@@ -454,7 +452,7 @@ public class AnimationObject : MonoBehaviour
 	{
 		if (playingCycle_ != null)
 		{
-			AnimationSystem.StopCoroutine(playingCoroutine_);
+			coroutineCtrl.instance.Stop(playingCycle_);
 			(playingCycle_ as IDisposable).Dispose();
 		}
 		ClearCycleData();
@@ -502,7 +500,7 @@ public class AnimationObject : MonoBehaviour
 		}
 		base.transform.localScale = Vector3.one;
 		playingCycle_ = PlayCycle(animationName);
-		playingCoroutine_ = AnimationSystem.StartCoroutine(playingCycle_);
+		coroutineCtrl.instance.Play(playingCycle_);
 	}
 
 	public void HoldAndSetAsLastSequence()
@@ -511,9 +509,8 @@ public class AnimationObject : MonoBehaviour
 		{
 			if (IsPlaying)
 			{
-				AnimationSystem.StopCoroutine(playingCoroutine_);
+				coroutineCtrl.instance.Stop(playingCycle_);
 				(playingCycle_ as IDisposable).Dispose();
-				playingCoroutine_ = null;
 				playingCycle_ = null;
 			}
 			AnimationCutHolder.AnimationSource source = SourceHolder.GetSource(playingAnimationName_);
@@ -649,13 +646,11 @@ public class AnimationObject : MonoBehaviour
 				else
 				{
 					playingCycle_ = null;
-					playingCoroutine_ = null;
 				}
 			}
 			else
 			{
 				playingCycle_ = null;
-				playingCoroutine_ = null;
 			}
 		}
 	}
@@ -846,11 +841,11 @@ public class AnimationObject : MonoBehaviour
 	{
 		if (fadeEnumerator != null)
 		{
-			AnimationSystem.StopCoroutine(fadeEnumerator);
+			coroutineCtrl.instance.Stop(fadeEnumerator);
 			fadeEnumerator = null;
 		}
 		fadeEnumerator = FadeCoroutine(fadeIn, fadeFrame);
-		AnimationSystem.StartCoroutine(fadeEnumerator);
+		coroutineCtrl.instance.Play(fadeEnumerator);
 	}
 
 	private IEnumerator FadeCoroutine(bool fadeIn, int fadeFrame)
@@ -944,7 +939,7 @@ public class AnimationObject : MonoBehaviour
 		monochromeDataToSave.time = time;
 		if (spefEnumerator != null)
 		{
-			AnimationSystem.StopCoroutine(spefEnumerator);
+			coroutineCtrl.instance.Stop(spefEnumerator);
 			spefEnumerator = null;
 		}
 		BeFlag &= -1025;
@@ -984,7 +979,7 @@ public class AnimationObject : MonoBehaviour
 		{
 			spefEnumerator = SetSpefRet(time, speed);
 		}
-		AnimationSystem.StartCoroutine(spefEnumerator);
+		coroutineCtrl.instance.Play(spefEnumerator);
 	}
 
 	private IEnumerator SetSpef(ushort time, ushort speed)

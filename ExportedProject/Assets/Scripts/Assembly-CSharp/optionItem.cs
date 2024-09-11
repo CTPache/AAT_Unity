@@ -88,6 +88,11 @@ public class optionItem : MonoBehaviour
 		option_title_.text = text;
 	}
 
+	public void SetTitleFontSize(int size)
+	{
+		option_title_.fontSize = size;
+	}
+
 	public virtual void Close()
 	{
 		mainCtrl.instance.removeText(option_title_);

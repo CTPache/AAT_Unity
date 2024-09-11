@@ -24111,7 +24111,7 @@ public static class scenario
 			{
 				GSScenario.Set_event(SC4_60510, SCE4_DEKA_1ST, is_reset);
 			}
-			if (global_work.language == Language.USA)
+			if (GSUtility.GetLanguageLayoutType(global_work.language) == Language.USA)
 			{
 				for (int n = 0; n < Sce4_0_room006_usa_ck_mess_tbl.Length; n++)
 				{
@@ -24375,7 +24375,7 @@ public static class scenario
 				GSScenario.Set_char(44u, 376u, 376u, is_reset);
 				GSScenario.Set_event(SC4_63250, SCE42_FLAG_MES63250, is_reset);
 			}
-			if (global_work.language == Language.USA)
+			if (GSUtility.GetLanguageLayoutType(global_work.language) == Language.USA)
 			{
 				for (int num4 = 0; num4 < Sce4_2_room006_usa_ck_mess_tbl.Length; num4++)
 				{
@@ -24745,7 +24745,7 @@ public static class scenario
 					}
 				}
 			}
-			if (global_work.language == Language.USA)
+			if (GSUtility.GetLanguageLayoutType(global_work.language) == Language.USA)
 			{
 				for (int n = 0; n < Sce4_4_room006_usa_ck_mess_tbl.Length; n++)
 				{

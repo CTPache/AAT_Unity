@@ -1,3 +1,6 @@
+using System;
+using System.Globalization;
+
 public static class GSUtility
 {
 	private struct hl
@@ -144,21 +147,75 @@ public static class GSUtility
 
 	public static string GetResourceNameLanguage(Language language)
 	{
-		string result = string.Empty;
+		switch (language)
+		{
+		default:
+			return string.Empty;
+		case Language.USA:
+			return "u";
+		}
+	}
+
+	public static Language GetLanguageLayoutType(Language language)
+	{
 		switch (language)
 		{
 		case Language.JAPAN:
-			result = string.Empty;
-			break;
-		case Language.USA:
-			result = "u";
-			break;
+		case Language.KOREA:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
+			return Language.JAPAN;
+		default:
+			return Language.USA;
 		}
-		return result;
 	}
 
 	public static int GetLanguageSlotNum(int slot_num, Language language)
 	{
 		return slot_num + 10 * (int)language;
+	}
+
+	public static string GetScenarioLanguage(Language language)
+	{
+		switch (language)
+		{
+		case Language.JAPAN:
+			return string.Empty;
+		case Language.USA:
+			return "_u";
+		case Language.FRANCE:
+			return "_f";
+		case Language.GERMAN:
+			return "_g";
+		case Language.KOREA:
+			return "_k";
+		case Language.CHINA_S:
+			return "_s";
+		case Language.CHINA_T:
+			return "_t";
+		default:
+			return "_u";
+		}
+	}
+
+	public static DateTime DateTimeParse(string time, Language language)
+	{
+		string s = time.Replace("\n", " ");
+		try
+		{
+			switch (language)
+			{
+			case Language.FRANCE:
+				return DateTime.Parse(s, new CultureInfo("fr-FR"), DateTimeStyles.None);
+			case Language.GERMAN:
+				return DateTime.Parse(s, new CultureInfo("de-DE"), DateTimeStyles.None);
+			default:
+				return DateTime.ParseExact(s, "yyyy/MM/dd HH:mm:ss", null);
+			}
+		}
+		catch
+		{
+			return DateTime.Parse("1900/01/01 00:00:00");
+		}
 	}
 }

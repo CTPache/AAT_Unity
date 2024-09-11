@@ -140,7 +140,7 @@ public class loadingCtrl : MonoBehaviour
 	public void play(Type in_type)
 	{
 		play_enumerator_ = PlayCoroutine((int)in_type, 10);
-		StartCoroutine(play_enumerator_);
+		coroutineCtrl.instance.Play(play_enumerator_);
 		start_time_ = Time.time;
 	}
 
@@ -162,14 +162,14 @@ public class loadingCtrl : MonoBehaviour
 
 	public void wait_start()
 	{
-		StartCoroutine(wait());
+		coroutineCtrl.instance.Play(wait());
 	}
 
 	public void stop()
 	{
 		if (play_enumerator_ != null)
 		{
-			StopCoroutine(play_enumerator_);
+			coroutineCtrl.instance.Stop(play_enumerator_);
 			play_enumerator_ = null;
 		}
 		icon_[0].active = false;

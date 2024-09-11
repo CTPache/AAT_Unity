@@ -247,7 +247,19 @@ public class selectPlateCtrl : MonoBehaviour
 
 	public void load()
 	{
-		string text = ((GSStatic.global_work_.language != 0) ? "u" : string.Empty);
+		string text;
+		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
+		{
+		case Language.JAPAN:
+			text = string.Empty;
+			break;
+		case Language.USA:
+			text = "u";
+			break;
+		default:
+			text = "u";
+			break;
+		}
 		cursor_.load("/menu/common/", "select_window" + text);
 		cursor_.spriteNo(0);
 		foreach (var item in select_list_.Select((SelectPlate item, int index) => new { item, index }))
@@ -265,21 +277,43 @@ public class selectPlateCtrl : MonoBehaviour
 			Vector2 sizeDelta = item.item.text_.rectTransform.sizeDelta;
 			Vector3 localPosition2 = item.item.psylook_.transform.localPosition;
 			int fontSize;
-			if (GSStatic.global_work_.language == Language.JAPAN)
+			switch (GSStatic.global_work_.language)
 			{
+			case Language.JAPAN:
 				fontSize = 46;
 				localPosition.y = -5f;
 				sizeDelta.x = 640f;
 				localPosition2.x = -315f;
 				item.item.touch_.SetColliderSize(new Vector2(720f, 60f));
-			}
-			else
-			{
+				break;
+			default:
 				fontSize = 37;
 				localPosition.y = -8f;
 				sizeDelta.x = 800f;
 				localPosition2.x = -375f;
 				item.item.touch_.SetColliderSize(new Vector2(item.item.select_.sprite_renderer_.sprite.rect.size.x, 60f));
+				break;
+			case Language.KOREA:
+				fontSize = 38;
+				localPosition.y = -7f;
+				sizeDelta.x = 640f;
+				localPosition2.x = -315f;
+				item.item.touch_.SetColliderSize(new Vector2(720f, 60f));
+				break;
+			case Language.CHINA_S:
+				fontSize = 46;
+				localPosition.y = 0f;
+				sizeDelta.x = 640f;
+				localPosition2.x = -315f;
+				item.item.touch_.SetColliderSize(new Vector2(720f, 60f));
+				break;
+			case Language.CHINA_T:
+				fontSize = 40;
+				localPosition.y = -2f;
+				sizeDelta.x = 640f;
+				localPosition2.x = -315f;
+				item.item.touch_.SetColliderSize(new Vector2(720f, 60f));
+				break;
 			}
 			item.item.text_.fontSize = fontSize;
 			item.item.text_.transform.localPosition = localPosition;
@@ -467,14 +501,14 @@ public class selectPlateCtrl : MonoBehaviour
 			mainCtrl.instance.addText(item.text_);
 		}
 		enumerator_cursor_ = CoroutineCursor();
-		StartCoroutine(enumerator_cursor_);
+		coroutineCtrl.instance.Play(enumerator_cursor_);
 	}
 
 	public void stopCursor()
 	{
 		if (enumerator_cursor_ != null)
 		{
-			StopCoroutine(enumerator_cursor_);
+			coroutineCtrl.instance.Stop(enumerator_cursor_);
 			enumerator_cursor_ = null;
 		}
 	}
@@ -614,14 +648,14 @@ public class selectPlateCtrl : MonoBehaviour
 			messageBoardCtrl.instance.ActiveNormalMessageNextTouch();
 		}
 		enumerator_enable_ = CoroutineEnable();
-		StartCoroutine(enumerator_enable_);
+		coroutineCtrl.instance.Play(enumerator_enable_);
 	}
 
 	private void stopEnable()
 	{
 		if (enumerator_enable_ != null)
 		{
-			StopCoroutine(enumerator_enable_);
+			coroutineCtrl.instance.Stop(enumerator_enable_);
 			enumerator_enable_ = null;
 		}
 	}

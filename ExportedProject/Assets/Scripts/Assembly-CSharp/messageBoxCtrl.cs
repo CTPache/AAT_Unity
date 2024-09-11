@@ -123,7 +123,7 @@ public class messageBoxCtrl : MonoBehaviour
 			num2 = Mathf.Abs(text_list_[0].transform.transform.localPosition.y - text_list_[1].transform.transform.localPosition.y) / 2f;
 		}
 		Vector3 localPosition = text_obj_.transform.localPosition;
-		localPosition.y = (0f - num2) * (float)num;
+		localPosition.y = (0f - num2) * (float)num + window_.transform.localPosition.y;
 		SetTextPos(localPosition);
 	}
 

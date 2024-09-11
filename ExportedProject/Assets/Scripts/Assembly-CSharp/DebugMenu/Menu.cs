@@ -196,7 +196,12 @@ namespace DebugMenu
 			return current_ != null;
 		}
 
-		protected virtual void Update()
+		private void FixedUpdate()
+		{
+			Process();
+		}
+
+		protected virtual void Process()
 		{
 			UpdateInput();
 			UpdateCurrent();
@@ -206,7 +211,7 @@ namespace DebugMenu
 		{
 			if (current_ != null)
 			{
-				current_.Update(this);
+				current_.Process(this);
 			}
 		}
 

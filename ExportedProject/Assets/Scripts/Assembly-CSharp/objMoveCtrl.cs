@@ -201,17 +201,17 @@ public class objMoveCtrl : MonoBehaviour
 		if (IsBalloon(in_obj_id))
 		{
 			enumerator_balloon_ = ObjEtc00B(in_obj_id);
-			StartCoroutine(enumerator_balloon_);
+			coroutineCtrl.instance.Play(enumerator_balloon_);
 		}
 		else if (CurrentTitleId == TitleId.GS1)
 		{
 			if (in_obj_id == 9)
 			{
-				StartCoroutine(ObjSpr205_2(in_obj_id));
+				coroutineCtrl.instance.Play(ObjSpr205_2(in_obj_id));
 			}
 			else
 			{
-				StartCoroutine(ObjSpr200(in_obj_id));
+				coroutineCtrl.instance.Play(ObjSpr200(in_obj_id));
 			}
 		}
 	}
@@ -222,7 +222,7 @@ public class objMoveCtrl : MonoBehaviour
 		{
 			if (enumerator_balloon_ != null)
 			{
-				StopCoroutine(enumerator_balloon_);
+				coroutineCtrl.instance.Stop(enumerator_balloon_);
 				enumerator_balloon_ = null;
 				obj_[0].active = false;
 				is_play_ = false;
@@ -254,7 +254,7 @@ public class objMoveCtrl : MonoBehaviour
 	{
 		if (enumerator_balloon_ != null)
 		{
-			StopCoroutine(enumerator_balloon_);
+			coroutineCtrl.instance.Stop(enumerator_balloon_);
 			enumerator_balloon_ = null;
 		}
 		AssetBundleSprite[] array = obj_;
@@ -431,8 +431,8 @@ public class objMoveCtrl : MonoBehaviour
 		POS_W pOS_W2 = default(POS_W);
 		pOS_W.l = (short)random_seed_;
 		pOS_W2.l = (short)(pOS_W.l * 3);
-		ref hl b = ref pOS_W.b;
-		b.l += (sbyte)pOS_W2.b.h;
+        //ref hl b = ref pOS_W.b;
+        pOS_W.b.l += (sbyte)pOS_W2.b.h;
 		pOS_W.b.h = pOS_W2.b.h;
 		random_seed_ = (uint)pOS_W.l;
 		return (uint)pOS_W.b.l;

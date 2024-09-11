@@ -1,14 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1449752538216010
+--- !u!1 &1558166385818368
 GameObject:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_Component:
-  - component: {fileID: 224832950088841997}
-  - component: {fileID: 114688202264324878}
+  - component: {fileID: 224886402898964321}
+  - component: {fileID: 114068266268999200}
   m_Layer: 8
   m_Name: pointMiniGame
   m_TagString: Untagged
@@ -16,16 +16,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1500338728462489
+--- !u!1 &1924524601286539
 GameObject:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_Component:
-  - component: {fileID: 224140872002115071}
-  - component: {fileID: 61811737144206483}
-  - component: {fileID: 114842850564520700}
+  - component: {fileID: 224371622981643745}
+  - component: {fileID: 61921107179100282}
+  - component: {fileID: 114701424911882854}
   m_Layer: 8
   m_Name: TouchArea
   m_TagString: NotHitSome
@@ -33,17 +33,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!224 &224832950088841997
+--- !u!224 &224886402898964321
 RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449752538216010}
+  m_GameObject: {fileID: 1558166385818368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224140872002115071}
+  - {fileID: 224371622981643745}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
@@ -52,33 +52,33 @@ RectTransform:
   m_AnchoredPosition: {x: -960, y: 540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &114688202264324878
+--- !u!114 &114068266268999200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449752538216010}
+  m_GameObject: {fileID: 1558166385818368}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ba7e33bfcbbc17d15d107d6741ae88a, type: 3}
   m_Name:
   m_EditorClassIdentifier:
   appear_time_: 1
-  touch_: {fileID: 114842850564520700}
+  touch_: {fileID: 114701424911882854}
   cursor_touch_: {fileID: 0}
-  touch_area_: {fileID: 1500338728462489}
+  touch_area_: {fileID: 1924524601286539}
   debug_show_area_: 0
---- !u!224 &224140872002115071
+--- !u!224 &224371622981643745
 RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1500338728462489}
+  m_GameObject: {fileID: 1924524601286539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 960, y: -540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 224832950088841997}
+  m_Father: {fileID: 224886402898964321}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -86,13 +86,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &61811737144206483
+--- !u!61 &61921107179100282
 BoxCollider2D:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1500338728462489}
+  m_GameObject: {fileID: 1924524601286539}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -111,18 +111,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1920, y: 1080}
   m_EdgeRadius: 0
---- !u!114 &114842850564520700
+--- !u!114 &114701424911882854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1500338728462489}
+  m_GameObject: {fileID: 1924524601286539}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec72c585a84d8ae2ea1f65667d15c2fd, type: 3}
   m_Name:
   m_EditorClassIdentifier:
-  box_collider_2d_: {fileID: 61811737144206483}
+  box_collider_2d_: {fileID: 61921107179100282}
 --- !u!1001 &100100000
 Prefab:
   serializedVersion: 2
@@ -132,5 +132,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1449752538216010}
+  m_RootGameObject: {fileID: 1558166385818368}
   m_IsPrefabParent: 1

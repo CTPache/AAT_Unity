@@ -636,7 +636,7 @@ public class MessageSystem
 		ClearText(message_work);
 		message_work.code = 0;
 		message_work.text_flag = (TextFlag)0;
-		if (GSStatic.global_work_.language != 0)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != 0)
 		{
 			message_work.message_se_character_count = 2;
 		}
@@ -775,7 +775,7 @@ public class MessageSystem
 		{
 			message_time = 0;
 		}
-		if (GSStatic.global_work_.language != 0)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != 0)
 		{
 			if (message_time < 16)
 			{
@@ -797,7 +797,7 @@ public class MessageSystem
 	private static void MessageSE(MessageWork message_work, byte message_time)
 	{
 		bool flag = false;
-		if (GSStatic.global_work_.language != 0)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != 0)
 		{
 			if (message_work.message_se_character_count == 0 || (message_time >= 2 && message_work.message_se_character_count <= 1))
 			{
@@ -820,7 +820,7 @@ public class MessageSystem
 		{
 			return;
 		}
-		if (GSStatic.global_work_.language != 0)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != 0)
 		{
 			message_work.message_se_character_count = 2;
 		}
@@ -897,7 +897,7 @@ public class MessageSystem
 
 	private void SetCharacter(MessageWork message_work, char character)
 	{
-		message_work.message_text.SetUSAFlag(GSStatic.global_work_.language != Language.JAPAN);
+		message_work.message_text.SetUSAFlag(GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != Language.JAPAN);
 		message_work.message_text.Append(character);
 		if (message_work.message_line < messageBoardCtrl.instance.line_list.Count)
 		{
@@ -2930,7 +2930,7 @@ public class MessageSystem
 		message_work.mdt_index++;
 		if (message_work.mdt_data.GetMessage(message_work.mdt_index) == ushort.MaxValue)
 		{
-			if (GSStatic.global_work_.language == Language.JAPAN)
+			if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.JAPAN)
 			{
 				messageBoardCtrl.instance.SetPos(0f, 42f);
 			}
@@ -2954,7 +2954,7 @@ public class MessageSystem
 				num = num;
 			}
 			num2 = (short)((float)(-num2 + 128) * 4.2f + 190f);
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.USA)
 			{
 				num2 += 38;
 			}
@@ -3766,7 +3766,7 @@ public class MessageSystem
 			}
 			else if (b2 == 48)
 			{
-				scienceInvestigationCtrl.instance.Play(InvestigateType.PRESENT, 11);
+				coroutineCtrl.instance.Play(scienceInvestigationCtrl.instance.Play(InvestigateType.PRESENT, 11));
 			}
 			else if (b2 == 64)
 			{
@@ -4306,17 +4306,77 @@ public class MessageSystem
 		dictionary.Add("↓", "ï");
 		dictionary.Add("ε", "ê");
 		Dictionary<string, string> dictionary2 = dictionary;
+		switch (in_language)
+		{
+		case Language.KOREA:
+			dictionary2.Add("＜", "<");
+			dictionary2.Add("＞", ">");
+			dictionary2.Add("・", ".");
+			dictionary2.Add("‥", "..");
+			dictionary2.Add("…", "...");
+			dictionary2.Add("～", "~");
+			break;
+		case Language.CHINA_S:
+		case Language.CHINA_T:
+			dictionary = new Dictionary<string, string>();
+			dictionary.Add("φ", " ");
+			dictionary.Add("‧", " ・ ");
+			dictionary2 = dictionary;
+			if (in_language == Language.CHINA_S)
+			{
+				dictionary2.Add("？", " ?");
+				dictionary2.Add("！", " !");
+			}
+			if (in_language == Language.CHINA_T)
+			{
+				dictionary2.Add("／", " ／ ");
+			}
+			break;
+		}
 		string text = string.Empty;
-		if (in_language == Language.USA)
+		switch (in_language)
+		{
+		case Language.JAPAN:
+			text = in_text;
+			break;
+		case Language.USA:
+		case Language.FRANCE:
+		case Language.GERMAN:
+		case Language.KOREA:
+		case Language.CHINA_S:
+		case Language.CHINA_T:
 		{
 			for (int i = 0; i < in_text.Length; i++)
 			{
 				text = ((!dictionary2.ContainsKey(in_text[i].ToString())) ? (text + in_text[i]) : (text + dictionary2[in_text[i].ToString()]));
 			}
+			break;
 		}
-		else
+		}
+		return text;
+	}
+
+	private static string InsertSpace(string in_text, string target)
+	{
+		string text = string.Empty;
+		for (int i = 0; i < in_text.Length; i++)
 		{
-			text = in_text;
+			if (in_text[i].ToString() == target)
+			{
+				if (i != 0 && (in_text[i - 1] < '０' || in_text[i - 1] > '９'))
+				{
+					text += " ";
+				}
+				text += target;
+				if (i < in_text.Length - 1 && (in_text[i + 1] < '０' || in_text[i + 1] > '９'))
+				{
+					text += " ";
+				}
+			}
+			else
+			{
+				text += in_text[i];
+			}
 		}
 		return text;
 	}

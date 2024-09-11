@@ -97,24 +97,33 @@ public class guideCtrl : keyGuideBase
 	{
 		get
 		{
-			return (GSStatic.global_work_.language != 0) ? guide_width_u_ : guide_width_j_;
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.JAPAN:
+			case Language.CHINA_S:
+			case Language.CHINA_T:
+				return guide_width_j_;
+			default:
+				return guide_width_u_;
+			}
 		}
 	}
 
-	private void Awake()
+	protected override void Awake()
 	{
 		curve_.init();
-		if (!(body_ == null))
+		if (body_ == null)
 		{
-			return;
-		}
-		foreach (Transform item in base.transform)
-		{
-			if (item.name.Contains("body"))
+			foreach (Transform item in base.transform)
 			{
-				body_ = item.gameObject;
+				if (item.name.Contains("body"))
+				{
+					body_ = item.gameObject;
+				}
 			}
 		}
+		guide_text_alignment_ = guide_list_[0].text_.alignment;
+		guide_text_position_y_ = guide_list_[0].text_.transform.localPosition.y;
 	}
 
 	private void OnDisable()
@@ -161,6 +170,7 @@ public class guideCtrl : keyGuideBase
 		Vector3 localPosition = target.sprite_.transform.localPosition;
 		localPosition.x = guide_width_ * (float)index_num + guide_space_;
 		target.sprite_.transform.localPosition = localPosition;
+		target.text_.horizontalOverflow = HorizontalWrapMode.Overflow;
 	}
 
 	public void setEnables(bool in_enables)
@@ -316,6 +326,7 @@ public class guideCtrl : keyGuideBase
 			break;
 		}
 		UpdateTouchArea();
+		SetLanguageLayout();
 		guide_cnt = guide_list_.Count((GuideIcon guide) => guide.sprite_.active);
 		Vector3 localPosition = sprite_guide_.transform.localPosition;
 		localPosition.x = slide_out_pos_x_ - guide_width_ * (float)guide_cnt;
@@ -422,52 +433,52 @@ public class guideCtrl : keyGuideBase
 		if (enumerator_open_close_ == null)
 		{
 			enumerator_open_close_ = CoroutineRotationChange(in_type);
-			StartCoroutine(enumerator_open_close_);
+			coroutineCtrl.instance.Play(enumerator_open_close_);
 		}
 	}
 
 	private IEnumerator CoroutineRotationChange(GuideType in_type)
 	{
-		yield return close();
+		yield return coroutineCtrl.instance.Play(close());
 		while (keyGuideCtrl.instance.CheckClose())
 		{
 			yield return null;
 		}
 		next_guide_ = GuideType.NO_GUIDE;
-		yield return open(in_type);
+		yield return coroutineCtrl.instance.Play(open(in_type));
 		enumerator_open_close_ = null;
 	}
 
-	public Coroutine open(GuideType in_type)
+	public IEnumerator open(GuideType in_type)
 	{
 		if (enumerator_open_ != null)
 		{
-			StopCoroutine(enumerator_open_);
+			coroutineCtrl.instance.Stop(enumerator_open_);
 			enumerator_open_ = null;
 		}
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
+			coroutineCtrl.instance.Stop(enumerator_close_);
 			enumerator_open_ = null;
 		}
 		enumerator_open_ = CoroutineOpen(in_type);
-		return StartCoroutine(enumerator_open_);
+		return enumerator_open_;
 	}
 
-	public Coroutine close()
+	public IEnumerator close()
 	{
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
+			coroutineCtrl.instance.Stop(enumerator_close_);
 			enumerator_close_ = null;
 		}
 		if (enumerator_open_ != null)
 		{
-			StopCoroutine(enumerator_open_);
+			coroutineCtrl.instance.Stop(enumerator_open_);
 			enumerator_close_ = null;
 		}
 		enumerator_close_ = CoroutineClose();
-		return StartCoroutine(enumerator_close_);
+		return enumerator_close_;
 	}
 
 	private IEnumerator CoroutineOpen(GuideType in_type)

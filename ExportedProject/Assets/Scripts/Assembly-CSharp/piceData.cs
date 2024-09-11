@@ -4,6 +4,8 @@ public class piceData
 
 	private ushort name_id_u_ = 255;
 
+	private ushort name_id_g_ = 255;
+
 	private ushort comment_id_ = 255;
 
 	public string path = string.Empty;
@@ -56,14 +58,33 @@ public class piceData
 	{
 		get
 		{
-			return (GSStatic.global_work_.language != 0) ? name_id_u_ : name_id_j_;
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.JAPAN:
+				return name_id_j_;
+			case Language.USA:
+				return name_id_u_;
+			case Language.FRANCE:
+				return name_id_g_;
+			case Language.GERMAN:
+				return name_id_g_;
+			case Language.KOREA:
+				return name_id_j_;
+			case Language.CHINA_S:
+				return name_id_j_;
+			case Language.CHINA_T:
+				return name_id_j_;
+			default:
+				return name_id_j_;
+			}
 		}
 	}
 
-	public piceData(ushort in_name_id_j, ushort in_name_id_u, ushort in_comment_id, string in_path, ushort in_file_id, int in_type, int in_no, int in_detail_id, int in_obj_id, ushort in_file_language_id)
+	public piceData(ushort in_name_id_j, ushort in_name_id_u, ushort in_name_id_g, ushort in_comment_id, string in_path, ushort in_file_id, int in_type, int in_no, int in_detail_id, int in_obj_id, ushort in_file_language_id)
 	{
 		name_id_j_ = in_name_id_j;
 		name_id_u_ = in_name_id_u;
+		name_id_g_ = in_name_id_g;
 		comment_id_ = in_comment_id;
 		path = in_path;
 		file_id = in_file_id;

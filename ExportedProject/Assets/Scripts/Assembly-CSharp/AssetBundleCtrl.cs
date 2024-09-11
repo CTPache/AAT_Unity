@@ -37,8 +37,9 @@ public class AssetBundleCtrl : MonoBehaviour
 		}
 	}
 
-	public AssetBundle load(string in_path, string in_name, bool is_common = false, bool is_decryption = true)
+	public AssetBundle load(string in_path, string in_name, bool is_common = false, bool is_decryption = true, int in_language = -1)
 	{
+		in_name = ReplaceLanguage.GetFileName(in_path, in_name, in_language);
 		foreach (AssetBundleData item in common_list_)
 		{
 			if (item.path_ == in_path && item.name_ == in_name)
@@ -77,12 +78,13 @@ public class AssetBundleCtrl : MonoBehaviour
 		return assetBundleData.bundle_;
 	}
 
-	public void remove(string in_path, string in_name)
+	public void remove(string in_path, string in_name, int in_language = -1)
 	{
 		if (!(in_path != string.Empty) || !(in_name != string.Empty))
 		{
 			return;
 		}
+		in_name = ReplaceLanguage.GetFileName(in_path, in_name, in_language);
 		foreach (AssetBundleData item in asset_list_)
 		{
 			if (item.path_ == in_path && item.name_ == in_name)

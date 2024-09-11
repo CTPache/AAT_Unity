@@ -28,7 +28,7 @@ public class TestimonyRoot : MonoBehaviour
 				testimonyIconEvaluator.Initialize();
 				if (testimonyIcon.sprite == null)
 				{
-					string in_name = ((GSStatic.global_work_.language != 0) ? "testimonyu" : "testimony");
+					string in_name = "testimony" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
 					AssetBundle assetBundle = AssetBundleCtrl.instance.load("/menu/common/", in_name, true);
 					testimonyIcon.sprite = assetBundle.LoadAllAssets<Sprite>().First();
 				}

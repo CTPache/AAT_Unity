@@ -97,14 +97,14 @@ public class doorCtrl : MonoBehaviour
 	{
 		stop();
 		enumerator_close_ = CoroutineClose();
-		StartCoroutine(enumerator_close_);
+		coroutineCtrl.instance.Play(enumerator_close_);
 	}
 
 	public void stop()
 	{
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
+			coroutineCtrl.instance.Stop(enumerator_close_);
 			enumerator_close_ = null;
 		}
 		sprite_list_[0].gameObject.SetActive(false);

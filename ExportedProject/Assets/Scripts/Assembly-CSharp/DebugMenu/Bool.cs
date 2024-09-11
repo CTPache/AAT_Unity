@@ -52,7 +52,7 @@ namespace DebugMenu
 			SetFlag(!accessor_.value);
 		}
 
-		public override void Update(Menu menu)
+		public override void Process(Menu menu)
 		{
 			if (((menu.input_down | menu.input_repeat) & Input.Decide) != 0)
 			{

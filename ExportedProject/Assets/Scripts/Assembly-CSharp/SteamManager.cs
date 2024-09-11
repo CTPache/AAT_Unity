@@ -51,6 +51,8 @@ public class SteamManager : MonoBehaviour
 		{
 			throw new Exception("Tried to Initialize the SteamAPI twice in one session!");
 		}
+        s_EverInialized = true;
+		
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		if (!Packsize.Test())
 		{
@@ -62,8 +64,9 @@ public class SteamManager : MonoBehaviour
 		}
 		try
 		{
-			if (SteamAPI.RestartAppIfNecessary(AppId_t.Invalid))
+			if (SteamAPI.RestartAppIfNecessary((AppId_t)787480u))
 			{
+				Debug.Log("RestartAppIfNecessary = True");
 				Application.Quit();
 				return;
 			}

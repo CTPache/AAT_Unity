@@ -12,7 +12,7 @@ public class forcedRecordCtrl : MonoBehaviour
 
 	public void forcedTukituke()
 	{
-		StartCoroutine(CoroutineForcedTukituke());
+		coroutineCtrl.instance.Play(CoroutineForcedTukituke());
 	}
 
 	private IEnumerator CoroutineForcedTukituke()

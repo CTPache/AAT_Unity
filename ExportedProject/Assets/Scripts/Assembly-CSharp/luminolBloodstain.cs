@@ -85,14 +85,14 @@ public class luminolBloodstain : MonoBehaviour
 			{
 				TouchSystem.TouchInActive();
 				state_ = BloodstainState.Discovery;
-				StartCoroutine(WaitAnum());
+				coroutineCtrl.instance.Play(WaitAnum());
 			}
 		}
 	}
 
 	private IEnumerator WaitAnum()
 	{
-		keyGuideCtrl.instance.close();
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 		evaluator_.Initialize();
 		evaluator_.enabled = true;
 		int timer3 = 20;
@@ -118,7 +118,7 @@ public class luminolBloodstain : MonoBehaviour
 		}
 		cursor_touch_.gameObject.SetActive(true);
 		enumerator_ = FlashCursor();
-		StartCoroutine(enumerator_);
+		coroutineCtrl.instance.Play(enumerator_);
 		timer3 = 40;
 		while (timer3 > 0)
 		{
@@ -161,7 +161,7 @@ public class luminolBloodstain : MonoBehaviour
 	{
 		if (enumerator_ != null)
 		{
-			StopCoroutine(enumerator_);
+			coroutineCtrl.instance.Stop(enumerator_);
 		}
 		cursor_root_.gameObject.SetActive(true);
 	}

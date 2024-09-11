@@ -19,7 +19,7 @@ namespace TextEffect
 
 		public override void ModifyMesh(VertexHelper vh)
 		{
-			if (IsActive())
+			if (IsActive() && GSStatic.global_work_.language != Language.KOREA)
 			{
 				List<UIVertex> stream = ListPool<UIVertex>.Get();
 				vh.GetUIVertexStream(stream);

@@ -96,7 +96,7 @@ public class ScreenCtrl : MonoBehaviour
 	{
 		stopQuake();
 		quake_enumerator_ = quakeCoroutine();
-		StartCoroutine(quake_enumerator_);
+		coroutineCtrl.instance.Play(quake_enumerator_);
 	}
 
 	private IEnumerator quakeCoroutine()
@@ -159,7 +159,7 @@ public class ScreenCtrl : MonoBehaviour
 	{
 		if (quake_enumerator_ != null)
 		{
-			StopCoroutine(quake_enumerator_);
+			coroutineCtrl.instance.Stop(quake_enumerator_);
 			quake_enumerator_ = null;
 		}
 	}

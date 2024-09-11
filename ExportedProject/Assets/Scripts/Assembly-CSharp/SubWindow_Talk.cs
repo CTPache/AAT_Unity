@@ -103,7 +103,7 @@ public static class SubWindow_Talk
 				selectPlateCtrl.instance.entryCursor(num, selectPlateCtrl.FromEntryRequest.TALK);
 			}
 			selectPlateCtrl.instance.playCursor(1);
-			keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_TALK);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_TALK));
 			for (int j = 0; j < 6; j++)
 			{
 				routine_3d[j].Clear();
@@ -204,7 +204,7 @@ public static class SubWindow_Talk
 				currentRoutine.r.no_1++;
 				currentRoutine.r.no_2 = 0;
 			}
-			keyGuideCtrl.instance.close();
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 		}
 		else if (GSStatic.global_work_.r.no_0 == 11)
 		{
@@ -438,7 +438,7 @@ public static class SubWindow_Talk
 				selectPlateCtrl.instance.entryCursor(num, selectPlateCtrl.FromEntryRequest.TALK);
 			}
 			selectPlateCtrl.instance.playCursor(1);
-			keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_TALK);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TANTEI_TALK));
 			for (int l = 0; l < 4; l++)
 			{
 				routine_3d[l].rotate[0] = 21845;

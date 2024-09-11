@@ -19,6 +19,10 @@ public class optionWindow : optionItem
 
 	private int setting_value_;
 
+	private const int DEFAULT_FONT_SIZE = 26;
+
+	private const int GERMAN_FONT_SIZE = 21;
+
 	private string[] select_text_;
 
 	[SerializeField]
@@ -69,7 +73,15 @@ public class optionWindow : optionItem
 			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.SELECT_LOW),
 			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.SELECT_HIGH)
 		};
-		select_.count_window_.load("/menu/option/", "option_count_bg01");
+		Language language = GSStatic.global_work_.language;
+		if (language == Language.FRANCE || language == Language.GERMAN)
+		{
+			select_.count_window_.load("/menu/option/", "option_count_bg03");
+		}
+		else
+		{
+			select_.count_window_.load("/menu/option/", "option_count_bg01");
+		}
 		select_.count_window_.spriteNo(0);
 		AssetBundle assetBundle = AssetBundleCtrl.instance.load("/menu/option/", "option_button");
 		foreach (AssetBundleSprite item2 in select_.select_btn_)
@@ -78,6 +90,7 @@ public class optionWindow : optionItem
 			item2.sprite_data_.AddRange(assetBundle.LoadAllAssets<Sprite>());
 			item2.spriteNo(0);
 		}
+		fontSizeSet();
 		setting_value_ = GSStatic.option_work.window_type;
 		old_value_ = setting_value_;
 		btnSet();
@@ -210,5 +223,15 @@ public class optionWindow : optionItem
 			return true;
 		}
 		return false;
+	}
+
+	private void fontSizeSet()
+	{
+		Language language = GSStatic.global_work_.language;
+		int fontSize = ((language != Language.GERMAN) ? 26 : 21);
+		foreach (Text item in select_.count_text_)
+		{
+			item.fontSize = fontSize;
+		}
 	}
 }

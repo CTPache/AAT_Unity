@@ -43,6 +43,18 @@ public class VasePuzzleMiniGame : MonoBehaviour
 		new PiecesStatus("parts05", "itm05a8u", 360f, 1f)
 	};
 
+	private PiecesStatus[] pieces_noramal_k_ = new PiecesStatus[8]
+	{
+		new PiecesStatus("parts04", "itm05a7k", 340f, 0f),
+		new PiecesStatus("parts07", "itm05aak", 505f, 0.5f),
+		new PiecesStatus("parts06", "itm05a9k", 420f, 1f),
+		new PiecesStatus("parts02", "itm05a5k", 150f, 0f),
+		new PiecesStatus("parts01", "itm05a4k", 60f, 0f),
+		new PiecesStatus("parts03", "itm05a6k", 230f, 0f),
+		new PiecesStatus("parts08", "itm05abk", 540f, 1f),
+		new PiecesStatus("parts05", "itm05a8k", 360f, 1f)
+	};
+
 	private PiecesStatus[] pieces_clear_ = new PiecesStatus[1]
 	{
 		new PiecesStatus("parts09", "itm05ac", 580f, 1f)
@@ -51,6 +63,11 @@ public class VasePuzzleMiniGame : MonoBehaviour
 	private PiecesStatus[] pieces_clear_u_ = new PiecesStatus[1]
 	{
 		new PiecesStatus("parts09u", "itm05acu", 580f, 1f)
+	};
+
+	private PiecesStatus[] pieces_clear_k_ = new PiecesStatus[1]
+	{
+		new PiecesStatus("parts09", "itm05ack", 580f, 1f)
 	};
 
 	[SerializeField]
@@ -101,8 +118,18 @@ public class VasePuzzleMiniGame : MonoBehaviour
 		instance = this;
 		pieces_noramal_map.Add(Language.JAPAN, pieces_noramal_);
 		pieces_noramal_map.Add(Language.USA, pieces_noramal_u_);
+		pieces_noramal_map.Add(Language.FRANCE, pieces_noramal_u_);
+		pieces_noramal_map.Add(Language.GERMAN, pieces_noramal_u_);
+		pieces_noramal_map.Add(Language.KOREA, pieces_noramal_k_);
+		pieces_noramal_map.Add(Language.CHINA_S, pieces_noramal_);
+		pieces_noramal_map.Add(Language.CHINA_T, pieces_noramal_);
 		pieces_clear_map.Add(Language.JAPAN, pieces_clear_);
 		pieces_clear_map.Add(Language.USA, pieces_clear_u_);
+		pieces_clear_map.Add(Language.FRANCE, pieces_clear_u_);
+		pieces_clear_map.Add(Language.GERMAN, pieces_clear_u_);
+		pieces_clear_map.Add(Language.KOREA, pieces_clear_k_);
+		pieces_clear_map.Add(Language.CHINA_S, pieces_clear_);
+		pieces_clear_map.Add(Language.CHINA_T, pieces_clear_);
 	}
 
 	public void startVasePuzzle(bool in_clear_flag)
@@ -160,7 +187,12 @@ public class VasePuzzleMiniGame : MonoBehaviour
 		}
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		switch (proc_id_)
 		{
@@ -225,7 +257,7 @@ public class VasePuzzleMiniGame : MonoBehaviour
 				background_object_ = VasePuzzleUtil.instance.createAssetBundle("/GS1/minigame/", "frame05", VasePuzzleUtil.SortOrder.Background);
 				background_object_.transform.localPosition = new Vector3(0f, 0f, 0f);
 				messageBoardCtrl.instance.board(false, false);
-				keyGuideCtrl.instance.open(keyGuideBase.Type.POT_PAZZLE);
+				coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.POT_PAZZLE));
 				icon_cursor_ = 0;
 				puzzle_step_ = 0;
 				VasePuzzleIconCtrl.instance.setIconStatus(pieces_status_, -1);
@@ -462,7 +494,7 @@ public class VasePuzzleMiniGame : MonoBehaviour
 			local_proc_step_++;
 			break;
 		case 60:
-			keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 			VasePuzzleIconCtrl.instance.exit();
 			if (!clear_flag_)
 			{
@@ -506,7 +538,7 @@ public class VasePuzzleMiniGame : MonoBehaviour
 		switch (local_proc_step_)
 		{
 		case 0:
-			keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 			fadeCtrl.instance.play(2u, 1u, 1u, 31u);
 			local_proc_step_++;
 			break;

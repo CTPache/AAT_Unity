@@ -198,13 +198,13 @@ namespace DebugMenu.uGUI
 			}
 		}
 
-		public override void Update(Menu menu)
+		public override void Process(Menu menu)
 		{
 			if (group_ == menu.current)
 			{
 				for (int i = 0; i < items_.Length; i++)
 				{
-					items_[i].Update(menu);
+					items_[i].Process(menu);
 				}
 				if (group_.update_item)
 				{

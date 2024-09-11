@@ -174,7 +174,7 @@ public class arrowCtrl : MonoBehaviour
 		ArrowIcon arrowIcon = arrow_list_[in_type];
 		stopArrow(in_type);
 		arrowIcon.enumerator_arrow_ = CoroutineArrow(in_type);
-		StartCoroutine(arrowIcon.enumerator_arrow_);
+		coroutineCtrl.instance.Play(arrowIcon.enumerator_arrow_);
 	}
 
 	private void stopArrow(int in_type)
@@ -182,7 +182,7 @@ public class arrowCtrl : MonoBehaviour
 		ArrowIcon arrowIcon = arrow_list_[in_type];
 		if (arrowIcon.enumerator_arrow_ != null)
 		{
-			StopCoroutine(arrowIcon.enumerator_arrow_);
+			coroutineCtrl.instance.Stop(arrowIcon.enumerator_arrow_);
 			arrowIcon.enumerator_arrow_ = null;
 		}
 	}
@@ -226,7 +226,7 @@ public class arrowCtrl : MonoBehaviour
 		stopArrow(in_type);
 		stopNext(in_type);
 		arrowIcon.enumerator_next_ = CoroutineNext(in_type);
-		StartCoroutine(arrowIcon.enumerator_next_);
+		coroutineCtrl.instance.Play(arrowIcon.enumerator_next_);
 	}
 
 	private void stopNext(int in_type)
@@ -234,7 +234,7 @@ public class arrowCtrl : MonoBehaviour
 		ArrowIcon arrowIcon = arrow_list_[in_type];
 		if (arrowIcon.enumerator_next_ != null)
 		{
-			StopCoroutine(arrowIcon.enumerator_next_);
+			coroutineCtrl.instance.Stop(arrowIcon.enumerator_next_);
 			arrowIcon.enumerator_next_ = null;
 		}
 	}

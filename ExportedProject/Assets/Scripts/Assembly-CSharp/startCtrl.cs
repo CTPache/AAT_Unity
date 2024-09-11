@@ -47,13 +47,42 @@ public class startCtrl : sceneCtrl
 
 	private void Init()
 	{
-		GSStatic.global_work_.language = Language.USA;
-		GSStatic.option_work.language_type = 1;
-		if (GSStatic.global_work_.system_language == SystemLanguage.Japanese)
+		switch (GSStatic.global_work_.system_language)
 		{
+		case SystemLanguage.Japanese:
 			GSStatic.global_work_.language = Language.JAPAN;
 			GSStatic.option_work.language_type = 0;
+			break;
+		case SystemLanguage.English:
+			GSStatic.global_work_.language = Language.USA;
+			GSStatic.option_work.language_type = 1;
+			break;
+		case SystemLanguage.French:
+			GSStatic.global_work_.language = Language.FRANCE;
+			GSStatic.option_work.language_type = 2;
+			break;
+		case SystemLanguage.German:
+			GSStatic.global_work_.language = Language.GERMAN;
+			GSStatic.option_work.language_type = 3;
+			break;
+		case SystemLanguage.Korean:
+			GSStatic.global_work_.language = Language.KOREA;
+			GSStatic.option_work.language_type = 4;
+			break;
+		case SystemLanguage.ChineseSimplified:
+			GSStatic.global_work_.language = Language.CHINA_S;
+			GSStatic.option_work.language_type = 5;
+			break;
+		case SystemLanguage.ChineseTraditional:
+			GSStatic.global_work_.language = Language.CHINA_T;
+			GSStatic.option_work.language_type = 6;
+			break;
+		default:
+			GSStatic.global_work_.language = Language.USA;
+			GSStatic.option_work.language_type = 1;
+			break;
 		}
+		ReplaceFont.instance.ChangeFont(GSStatic.global_work_.language);
 		TextDataCtrl.SetLanguage(GSStatic.global_work_.language);
 		GSStatic.save_slot_language_ = GSStatic.global_work_.language;
 	}
@@ -62,7 +91,7 @@ public class startCtrl : sceneCtrl
 	{
 		base.End();
 		enumerator_state_ = stateCoroutine();
-		StartCoroutine(enumerator_state_);
+		coroutineCtrl.instance.Play(enumerator_state_);
 	}
 
 	private IEnumerator stateCoroutine()
@@ -74,9 +103,8 @@ public class startCtrl : sceneCtrl
 		mainCtrl.instance.addText(push_text_);
 		push_active = true;
 		push_text_.color = new Color(1f, 1f, 1f, 0f);
-		yield return fadeCtrl.instance.play(0.5f, true);
-		push_text_.text = "Press           ";
-		keyIconSet();
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, true));
+		inputTextSet();
 		float timer = 0f;
 		while (true)
 		{
@@ -98,18 +126,33 @@ public class startCtrl : sceneCtrl
 		yield return null;
 		loadingCtrl.instance.init();
 		loadingCtrl.instance.play(loadingCtrl.Type.LOADING);
-		yield return StartCoroutine(SteamCtrl.ShareFiles());
-		SaveControl.LoadSystemDataRequest();
-		while (!SaveControl.is_load_)
+		yield return coroutineCtrl.instance.Play(SteamCtrl.ShareFiles());
+		if (SteamCtrl.IsShareFilesError)
 		{
-			yield return null;
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
+			loadingCtrl.instance.stop();
 		}
-		yield return loadingCtrl.instance.wait();
-		loadingCtrl.instance.stop();
-		if (SaveControl.IsExistSaveDataFile() && SaveControl.is_load_error)
+		else
+		{
+			SaveControl.LoadSystemDataRequest();
+			while (!SaveControl.is_load_)
+			{
+				yield return null;
+			}
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
+			loadingCtrl.instance.stop();
+		}
+		if (!SaveControl.IsExistSaveDataFile())
+		{
+			Debug.Log("startCtrl stateCoroutine() IsExistSaveDataFile() = False");
+		}
+		else if (SaveControl.is_load_error || SteamCtrl.IsShareFilesError)
 		{
 			fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
-			yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+			while (!fadeCtrl.instance.is_end)
+			{
+				yield return null;
+			}
 			messageBoxCtrl.instance.init();
 			messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
 			messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.LOAD_ERROR));
@@ -136,7 +179,7 @@ public class startCtrl : sceneCtrl
 			SaveControl.DeleteSaveData();
 			GSStatic.init();
 			TrophyCtrl.reset();
-			yield return loadingCtrl.instance.wait();
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
 			loadingCtrl.instance.stop();
 			GSStatic.global_work_.system_language = SteamCtrl.ConvertLanguage();
 			Init();
@@ -146,11 +189,30 @@ public class startCtrl : sceneCtrl
 			{
 				yield return null;
 			}
-			SaveControl.SaveSystemData();
-			yield return loadingCtrl.instance.wait();
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
 			loadingCtrl.instance.stop();
+			if (SaveControl.is_save_error)
+			{
+				messageBoxCtrl.instance.init();
+				messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+				messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.CREATE_ERROR));
+				messageBoxCtrl.instance.SetTextPosCenter();
+				messageBoxCtrl.instance.OpenWindow();
+				while (messageBoxCtrl.instance.active)
+				{
+					yield return null;
+					if (padCtrl.instance.GetKeyDown(KeyType.A))
+					{
+						messageBoxCtrl.instance.CloseWindow();
+					}
+				}
+				titleCtrlRoot.instance.End();
+				titleCtrlRoot.instance.active = true;
+				titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Start);
+				yield break;
+			}
 		}
-		if (!SaveControl.LoadSystemData())
+		if (!SaveControl.IsExistSaveDataFile() || !SaveControl.LoadSystemData())
 		{
 			loadingCtrl.instance.play(loadingCtrl.Type.SAVEING);
 			SaveControl.SaveCreateSystemDataRequest();
@@ -159,15 +221,38 @@ public class startCtrl : sceneCtrl
 				yield return null;
 			}
 			SaveControl.SaveSystemData();
-			yield return loadingCtrl.instance.wait();
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
 			loadingCtrl.instance.stop();
+			if (SaveControl.is_save_error)
+			{
+				messageBoxCtrl.instance.init();
+				messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+				messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.CREATE_ERROR));
+				messageBoxCtrl.instance.SetTextPosCenter();
+				messageBoxCtrl.instance.OpenWindow();
+				while (messageBoxCtrl.instance.active)
+				{
+					yield return null;
+					if (padCtrl.instance.GetKeyDown(KeyType.A))
+					{
+						messageBoxCtrl.instance.CloseWindow();
+					}
+				}
+				titleCtrlRoot.instance.End();
+				titleCtrlRoot.instance.active = true;
+				titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Start);
+				yield break;
+			}
 		}
 		uint save_data_account_id = SteamCtrl.GetSaveDataAccountID();
 		uint current_account_id = SteamUser.GetSteamID().GetAccountID().m_AccountID;
 		if (save_data_account_id != current_account_id)
 		{
 			fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
-			yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+			while (!fadeCtrl.instance.is_end)
+			{
+				yield return null;
+			}
 			messageBoxCtrl.instance.init();
 			messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
 			messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.LOAD_ERROR));
@@ -194,7 +279,7 @@ public class startCtrl : sceneCtrl
 			SaveControl.DeleteSaveData();
 			GSStatic.init();
 			TrophyCtrl.reset();
-			yield return loadingCtrl.instance.wait();
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
 			loadingCtrl.instance.stop();
 			GSStatic.global_work_.system_language = SteamCtrl.ConvertLanguage();
 			Init();
@@ -204,19 +289,39 @@ public class startCtrl : sceneCtrl
 			{
 				yield return null;
 			}
-			SaveControl.SaveSystemData();
-			yield return loadingCtrl.instance.wait();
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
 			loadingCtrl.instance.stop();
+			if (SaveControl.is_save_error)
+			{
+				messageBoxCtrl.instance.init();
+				messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+				messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.CREATE_ERROR));
+				messageBoxCtrl.instance.SetTextPosCenter();
+				messageBoxCtrl.instance.OpenWindow();
+				while (messageBoxCtrl.instance.active)
+				{
+					yield return null;
+					if (padCtrl.instance.GetKeyDown(KeyType.A))
+					{
+						messageBoxCtrl.instance.CloseWindow();
+					}
+				}
+				titleCtrlRoot.instance.End();
+				titleCtrlRoot.instance.active = true;
+				titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Start);
+				yield break;
+			}
 		}
 		if (GSStatic.save_ver > systemCtrl.instance.save_ver)
 		{
 			Debug.Log("Up Ver Seve Data!!");
 			loadingCtrl.instance.play(loadingCtrl.Type.DIFF);
-			yield return loadingCtrl.instance.wait(3f);
+			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait(3f));
 			loadingCtrl.instance.stop();
-			yield return fadeCtrl.instance.play(0.5f, false);
+			yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, false));
 			base.body.SetActive(false);
 			titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Start);
+			yield break;
 		}
 		ScreenUtility.SetVsync(GSStatic.option_work.vsync);
 		if (GSStatic.option_work.resolution_w != 0 && GSStatic.option_work.resolution_h != 0)
@@ -261,21 +366,38 @@ public class startCtrl : sceneCtrl
 			}
 			ScreenUtility.SetResolution((int)GSStatic.option_work.resolution_w, (int)GSStatic.option_work.resolution_h, (GSStatic.option_work.window_mode != 0) ? true : false);
 		}
-		yield return fadeCtrl.instance.play(0.5f, false);
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, false));
 		base.body.SetActive(false);
 		titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Top);
 	}
 
-	public void keyIconSet()
+	public void keyIconSet(string original_text)
 	{
 		float preferredWidth = push_text_.preferredWidth;
-		icon_text_.text = "Press";
+		int num = original_text.IndexOf("【");
+		if (num < 0)
+		{
+			icon_text_.text = original_text;
+		}
+		else
+		{
+			icon_text_.text = original_text.Remove(original_text.IndexOf("【"));
+		}
 		float preferredWidth2 = icon_text_.preferredWidth;
-		icon_text_.text = "Press           ";
+		icon_text_.text += key_icon_.changeTextToIconSpase(string.Empty);
 		float preferredWidth3 = icon_text_.preferredWidth;
 		float x = (preferredWidth2 - preferredWidth / 2f + (preferredWidth3 - preferredWidth / 2f)) / 2f;
 		key_icon_.load();
 		key_icon_.iconSet(KeyCode.Return);
 		key_icon_.iconPosSet(push_text_.transform, new Vector3(x, 0f, 0f));
+	}
+
+	private void inputTextSet()
+	{
+		TextDataCtrl.TitleTextID in_text_id = TextDataCtrl.TitleTextID.START_INPUT;
+		string text = MessageSystem.EnToHalf(TextDataCtrl.GetText(in_text_id), Language.USA);
+		push_text_.text = text.Replace("【】", key_icon_.changeTextToIconSpase(string.Empty));
+		string text2 = push_text_.text;
+		keyIconSet(text);
 	}
 }

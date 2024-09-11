@@ -54,7 +54,8 @@ public static class TextDataCtrl
 		GS2_SCENARIO_NAME = 11,
 		GS3_SCENARIO_NAME = 12,
 		EXIT = 13,
-		EXIT_MESSAGE = 14
+		EXIT_MESSAGE = 14,
+		START_INPUT = 19
 	}
 
 	public enum OptionTextID
@@ -224,7 +225,9 @@ public static class TextDataCtrl
 		GS3_SC4_3_1 = 87,
 		GS3_SC4_3_2 = 88,
 		LOAD_ERROR = 90,
-		DELETING = 91
+		DELETING = 91,
+		SAVE_ERROR = 92,
+		CREATE_ERROR = 93
 	}
 
 	public enum PlatformTextID
@@ -275,17 +278,17 @@ public static class TextDataCtrl
 
 	private static ConvertLineData system_text_data_ = null;
 
-	private static readonly string[] common_text_path_ = new string[2] { "/menu/text/common_text.bin", "/menu/text/common_text_u.bin" };
+	private static readonly string[] common_text_path_ = new string[7] { "/menu/text/common_text.bin", "/menu/text/common_text_u.bin", "/menu/text/common_text_f.bin", "/menu/text/common_text_g.bin", "/menu/text/common_text_k.bin", "/menu/text/common_text_s.bin", "/menu/text/common_text_t.bin" };
 
-	private static readonly string[] title_text_path_ = new string[2] { "/menu/text/title_text.bin", "/menu/text/title_text_u.bin" };
+	private static readonly string[] title_text_path_ = new string[7] { "/menu/text/title_text.bin", "/menu/text/title_text_u.bin", "/menu/text/title_text_f.bin", "/menu/text/title_text_g.bin", "/menu/text/title_text_k.bin", "/menu/text/title_text_s.bin", "/menu/text/title_text_t.bin" };
 
-	private static readonly string[] option_text_path_ = new string[2] { "/menu/text/option_text.bin", "/menu/text/option_text_u.bin" };
+	private static readonly string[] option_text_path_ = new string[7] { "/menu/text/option_text.bin", "/menu/text/option_text_u.bin", "/menu/text/option_text_f.bin", "/menu/text/option_text_g.bin", "/menu/text/option_text_k.bin", "/menu/text/option_text_s.bin", "/menu/text/option_text_t.bin" };
 
-	private static readonly string[] save_text_path_ = new string[2] { "/menu/text/save_text.bin", "/menu/text/save_text_u.bin" };
+	private static readonly string[] save_text_path_ = new string[7] { "/menu/text/save_text.bin", "/menu/text/save_text_u.bin", "/menu/text/save_text_f.bin", "/menu/text/save_text_g.bin", "/menu/text/save_text_k.bin", "/menu/text/save_text_s.bin", "/menu/text/save_text_t.bin" };
 
-	private static readonly string[] platform_text_path_ = new string[2] { "/menu/text/platform_text.bin", "/menu/text/platform_text_u.bin" };
+	private static readonly string[] platform_text_path_ = new string[7] { "/menu/text/platform_text.bin", "/menu/text/platform_text_u.bin", "/menu/text/platform_text_f.bin", "/menu/text/platform_text_g.bin", "/menu/text/platform_text_k.bin", "/menu/text/platform_text_s.bin", "/menu/text/platform_text_t.bin" };
 
-	private static readonly string[] system_text_path_ = new string[2] { "/menu/text/system_text.bin", "/menu/text/system_text_u.bin" };
+	private static readonly string[] system_text_path_ = new string[7] { "/menu/text/system_text.bin", "/menu/text/system_text_u.bin", "/menu/text/system_text_f.bin", "/menu/text/system_text_g.bin", "/menu/text/system_text_k.bin", "/menu/text/system_text_s.bin", "/menu/text/system_text_t.bin" };
 
 	public const int PlatformTextCount = 4;
 

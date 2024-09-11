@@ -124,7 +124,7 @@ namespace DebugMenu.uGUI
 			}
 		}
 
-		public override void Update(Menu menu)
+		public override void Process(Menu menu)
 		{
 			if (last_.CompareTo(number_.number) != 0)
 			{

@@ -12,7 +12,12 @@ public class Vase3DCamera : MonoBehaviour
 
 	private int last_screen_height_;
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		if (last_screen_width_ != Screen.width || last_screen_height_ != Screen.height)
 		{

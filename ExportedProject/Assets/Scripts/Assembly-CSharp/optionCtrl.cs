@@ -60,6 +60,10 @@ public class optionCtrl : MonoBehaviour
 		KEY_ROT = 9
 	}
 
+	private const int TITLE_FONT_SIZE = 38;
+
+	private const int TITLE_FONT_SIZE_S = 34;
+
 	private int begin_num_;
 
 	private int end_num_;
@@ -300,6 +304,7 @@ public class optionCtrl : MonoBehaviour
 			item4.active = false;
 		}
 		key_guide_.init();
+		TitleFontSizeSet(GSStatic.global_work_.language);
 	}
 
 	public void Open(OptionType in_type)
@@ -458,10 +463,10 @@ public class optionCtrl : MonoBehaviour
 		ItemPosSet(type);
 		if (coroutine_ != null)
 		{
-			StopCoroutine(coroutine_);
+			coroutineCtrl.instance.Stop(coroutine_);
 		}
 		coroutine_ = CoroutineOption();
-		StartCoroutine(coroutine_);
+		coroutineCtrl.instance.Play(coroutine_);
 	}
 
 	private IEnumerator CoroutineSlider()
@@ -702,7 +707,7 @@ public class optionCtrl : MonoBehaviour
 						{
 							InActiveOptionTouch();
 							change_language = true;
-							yield return StartCoroutine(CoroutineChengeLanguage());
+							yield return coroutineCtrl.instance.Play(CoroutineChengeLanguage());
 							yield break;
 						}
 						if (current_num_ + begin_num_ == 0)
@@ -710,7 +715,10 @@ public class optionCtrl : MonoBehaviour
 							TouchSystem.TouchInActive();
 							soundCtrl.instance.PlaySE(43);
 							option_item_[0].PlayDecide();
-							yield return new WaitWhile(() => option_item_[0].play_decide);
+							while (option_item_[0].play_decide)
+							{
+								yield return null;
+							}
 							body_.SetActive(false);
 							while (SaveLoadUICtrl.instance.is_open)
 							{
@@ -726,11 +734,11 @@ public class optionCtrl : MonoBehaviour
 							soundCtrl.instance.PlaySE(43);
 							if (enumerator_credit_ != null)
 							{
-								StopCoroutine(enumerator_credit_);
+								coroutineCtrl.instance.Stop(enumerator_credit_);
 								enumerator_credit_ = null;
 							}
 							enumerator_credit_ = CoroutineCredit();
-							yield return StartCoroutine(enumerator_credit_);
+							yield return coroutineCtrl.instance.Play(enumerator_credit_);
 						}
 					}
 					else if (current_num_ != 0 && current_num_ != 1)
@@ -739,11 +747,14 @@ public class optionCtrl : MonoBehaviour
 						{
 							soundCtrl.instance.PlaySE(43);
 							option_item_sub_[3].PlayDecide();
-							yield return new WaitWhile(() => option_item_sub_[3].play_decide);
+							while (option_item_sub_[3].play_decide)
+							{
+								yield return null;
+							}
 							key_icon_.keyIconActiveSet(false);
 							title_back_text_[0].text = TextDataCtrl.GetText(option_sub_description_[6]);
 							title_back_text_[1].text = TextDataCtrl.GetText(option_sub_description_[6], 1);
-							yield return StartCoroutine(KeyConfigWait());
+							yield return coroutineCtrl.instance.Play(KeyConfigWait());
 							option_item_sub_[3].InitValueSet();
 							key_guide_.guideIconSet(false, guideCtrl.GuideType.OPTION_TITLE);
 						}
@@ -762,7 +773,10 @@ public class optionCtrl : MonoBehaviour
 							title_back_text_[0].text = TextDataCtrl.GetText(TextDataCtrl.OptionTextID.COMMENT_KEY_CONFIG_INPUT);
 							title_back_text_[1].text = TextDataCtrl.GetText(TextDataCtrl.OptionTextID.COMMENT_KEY_CONFIG_INPUT, 1);
 							key_guide_.setEnables(false);
-							yield return new WaitWhile(() => option_item_sub_[current_num_].play_decide);
+							while (option_item_sub_[current_num_].play_decide)
+							{
+								yield return null;
+							}
 							key_guide_.setEnables(true);
 							key_guide_.ReLoadGuid();
 							SetTextSub((OptionItemSub)current_num_);
@@ -791,7 +805,7 @@ public class optionCtrl : MonoBehaviour
 					{
 						soundCtrl.instance.PlaySE(43);
 						TouchSystem.TouchInActive();
-						yield return StartCoroutine(CoroutineConfirmation());
+						yield return coroutineCtrl.instance.Play(CoroutineConfirmation());
 						if (is_end_)
 						{
 							go_title_ = true;
@@ -805,7 +819,7 @@ public class optionCtrl : MonoBehaviour
 				{
 					TouchSystem.TouchInActive();
 					soundCtrl.instance.PlaySE(43);
-					yield return StartCoroutine(CoroutineDefaultConfirmation());
+					yield return coroutineCtrl.instance.Play(CoroutineDefaultConfirmation());
 					if (is_default_)
 					{
 						GSStatic.option_work.bgm_value = 3;
@@ -832,13 +846,13 @@ public class optionCtrl : MonoBehaviour
 					if (type == OptionType.TITLE)
 					{
 						soundCtrl.instance.PlaySE(42);
-						yield return StartCoroutine(CoroutineSlider());
+						yield return coroutineCtrl.instance.Play(CoroutineSlider());
 					}
 				}
 				else if (padCtrl.instance.GetKeyDown(KeyType.L) && state_ == OptionState.SUB && type == OptionType.TITLE)
 				{
 					soundCtrl.instance.PlaySE(42);
-					yield return StartCoroutine(CoroutineSlider());
+					yield return coroutineCtrl.instance.Play(CoroutineSlider());
 				}
 			}
 			padCtrl.instance.WheelMoveValUpdate();
@@ -846,13 +860,16 @@ public class optionCtrl : MonoBehaviour
 		}
 		if (type == OptionType.TITLE)
 		{
-			yield return StartCoroutine(CoroutineCheckKeyConfig());
+			yield return coroutineCtrl.instance.Play(CoroutineCheckKeyConfig());
 		}
-		yield return StartCoroutine(CoroutineCheckSave());
+		yield return coroutineCtrl.instance.Play(CoroutineCheckSave());
 		if (go_title_)
 		{
 			fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
-			yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+			while (!fadeCtrl.instance.is_end)
+			{
+				yield return null;
+			}
 			Close();
 			while (is_open)
 			{
@@ -945,36 +962,54 @@ public class optionCtrl : MonoBehaviour
 			key_icon_.keyIconActiveSet(false);
 			title_back_text_[0].text = TextDataCtrl.GetText(option_sub_description_[7]);
 			title_back_text_[1].text = TextDataCtrl.GetText(option_sub_description_[7], 1);
-			yield return StartCoroutine(KeyConfigWait());
+			yield return coroutineCtrl.instance.Play(KeyConfigWait());
 		}
 	}
 
 	private IEnumerator CoroutineCheckSave()
 	{
-		if (ChangeValueCheck())
+		if (!ChangeValueCheck())
 		{
-			GSStatic.option_work.language_type = (ushort)GSStatic.global_work_.language;
-			loadingCtrl.instance.play(loadingCtrl.Type.SAVEING);
-			SaveControl.SaveSystemDataRequest();
-			while (!SaveControl.is_save_)
-			{
-				yield return null;
-			}
-			SaveControl.SaveSystemData();
-			yield return loadingCtrl.instance.wait();
-			loadingCtrl.instance.stop();
-			GSStatic.save_slot_language_ = GSStatic.global_work_.language;
-			loadingCtrl.instance.init();
-			loadingCtrl.instance.play(loadingCtrl.Type.LOADING);
-			SaveControl.LoadSystemDataRequest();
-			while (!SaveControl.is_load_)
-			{
-				yield return null;
-			}
-			SaveControl.LoadSystemData();
-			yield return loadingCtrl.instance.wait();
-			loadingCtrl.instance.stop();
+			yield break;
 		}
+		GSStatic.option_work.language_type = (ushort)GSStatic.global_work_.language;
+		loadingCtrl.instance.play(loadingCtrl.Type.SAVEING);
+		SaveControl.SaveSystemDataRequest();
+		while (!SaveControl.is_save_)
+		{
+			yield return null;
+		}
+		SaveControl.SaveSystemData();
+		yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
+		loadingCtrl.instance.stop();
+		if (SaveControl.is_save_error)
+		{
+			messageBoxCtrl.instance.init();
+			messageBoxCtrl.instance.SetWindowSize(new Vector2(1200f, 360f));
+			messageBoxCtrl.instance.SetText(TextDataCtrl.GetTexts(TextDataCtrl.SaveTextID.SAVE_ERROR));
+			messageBoxCtrl.instance.SetTextPosCenter();
+			messageBoxCtrl.instance.OpenWindow();
+			while (messageBoxCtrl.instance.active)
+			{
+				yield return null;
+				if (padCtrl.instance.GetKeyDown(KeyType.A))
+				{
+					messageBoxCtrl.instance.CloseWindow();
+					break;
+				}
+			}
+		}
+		GSStatic.save_slot_language_ = GSStatic.global_work_.language;
+		loadingCtrl.instance.init();
+		loadingCtrl.instance.play(loadingCtrl.Type.LOADING);
+		SaveControl.LoadSystemDataRequest();
+		while (!SaveControl.is_load_)
+		{
+			yield return null;
+		}
+		SaveControl.LoadSystemData();
+		yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait());
+		loadingCtrl.instance.stop();
 	}
 
 	private IEnumerator CoroutineChengeLanguage()
@@ -997,6 +1032,7 @@ public class optionCtrl : MonoBehaviour
 		{
 			yield return null;
 		}
+		ReplaceFont.instance.ChangeFont(GSStatic.global_work_.language);
 		TextDataCtrl.SetLanguage(GSStatic.global_work_.language);
 		List<int> tmp_value = new List<int>();
 		List<int> tmp_key = new List<int>();
@@ -1036,7 +1072,10 @@ public class optionCtrl : MonoBehaviour
 		{
 			yield return null;
 		}
-		yield return new WaitWhile(() => option_item_[8].play_decide);
+		while (option_item_[8].play_decide)
+		{
+			yield return null;
+		}
 		option_item_[8].InitValueSet();
 		creditCtrl.instance.Play();
 		while (creditCtrl.instance.is_play)
@@ -1300,7 +1339,7 @@ public class optionCtrl : MonoBehaviour
 	{
 		if (coroutine_ != null)
 		{
-			StopCoroutine(coroutine_);
+			coroutineCtrl.instance.Stop(coroutine_);
 			coroutine_ = null;
 		}
 		Close();
@@ -1319,7 +1358,7 @@ public class optionCtrl : MonoBehaviour
 		}
 		if (enumerator_credit_ != null)
 		{
-			StopCoroutine(enumerator_credit_);
+			coroutineCtrl.instance.Stop(enumerator_credit_);
 			enumerator_credit_ = null;
 			if (creditCtrl.instance.is_play)
 			{
@@ -1335,13 +1374,24 @@ public class optionCtrl : MonoBehaviour
 		}
 		else
 		{
-			StartCoroutine(CloseWait());
+			coroutineCtrl.instance.Play(CloseWait());
 		}
 		if (selectPlateCtrl.instance != null && selectPlateCtrl.instance.body_active && messageBoardCtrl.instance != null)
 		{
 			messageBoardCtrl.instance.InActiveNormalMessageNextTouch();
 		}
-		systemCtrl.instance.EnableDoubleQuotationAdjustoment(GSStatic.save_slot_language_ == Language.JAPAN);
+		if (GSStatic.global_work_.language == Language.JAPAN || GSStatic.global_work_.language == Language.USA)
+		{
+			systemCtrl.instance.EnableDoubleQuotationAdjustoment(GSStatic.save_slot_language_ == Language.JAPAN);
+		}
+		else if (GSStatic.global_work_.language == Language.FRANCE || GSStatic.global_work_.language == Language.CHINA_S)
+		{
+			systemCtrl.instance.EnableDoubleQuotationAdjustoment(true);
+		}
+		else
+		{
+			systemCtrl.instance.EnableDoubleQuotationAdjustoment(false);
+		}
 		foreach (Text item3 in title_back_text_)
 		{
 			mainCtrl.instance.removeText(item3);
@@ -1394,12 +1444,12 @@ public class optionCtrl : MonoBehaviour
 				continue;
 			}
 			string text = title_back_text_[i].text;
-			title_back_text_[i].text = text.Replace("【】", "\u3000\u3000\u3000");
+			title_back_text_[i].text = text.Replace("【】", key_icon_.changeTextToIconSpase(string.Empty));
 			string text2 = title_back_text_[i].text;
 			float preferredWidth = title_back_text_[i].preferredWidth;
 			icon_text_.text = text.Remove(text.IndexOf("【"));
 			float preferredWidth2 = icon_text_.preferredWidth;
-			icon_text_.text += "\u3000\u3000\u3000";
+			icon_text_.text += key_icon_.changeTextToIconSpase(string.Empty);
 			float preferredWidth3 = icon_text_.preferredWidth;
 			float x = (preferredWidth2 - preferredWidth / 2f + (preferredWidth3 - preferredWidth / 2f)) / 2f;
 			float y = (title_back_text_[i].rectTransform.sizeDelta.y - title_back_text_[i].preferredHeight) / 2f;
@@ -1426,6 +1476,15 @@ public class optionCtrl : MonoBehaviour
 			key_icon_.load(i);
 			key_icon_.iconSet(key, i);
 			key_icon_.iconPosSet(title_back_text_[i].transform, new Vector3(x, y, 0f), i);
+		}
+	}
+
+	private void TitleFontSizeSet(Language language)
+	{
+		int titleFontSize = ((language != Language.FRANCE && language != Language.GERMAN) ? 38 : 34);
+		foreach (optionItem item in option_item_)
+		{
+			item.SetTitleFontSize(titleFontSize);
 		}
 	}
 }

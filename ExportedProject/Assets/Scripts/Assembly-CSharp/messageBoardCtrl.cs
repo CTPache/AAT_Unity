@@ -235,34 +235,41 @@ public class messageBoardCtrl : MonoBehaviour
 		}
 	}
 
+	public void OnDisable()
+	{
+		stopArrow(0);
+		stopArrow(1);
+	}
+
 	public void load()
 	{
-		int fontSize = 64;
-		string in_name = "talk_bg";
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		int num = 64;
+		string text = "talk_bg";
+		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 		{
-			fontSize = 64;
-			in_name = "talk_bg";
+		case Language.JAPAN:
+			num = 64;
+			text = "talk_bg";
 			sprite_name.transform.localPosition = new Vector3(-640f, 135f, 0f);
 			text_.transform.localPosition = new Vector3(0f, 42f, 0f);
 			line_list[0].rectTransform.localPosition = new Vector3(0f, 0f, 0f);
 			line_list[1].rectTransform.localPosition = new Vector3(0f, -84f, 0f);
 			line_list[2].rectTransform.localPosition = new Vector3(0f, -168f, 0f);
-		}
-		else if (GSStatic.global_work_.language == Language.USA)
-		{
-			fontSize = 52;
-			in_name = "talk_bgu";
+			break;
+		default:
+			num = 52;
+			text = "talk_bgu";
 			sprite_name.transform.localPosition = new Vector3(-640f, 177f, 0f);
 			text_.transform.localPosition = new Vector3(0f, 80f, 0f);
 			line_list[0].rectTransform.localPosition = new Vector3(0f, 0f, 0f);
 			line_list[1].rectTransform.localPosition = new Vector3(0f, -74f, 0f);
 			line_list[2].rectTransform.localPosition = new Vector3(0f, -148f, 0f);
+			break;
 		}
 		SetArrowPosition(false, 0);
 		SetArrowPosition(false, 1);
 		namePlateLoad();
-		sprite_board.load("/menu/common/", in_name);
+		sprite_board.load("/menu/common/", text);
 		sprite_name.spriteNo(0);
 		arrow_list_[0].arrow_.load("/menu/common/", "select_arrow");
 		arrow_list_[0].icon_.load("/menu/common/", "symbol");
@@ -277,9 +284,9 @@ public class messageBoardCtrl : MonoBehaviour
 		line_list_[0].text = string.Empty;
 		line_list_[1].text = string.Empty;
 		line_list_[2].text = string.Empty;
-		line_list_[0].fontSize = fontSize;
-		line_list_[1].fontSize = fontSize;
-		line_list_[2].fontSize = fontSize;
+		line_list_[0].fontSize = num;
+		line_list_[1].fontSize = num;
+		line_list_[2].fontSize = num;
 		foreach (Text item in line_list_)
 		{
 			mainCtrl.instance.addText(item);
@@ -290,13 +297,17 @@ public class messageBoardCtrl : MonoBehaviour
 	public void SetArrowPosition(bool in_type, int in_direction)
 	{
 		Vector3 localPosition = arrow_list_[in_direction].obj_.transform.localPosition;
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 		{
+		case Language.JAPAN:
 			localPosition.y = 0f;
-		}
-		else
-		{
+			break;
+		case Language.USA:
 			localPosition.y = ((!in_type) ? (-50f) : 25f);
+			break;
+		default:
+			localPosition.y = ((!in_type) ? (-50f) : 25f);
+			break;
 		}
 		arrow_list_[in_direction].obj_.transform.localPosition = localPosition;
 	}
@@ -307,11 +318,18 @@ public class messageBoardCtrl : MonoBehaviour
 		{
 			name_plate_path_ = "/GS1/etc/";
 		}
-		string remove_name;
-		string in_name = (remove_name = "frame02" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language));
+		string text = "frame02" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
+		string remove_name = ReplaceLanguage.GetFileName(name_plate_path_, text);
 		if (GSStatic.global_work_.language != name_plate_language_)
 		{
-			remove_name = "frame02" + GSUtility.GetResourceNameLanguage(name_plate_language_);
+			if (name_plate_language_ == Language.USA)
+			{
+				remove_name = "frame02" + GSUtility.GetResourceNameLanguage(Language.USA);
+			}
+			else
+			{
+				remove_name = ReplaceLanguage.GetFileName(name_plate_path_, "frame02", (int)name_plate_language_);
+			}
 			name_plate_language_ = GSStatic.global_work_.language;
 		}
 		AssetBundleCtrl.AssetBundleData assetBundleData = AssetBundleCtrl.instance.asset_list_.Find((AssetBundleCtrl.AssetBundleData data) => data.name_ == remove_name);
@@ -331,7 +349,7 @@ public class messageBoardCtrl : MonoBehaviour
 			name_plate_path_ = "/GS3/etc/";
 			break;
 		}
-		sprite_name.load(name_plate_path_, in_name);
+		sprite_name.load(name_plate_path_, text);
 	}
 
 	public void init()
@@ -502,7 +520,7 @@ public class messageBoardCtrl : MonoBehaviour
 		ArrowIcon arrowIcon = arrow_list_[in_type];
 		stopArrow(in_type);
 		arrowIcon.enumerator_arrow_ = CoroutineArrow(in_type);
-		StartCoroutine(arrowIcon.enumerator_arrow_);
+		coroutineCtrl.instance.Play(arrowIcon.enumerator_arrow_);
 		if (in_type != 1)
 		{
 		}
@@ -513,7 +531,7 @@ public class messageBoardCtrl : MonoBehaviour
 		ArrowIcon arrowIcon = arrow_list_[in_type];
 		if (arrowIcon.enumerator_arrow_ != null)
 		{
-			StopCoroutine(arrowIcon.enumerator_arrow_);
+			coroutineCtrl.instance.Stop(arrowIcon.enumerator_arrow_);
 			arrowIcon.enumerator_arrow_ = null;
 		}
 	}
@@ -557,7 +575,7 @@ public class messageBoardCtrl : MonoBehaviour
 		stopArrow(in_type);
 		stopNext(in_type);
 		arrowIcon.enumerator_next_ = CoroutineNext(in_type);
-		StartCoroutine(arrowIcon.enumerator_next_);
+		coroutineCtrl.instance.Play(arrowIcon.enumerator_next_);
 	}
 
 	private void stopNext(int in_type)
@@ -565,7 +583,7 @@ public class messageBoardCtrl : MonoBehaviour
 		ArrowIcon arrowIcon = arrow_list_[in_type];
 		if (arrowIcon.enumerator_next_ != null)
 		{
-			StopCoroutine(arrowIcon.enumerator_next_);
+			coroutineCtrl.instance.Stop(arrowIcon.enumerator_next_);
 			arrowIcon.enumerator_next_ = null;
 		}
 	}

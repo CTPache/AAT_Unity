@@ -133,7 +133,7 @@ public class MiniGameCursor : MonoBehaviour
 	public void ResetCursorLimit()
 	{
 		Vector2 vector = cursor_area_size;
-		cursor_limit_ = new Rect(0f, 0f, vector.x, vector.y);
+		cursor_limit_ = new Rect(0f, 0f, vector.x - cursor_.rect.width, vector.y - cursor_.rect.height);
 	}
 
 	public void ActiveCursorTouch()
@@ -163,7 +163,12 @@ public class MiniGameCursor : MonoBehaviour
 		touch_cursor_.touch_event = action;
 	}
 
-	public void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	public void Process()
 	{
 		if (padCtrl.instance.InputGetMouseButtonDown(0))
 		{

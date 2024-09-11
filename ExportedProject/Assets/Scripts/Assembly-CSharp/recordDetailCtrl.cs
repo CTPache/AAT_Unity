@@ -97,7 +97,7 @@ public class recordDetailCtrl : MonoBehaviour
 		if (keyGuideCtrl.instance.active)
 		{
 			standby_keyguid_type_ = keyGuideCtrl.instance.current_guide;
-			keyGuideCtrl.instance.close();
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 		}
 		detail_sprite_.active = true;
 		detail_sprite_.sprite_renderer_.color = Color.white;
@@ -222,11 +222,11 @@ public class recordDetailCtrl : MonoBehaviour
 		}
 		if (GSStatic.global_work_.title == TitleId.GS1 && detailData_.bg_id == 119)
 		{
-			yield return keyGuideCtrl.instance.open(keyGuideBase.Type.TOP_VIEW);
+			yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TOP_VIEW));
 		}
 		else
 		{
-			yield return keyGuideCtrl.instance.open(keyGuideBase.Type.DETAIL_VIEW);
+			yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.DETAIL_VIEW));
 		}
 		while (true)
 		{
@@ -243,7 +243,7 @@ public class recordDetailCtrl : MonoBehaviour
 						{
 							page_num = 0;
 						}
-						yield return StartCoroutine(ChengPage(page_num));
+						yield return coroutineCtrl.instance.Play(ChengPage(page_num));
 					}
 					if (padCtrl.instance.GetKeyDown(KeyType.StickL_Left) || padCtrl.instance.GetKeyDown(KeyType.Left) || padCtrl.instance.GetWheelMoveUp())
 					{
@@ -253,7 +253,7 @@ public class recordDetailCtrl : MonoBehaviour
 						{
 							page_num = (int)(detailData_.page_num - 1);
 						}
-						yield return StartCoroutine(ChengPage(page_num));
+						yield return coroutineCtrl.instance.Play(ChengPage(page_num));
 					}
 				}
 				padCtrl.instance.WheelMoveValUpdate();
@@ -261,7 +261,7 @@ public class recordDetailCtrl : MonoBehaviour
 			else if (detailData_.scroll != 0 && padCtrl.instance.GetKeyDown(KeyType.L))
 			{
 				soundCtrl.instance.PlaySE(43);
-				yield return StartCoroutine(CoroutineSlider());
+				yield return coroutineCtrl.instance.Play(CoroutineSlider());
 			}
 			if (padCtrl.instance.GetKeyDown(KeyType.B))
 			{
@@ -271,7 +271,7 @@ public class recordDetailCtrl : MonoBehaviour
 		}
 		soundCtrl.instance.PlaySE(44);
 		arrow_ctrl_.arrow(false, 0);
-		yield return keyGuideCtrl.instance.close();
+		yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 		time2 = 0f;
 		while (true)
 		{
@@ -287,7 +287,7 @@ public class recordDetailCtrl : MonoBehaviour
 		}
 		if (standby_keyguid_type_ != 0)
 		{
-			yield return keyGuideCtrl.instance.open(standby_keyguid_type_);
+			yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(standby_keyguid_type_));
 		}
 		detail_sprite_.sprite_renderer_.color = Color.black;
 		detail_sprite_.active = false;
@@ -365,10 +365,10 @@ public class recordDetailCtrl : MonoBehaviour
 		if (GSStatic.global_work_.title == TitleId.GS3 && detailData_.bg_id == 142)
 		{
 			arrow_ctrl_.arrow(false, 0);
-			yield return StartCoroutine(fadeCtrl.instance.play_coroutine(30, false, Color.black));
+			yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(30, false, Color.black));
 			base.name = bgCtrl.instance.GetBGName((int)data_list_[data_id_ + page_num].bg_id);
 			detail_sprite_.load(dataPath_, base.name);
-			yield return StartCoroutine(fadeCtrl.instance.play_coroutine(30, true, Color.black));
+			yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(30, true, Color.black));
 			arrow_ctrl_.arrow(true, 0);
 		}
 		else

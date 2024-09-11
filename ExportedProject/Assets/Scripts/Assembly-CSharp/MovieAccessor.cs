@@ -105,7 +105,12 @@ public class MovieAccessor : MonoBehaviour
 		Status = AccessorStatus.Playing;
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		if (Status == AccessorStatus.Playing && !videoPlayer.isPlaying)
 		{

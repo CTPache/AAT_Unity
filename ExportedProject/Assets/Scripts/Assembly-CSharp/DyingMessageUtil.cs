@@ -105,6 +105,25 @@ public class DyingMessageUtil : MonoBehaviour
 		new tagMG_CHECK_LINEPOINT(219, 152, 16, 16, 225, 157)
 	};
 
+	private tagMG_CHECK_LINEPOINT[] mg_chk_die_korea = new tagMG_CHECK_LINEPOINT[15]
+	{
+		new tagMG_CHECK_LINEPOINT(29, 41, 16, 24, 37, 53),
+		new tagMG_CHECK_LINEPOINT(30, 116, 16, 24, 38, 128),
+		new tagMG_CHECK_LINEPOINT(50, 53, 16, 20, 58, 63),
+		new tagMG_CHECK_LINEPOINT(49, 105, 16, 20, 57, 115),
+		new tagMG_CHECK_LINEPOINT(74, 47, 20, 28, 85, 63),
+		new tagMG_CHECK_LINEPOINT(79, 97, 16, 20, 87, 107),
+		new tagMG_CHECK_LINEPOINT(106, 77, 16, 24, 114, 89),
+		new tagMG_CHECK_LINEPOINT(105, 157, 16, 24, 113, 169),
+		new tagMG_CHECK_LINEPOINT(132, 94, 16, 16, 140, 103),
+		new tagMG_CHECK_LINEPOINT(128, 144, 20, 20, 137, 156),
+		new tagMG_CHECK_LINEPOINT(157, 144, 16, 16, 164, 153),
+		new tagMG_CHECK_LINEPOINT(181, 53, 16, 20, 189, 63),
+		new tagMG_CHECK_LINEPOINT(179, 85, 16, 14, 186, 92),
+		new tagMG_CHECK_LINEPOINT(180, 128, 16, 14, 187, 135),
+		new tagMG_CHECK_LINEPOINT(180, 142, 16, 16, 188, 150)
+	};
+
 	[SerializeField]
 	private MiniGameCursor cursor_;
 
@@ -138,11 +157,17 @@ public class DyingMessageUtil : MonoBehaviour
 	{
 		get
 		{
-			if (GSStatic.global_work_.language == Language.JAPAN)
+			switch (GSStatic.global_work_.language)
 			{
+			case Language.JAPAN:
+			case Language.CHINA_S:
+			case Language.CHINA_T:
 				return mg_chk_die_jp;
+			case Language.KOREA:
+				return mg_chk_die_korea;
+			default:
+				return mg_chk_die_us;
 			}
-			return mg_chk_die_us;
 		}
 	}
 
@@ -198,7 +223,7 @@ public class DyingMessageUtil : MonoBehaviour
 		cursor_.icon_visible = false;
 		cursor_.icon_sprite = null;
 		icon_sprites_ = null;
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		foreach (GameObject item in line_object_list_)
 		{
 			Object.Destroy(item);
@@ -508,6 +533,153 @@ public class DyingMessageUtil : MonoBehaviour
 		return num == 1;
 	}
 
+	public bool checkDieMessage_korea()
+	{
+		bool flag = true;
+		int num = 7;
+		int num2 = 0;
+		for (int i = 0; i < line_list_.Count; i++)
+		{
+			Debug.Log(i + " : pt1=" + line_list_[i].pt1 + ", pt2=" + line_list_[i].pt2);
+		}
+		for (int j = 0; j < line_list_.Count; j++)
+		{
+			switch (line_list_[j].pt1)
+			{
+			case 0:
+			{
+				int pt8 = line_list_[j].pt2;
+				if (pt8 == 1)
+				{
+					num2++;
+				}
+				else
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 1:
+				flag = false;
+				break;
+			case 2:
+			{
+				int pt4 = line_list_[j].pt2;
+				if (pt4 == 3)
+				{
+					num2++;
+				}
+				else
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 3:
+				flag = false;
+				break;
+			case 4:
+			{
+				int pt6 = line_list_[j].pt2;
+				if (pt6 == 5)
+				{
+					num2++;
+				}
+				else
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 5:
+				flag = false;
+				break;
+			case 6:
+			{
+				int pt2 = line_list_[j].pt2;
+				if (pt2 == 7)
+				{
+					num2++;
+				}
+				else
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 7:
+				flag = false;
+				break;
+			case 8:
+			{
+				int pt7 = line_list_[j].pt2;
+				if (pt7 == 9)
+				{
+					num2++;
+				}
+				else
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 9:
+			{
+				int pt5 = line_list_[j].pt2;
+				if (pt5 == 10)
+				{
+					num2++;
+				}
+				else
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 10:
+				flag = false;
+				break;
+			case 11:
+			{
+				int pt3 = line_list_[j].pt2;
+				if (pt3 == 12)
+				{
+					num2++;
+				}
+				else
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 12:
+				flag = false;
+				break;
+			case 13:
+			{
+				int pt = line_list_[j].pt2;
+				if (pt != 14)
+				{
+					flag = false;
+				}
+				break;
+			}
+			case 14:
+				flag = false;
+				break;
+			}
+			if (!flag)
+			{
+				break;
+			}
+		}
+		if (flag && num2 < num)
+		{
+			flag = false;
+		}
+		return flag;
+	}
+
 	private void Awake()
 	{
 		instance = this;
@@ -547,7 +719,7 @@ public class DyingMessageUtil : MonoBehaviour
 			stete_ = State.Free;
 			return;
 		}
-		cursor_.Update();
+		cursor_.Process();
 		select_line_.SetPosition(0, new Vector3(cursor_.cursor_position.x, 0f - cursor_.cursor_position.y, cursor_.cursor_position.z));
 		if (0 <= num)
 		{

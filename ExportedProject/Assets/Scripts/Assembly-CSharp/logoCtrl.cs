@@ -16,17 +16,18 @@ public class logoCtrl : sceneCtrl
 	{
 		End();
 		enumerator_state_ = stateCoroutine();
-		StartCoroutine(enumerator_state_);
+		coroutineCtrl.instance.Play(enumerator_state_);
 	}
 
 	private IEnumerator stateCoroutine()
 	{
 		base.body.SetActive(true);
 		Init();
-		yield return fadeCtrl.instance.play(0.5f, true);
-		yield return titleCtrlRoot.instance.keyWait(2.5f);
-		yield return fadeCtrl.instance.play(0.5f, false);
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, true));
+		yield return coroutineCtrl.instance.Play(titleCtrlRoot.instance.keyWait(2.5f));
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, false));
 		base.body.SetActive(false);
+		logo_.remove();
 		titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Start);
 	}
 }

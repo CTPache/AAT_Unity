@@ -231,7 +231,7 @@ public class titleSelectPlate : MonoBehaviour
 	private void Init(int l_num, string bundle_name)
 	{
 		AssetBundleCtrl instance = AssetBundleCtrl.instance;
-		AssetBundle assetBundle = instance.load("/menu/common/", bundle_name);
+		AssetBundle assetBundle = instance.load("/menu/common/", bundle_name, false, true, 0);
 		cursor_.sprite_data_.Clear();
 		cursor_.sprite_data_.AddRange(assetBundle.LoadAllAssets<Sprite>());
 		int num = ((l_num <= select_list_.Count) ? l_num : select_list_.Count);
@@ -301,7 +301,7 @@ public class titleSelectPlate : MonoBehaviour
 		cursor_no_ = def_cursor_no_;
 		stopCursor();
 		enumerator_cursor_ = CoroutineCursor();
-		StartCoroutine(enumerator_cursor_);
+		coroutineCtrl.instance.Play(enumerator_cursor_);
 	}
 
 	public void stopCursor()
@@ -314,7 +314,7 @@ public class titleSelectPlate : MonoBehaviour
 		{
 			mainCtrl.instance.removeText(item.text_);
 		}
-		StopCoroutine(enumerator_cursor_);
+		coroutineCtrl.instance.Stop(enumerator_cursor_);
 		enumerator_cursor_ = null;
 	}
 
@@ -322,17 +322,17 @@ public class titleSelectPlate : MonoBehaviour
 	{
 		if (enumerator_cursor_ != null)
 		{
-			StopCoroutine(enumerator_cursor_);
+			coroutineCtrl.instance.Stop(enumerator_cursor_);
 			enumerator_cursor_ = null;
 		}
 		if (enumerator_disable_ != null)
 		{
-			StopCoroutine(enumerator_disable_);
+			coroutineCtrl.instance.Stop(enumerator_disable_);
 			enumerator_disable_ = null;
 		}
 		if (enumerator_enable_ != null)
 		{
-			StopCoroutine(enumerator_enable_);
+			coroutineCtrl.instance.Stop(enumerator_enable_);
 			enumerator_enable_ = null;
 		}
 		foreach (SelectPlate item in select_list_)
@@ -463,14 +463,14 @@ public class titleSelectPlate : MonoBehaviour
 	{
 		stopDisable();
 		enumerator_disable_ = CoroutineDisable();
-		StartCoroutine(enumerator_disable_);
+		coroutineCtrl.instance.Play(enumerator_disable_);
 	}
 
 	private void stopDisable()
 	{
 		if (enumerator_disable_ != null)
 		{
-			StopCoroutine(enumerator_disable_);
+			coroutineCtrl.instance.Stop(enumerator_disable_);
 			enumerator_disable_ = null;
 		}
 	}
@@ -509,14 +509,14 @@ public class titleSelectPlate : MonoBehaviour
 	{
 		stopEnable();
 		enumerator_enable_ = CoroutineEnable();
-		StartCoroutine(enumerator_enable_);
+		coroutineCtrl.instance.Play(enumerator_enable_);
 	}
 
 	private void stopEnable()
 	{
 		if (enumerator_enable_ != null)
 		{
-			StopCoroutine(enumerator_enable_);
+			coroutineCtrl.instance.Stop(enumerator_enable_);
 			enumerator_enable_ = null;
 		}
 	}

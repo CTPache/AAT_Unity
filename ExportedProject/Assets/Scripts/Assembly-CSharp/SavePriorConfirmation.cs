@@ -55,7 +55,7 @@ public class SavePriorConfirmation : MonoBehaviour
 	{
 		if (enumerator_confirmation_ != null)
 		{
-			StopCoroutine(enumerator_confirmation_);
+			coroutineCtrl.instance.Stop(enumerator_confirmation_);
 			enumerator_confirmation_ = null;
 		}
 		select_plate_.End();
@@ -68,10 +68,10 @@ public class SavePriorConfirmation : MonoBehaviour
 		Init();
 		if (enumerator_confirmation_ != null)
 		{
-			StopCoroutine(enumerator_confirmation_);
+			coroutineCtrl.instance.Stop(enumerator_confirmation_);
 		}
 		enumerator_confirmation_ = CoroutineConfirmation();
-		StartCoroutine(CoroutineConfirmation());
+		coroutineCtrl.instance.Play(CoroutineConfirmation());
 	}
 
 	private IEnumerator CoroutineConfirmation()
@@ -79,7 +79,7 @@ public class SavePriorConfirmation : MonoBehaviour
 		is_end = false;
 		select_plate_.body_active = true;
 		select_plate_.playCursor();
-		yield return fadeCtrl.instance.play(0.5f, true);
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, true));
 		while (true)
 		{
 			if (select_plate_.is_end)
@@ -104,7 +104,7 @@ public class SavePriorConfirmation : MonoBehaviour
 			}
 			yield return null;
 		}
-		yield return fadeCtrl.instance.play(0.5f, false);
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play(0.5f, false));
 		enumerator_confirmation_ = null;
 		is_end = true;
 		body_.SetActive(false);

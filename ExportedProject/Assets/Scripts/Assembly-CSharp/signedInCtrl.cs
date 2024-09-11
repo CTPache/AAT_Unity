@@ -6,6 +6,10 @@ public class signedInCtrl : MonoBehaviour
 {
 	private static signedInCtrl instance_;
 
+	private const int DEFAULT_FONT_SIZE = 40;
+
+	private const int FRANCE_FONT_SIZE = 38;
+
 	[SerializeField]
 	private GameObject body_;
 
@@ -20,7 +24,7 @@ public class signedInCtrl : MonoBehaviour
 
 	private IEnumerator play_enumerator_;
 
-	private bool is_close_;
+	private bool is_close_ = true;
 
 	private bool is_play_change_;
 
@@ -29,6 +33,14 @@ public class signedInCtrl : MonoBehaviour
 		get
 		{
 			return instance_;
+		}
+	}
+
+	public bool is_close
+	{
+		get
+		{
+			return is_close_;
 		}
 	}
 
@@ -52,6 +64,24 @@ public class signedInCtrl : MonoBehaviour
 		}
 	}
 
+	private float text_lineSpacing_
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.KOREA:
+				return 1f;
+			case Language.CHINA_S:
+				return 1f;
+			case Language.CHINA_T:
+				return 1f;
+			default:
+				return 0.8f;
+			}
+		}
+	}
+
 	private void Awake()
 	{
 		if (instance_ == null)
@@ -62,7 +92,9 @@ public class signedInCtrl : MonoBehaviour
 
 	private IEnumerator OpenCoroutine()
 	{
+		FontSizeSet(GSStatic.global_work_.language);
 		text_.text = TextDataCtrl.StringArrayToString(TextDataCtrl.GetTexts(TextDataCtrl.SystemTextID.DISCONNECT_GAME_PAD));
+		text_.lineSpacing = text_lineSpacing_;
 		active = true;
 		is_close_ = false;
 		while (!is_close_)
@@ -84,11 +116,17 @@ public class signedInCtrl : MonoBehaviour
 	{
 		if (play_enumerator_ != null)
 		{
-			StopCoroutine(play_enumerator_);
+			coroutineCtrl.instance.Stop(play_enumerator_);
 			play_enumerator_ = null;
 		}
 		play_enumerator_ = OpenCoroutine();
-		StartCoroutine(play_enumerator_);
+		coroutineCtrl.instance.Play(play_enumerator_);
+	}
+
+	private void FontSizeSet(Language language)
+	{
+		int fontSize = ((language != Language.FRANCE) ? 40 : 38);
+		text_.fontSize = fontSize;
 	}
 
 	public void close()

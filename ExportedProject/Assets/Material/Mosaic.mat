@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Mosaic
-  m_Shader: {fileID: 4800000, guid: e8ce6b66a47dd724182aa99329ced752, type: 3}
+  m_Shader: {fileID: 4800000, guid: d578f389e9fb701469afdb25ff86a1a4, type: 3}
   m_ShaderKeywords:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

@@ -280,7 +280,7 @@ public class ConfrontWithMovie : MonoBehaviour
 			movie_controller.SetSandStorm();
 			if (movie_key_guide != null && movie_key_guide.gameObject.activeSelf)
 			{
-				movie_key_guide.close();
+				coroutineCtrl.instance.Play(movie_key_guide.close());
 			}
 			pwork.scan_.flag = 0;
 			routine_3d[1].disp_off = 0;
@@ -307,7 +307,7 @@ public class ConfrontWithMovie : MonoBehaviour
 				CraeteKeyGuide();
 				movie_key_guide.gameObject.SetActive(true);
 				movie_key_guide.active = true;
-				movie_key_guide.open(keyGuideBase.Type.CONFRONT_WITH_MOVIE);
+				coroutineCtrl.instance.Play(movie_key_guide.open(keyGuideBase.Type.CONFRONT_WITH_MOVIE));
 				routine.r.no_2++;
 			}
 			break;
@@ -488,7 +488,7 @@ public class ConfrontWithMovie : MonoBehaviour
 				movie_controller.SetAutoPlayStatus(1);
 				pSmt.change_flag = 1;
 				advCtrl.instance.sub_window_.SetObjDispFlag(30);
-				movie_key_guide.close();
+				coroutineCtrl.instance.Play(movie_key_guide.close());
 				routine_3d[1].disp_off = 0;
 				controller.video_pause = false;
 			}
@@ -497,7 +497,7 @@ public class ConfrontWithMovie : MonoBehaviour
 				movie_controller.SetAutoPlayStatus(3);
 				pSmt.change_flag = 0;
 				advCtrl.instance.sub_window_.SetObjDispFlag(31);
-				movie_key_guide.close();
+				coroutineCtrl.instance.Play(movie_key_guide.close());
 				if (routine_3d[1].disp_off == 0)
 				{
 					routine_3d[1].disp_off = 1;
@@ -509,7 +509,7 @@ public class ConfrontWithMovie : MonoBehaviour
 		case 1:
 			if (advCtrl.instance.sub_window_.CheckObjOut() && !movie_key_guide.CheckClose())
 			{
-				movie_key_guide.open((pSmt.change_flag != 0) ? keyGuideBase.Type.CONFRONT_WITH_MOVIE : keyGuideBase.Type.CONFRONT_WITH_MOVIE_PAUSE);
+				coroutineCtrl.instance.Play(movie_key_guide.open((pSmt.change_flag != 0) ? keyGuideBase.Type.CONFRONT_WITH_MOVIE : keyGuideBase.Type.CONFRONT_WITH_MOVIE_PAUSE));
 				routine.r.no_2++;
 			}
 			break;
@@ -693,7 +693,7 @@ public class ConfrontWithMovie : MonoBehaviour
 			global_work_.r.Set(8, 0, 0, 0);
 			if (movie_key_guide.current_guide == keyGuideBase.Type.CONFRONT_WITH_MOVIE)
 			{
-				movie_key_guide.close();
+				coroutineCtrl.instance.Play(movie_key_guide.close());
 			}
 			Cinema.Cinema_set_status(3u);
 			movie_controller.SetAutoPlayStatus(3);
@@ -710,7 +710,7 @@ public class ConfrontWithMovie : MonoBehaviour
 				pwork.bar_req_ = SubWindow.BarReq.IDLE;
 				if (movie_key_guide.current_guide == keyGuideBase.Type.CONFRONT_WITH_MOVIE)
 				{
-					movie_key_guide.open(keyGuideBase.Type.CONFRONT_WITH_MOVIE_PAUSE);
+					coroutineCtrl.instance.Play(movie_key_guide.open(keyGuideBase.Type.CONFRONT_WITH_MOVIE_PAUSE));
 				}
 				routine.r.no_2++;
 			}
@@ -784,7 +784,7 @@ public class ConfrontWithMovie : MonoBehaviour
 		movie_controller.gameObject.SetActive(true);
 		collision_player.enabled = true;
 		cursor.enabled = true;
-		StartCoroutine(PlayAfterLoaded(0));
+		coroutineCtrl.instance.Play(PlayAfterLoaded(0));
 	}
 
 	public void StartDetail()
@@ -792,7 +792,7 @@ public class ConfrontWithMovie : MonoBehaviour
 		IsDetailing = true;
 		movie_controller.gameObject.SetActive(true);
 		movie_controller.InitData(true);
-		StartCoroutine(PlayAfterLoaded(0));
+		coroutineCtrl.instance.Play(PlayAfterLoaded(0));
 		movie_controller.SetAutoPlayStatus(1);
 		movie_controller.SetAutoPlayStatus(32768);
 	}
@@ -869,7 +869,7 @@ public class ConfrontWithMovie : MonoBehaviour
 		movie_key_guide.active = true;
 		if (IsDetailing)
 		{
-			movie_key_guide.open(keyGuideBase.Type.VIDEO_DETAIL);
+			coroutineCtrl.instance.Play(movie_key_guide.open(keyGuideBase.Type.VIDEO_DETAIL));
 		}
 		else if (auto_play)
 		{
@@ -892,9 +892,20 @@ public class ConfrontWithMovie : MonoBehaviour
 		{
 			return;
 		}
-		string item = ((GSStatic.global_work_.language != 0) ? "eff004u" : "eff004");
+		string text = "eff004";
+		switch (GSStatic.global_work_.language)
+		{
+		case Language.USA:
+			text += GSUtility.GetResourceNameLanguage(Language.USA);
+			break;
+		default:
+			text = ReplaceLanguage.GetFileName("/GS1/minigame/", text, (int)GSStatic.global_work_.language);
+			break;
+		case Language.JAPAN:
+			break;
+		}
 		List<string> list = new List<string>();
-		list.Add(item);
+		list.Add(text);
 		list.Add("eff00c");
 		List<string> list2 = list;
 		List<Vector3> list3 = new List<Vector3>();
@@ -928,20 +939,20 @@ public class ConfrontWithMovie : MonoBehaviour
 		List<Vector3> list8 = list3;
 		Transform parent = base.transform.Find("canvas").transform;
 		int num = 0;
-		foreach (string item2 in list2)
+		foreach (string item in list2)
 		{
 			GameObject gameObject = new GameObject();
 			gameObject.transform.parent = parent;
-			gameObject.name = item2;
+			gameObject.name = item;
 			gameObject.layer = base.gameObject.layer;
 			gameObject.transform.localPosition = list4[num];
 			gameObject.transform.localScale = list5[num];
 			RawImage rawImage = gameObject.AddComponent<RawImage>();
-			AssetBundle assetBundle = AssetBundleCtrl.instance.load("/GS1/minigame/", item2);
+			AssetBundle assetBundle = AssetBundleCtrl.instance.load("/GS1/minigame/", item);
 			Sprite sprite = null;
 			if (assetBundle != null)
 			{
-				sprite = assetBundle.LoadAsset<Sprite>(item2);
+				sprite = assetBundle.LoadAsset<Sprite>(item);
 			}
 			rawImage.texture = sprite.texture;
 			rawImage.rectTransform.sizeDelta = new Vector2(sprite.texture.width, sprite.texture.height);
@@ -950,21 +961,21 @@ public class ConfrontWithMovie : MonoBehaviour
 			num++;
 		}
 		num = 0;
-		foreach (string item3 in list6)
+		foreach (string item2 in list6)
 		{
 			GameObject gameObject2 = new GameObject();
 			gameObject2.transform.parent = parent;
-			gameObject2.name = item3;
+			gameObject2.name = item2;
 			gameObject2.layer = base.gameObject.layer;
 			gameObject2.transform.localPosition = list7[num];
 			gameObject2.transform.Rotate(list8[num]);
 			gameObject2.transform.localScale = new Vector3(0.75f, 1f, 1f);
 			RawImage rawImage2 = gameObject2.AddComponent<RawImage>();
-			AssetBundle assetBundle2 = AssetBundleCtrl.instance.load("/GS1/minigame/", item3);
+			AssetBundle assetBundle2 = AssetBundleCtrl.instance.load("/GS1/minigame/", item2);
 			Sprite sprite2 = null;
 			if (assetBundle2 != null)
 			{
-				sprite2 = assetBundle2.LoadAsset<Sprite>(item3);
+				sprite2 = assetBundle2.LoadAsset<Sprite>(item2);
 			}
 			rawImage2.texture = sprite2.texture;
 			rawImage2.rectTransform.sizeDelta = new Vector2(sprite2.texture.width, sprite2.texture.height);
@@ -1052,7 +1063,7 @@ public class ConfrontWithMovie : MonoBehaviour
 
 	public void CheckEndPlay()
 	{
-		StartCoroutine(CheckEndPlayCoroutine());
+		coroutineCtrl.instance.Play(CheckEndPlayCoroutine());
 	}
 
 	private IEnumerator CheckEndPlayCoroutine()

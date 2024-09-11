@@ -156,7 +156,7 @@ public static class SaveControl
 		return SaveDataAccessor.IsExistSaveDataFile(GetSystemDataFileName());
 	}
 
-	private static string GetSystemDataFileName()
+	public static string GetSystemDataFileName()
 	{
 		return "systemdata";
 	}

@@ -75,7 +75,7 @@ public static class SubWindow_Info
 			}
 			break;
 		case 2:
-			scienceInvestigationCtrl.instance.Play();
+			coroutineCtrl.instance.Play(scienceInvestigationCtrl.instance.Play());
 			routine.r.no_2++;
 			break;
 		case 3:

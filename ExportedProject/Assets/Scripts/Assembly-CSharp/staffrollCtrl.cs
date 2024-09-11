@@ -128,6 +128,184 @@ public class staffrollCtrl : MonoBehaviour
 		dummy_data
 	};
 
+	private readonly staffroll_data[] staffroll_list_f_ = new staffroll_data[33]
+	{
+		new staffroll_data(0, "/staffroll/", "edst00f"),
+		dummy_data,
+		new staffroll_data(1, "/staffroll/", "edst01f"),
+		new staffroll_data(2, "/staffroll/", "edst02f"),
+		dummy_data,
+		new staffroll_data(3, "/staffroll/", "edst03u"),
+		new staffroll_data(4, "/staffroll/", "edst04u"),
+		new staffroll_data(5, "/staffroll/", "edst05u"),
+		dummy_data,
+		new staffroll_data(6, "/staffroll/", "edst06f"),
+		new staffroll_data(7, "/staffroll/", "edst07f"),
+		dummy_data,
+		new staffroll_data(8, "/staffroll/", "edst08f"),
+		new staffroll_data(9, "/staffroll/", "edst09f"),
+		dummy_data,
+		new staffroll_data(10, "/staffroll/", "edst0af"),
+		dummy_data,
+		new staffroll_data(11, "/staffroll/", "edst0bf"),
+		dummy_data,
+		new staffroll_data(13, "/staffroll/", "edst0df"),
+		new staffroll_data(14, "/staffroll/", "edst0ef"),
+		new staffroll_data(15, "/staffroll/", "edst0ff"),
+		new staffroll_data(22, "/staffroll/", "edst16f"),
+		new staffroll_data(23, "/staffroll/", "edst17f"),
+		dummy_data,
+		new staffroll_data(16, "/staffroll/", "edst10f"),
+		new staffroll_data(17, "/staffroll/", "edst11u"),
+		new staffroll_data(18, "/staffroll/", "edst12f"),
+		new staffroll_data(21, "/staffroll/", "edst15u"),
+		dummy_data,
+		new staffroll_data(19, "/staffroll/", "edst13f"),
+		new staffroll_data(20, "/staffroll/", "edst14f"),
+		dummy_data
+	};
+
+	private readonly staffroll_data[] staffroll_list_g_ = new staffroll_data[31]
+	{
+		new staffroll_data(0, "/staffroll/", "edst00g"),
+		dummy_data,
+		new staffroll_data(1, "/staffroll/", "edst01g"),
+		new staffroll_data(2, "/staffroll/", "edst02u"),
+		dummy_data,
+		new staffroll_data(3, "/staffroll/", "edst03g"),
+		new staffroll_data(4, "/staffroll/", "edst04g"),
+		new staffroll_data(5, "/staffroll/", "edst05u"),
+		dummy_data,
+		new staffroll_data(6, "/staffroll/", "edst06g"),
+		new staffroll_data(7, "/staffroll/", "edst07g"),
+		dummy_data,
+		new staffroll_data(8, "/staffroll/", "edst08g"),
+		new staffroll_data(9, "/staffroll/", "edst09g"),
+		dummy_data,
+		new staffroll_data(10, "/staffroll/", "edst0au"),
+		dummy_data,
+		new staffroll_data(11, "/staffroll/", "edst0bg"),
+		dummy_data,
+		new staffroll_data(13, "/staffroll/", "edst0dg"),
+		new staffroll_data(22, "/staffroll/", "edst16g"),
+		new staffroll_data(23, "/staffroll/", "edst17g"),
+		dummy_data,
+		new staffroll_data(16, "/staffroll/", "edst10g"),
+		new staffroll_data(17, "/staffroll/", "edst11u"),
+		new staffroll_data(18, "/staffroll/", "edst12g"),
+		new staffroll_data(21, "/staffroll/", "edst15u"),
+		dummy_data,
+		new staffroll_data(19, "/staffroll/", "edst13g"),
+		new staffroll_data(20, "/staffroll/", "edst14g"),
+		dummy_data
+	};
+
+	private readonly staffroll_data[] staffroll_list_k_ = new staffroll_data[34]
+	{
+		new staffroll_data(0, "/staffroll/", "edst00k"),
+		dummy_data,
+		new staffroll_data(1, "/staffroll/", "edst01k"),
+		new staffroll_data(2, "/staffroll/", "edst02k"),
+		dummy_data,
+		new staffroll_data(3, "/staffroll/", "edst03k"),
+		new staffroll_data(4, "/staffroll/", "edst04k"),
+		new staffroll_data(5, "/staffroll/", "edst05k"),
+		dummy_data,
+		new staffroll_data(6, "/staffroll/", "edst06k"),
+		new staffroll_data(7, "/staffroll/", "edst07k"),
+		new staffroll_data(22, "/staffroll/", "edst16k"),
+		dummy_data,
+		new staffroll_data(8, "/staffroll/", "edst08k"),
+		new staffroll_data(9, "/staffroll/", "edst09k"),
+		new staffroll_data(23, "/staffroll/", "edst17k"),
+		dummy_data,
+		new staffroll_data(10, "/staffroll/", "edst0ak"),
+		dummy_data,
+		new staffroll_data(11, "/staffroll/", "edst0bk"),
+		new staffroll_data(12, "/staffroll/", "edst0ck"),
+		dummy_data,
+		new staffroll_data(13, "/staffroll/", "edst0dk"),
+		new staffroll_data(14, "/staffroll/", "edst0ek"),
+		new staffroll_data(15, "/staffroll/", "edst0fk"),
+		dummy_data,
+		new staffroll_data(16, "/staffroll/", "edst10k"),
+		new staffroll_data(17, "/staffroll/", "edst11k"),
+		new staffroll_data(18, "/staffroll/", "edst12k"),
+		new staffroll_data(21, "/staffroll/", "edst15k"),
+		dummy_data,
+		new staffroll_data(19, "/staffroll/", "edst13k"),
+		new staffroll_data(20, "/staffroll/", "edst14k"),
+		dummy_data
+	};
+
+	private readonly staffroll_data[] staffroll_list_s_ = new staffroll_data[30]
+	{
+		new staffroll_data(0, "/staffroll/", "edst00s"),
+		dummy_data,
+		new staffroll_data(1, "/staffroll/", "edst01s"),
+		new staffroll_data(2, "/staffroll/", "edst02s"),
+		dummy_data,
+		new staffroll_data(3, "/staffroll/", "edst03s"),
+		new staffroll_data(4, "/staffroll/", "edst04s"),
+		new staffroll_data(5, "/staffroll/", "edst05s"),
+		dummy_data,
+		new staffroll_data(6, "/staffroll/", "edst06s"),
+		new staffroll_data(7, "/staffroll/", "edst07s"),
+		dummy_data,
+		new staffroll_data(8, "/staffroll/", "edst08s"),
+		new staffroll_data(9, "/staffroll/", "edst09s"),
+		dummy_data,
+		new staffroll_data(10, "/staffroll/", "edst0as"),
+		dummy_data,
+		new staffroll_data(11, "/staffroll/", "edst0bs"),
+		new staffroll_data(12, "/staffroll/", "edst0cs"),
+		dummy_data,
+		new staffroll_data(13, "/staffroll/", "edst0ds"),
+		dummy_data,
+		new staffroll_data(16, "/staffroll/", "edst10s"),
+		new staffroll_data(17, "/staffroll/", "edst11s"),
+		new staffroll_data(18, "/staffroll/", "edst12s"),
+		new staffroll_data(21, "/staffroll/", "edst15s"),
+		dummy_data,
+		new staffroll_data(19, "/staffroll/", "edst13s"),
+		new staffroll_data(20, "/staffroll/", "edst14s"),
+		dummy_data
+	};
+
+	private readonly staffroll_data[] staffroll_list_t_ = new staffroll_data[30]
+	{
+		new staffroll_data(0, "/staffroll/", "edst00t"),
+		dummy_data,
+		new staffroll_data(1, "/staffroll/", "edst01t"),
+		new staffroll_data(2, "/staffroll/", "edst02t"),
+		dummy_data,
+		new staffroll_data(3, "/staffroll/", "edst03t"),
+		new staffroll_data(4, "/staffroll/", "edst04t"),
+		new staffroll_data(5, "/staffroll/", "edst05t"),
+		dummy_data,
+		new staffroll_data(6, "/staffroll/", "edst06t"),
+		new staffroll_data(7, "/staffroll/", "edst07t"),
+		dummy_data,
+		new staffroll_data(8, "/staffroll/", "edst08t"),
+		new staffroll_data(9, "/staffroll/", "edst09t"),
+		dummy_data,
+		new staffroll_data(10, "/staffroll/", "edst0at"),
+		dummy_data,
+		new staffroll_data(11, "/staffroll/", "edst0bt"),
+		new staffroll_data(12, "/staffroll/", "edst0ct"),
+		dummy_data,
+		new staffroll_data(13, "/staffroll/", "edst0dt"),
+		dummy_data,
+		new staffroll_data(16, "/staffroll/", "edst10t"),
+		new staffroll_data(17, "/staffroll/", "edst11t"),
+		new staffroll_data(18, "/staffroll/", "edst12t"),
+		new staffroll_data(21, "/staffroll/", "edst15t"),
+		dummy_data,
+		new staffroll_data(19, "/staffroll/", "edst13t"),
+		new staffroll_data(20, "/staffroll/", "edst14t"),
+		dummy_data
+	};
+
 	private static staffroll_data dummy_data = new staffroll_data(-1, string.Empty, string.Empty);
 
 	public static staffrollCtrl instance { get; private set; }
@@ -154,6 +332,16 @@ public class staffrollCtrl : MonoBehaviour
 				return staffroll_list_j_;
 			case Language.USA:
 				return staffroll_list_u_;
+			case Language.FRANCE:
+				return staffroll_list_f_;
+			case Language.GERMAN:
+				return staffroll_list_g_;
+			case Language.KOREA:
+				return staffroll_list_k_;
+			case Language.CHINA_S:
+				return staffroll_list_s_;
+			case Language.CHINA_T:
+				return staffroll_list_t_;
 			default:
 				return staffroll_list_j_;
 			}
@@ -173,14 +361,14 @@ public class staffrollCtrl : MonoBehaviour
 		staffroll_sprite_.color = new Color(1f, 1f, 1f, 0f);
 		body_active_ = true;
 		enumerator_state_ = coroutine_state();
-		StartCoroutine(enumerator_state_);
+		coroutineCtrl.instance.Play(enumerator_state_);
 	}
 
 	public void end()
 	{
 		if (enumerator_state_ != null)
 		{
-			StopCoroutine(enumerator_state_);
+			coroutineCtrl.instance.Stop(enumerator_state_);
 			enumerator_state_ = null;
 		}
 		body_active_ = false;
@@ -221,7 +409,7 @@ public class staffrollCtrl : MonoBehaviour
 					if (!is_chain)
 					{
 						is_chain = true;
-						yield return StartCoroutine(fadeCtrl.instance.play_coroutine(30, true, Color.black));
+						yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(30, true, Color.black));
 						int timer = 0;
 						while (timer < 30)
 						{
@@ -229,7 +417,7 @@ public class staffrollCtrl : MonoBehaviour
 							yield return null;
 						}
 					}
-					yield return StartCoroutine(coroutine_play());
+					yield return coroutineCtrl.instance.Play(coroutine_play());
 				}
 				else
 				{
@@ -242,8 +430,8 @@ public class staffrollCtrl : MonoBehaviour
 			case MainState.stop:
 				if (staffroll_sprite_.sprite != null)
 				{
-					StartCoroutine(coroutine_staffroll_fade(15, false));
-					yield return StartCoroutine(fadeCtrl.instance.play_coroutine(15, false, Color.black));
+					coroutineCtrl.instance.Play(coroutine_staffroll_fade(15, false));
+					yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(15, false, Color.black));
 					staffroll_sprite_.sprite = null;
 				}
 				main_state_ = MainState.wait;
@@ -257,7 +445,7 @@ public class staffrollCtrl : MonoBehaviour
 
 	private IEnumerator coroutine_play()
 	{
-		yield return StartCoroutine(coroutine_powder_effect());
+		yield return coroutineCtrl.instance.Play(coroutine_powder_effect());
 		int timer = 0;
 		while (timer <= 30)
 		{
@@ -265,8 +453,8 @@ public class staffrollCtrl : MonoBehaviour
 			yield return null;
 		}
 		staffroll_sprite_.sprite = staffroll_sprite_data_[current_index_];
-		StartCoroutine(coroutine_staffroll_fade(30, true));
-		yield return StartCoroutine(coroutine_blow());
+		coroutineCtrl.instance.Play(coroutine_staffroll_fade(30, true));
+		yield return coroutineCtrl.instance.Play(coroutine_blow());
 	}
 
 	private IEnumerator coroutine_powder_effect()

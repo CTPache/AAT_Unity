@@ -138,7 +138,7 @@ public class scenarioSelectCtrl : sceneCtrl
 	{
 		End();
 		enumerator_state_ = stateCoroutine();
-		StartCoroutine(enumerator_state_);
+		coroutineCtrl.instance.Play(enumerator_state_);
 	}
 
 	private void Init()
@@ -209,12 +209,7 @@ public class scenarioSelectCtrl : sceneCtrl
 
 	private void storyTitleSet(TitleId title_id)
 	{
-		string text = string.Empty;
-		Language language = GSStatic.global_work_.language;
-		if (language != 0 && language == Language.USA)
-		{
-			text = "u";
-		}
+		string resourceNameLanguage = GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
 		string in_name = string.Empty;
 		string in_name2 = string.Empty;
 		byte b = 0;
@@ -223,19 +218,19 @@ public class scenarioSelectCtrl : sceneCtrl
 		{
 		case TitleId.GS1:
 			path_ = "/GS1/BG/";
-			in_name = "title_textgs1" + text;
+			in_name = "title_textgs1" + resourceNameLanguage;
 			in_name2 = "storygs1";
 			b = GSStatic.open_sce_.GS1_Scenario_enable;
 			break;
 		case TitleId.GS2:
 			path_ = "/GS2/BG/";
-			in_name = "title_textgs2" + text;
+			in_name = "title_textgs2" + resourceNameLanguage;
 			in_name2 = "storygs2";
 			b = GSStatic.open_sce_.GS2_Scenario_enable;
 			break;
 		case TitleId.GS3:
 			path_ = "/GS3/BG/";
-			in_name = "title_textgs3" + text;
+			in_name = "title_textgs3" + resourceNameLanguage;
 			in_name2 = "storygs3";
 			b = GSStatic.open_sce_.GS3_Scenario_enable;
 			break;
@@ -348,14 +343,14 @@ public class scenarioSelectCtrl : sceneCtrl
 		arrow_ctrl_.arrowAll(false);
 		SetFocusActive(false);
 		IEnumerator count_coroutine = MoveStackCounter();
-		StartCoroutine(count_coroutine);
+		coroutineCtrl.instance.Play(count_coroutine);
 		int slide_dir = in_dir;
 		while ((slide_dir == -1 && current_num_ > 0) || (slide_dir == 1 && current_num_ < open_num_))
 		{
 			is_scenario_move_ = true;
 			current_num_ += slide_dir;
 			soundCtrl.instance.PlaySE(42);
-			yield return StartCoroutine(CoroutineSlideMove());
+			yield return coroutineCtrl.instance.Play(CoroutineSlideMove());
 			slide_dir = 0;
 			if (move_stack_ != 0)
 			{
@@ -375,7 +370,7 @@ public class scenarioSelectCtrl : sceneCtrl
 		float num = (float)current_num_ * (0f - title_space_);
 		story_list_body_.transform.localPosition = Vector3.right * num;
 		move_stack_ = 0;
-		StopCoroutine(count_coroutine);
+		coroutineCtrl.instance.Stop(count_coroutine);
 		is_scenario_move_ = false;
 		ArrowOn();
 		SetFocusActive(true);
@@ -404,7 +399,7 @@ public class scenarioSelectCtrl : sceneCtrl
 
 	public override void End()
 	{
-		titleGuideCtrl.instance.close();
+		coroutineCtrl.instance.Play(titleGuideCtrl.instance.close());
 		foreach (storyTitle item in story_title_)
 		{
 			item.title_.sprite_data_.Clear();
@@ -414,12 +409,12 @@ public class scenarioSelectCtrl : sceneCtrl
 		}
 		if (enumerator_key_wait_ != null)
 		{
-			StopCoroutine(enumerator_key_wait_);
+			coroutineCtrl.instance.Stop(enumerator_key_wait_);
 			enumerator_key_wait_ = null;
 		}
 		if (enumerator_confirmation_ != null)
 		{
-			StopCoroutine(enumerator_confirmation_);
+			coroutineCtrl.instance.Stop(enumerator_confirmation_);
 			enumerator_confirmation_ = null;
 		}
 		confirmation_select_.End();
@@ -501,29 +496,29 @@ public class scenarioSelectCtrl : sceneCtrl
 			}
 			if (slide_dir != 0 && ((slide_dir == -1 && current_num_ > 0) || (slide_dir == 1 && current_num_ < open_num_)))
 			{
-				StartCoroutine(CoroutineFocus(story_title_[current_num_].title_, false));
-				StartCoroutine(CoroutineFocus(story_title_[current_num_].title_text_, false));
-				yield return StartCoroutine(CoroutineSlideState(slide_dir));
-				StartCoroutine(CoroutineFocus(story_title_[current_num_].title_, true));
-				StartCoroutine(CoroutineFocus(story_title_[current_num_].title_text_, true));
+				coroutineCtrl.instance.Play(CoroutineFocus(story_title_[current_num_].title_, false));
+				coroutineCtrl.instance.Play(CoroutineFocus(story_title_[current_num_].title_text_, false));
+				yield return coroutineCtrl.instance.Play(CoroutineSlideState(slide_dir));
+				coroutineCtrl.instance.Play(CoroutineFocus(story_title_[current_num_].title_, true));
+				coroutineCtrl.instance.Play(CoroutineFocus(story_title_[current_num_].title_text_, true));
 			}
 			if (padCtrl.instance.GetKeyDown(KeyType.B))
 			{
 				is_back_ = true;
 				base.is_end = true;
 				soundCtrl.instance.PlaySE(44);
-				titleGuideCtrl.instance.close();
+				coroutineCtrl.instance.Play(titleGuideCtrl.instance.close());
 			}
 			else if (padCtrl.instance.GetKeyDown(KeyType.A) && fadeCtrl.instance.is_end)
 			{
 				soundCtrl.instance.PlaySE(43);
-				titleGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+				coroutineCtrl.instance.Play(titleGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 				TouchSystem.TouchInActive();
 				enumerator_confirmation_ = CoroutineConfirmation();
-				yield return StartCoroutine(enumerator_confirmation_);
+				yield return coroutineCtrl.instance.Play(enumerator_confirmation_);
 				if (!base.is_end)
 				{
-					titleGuideCtrl.instance.open(keyGuideBase.Type.SCENARIO_SELECT);
+					coroutineCtrl.instance.Play(titleGuideCtrl.instance.open(keyGuideBase.Type.SCENARIO_SELECT));
 				}
 			}
 			if (base.is_end)
@@ -539,17 +534,36 @@ public class scenarioSelectCtrl : sceneCtrl
 	{
 		Init();
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_IN, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
-		titleGuideCtrl.instance.open(keyGuideBase.Type.SCENARIO_SELECT);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
+		coroutineCtrl.instance.Play(titleGuideCtrl.instance.open(keyGuideBase.Type.SCENARIO_SELECT));
 		enumerator_key_wait_ = CoroutineKeyWait();
-		yield return StartCoroutine(enumerator_key_wait_);
+		yield return coroutineCtrl.instance.Play(enumerator_key_wait_);
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
-		yield return new WaitForSeconds(1f);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
+		float time = 0f;
+		float wait = 1f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		if (is_back_)
 		{
-			titleGuideCtrl.instance.close();
-			yield return new WaitWhile(titleGuideCtrl.instance.CheckClose);
+			coroutineCtrl.instance.Play(titleGuideCtrl.instance.close());
+			while (titleGuideCtrl.instance.CheckClose())
+			{
+				yield return null;
+			}
 			titleCtrlRoot.instance.Scene(titleCtrlRoot.SceneType.Title);
 		}
 		else
@@ -625,13 +639,22 @@ public class scenarioSelectCtrl : sceneCtrl
 			start_text_[0].text = text + "\u3000" + start_text_base[0];
 			start_text_[1].text = start_text_base[1];
 			break;
-		case Language.USA:
+		default:
 			start_text_[0].text = start_text_base[0] + text + start_text_base[1];
 			start_text_[1].text = string.Empty;
 			break;
-		default:
-			start_text_[0].text = text + "\u3000" + start_text_base[0];
+		case Language.GERMAN:
+			start_text_[0].text = start_text_base[0] + "\"" + text + "\"";
 			start_text_[1].text = start_text_base[1];
+			break;
+		case Language.KOREA:
+			start_text_[0].text = text + start_text_base[0];
+			start_text_[1].text = start_text_base[1];
+			break;
+		case Language.CHINA_S:
+		case Language.CHINA_T:
+			start_text_[0].text = start_text_base[0];
+			start_text_[1].text = text + start_text_base[1];
 			break;
 		}
 	}

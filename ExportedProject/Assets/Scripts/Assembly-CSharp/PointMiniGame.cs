@@ -115,7 +115,7 @@ public class PointMiniGame : MonoBehaviour
 			converted_point_ = MiniGameGSPoint4Hit.ConvertPoint(expl_ck_data_.point, new Vector2(240f, 0f), new Vector2(5.625f, 5.625f)).ToArray();
 		}
 		InitTouch();
-		StartCoroutine(MainCoroutine());
+		coroutineCtrl.instance.Play(MainCoroutine());
 	}
 
 	private void InitTouch()
@@ -234,9 +234,9 @@ public class PointMiniGame : MonoBehaviour
 		yield return null;
 		Vector3 src_position = cursor.cursor_position;
 		Vector3 dest_position = new Vector3(cursor_area_size.x * 0.5f, cursor_area_size.y * 0.5f, 0f);
-		for (float time = 0f; time < appear_time_; time += Time.deltaTime)
+		for (float time2 = 0f; time2 < appear_time_; time2 += Time.deltaTime)
 		{
-			cursor.cursor_position = Vector3.Lerp(src_position, dest_position, time / appear_time_);
+			cursor.cursor_position = Vector3.Lerp(src_position, dest_position, time2 / appear_time_);
 			yield return null;
 		}
 		cursor.cursor_position = dest_position;
@@ -249,11 +249,11 @@ public class PointMiniGame : MonoBehaviour
 		debug_hit2.SetParent(debug_root_offset2.transform);
 		if (GSStatic.global_work_.r.no_0 == 5)
 		{
-			keyGuideCtrl.instance.open(keyGuideBase.Type.POINT_TANTEI);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.POINT_TANTEI));
 		}
 		else
 		{
-			keyGuideCtrl.instance.open((!GSMain_TanteiPart.IsBGSlide(bgCtrl.instance.bg_no)) ? keyGuideBase.Type.POINT : keyGuideBase.Type.POINT_SLIDE);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open((!GSMain_TanteiPart.IsBGSlide(bgCtrl.instance.bg_no)) ? keyGuideBase.Type.POINT : keyGuideBase.Type.POINT_SLIDE));
 		}
 		padCtrl pad = padCtrl.instance;
 		bool decide2 = false;
@@ -263,7 +263,7 @@ public class PointMiniGame : MonoBehaviour
 			debug_hit2.DebugShowArea(debug_show_area_, GetCursorRect(), converted_point_);
 			if (padCtrl.instance.GetKeyDown(KeyType.X))
 			{
-				if (!padCtrl.instance.GetKeyDown(KeyType.X) && !is_drag_)
+				if (!padCtrl.instance.GetKeyDown(KeyType.X) && touch_state_ != 2 && !is_drag_)
 				{
 					touch_state_ = 0;
 					decide2 = true;
@@ -278,7 +278,7 @@ public class PointMiniGame : MonoBehaviour
 			}
 			if (padCtrl.instance.GetKeyDown(KeyType.L) && GSMain_TanteiPart.IsBGSlide(bgCtrl.instance.bg_no))
 			{
-				bgCtrl.instance.Slider();
+				coroutineCtrl.instance.Play(bgCtrl.instance.Slider());
 				while (bgCtrl.instance.is_slider)
 				{
 					yield return null;
@@ -297,11 +297,11 @@ public class PointMiniGame : MonoBehaviour
 					break;
 				}
 				prev_position2 = cursor.cursor_position;
-				cursor.Update();
+				cursor.Process();
 			}
 			yield return null;
 		}
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		debug_hit2.DebugShowArea(false, GetCursorRect(), converted_point_);
 		debug_hit2.SetParent(null);
 		debug_hit2 = null;
@@ -311,7 +311,17 @@ public class PointMiniGame : MonoBehaviour
 		{
 			cursor.icon_sprite = icon_sprites2[1];
 			Balloon.PlayTakeThat();
-			yield return new WaitForSeconds(1f);
+			float time = 0f;
+			float wait = 1f;
+			while (true)
+			{
+				time += Time.deltaTime;
+				if (time > wait)
+				{
+					break;
+				}
+				yield return null;
+			}
 		}
 		cursor.icon_visible = false;
 		cursor.icon_sprite = null;

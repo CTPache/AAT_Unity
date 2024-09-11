@@ -129,7 +129,7 @@ public class episodeReleaseCtrl : MonoBehaviour
 		Initialize();
 		Load();
 		enumerator_play_ = CoroutinePlay();
-		StartCoroutine(enumerator_play_);
+		coroutineCtrl.instance.Play(enumerator_play_);
 	}
 
 	public void Initialize()
@@ -150,7 +150,7 @@ public class episodeReleaseCtrl : MonoBehaviour
 		back_ground_.sprite = null;
 		if (enumerator_play_ != null)
 		{
-			StopCoroutine(enumerator_play_);
+			coroutineCtrl.instance.Stop(enumerator_play_);
 			enumerator_play_ = null;
 		}
 		touch_.touch_key_type = KeyType.A;
@@ -215,12 +215,15 @@ public class episodeReleaseCtrl : MonoBehaviour
 		sprite_scale.y = (sprite_scale.x = focus_scale_curve_.Evaluate(1f));
 		story_list_[current_story_].picture.transform.localScale = sprite_scale;
 		is_scroll_ = false;
-		switch (GSStatic.global_work_.language)
+		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 		{
 		case Language.JAPAN:
 			messageBoardCtrl.instance.SetPos(0f, 42f);
 			break;
 		case Language.USA:
+			messageBoardCtrl.instance.SetPos(0f, 80f);
+			break;
+		default:
 			messageBoardCtrl.instance.SetPos(0f, 80f);
 			break;
 		}
@@ -268,14 +271,8 @@ public class episodeReleaseCtrl : MonoBehaviour
 		list.AddRange(assetBundle.LoadAllAssets<Sprite>());
 		assetBundle = AssetBundleCtrl.instance.load("/menu/title/", "def_title");
 		sprite = assetBundle.LoadAsset<Sprite>("def_title");
-		string text = string.Empty;
-		Language language = GSStatic.global_work_.language;
-		if (language != 0 && language == Language.USA)
-		{
-			text = "u";
-		}
 		string in_path2 = "/GS" + ((int)(current_title_ + 1)).ToString("D1") + "/BG/";
-		string in_name2 = "title_textgs" + ((int)(current_title_ + 1)).ToString("D1") + text;
+		string in_name2 = "title_textgs" + ((int)(current_title_ + 1)).ToString("D1") + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
 		assetBundle = AssetBundleCtrl.instance.load(in_path2, in_name2);
 		list2.AddRange(assetBundle.LoadAllAssets<Sprite>());
 		assetBundle = AssetBundleCtrl.instance.load("/menu/title/", "title_g");

@@ -99,7 +99,7 @@ public class VaseShowMiniGame : MonoBehaviour
 		touch_.ActiveCollider();
 		vase_rotate_ = Vector3.zero;
 		vase_.transform.localRotation = Quaternion.Euler(vase_rotate_);
-		StartCoroutine(VaseShowMain());
+		coroutineCtrl.instance.Play(VaseShowMain());
 	}
 
 	public void end()
@@ -144,14 +144,34 @@ public class VaseShowMiniGame : MonoBehaviour
 
 	private IEnumerator VaseShowMain()
 	{
-		yield return new WaitForSeconds(1.2f);
+		float time2 = 0f;
+		float wait2 = 1.2f;
+		while (true)
+		{
+			time2 += Time.deltaTime;
+			if (time2 > wait2)
+			{
+				break;
+			}
+			yield return null;
+		}
 		messageBoardCtrl.instance.board(false, false);
 		fadeCtrl.instance.play(1u, 1u, 1u);
 		body_.SetActive(true);
 		ConfrontWithMovie.instance.controller.SetAutoPlayStatus(2);
 		ConfrontWithMovie.instance.controller.ResetScreenTexture();
-		keyGuideCtrl.instance.open(keyGuideBase.Type.VASE_SHOW);
-		yield return new WaitForSeconds(0.4f);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.VASE_SHOW));
+		float time3 = 0f;
+		float wait3 = 0.4f;
+		while (true)
+		{
+			time3 += Time.deltaTime;
+			if (time3 > wait3)
+			{
+				break;
+			}
+			yield return null;
+		}
 		vase_camera_.SetActive(true);
 		while (true)
 		{
@@ -193,7 +213,17 @@ public class VaseShowMiniGame : MonoBehaviour
 		fadeCtrl.instance.play(3u, 1u, 4u);
 		vase_camera_.SetActive(false);
 		Balloon.PlayTakeThat();
-		yield return new WaitForSeconds(1.1f);
+		float time = 0f;
+		float wait = 1.1f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		objMoveCtrl.instance.stop(2);
 		AnswerView();
 	}
@@ -250,7 +280,7 @@ public class VaseShowMiniGame : MonoBehaviour
 		{
 			is_Correct_ = true;
 		}
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		if (is_Correct_)
 		{
 			advCtrl.instance.message_system_.SetMessage(scenario.SC4_68560);

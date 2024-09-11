@@ -503,6 +503,8 @@ public class FingerMiniGame : MonoBehaviour
 
 	private const int profile_name_fontsize_usa_ = 32;
 
+	private const int profile_name_fontsize_korea_ = 24;
+
 	private const float profile_name_position_y_jpn_ = 40f;
 
 	private const float profile_name_position_y_usa_ = 35f;
@@ -551,6 +553,8 @@ public class FingerMiniGame : MonoBehaviour
 				return 36;
 			case Language.USA:
 				return 32;
+			case Language.KOREA:
+				return 24;
 			default:
 				return 32;
 			}
@@ -648,7 +652,7 @@ public class FingerMiniGame : MonoBehaviour
 				UpdateCompCursor();
 			};
 		}
-		StartCoroutine(ProcCoroutine());
+		coroutineCtrl.instance.Play(ProcCoroutine());
 	}
 
 	public void SetReq(byte req)
@@ -666,19 +670,19 @@ public class FingerMiniGame : MonoBehaviour
 		yield return null;
 		if (game_id_ == 0)
 		{
-			yield return TutorialCoroutine(0);
+			yield return coroutineCtrl.instance.Play(TutorialCoroutine(0));
 		}
 		while (true)
 		{
-			yield return SelectCoroutine();
+			yield return coroutineCtrl.instance.Play(SelectCoroutine());
 			if (finger_index_ < 0)
 			{
 				break;
 			}
-			yield return MainCoroutine();
+			yield return coroutineCtrl.instance.Play(MainCoroutine());
 			if (finger_index_ >= 0)
 			{
-				yield return CompMainCoroutine();
+				yield return coroutineCtrl.instance.Play(CompMainCoroutine());
 				if (finger_index_ >= 0)
 				{
 					break;
@@ -782,7 +786,7 @@ public class FingerMiniGame : MonoBehaviour
 		points2 = MiniGameGSPoint4Hit.ConvertPoint(points2, select_finger_offset_[game_id_], select_finger_scale_[game_id_]).ToArray();
 		DebugMiniGameGSPoint4Hit debug_hit = new DebugMiniGameGSPoint4Hit();
 		debug_hit.SetParent(base.transform);
-		keyGuideCtrl.instance.open(keyGuideBase.Type.FINGER_SELECT);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.FINGER_SELECT));
 		messageBoardCtrl.instance.InActiveNormalMessageNextTouch();
 		Vector3 last_position = Vector3.zero;
 		int select = -1;
@@ -790,7 +794,7 @@ public class FingerMiniGame : MonoBehaviour
 		bool loop = true;
 		while (loop)
 		{
-			cursor.Update();
+			cursor.Process();
 			debug_hit.DebugShowArea(debug_show_area_, GetCursorRect(), points2);
 			if (last_position != cursor.cursor_position)
 			{
@@ -820,7 +824,7 @@ public class FingerMiniGame : MonoBehaviour
 			yield return null;
 		}
 		debug_hit.DebugShowArea(false, GetCursorRect(), points2);
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		cursor.icon_visible = false;
 		cursor.icon_sprite = null;
 		icon_sprites2 = null;
@@ -843,7 +847,7 @@ public class FingerMiniGame : MonoBehaviour
 		if (game_id_ == 0 && !GSFlag.Check(0u, scenario.SCE4_FLAG_ST_G_FINGER_MES1))
 		{
 			GSFlag.Set(0u, scenario.SCE4_FLAG_ST_G_FINGER_MES1, 1u);
-			yield return TutorialCoroutine(1);
+			yield return coroutineCtrl.instance.Play(TutorialCoroutine(1));
 		}
 		padCtrl pad = padCtrl.instance;
 		MiniGameCursor cursor = MiniGameCursor.instance;
@@ -851,13 +855,23 @@ public class FingerMiniGame : MonoBehaviour
 		cursor.icon_offset = new Vector3(48f, -48f, 0f);
 		cursor.icon_sprite = icon_sprites2[0];
 		cursor.icon_visible = true;
-		keyGuideCtrl.instance.open(keyGuideBase.Type.FINGER_MAIN);
-		yield return new WaitForSeconds(0.5f);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.FINGER_MAIN));
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		messageBoardCtrl.instance.InActiveNormalMessageNextTouch();
 		bool loop = true;
 		while (loop)
 		{
-			cursor.Update();
+			cursor.Process();
 			bool mouse_down = padCtrl.instance.InputGetMouseButtonDown(0);
 			if (pad.GetKeyDown(KeyType.A) || mouse_down)
 			{
@@ -882,7 +896,7 @@ public class FingerMiniGame : MonoBehaviour
 			}
 			else if (pad.GetKeyDown(KeyType.X))
 			{
-				yield return Blow();
+				yield return coroutineCtrl.instance.Play(Blow());
 				if (CheckClear())
 				{
 					loop = false;
@@ -890,7 +904,7 @@ public class FingerMiniGame : MonoBehaviour
 			}
 			yield return null;
 		}
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		cursor.icon_visible = false;
 		cursor.icon_sprite = null;
 		if (finger_index_ >= 0)
@@ -900,11 +914,11 @@ public class FingerMiniGame : MonoBehaviour
 			{
 				if (finger_tbl[finger_index_].hit == 1)
 				{
-					yield return TutorialCoroutine(6);
+					yield return coroutineCtrl.instance.Play(TutorialCoroutine(6));
 				}
 				else
 				{
-					yield return TutorialCoroutine(2);
+					yield return coroutineCtrl.instance.Play(TutorialCoroutine(2));
 					finger_index_ = -1;
 					GSFlag.Set(0u, scenario.SCE4_FLAG_ST_G_FINGER_MES2, 1u);
 				}
@@ -912,25 +926,25 @@ public class FingerMiniGame : MonoBehaviour
 			else
 			{
 				soundCtrl.instance.PlaySE(17);
-				yield return DiscoveryCursorCoroutine();
+				yield return coroutineCtrl.instance.Play(DiscoveryCursorCoroutine());
 				if (finger_tbl[finger_index_].hit != 1)
 				{
-					yield return TutorialCoroutine(9);
+					yield return coroutineCtrl.instance.Play(TutorialCoroutine(9));
 					finger_index_ = -1;
 				}
 			}
 			if (finger_index_ >= 0)
 			{
-				yield return MoveFingerPrintCoroutine();
+				yield return coroutineCtrl.instance.Play(MoveFingerPrintCoroutine());
 			}
 		}
 		else if (game_id_ == 0)
 		{
-			yield return TutorialCoroutine(3);
+			yield return coroutineCtrl.instance.Play(TutorialCoroutine(3));
 		}
 		else
 		{
-			yield return TutorialCoroutine(8);
+			yield return coroutineCtrl.instance.Play(TutorialCoroutine(8));
 		}
 		yield return null;
 		main_root_.SetActive(false);
@@ -1069,8 +1083,18 @@ public class FingerMiniGame : MonoBehaviour
 		UpdateCompCursor();
 		comp_main_root_.SetActive(true);
 		yield return null;
-		keyGuideCtrl.instance.open((game_id_ == 0) ? keyGuideBase.Type.FINGER_COMP_TUTORIAL : keyGuideBase.Type.FINGER_COMP);
-		yield return new WaitForSeconds(0.5f);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open((game_id_ == 0) ? keyGuideBase.Type.FINGER_COMP_TUTORIAL : keyGuideBase.Type.FINGER_COMP));
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		padCtrl pad = padCtrl.instance;
 		bool loop = true;
 		while (loop)
@@ -1098,7 +1122,7 @@ public class FingerMiniGame : MonoBehaviour
 			else if (pad.GetKeyDown(KeyType.X))
 			{
 				TouchSystem.TouchInActive();
-				yield return ComparisonCoroutine();
+				yield return coroutineCtrl.instance.Play(ComparisonCoroutine());
 				if (comp_hit_)
 				{
 					loop = false;
@@ -1107,11 +1131,11 @@ public class FingerMiniGame : MonoBehaviour
 				{
 					if (game_id_ == 0)
 					{
-						yield return TutorialCoroutine(4);
+						yield return coroutineCtrl.instance.Play(TutorialCoroutine(4));
 					}
 					else if (game_id_ == 2)
 					{
-						yield return TutorialCoroutine(7);
+						yield return coroutineCtrl.instance.Play(TutorialCoroutine(7));
 					}
 					TouchActive();
 				}
@@ -1119,7 +1143,7 @@ public class FingerMiniGame : MonoBehaviour
 			padCtrl.instance.WheelMoveValUpdate();
 			yield return null;
 		}
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		comp_main_root_.SetActive(false);
 		UnloadCompMainCoroutineData();
 		if (render_texture_ != null)
@@ -1254,13 +1278,13 @@ public class FingerMiniGame : MonoBehaviour
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_IN, 1u, 8u);
 		comp_result_background_.sprite = ((!comp_hit_) ? comp_no_match_background_sprite_ : comp_match_background_sprite_);
 		comp_result_background_.enabled = true;
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language != 0)
 		{
-			yield return CompResultMessage_U_Coroutine();
+			yield return coroutineCtrl.instance.Play(CompResultMessage_U_Coroutine());
 		}
 		else
 		{
-			yield return CompResultMessageCoroutine();
+			yield return coroutineCtrl.instance.Play(CompResultMessageCoroutine());
 		}
 		comp_result_background_.sprite = null;
 		comp_result_background_.enabled = false;
@@ -1283,7 +1307,7 @@ public class FingerMiniGame : MonoBehaviour
 	private IEnumerator TutorialCoroutine(int tutorial_no)
 	{
 		keyGuideBase.Type guid_type = keyGuideCtrl.instance.current_guide;
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		uint message;
 		switch (tutorial_no)
 		{
@@ -1340,17 +1364,17 @@ public class FingerMiniGame : MonoBehaviour
 			if (req_ == 55)
 			{
 				req_ = 0;
-				yield return FingerEff0Coroutine();
+				yield return coroutineCtrl.instance.Play(FingerEff0Coroutine());
 			}
 			else if (req_ == 56)
 			{
 				req_ = 0;
-				yield return FingerEff1Coroutine();
+				yield return coroutineCtrl.instance.Play(FingerEff1Coroutine());
 			}
 			else if (req_ == 57)
 			{
 				req_ = 0;
-				yield return FingerEff2Coroutine();
+				yield return coroutineCtrl.instance.Play(FingerEff2Coroutine());
 			}
 			else if (req_ == 58)
 			{
@@ -1376,7 +1400,7 @@ public class FingerMiniGame : MonoBehaviour
 		messageBoardCtrl.instance.board(false, false);
 		messageBoardCtrl.instance.InActiveNormalMessageNextTouch();
 		MessageSystem.GetActiveMessageWork().message_trans_flag = 0;
-		keyGuideCtrl.instance.open(guid_type);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(guid_type));
 		yield return null;
 	}
 
@@ -1391,16 +1415,22 @@ public class FingerMiniGame : MonoBehaviour
 
 	private IEnumerator FingerEff1Coroutine()
 	{
-		yield return Blow(true);
+		yield return coroutineCtrl.instance.Play(Blow(true));
 	}
 
 	private IEnumerator FingerEff2Coroutine()
 	{
 		fadeCtrl.instance.play(2u, 1u, 1u, 8u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
 		main_root_.SetActive(false);
 		fadeCtrl.instance.play(1u, 1u, 1u, 8u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
 	}
 
 	private void LoadMainCoroutineData()
@@ -1731,6 +1761,10 @@ public class FingerMiniGame : MonoBehaviour
 		localPosition.y = profile_name_position_y_;
 		info_texts_[0].rectTransform.localPosition = localPosition;
 		info_texts_[0].fontSize = profile_name_fontsize_;
+		for (int num2 = 0; num2 < info_texts_.Length; num2++)
+		{
+			info_texts_[num2].verticalOverflow = VerticalWrapMode.Overflow;
+		}
 	}
 
 	private void UnloadCompMainCoroutineData()

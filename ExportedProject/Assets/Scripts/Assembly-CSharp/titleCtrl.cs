@@ -50,17 +50,17 @@ public class titleCtrl : MonoBehaviour
 
 	public void play()
 	{
-		StartCoroutine(stateCoroutine());
+		coroutineCtrl.instance.Play(stateCoroutine());
 	}
 
 	private IEnumerator stateCoroutine()
 	{
 		active = true;
 		mainCtrl.instance.addText(text_);
-		yield return StartCoroutine(fadeCtrl.instance.play_coroutine(30, true, Color.black));
-		yield return StartCoroutine(key_wait());
-		yield return StartCoroutine(doorCtrl.instance.CoroutineClose());
-		yield return StartCoroutine(fadeCtrl.instance.play_coroutine(30, false, Color.black));
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(30, true, Color.black));
+		yield return coroutineCtrl.instance.Play(key_wait());
+		yield return coroutineCtrl.instance.Play(doorCtrl.instance.CoroutineClose());
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(30, false, Color.black));
 		doorCtrl.instance.stop();
 		mainCtrl.instance.removeText(text_);
 		active = false;

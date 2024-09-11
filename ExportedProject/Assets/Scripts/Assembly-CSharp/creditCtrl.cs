@@ -319,7 +319,7 @@ public class creditCtrl : MonoBehaviour
 			case Language.USA:
 				return title_logo_us_;
 			default:
-				return title_logo_us_;
+				return title_logo_jp_;
 			}
 		}
 	}
@@ -377,6 +377,7 @@ public class creditCtrl : MonoBehaviour
 		{
 			item2.image_object.sprite = null;
 		}
+		AssetBundleCtrl.instance.remove("/GS1/BG/", "bg044");
 		TouchSystem.TouchInActive();
 	}
 
@@ -640,37 +641,37 @@ public class creditCtrl : MonoBehaviour
 
 	private IEnumerator CoroutineMain()
 	{
-		yield return StartCoroutine(CoroutineScreenFade(time_setting_.screen_fade_in, true));
+		yield return coroutineCtrl.instance.Play(CoroutineScreenFade(time_setting_.screen_fade_in, true));
 		guide_ctrl_.ReLoadGuid();
-		guide_ctrl_.open(guideCtrl.GuideType.CREDIT);
+		coroutineCtrl.instance.Play(guide_ctrl_.open(guideCtrl.GuideType.CREDIT));
 		guide_ctrl_.ActiveTouch();
-		yield return StartCoroutine(CoroutineWait(time_setting_.bgm_start_wait));
+		yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.bgm_start_wait));
 		soundCtrl.instance.PlayBGM(600);
 		for (int i = 0; i < 3; i++)
 		{
-			yield return StartCoroutine(CoroutineWait(time_setting_.title_logo_start_wait[i]));
+			yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.title_logo_start_wait[i]));
 			image_.sprite = sprites_[i];
 			image_.SetNativeSize();
-			yield return StartCoroutine(CoroutineImageFade(time_setting_.title_logo_fade_in, true));
-			yield return StartCoroutine(CoroutineWait(time_setting_.title_logo_on_wait));
-			yield return StartCoroutine(CoroutineImageFade(time_setting_.title_logo_fade_out, false));
+			yield return coroutineCtrl.instance.Play(CoroutineImageFade(time_setting_.title_logo_fade_in, true));
+			yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.title_logo_on_wait));
+			yield return coroutineCtrl.instance.Play(CoroutineImageFade(time_setting_.title_logo_fade_out, false));
 		}
-		yield return StartCoroutine(CoroutineWait(time_setting_.begin_text_start_wait));
+		yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.begin_text_start_wait));
 		text_object_begin_.text.text = credit_text_data_[0].credit_text;
-		yield return StartCoroutine(CoroutineTextFade(time_setting_.begin_text_fade_in, true));
-		yield return StartCoroutine(CoroutineWait(time_setting_.begin_text_on_wait));
-		yield return StartCoroutine(CoroutineTextFade(time_setting_.begin_text_fade_out, false));
+		yield return coroutineCtrl.instance.Play(CoroutineTextFade(time_setting_.begin_text_fade_in, true));
+		yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.begin_text_on_wait));
+		yield return coroutineCtrl.instance.Play(CoroutineTextFade(time_setting_.begin_text_fade_out, false));
 		text_object_begin_.text.text = string.Empty;
-		yield return StartCoroutine(CoroutineWait(time_setting_.begin_text_off_wait));
-		yield return StartCoroutine(CoroutineStaffRoll());
-		yield return StartCoroutine(CoroutineWait(time_setting_.CAPCOM_logo_wait));
+		yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.begin_text_off_wait));
+		yield return coroutineCtrl.instance.Play(CoroutineStaffRoll());
+		yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.CAPCOM_logo_wait));
 		image_.sprite = sprites_[3];
 		image_.SetNativeSize();
 		image_active_ = true;
 		image_.rectTransform.localPosition = Vector3.zero;
 		image_alpha_ = 0f;
-		yield return StartCoroutine(CoroutineImageFade(time_setting_.CAPCOM_logo_fade_in, true));
-		yield return StartCoroutine(CoroutineWait(time_setting_.CAPCOM_logo_on_wait));
+		yield return coroutineCtrl.instance.Play(CoroutineImageFade(time_setting_.CAPCOM_logo_fade_in, true));
+		yield return coroutineCtrl.instance.Play(CoroutineWait(time_setting_.CAPCOM_logo_on_wait));
 		enumerator_main_ = null;
 		is_credit_end_ = true;
 	}
@@ -680,14 +681,14 @@ public class creditCtrl : MonoBehaviour
 		is_play = true;
 		Init();
 		enumerator_main_ = CoroutineMain();
-		StartCoroutine(enumerator_main_);
-		yield return StartCoroutine(CoroutineEndJudge());
-		guide_ctrl_.close();
+		coroutineCtrl.instance.Play(enumerator_main_);
+		yield return coroutineCtrl.instance.Play(CoroutineEndJudge());
+		coroutineCtrl.instance.Play(guide_ctrl_.close());
 		soundCtrl.instance.FadeOutBGM(time_setting_.screen_fade_out);
-		yield return StartCoroutine(CoroutineScreenFade(time_setting_.screen_fade_out, false));
+		yield return coroutineCtrl.instance.Play(CoroutineScreenFade(time_setting_.screen_fade_out, false));
 		if (enumerator_main_ != null)
 		{
-			StopCoroutine(enumerator_main_);
+			coroutineCtrl.instance.Stop(enumerator_main_);
 			enumerator_main_ = null;
 		}
 		End();
@@ -701,7 +702,7 @@ public class creditCtrl : MonoBehaviour
 			End();
 		}
 		enumerator_play_ = CoroutinePlay();
-		StartCoroutine(enumerator_play_);
+		coroutineCtrl.instance.Play(enumerator_play_);
 	}
 
 	public void Stop()

@@ -12,7 +12,12 @@ public class VasePuzzleFlashingAnimation : MonoBehaviour
 
 	private float anm_timer_;
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		if (renderer_ != null)
 		{

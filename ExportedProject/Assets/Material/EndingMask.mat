@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EndingMask
-  m_Shader: {fileID: 4800000, guid: 523371037574bad4a8b00958fd6dbc8d, type: 3}
+  m_Shader: {fileID: 4800000, guid: 54ce5a9747ea7ad4ebff4cbf7a543a8e, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

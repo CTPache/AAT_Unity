@@ -113,7 +113,7 @@ public class mainTitleCtrl : sceneCtrl
 	{
 		End();
 		enumerator_state_ = stateCoroutine();
-		StartCoroutine(enumerator_state_);
+		coroutineCtrl.instance.Play(enumerator_state_);
 	}
 
 	public void Init()
@@ -122,8 +122,20 @@ public class mainTitleCtrl : sceneCtrl
 		GSStatic.trophy_manager.Init();
 		GSStatic.trophy_manager.GetTrophyData();
 		optionCtrl.instance.OptionSet();
+		ReplaceFont.instance.ChangeFont(GSStatic.global_work_.language);
 		TextDataCtrl.SetLanguage(GSStatic.global_work_.language);
 		GSStatic.save_slot_language_ = GSStatic.global_work_.language;
+		if (GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA)
+		{
+			if (GSStatic.global_work_.language == Language.FRANCE || GSStatic.global_work_.language == Language.CHINA_S)
+			{
+				systemCtrl.instance.EnableDoubleQuotationAdjustoment(true);
+			}
+			else
+			{
+				systemCtrl.instance.EnableDoubleQuotationAdjustoment(false);
+			}
+		}
 		changeText();
 		mainCtrl.instance.addText(select_plate_text_00_);
 		mainCtrl.instance.addText(select_plate_text_01_);
@@ -168,7 +180,10 @@ public class mainTitleCtrl : sceneCtrl
 	{
 		Init();
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_IN, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
 		if (GSStatic.save_data.Where((SaveData data) => data.in_data > 0).Count() > 0)
 		{
 			select_type_ = 1;
@@ -288,7 +303,10 @@ public class mainTitleCtrl : sceneCtrl
 			yield return null;
 		}
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
-		yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+		while (!fadeCtrl.instance.is_end)
+		{
+			yield return null;
+		}
 		if (load)
 		{
 			titleCtrlRoot.instance.active = false;
@@ -323,25 +341,22 @@ public class mainTitleCtrl : sceneCtrl
 			}
 		};
 		select_plate_.mainTitleInit(select_text_[select_type_], "select_button", select_type_);
-		string text = string.Empty;
-		int textFontsize = 0;
-		Vector3 textPosition = Vector3.zero;
-		switch (GSStatic.global_work_.language)
+		int num = 0;
+		Vector3 zero = Vector3.zero;
+		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 		{
 		case Language.JAPAN:
-			text = string.Empty;
-			textFontsize = 38;
-			textPosition = new Vector3(0f, 0f, -30f);
+			num = 38;
+			zero = new Vector3(0f, 0f, -30f);
 			break;
-		case Language.USA:
-			text = "u";
-			textFontsize = 37;
-			textPosition = new Vector3(0f, 4f, -30f);
+		default:
+			num = 37;
+			zero = new Vector3(0f, 4f, -30f);
 			break;
 		}
-		select_plate_.SetTextFontsize(textFontsize);
-		select_plate_.SetTextPosition(textPosition);
-		main_title_.title_.load("/menu/title/", "title" + text, true);
+		select_plate_.SetTextFontsize(num);
+		select_plate_.SetTextPosition(zero);
+		main_title_.title_.load("/menu/title/", "title" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language), true);
 		main_title_.title_.spriteNo(0);
 		main_title_.title_.sprite_data_.Clear();
 	}

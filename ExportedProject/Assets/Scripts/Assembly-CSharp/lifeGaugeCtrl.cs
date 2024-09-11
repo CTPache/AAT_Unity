@@ -82,6 +82,8 @@ public class lifeGaugeCtrl : MonoBehaviour
 
 	private IEnumerator move_enumerator_;
 
+	private IEnumerator frame_out_enumerator_;
+
 	private bool to_active_pos_;
 
 	private int gauge_mode_ = 8;
@@ -196,6 +198,15 @@ public class lifeGaugeCtrl : MonoBehaviour
 		}
 	}
 
+	private void OnDisable()
+	{
+		if (move_enumerator_ != null)
+		{
+			coroutineCtrl.instance.Stop(move_enumerator_);
+			move_enumerator_ = null;
+		}
+	}
+
 	public void load()
 	{
 		GSStatic.global_work_.gauge_disp_flag = 1;
@@ -257,7 +268,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 		switch (_state)
 		{
 		case Gauge_State.LIFE_OFF:
-			StartCoroutine(FrameOut());
+			coroutineCtrl.instance.Play(FrameOut());
 			break;
 		case Gauge_State.LIFE_ON:
 			FrameIn();
@@ -274,14 +285,14 @@ public class lifeGaugeCtrl : MonoBehaviour
 		case Gauge_State.NOTICE_DAMAGE:
 			if (GetDamage() != 0)
 			{
-				StartCoroutine(FrameInFadeColor());
+				coroutineCtrl.instance.Play(FrameInFadeColor());
 			}
 			break;
 		case Gauge_State.STOP_NOTICE:
-			StartCoroutine(StopFadeColor());
+			coroutineCtrl.instance.Play(StopFadeColor());
 			break;
 		case Gauge_State.DAMAGE:
-			StartCoroutine(ReduceRest());
+			coroutineCtrl.instance.Play(ReduceRest());
 			break;
 		}
 	}
@@ -306,11 +317,11 @@ public class lifeGaugeCtrl : MonoBehaviour
 			UpdateRest();
 			if (move_enumerator_ != null)
 			{
-				StopCoroutine(move_enumerator_);
+				coroutineCtrl.instance.Stop(move_enumerator_);
 				move_enumerator_ = null;
 			}
 			move_enumerator_ = CoroutineGaugeMove(true);
-			StartCoroutine(move_enumerator_);
+			coroutineCtrl.instance.Play(move_enumerator_);
 		}
 		else
 		{
@@ -325,12 +336,12 @@ public class lifeGaugeCtrl : MonoBehaviour
 			to_active_pos_ = false;
 			if (move_enumerator_ != null)
 			{
-				StopCoroutine(move_enumerator_);
+				coroutineCtrl.instance.Stop(move_enumerator_);
 				move_enumerator_ = null;
 			}
 			fadeout_dropfrag_ = false;
 			move_enumerator_ = CoroutineGaugeMove(false);
-			yield return StartCoroutine(move_enumerator_);
+			yield return coroutineCtrl.instance.Play(move_enumerator_);
 		}
 		else
 		{
@@ -351,7 +362,17 @@ public class lifeGaugeCtrl : MonoBehaviour
 	private IEnumerator StopFadeColor()
 	{
 		fadeout_dropfrag_ = true;
-		yield return new WaitForSeconds(0.2f);
+		float time = 0f;
+		float wait = 0.2f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		fadeout_dropfrag_ = false;
 	}
 
@@ -444,7 +465,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 			{
 				LowestGaugeSet();
 				damage2 *= -1;
-				yield return StartCoroutine(RecoveryLife(damage2));
+				yield return coroutineCtrl.instance.Play(RecoveryLife(damage2));
 				lifegauge_do_next_move();
 				yield break;
 			}
@@ -469,12 +490,32 @@ public class lifeGaugeCtrl : MonoBehaviour
 					gauge_red_[j].active = true;
 					gauge_red_[j].sprite_renderer_.color = new Color(1f, 1f, 1f, 1f);
 				}
-				yield return new WaitForSeconds(0.08f);
+				float time2 = 0f;
+				float wait2 = 0.08f;
+				while (true)
+				{
+					time2 += Time.deltaTime;
+					if (time2 > wait2)
+					{
+						break;
+					}
+					yield return null;
+				}
 				for (int k = now_life; k < old_life; k++)
 				{
 					gauge_red_[k].sprite_renderer_.color = new Color(0.1f, 0.1f, 0.1f, 1f);
 				}
-				yield return new WaitForSeconds(0.08f);
+				float time = 0f;
+				float wait = 0.08f;
+				while (true)
+				{
+					time += Time.deltaTime;
+					if (time > wait)
+					{
+						break;
+					}
+					yield return null;
+				}
 				if (i == 2)
 				{
 					UpdateRest();
@@ -482,7 +523,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 					{
 						gauge_red_[l].sprite_renderer_.color = new Color(1f, 1f, 1f, 1f);
 					}
-					yield return StartCoroutine(PlayExplosion(damage2));
+					yield return coroutineCtrl.instance.Play(PlayExplosion(damage2));
 				}
 			}
 			if (debug_instant_death_)
@@ -497,12 +538,12 @@ public class lifeGaugeCtrl : MonoBehaviour
 		if ((GSStatic.global_work_.r.no_0 == 4 || GSStatic.global_work_.r.no_0 == 7) && GSStatic.global_work_.title != 0 && GSStatic.global_work_.gauge_hp <= 0)
 		{
 			MessageWork message_work = MessageSystem.GetActiveMessageWork();
-			if (move_enumerator_ != null)
+			if (frame_out_enumerator_ != null)
 			{
-				StopCoroutine(move_enumerator_);
-				move_enumerator_ = null;
+				coroutineCtrl.instance.Stop(frame_out_enumerator_);
+				frame_out_enumerator_ = null;
 			}
-			move_enumerator_ = FrameOut();
+			frame_out_enumerator_ = FrameOut();
 			if (!message_work.game_over)
 			{
 				message_work.game_over = true;
@@ -513,17 +554,17 @@ public class lifeGaugeCtrl : MonoBehaviour
 				advCtrl.instance.message_system_.SetMessage(GSScenario.GetGameOverMesData());
 			}
 			GSStatic.global_work_.gauge_disp_flag = 0;
-			yield return StartCoroutine(move_enumerator_);
+			yield return coroutineCtrl.instance.Play(frame_out_enumerator_);
 		}
 		if (GSStatic.global_work_.title == TitleId.GS1)
 		{
-			if (move_enumerator_ != null)
+			if (frame_out_enumerator_ != null)
 			{
-				StopCoroutine(move_enumerator_);
-				move_enumerator_ = null;
+				coroutineCtrl.instance.Stop(frame_out_enumerator_);
+				frame_out_enumerator_ = null;
 			}
-			move_enumerator_ = FrameOut();
-			yield return StartCoroutine(move_enumerator_);
+			frame_out_enumerator_ = FrameOut();
+			yield return coroutineCtrl.instance.Play(frame_out_enumerator_);
 		}
 		yield return null;
 	}
@@ -549,30 +590,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 		}
 		if (_damageScale <= 5)
 		{
-			for (int i = 0; i < 5; i++)
-			{
-				if (i == 1)
-				{
-					soundCtrl.instance.PlaySE(76);
-				}
-				if (i < _damageScale)
-				{
-					use_explosion.transform.localPosition = new Vector3(gauge_red_[old_rest_pos_x - i].transform.localPosition.x, 0f, -20f);
-					gauge_red_[old_rest_pos_x - i].active = false;
-				}
-				else
-				{
-					use_explosion.transform.localPosition = new Vector3(gauge_red_[now_rest_pos_x + 1].transform.localPosition.x, 0f, -20f);
-					gauge_red_[now_rest_pos_x + 1].active = false;
-				}
-				use_explosion.spriteNo(i);
-				gauge_.transform.localPosition = new Vector3(gauge_active_pos.x + ((i % 2 != 0) ? (0f - shake_gauge) : shake_gauge), gauge_active_pos.y + ((i % 2 != 0) ? (0f - shake_gauge) : shake_gauge), -20f);
-				yield return new WaitForSeconds(0.1f);
-			}
-		}
-		else
-		{
-			for (int j = 0; j < 10; j++)
+			for (int j = 0; j < 5; j++)
 			{
 				if (j == 1)
 				{
@@ -590,7 +608,50 @@ public class lifeGaugeCtrl : MonoBehaviour
 				}
 				use_explosion.spriteNo(j);
 				gauge_.transform.localPosition = new Vector3(gauge_active_pos.x + ((j % 2 != 0) ? (0f - shake_gauge) : shake_gauge), gauge_active_pos.y + ((j % 2 != 0) ? (0f - shake_gauge) : shake_gauge), -20f);
-				yield return new WaitForSeconds(0.1f);
+				float time = 0f;
+				float wait = 0.1f;
+				while (true)
+				{
+					time += Time.deltaTime;
+					if (time > wait)
+					{
+						break;
+					}
+					yield return null;
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				if (i == 1)
+				{
+					soundCtrl.instance.PlaySE(76);
+				}
+				if (i < _damageScale)
+				{
+					use_explosion.transform.localPosition = new Vector3(gauge_red_[old_rest_pos_x - i].transform.localPosition.x, 0f, -20f);
+					gauge_red_[old_rest_pos_x - i].active = false;
+				}
+				else
+				{
+					use_explosion.transform.localPosition = new Vector3(gauge_red_[now_rest_pos_x + 1].transform.localPosition.x, 0f, -20f);
+					gauge_red_[now_rest_pos_x + 1].active = false;
+				}
+				use_explosion.spriteNo(i);
+				gauge_.transform.localPosition = new Vector3(gauge_active_pos.x + ((i % 2 != 0) ? (0f - shake_gauge) : shake_gauge), gauge_active_pos.y + ((i % 2 != 0) ? (0f - shake_gauge) : shake_gauge), -20f);
+				float time2 = 0f;
+				float wait2 = 0.1f;
+				while (true)
+				{
+					time2 += Time.deltaTime;
+					if (time2 > wait2)
+					{
+						break;
+					}
+					yield return null;
+				}
 			}
 		}
 		use_explosion.active = false;
@@ -606,7 +667,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 		int recover_count = 0;
 		int old_life = GetOldLife();
 		int now_life = GetNowLife() - 1;
-		Vector3 use_position = ((GSStatic.global_work_.language != Language.USA) ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
+		Vector3 use_position = ((GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != Language.USA) ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
 		while (move_enumerator_ != null)
 		{
 			yield return null;
@@ -636,7 +697,17 @@ public class lifeGaugeCtrl : MonoBehaviour
 		}
 		gauge_.transform.localPosition = new Vector3(use_position.x, use_position.y, -20f);
 		soundCtrl.instance.StopSE(156);
-		yield return new WaitForSeconds(1f);
+		float frame = 0f;
+		float wait = 1f;
+		while (true)
+		{
+			frame += Time.deltaTime;
+			if (frame > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		fadeout_dropfrag_ = false;
 		GSStatic.global_work_.gauge_hp_disp = GSStatic.global_work_.gauge_hp;
 		lifegauge_do_next_move();
@@ -646,7 +717,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 	{
 		float gauge_pos_X = 0f;
 		float another_pos_X = 0f;
-		Vector3 gauge_psy_active_pos = ((GSStatic.global_work_.language != Language.USA) ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
+		Vector3 gauge_psy_active_pos = ((GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != Language.USA) ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
 		float gauge_pos_Y = ((!is_recover_flag_) ? gauge_active_pos.y : gauge_psy_active_pos.y);
 		gauge_mode_ = (_act ? 1 : 0);
 		if (is_recover_flag_)
@@ -665,7 +736,17 @@ public class lifeGaugeCtrl : MonoBehaviour
 		gauge_active = true;
 		if (!_act)
 		{
-			yield return new WaitForSeconds(0.4f);
+			float frame2 = 0f;
+			float wait2 = 0.4f;
+			while (true)
+			{
+				frame2 += Time.deltaTime;
+				if (frame2 > wait2)
+				{
+					break;
+				}
+				yield return null;
+			}
 		}
 		while (time < 1f)
 		{
@@ -696,30 +777,40 @@ public class lifeGaugeCtrl : MonoBehaviour
 			case 16:
 				if (message_work_.now_no == scenario_GS2.SC3_20190 || message_work_.now_no == scenario_GS2.SC3_20360)
 				{
-					StartCoroutine(FrameInFadeColor());
+					coroutineCtrl.instance.Play(FrameInFadeColor());
 				}
 				break;
 			case 17:
 				if (message_work_.now_no == scenario_GS2.SC3_20820 || message_work_.now_no == scenario_GS2.SC3_21060 || message_work_.now_no == scenario_GS2.SC3_21080 || message_work_.now_no == scenario_GS2.SC3_21110)
 				{
-					StartCoroutine(FrameInFadeColor());
+					coroutineCtrl.instance.Play(FrameInFadeColor());
 				}
 				break;
 			case 20:
 				if (message_work_.now_no == scenario_GS2.SC3_26040 || message_work_.now_no == scenario_GS2.SC3_26290)
 				{
-					StartCoroutine(FrameInFadeColor());
+					coroutineCtrl.instance.Play(FrameInFadeColor());
 				}
 				break;
 			case 21:
 				if (message_work_.now_no == scenario_GS2.SC3_26410)
 				{
-					StartCoroutine(FrameInFadeColor());
+					coroutineCtrl.instance.Play(FrameInFadeColor());
 				}
 				break;
 			}
 		}
-		yield return new WaitForSeconds(0.3f);
+		float frame = 0f;
+		float wait = 0.3f;
+		while (true)
+		{
+			frame += Time.deltaTime;
+			if (frame > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		move_enumerator_ = null;
 		lifegauge_do_next_move();
 	}
@@ -728,7 +819,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 	{
 		if (move_enumerator_ != null)
 		{
-			StopCoroutine(move_enumerator_);
+			coroutineCtrl.instance.Stop(move_enumerator_);
 			move_enumerator_ = null;
 		}
 		to_active_pos_ = _act;

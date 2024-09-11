@@ -15,7 +15,7 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 
 	private GameObject[] flashing_list_;
 
-	private Coroutine vase_animation_coroutine_;
+	private IEnumerator vase_animation_coroutine_;
 
 	private int current_vase_index_;
 
@@ -55,7 +55,18 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 		vase_list_ = new GameObject[array.Length];
 		for (int j = 0; j < vase_list_.Length; j++)
 		{
-			string text = array[j] + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
+			string text = array[j];
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.USA:
+			case Language.FRANCE:
+			case Language.GERMAN:
+				text += "u";
+				break;
+			case Language.KOREA:
+				text += "k";
+				break;
+			}
 			debugLogger.instance.Log("Puzzle", "load AssetBundle > name[" + array[j] + "]");
 			vase_list_[j] = UnityEngine.Object.Instantiate(l_vase_bundle.LoadAsset<GameObject>(text));
 			vase_list_[j].transform.parent = vase_base_;
@@ -169,18 +180,21 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 		debugLogger.instance.Log("Puzzle", "Union success flag:" + in_success);
 		if (in_success)
 		{
-			vase_animation_coroutine_ = StartCoroutine(_unionSuccessVase(pieces_list_[in_pieces_id]));
+			vase_animation_coroutine_ = _unionSuccessVase(pieces_list_[in_pieces_id]);
+			coroutineCtrl.instance.Play(vase_animation_coroutine_);
 		}
 		else
 		{
-			vase_animation_coroutine_ = StartCoroutine(_unionFailureVase(pieces_list_[in_pieces_id]));
+			vase_animation_coroutine_ = _unionFailureVase(pieces_list_[in_pieces_id]);
+			coroutineCtrl.instance.Play(vase_animation_coroutine_);
 		}
 	}
 
 	public void rotateVase(float in_start_wait, int in_angle, float in_speed)
 	{
 		debugLogger.instance.Log("Puzzle", "rotate:" + in_angle);
-		vase_animation_coroutine_ = StartCoroutine(_rotateVase(in_start_wait, in_angle, in_speed));
+		vase_animation_coroutine_ = _rotateVase(in_start_wait, in_angle, in_speed);
+		coroutineCtrl.instance.Play(vase_animation_coroutine_);
 	}
 
 	public bool isRotateEnd()
@@ -214,7 +228,17 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 		_ChangeAllObjectMaterial(in_pieces_object, in_material);
 		_ChangeAllObjectMaterial(vase_list_[current_vase_index_], in_material);
 		soundCtrl.instance.PlaySE(428);
-		yield return new WaitForSeconds(0.5f);
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		Material in_material2 = new Material(Shader.Find("Unlit/Texture"));
 		_ChangeAllObjectMaterial(in_pieces_object, in_material2);
 		_ChangeAllObjectMaterial(vase_list_[current_vase_index_], in_material2);
@@ -240,13 +264,32 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 			l_pieces.position = _getPosition(l_time, l_start, l_ctrl, l_end);
 			yield return null;
 		}
-		yield return new WaitForSeconds(0.5f);
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		vase_animation_coroutine_ = null;
 	}
 
 	private IEnumerator _rotateVase(float in_start_wait, int in_angle, float in_speed)
 	{
-		yield return new WaitForSeconds(in_start_wait);
+		float time2 = 0f;
+		while (true)
+		{
+			time2 += Time.deltaTime;
+			if (time2 > in_start_wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		float l_animation_angle = (int)vase_base_.localEulerAngles.y;
 		float l_end = l_animation_angle + (float)in_angle;
 		debugLogger.instance.Log("Puzzle", "start:" + l_animation_angle + " end:" + l_end);
@@ -267,7 +310,17 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 			vase_base_.localEulerAngles = new Vector3(0f, l_animation_angle, 0f);
 			yield return null;
 		}
-		yield return new WaitForSeconds(0.5f);
+		float time = 0f;
+		float wait = 0.5f;
+		while (true)
+		{
+			time += Time.deltaTime;
+			if (time > wait)
+			{
+				break;
+			}
+			yield return null;
+		}
 		vase_animation_coroutine_ = null;
 	}
 

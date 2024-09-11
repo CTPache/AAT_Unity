@@ -105,7 +105,17 @@ public class textKeyIconCtrl : MonoBehaviour
 	public string changeTextToIconSpase(string text)
 	{
 		string text2 = "\u3000";
-		int num = ((GSStatic.global_work_.language != 0) ? 9 : 3);
+		Language language = GSStatic.global_work_.language;
+		int num;
+		if (language == Language.CHINA_S || language == Language.CHINA_T || language == Language.JAPAN)
+		{
+			num = 3;
+		}
+		else
+		{
+			text2 = MessageSystem.EnToHalf(text2, GSStatic.global_work_.language);
+			num = 9;
+		}
 		string text3 = string.Empty;
 		for (int i = 0; i < num; i++)
 		{

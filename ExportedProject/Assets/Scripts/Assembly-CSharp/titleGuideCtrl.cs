@@ -10,11 +10,12 @@ public class titleGuideCtrl : keyGuideBoard
 		}
 	}
 
-	private void Awake()
+	protected override void Awake()
 	{
 		if (instance_ == null)
 		{
 			instance_ = this;
 		}
+		base.Awake();
 	}
 }

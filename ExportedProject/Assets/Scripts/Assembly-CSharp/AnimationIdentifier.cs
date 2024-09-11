@@ -172,9 +172,9 @@ public class AnimationIdentifier : MonoBehaviour
 		{
 			isInitializingStarted = true;
 			dictionary_instances = new List<AnimationDictionary>();
-			StartCoroutine(LoadDictionaryFlow());
+			coroutineCtrl.instance.Play(LoadDictionaryFlow());
 			replacement_instances = new List<FoaReplacement>();
-			StartCoroutine(LoadReplacementDictionaryFlow());
+			coroutineCtrl.instance.Play(LoadReplacementDictionaryFlow());
 		}
 	}
 

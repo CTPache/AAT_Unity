@@ -83,11 +83,11 @@ public static class SubWindow_Tanchiki
 			routine.tp_cnt = 0;
 			if (GSMain_TanteiPart.IsBGSlide(bgCtrl.instance.bg_no))
 			{
-				keyGuideCtrl.instance.open(keyGuideBase.Type.TANCHIKI_SLIDE);
+				coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TANCHIKI_SLIDE));
 			}
 			else
 			{
-				keyGuideCtrl.instance.open(keyGuideBase.Type.TANCHIKI);
+				coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.TANCHIKI));
 			}
 			routine.r.no_1 = 2;
 			routine.r.no_2 = 0;
@@ -125,7 +125,7 @@ public static class SubWindow_Tanchiki
 		}
 		if (padCtrl.instance.GetKeyDown(KeyType.A))
 		{
-			keyGuideCtrl.instance.close();
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 			TanchikiMiniGame.instance.EnabledCursor(false);
 			soundCtrl.instance.PlaySE(43);
 			routine.tp_cnt = 0;
@@ -149,7 +149,7 @@ public static class SubWindow_Tanchiki
 		{
 			TanchikiMiniGame.instance.EnabledWave(false);
 			soundCtrl.instance.PlaySE(43);
-			bgCtrl.instance.Slider();
+			coroutineCtrl.instance.Play(bgCtrl.instance.Slider());
 			global_work_.r_bk.CopyFrom(ref global_work_.r);
 			global_work_.r.no_1 = 3;
 			global_work_.r.no_2 = 0;

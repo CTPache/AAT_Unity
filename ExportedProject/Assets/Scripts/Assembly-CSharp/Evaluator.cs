@@ -29,7 +29,12 @@ public class Evaluator : MonoBehaviour
 		time_at_started = Time.time - current_position;
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		current_position = Time.time - time_at_started;
 		current = curve.Evaluate(current_position);

@@ -286,6 +286,7 @@ public class SteamStorageScript : SteamScriptBase
 				else
 				{
 					request_callback_[pCallback.m_pchFileName](null);
+					SteamCtrl.IsShareFilesError = true;
 				}
 				request_callback_.Remove(pCallback.m_pchFileName);
 			});
@@ -294,6 +295,7 @@ public class SteamStorageScript : SteamScriptBase
 		{
 			request_callback_[pCallback.m_pchFileName](null);
 			request_callback_.Remove(pCallback.m_pchFileName);
+			SteamCtrl.IsShareFilesError = true;
 		}
 	}
 }

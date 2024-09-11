@@ -92,7 +92,7 @@ public class plateCtrlBase : MonoBehaviour
 		open_type = in_type;
 		stopItem();
 		enumerator_open_ = CoroutineOpen(in_type, in_wait, immediate);
-		StartCoroutine(enumerator_open_);
+		coroutineCtrl.instance.Play(enumerator_open_);
 	}
 
 	public virtual void closeItem(bool immediate = false)
@@ -100,7 +100,7 @@ public class plateCtrlBase : MonoBehaviour
 		id = -1;
 		stopItem();
 		enumerator_close_ = CoroutineClose(immediate);
-		StartCoroutine(enumerator_close_);
+		coroutineCtrl.instance.Play(enumerator_close_);
 	}
 
 	private IEnumerator CoroutineClose(bool immediate)
@@ -136,12 +136,12 @@ public class plateCtrlBase : MonoBehaviour
 	{
 		if (enumerator_open_ != null)
 		{
-			StopCoroutine(enumerator_open_);
+			coroutineCtrl.instance.Stop(enumerator_open_);
 			enumerator_open_ = null;
 		}
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
+			coroutineCtrl.instance.Stop(enumerator_close_);
 			enumerator_close_ = null;
 		}
 	}

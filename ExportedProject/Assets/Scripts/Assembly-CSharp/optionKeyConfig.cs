@@ -9,9 +9,6 @@ public class optionKeyConfig : optionItem
 	public int list_count_;
 
 	[SerializeField]
-	private KeyConfigButtonSprite sprite_prefab_;
-
-	[SerializeField]
 	protected AssetBundleSprite ander_line_;
 
 	public override optionCtrl.CurrentPoint GetCurrentPoint()
@@ -56,7 +53,7 @@ public class optionKeyConfig : optionItem
 		float num2 = ((button_list_.Count != 2) ? 172f : 516f);
 		foreach (optionKeyConfigButton item in button_list_)
 		{
-			item.InitButton(sprite_prefab_, button_list_.Count > 3);
+			item.InitButton(button_list_.Count > 3);
 			item.transform.localPosition = new Vector3(num, 0f, 0f);
 			num += num2;
 		}
@@ -182,7 +179,7 @@ public class optionKeyConfig : optionItem
 	{
 		base.play_decide = true;
 		button_list_[list_count_].PlayDecide();
-		StartCoroutine(play_config_wait());
+		coroutineCtrl.instance.Play(play_config_wait());
 	}
 
 	private IEnumerator play_config_wait()

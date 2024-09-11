@@ -216,7 +216,12 @@ public class luminolMiniGame : MonoBehaviour
 		lumi_bg_offset.Add(new Vector2(0f, 0f));
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		if (state == luminolState.Search)
 		{
@@ -256,11 +261,11 @@ public class luminolMiniGame : MonoBehaviour
 			uint bGType = bgData.instance.GetBGType(bgCtrl.instance.bg_no);
 			if (bGType == 1 || bGType == 2)
 			{
-				keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_SLIDE);
+				coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_SLIDE));
 			}
 			else
 			{
-				keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL);
+				coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL));
 			}
 		}
 		bg_sprite_.material = m_red_;
@@ -276,7 +281,7 @@ public class luminolMiniGame : MonoBehaviour
 		is_end_ = false;
 		body_.gameObject.SetActive(true);
 		touch_area_.ActiveCollider();
-		StartCoroutine(MainCoroutine());
+		coroutineCtrl.instance.Play(MainCoroutine());
 		DebugShowArea(debug_show_area_);
 		touch_area_.touch_key_type = KeyType.A;
 		touch_area_.touch_event = delegate
@@ -407,7 +412,7 @@ public class luminolMiniGame : MonoBehaviour
 		Routine routine = sub_window.GetCurrentRoutine();
 		if (routine.r.no_3 == 1)
 		{
-			yield return TutorialCoroutine();
+			yield return coroutineCtrl.instance.Play(TutorialCoroutine());
 		}
 		state = luminolState.Search;
 		yield return null;
@@ -520,7 +525,7 @@ public class luminolMiniGame : MonoBehaviour
 				if (pad.GetKeyDown(KeyType.L) && routine.r.no_3 != 1 && GSMain_TanteiPart.IsBGSlide(bgCtrl.instance.bg_no))
 				{
 					soundCtrl.instance.PlaySE(43);
-					bgCtrl.instance.Slider();
+					coroutineCtrl.instance.Play(bgCtrl.instance.Slider());
 					while (bgCtrl.instance.is_slider)
 					{
 						blood_parent_.localPosition = Vector3.left * bgCtrl.instance.bg_pos_x;
@@ -540,8 +545,8 @@ public class luminolMiniGame : MonoBehaviour
 					yield return null;
 				}
 				GSFlag.Set(0u, expl_ck_data_[acquired_index_].sce_flag, 1u);
-				keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_INSPECT);
-				yield return StartCoroutine(AcquiredCoroutine());
+				coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_INSPECT));
+				yield return coroutineCtrl.instance.Play(AcquiredCoroutine());
 			}
 		}
 		if (!scenario_exit_)
@@ -625,7 +630,7 @@ public class luminolMiniGame : MonoBehaviour
 		{
 			item.StopFlashCursor();
 		}
-		keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.NO_GUIDE));
 		soundCtrl.instance.PlaySE(43);
 		int timer = 30;
 		while (timer > 0)
@@ -638,7 +643,7 @@ public class luminolMiniGame : MonoBehaviour
 			item2.body_.gameObject.SetActive(false);
 		}
 		state = luminolState.AcquiredAnim;
-		yield return StartCoroutine(AcquiredAnimCoroutine());
+		yield return coroutineCtrl.instance.Play(AcquiredAnimCoroutine());
 	}
 
 	private IEnumerator AcquiredAnimCoroutine()
@@ -651,7 +656,17 @@ public class luminolMiniGame : MonoBehaviour
 			bg_sprite_.transform.position = Vector3.zero;
 			bg_sprite_.sprite = bg_anim_sprite_data_[i];
 			soundCtrl.instance.PlaySE(93);
-			yield return new WaitForSeconds(0.5f);
+			float time = 0f;
+			float wait = 0.5f;
+			while (true)
+			{
+				time += Time.deltaTime;
+				if (time > wait)
+				{
+					break;
+				}
+				yield return null;
+			}
 		}
 		bg_anim_sprite_data_.Clear();
 		SubWindow sub_window = advCtrl.instance.sub_window_;
@@ -682,11 +697,11 @@ public class luminolMiniGame : MonoBehaviour
 				uint bg_type = bgData.instance.GetBGType(bgCtrl.instance.bg_no);
 				if (bg_type == 1 || bg_type == 2)
 				{
-					yield return keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_SLIDE);
+					yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_SLIDE));
 				}
 				else
 				{
-					yield return keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL);
+					yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL));
 				}
 				blood_parent_.localPosition = Vector3.left * bgCtrl.instance.bg_pos_x;
 				BloodClear();
@@ -735,7 +750,7 @@ public class luminolMiniGame : MonoBehaviour
 		{
 			yield return null;
 		}
-		keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_TUTORIAL);
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.LUMINOL_TUTORIAL));
 	}
 
 	public void EndMiniGame()
@@ -855,7 +870,7 @@ public class luminolMiniGame : MonoBehaviour
 	private Sprite SetCourtSprite(string in_path, string in_name)
 	{
 		AssetBundle assetBundle = AssetBundleCtrl.instance.load(in_path, in_name);
-		return assetBundle.LoadAsset<Sprite>(in_name);
+		return assetBundle.LoadAllAssets<Sprite>()[0];
 	}
 
 	private void SetBGSprite(int in_bg_no, SpriteRenderer targetRenderer)
@@ -864,7 +879,7 @@ public class luminolMiniGame : MonoBehaviour
 		bg_body_.transform.localPosition = Vector3.zero;
 		if (in_bg_no < bg_data_.data.Count && !(bg_data_.data[in_bg_no].name_ == string.Empty))
 		{
-			if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language != 0)
+			if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == Language.USA)
 			{
 				targetRenderer.sprite = SetCourtSprite("/GS1/BG/", bg_data_.data_language[(int)bg_data_.data[in_bg_no].language_]);
 			}

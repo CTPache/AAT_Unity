@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: FMVTexture
-  m_Shader: {fileID: 4800000, guid: fad576f257d3aad4c824c49186bba6b3, type: 3}
+  m_Shader: {fileID: 4800000, guid: 36483c81c85a04c46b57050d0621b6b5, type: 3}
   m_ShaderKeywords:
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0

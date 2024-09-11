@@ -90,7 +90,7 @@ namespace DebugMenu
 			SetNumber(accessor_.Sub(accessor_.value, step_));
 		}
 
-		public override void Update(Menu menu)
+		public override void Process(Menu menu)
 		{
 			if (((menu.input_down | menu.input_repeat) & Input.Left) != 0)
 			{

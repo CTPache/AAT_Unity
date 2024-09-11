@@ -146,13 +146,6 @@ public class moveCtrl : MonoBehaviour
 		"thumb30", "thumb31", "thumb32", "thumb33u", "thumb34u", "thumb35"
 	};
 
-	public string[,][] ThumbFileNames = new string[3, 2][]
-	{
-		{ GS1_JP_ThumbFileNames, GS1_US_ThumbFileNames },
-		{ GS2_JP_ThumbFileNames, GS2_US_ThumbFileNames },
-		{ GS3_JP_ThumbFileNames, GS3_US_ThumbFileNames }
-	};
-
 	[SerializeField]
 	private GameObject body_;
 
@@ -213,6 +206,72 @@ public class moveCtrl : MonoBehaviour
 		get
 		{
 			return instance_;
+		}
+	}
+
+	public string[] ThumbFileNames
+	{
+		get
+		{
+			switch (GSStatic.global_work_.title)
+			{
+			case TitleId.GS1:
+				return GS1_ThumbFileNames;
+			case TitleId.GS2:
+				return GS2_ThumbFileNames;
+			case TitleId.GS3:
+				return GS3_ThumbFileNames;
+			default:
+				return null;
+			}
+		}
+	}
+
+	public string[] GS1_ThumbFileNames
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.JAPAN:
+				return GS1_JP_ThumbFileNames;
+			case Language.USA:
+				return GS1_US_ThumbFileNames;
+			default:
+				return GS1_JP_ThumbFileNames;
+			}
+		}
+	}
+
+	public string[] GS2_ThumbFileNames
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.JAPAN:
+				return GS2_JP_ThumbFileNames;
+			case Language.USA:
+				return GS2_US_ThumbFileNames;
+			default:
+				return GS2_JP_ThumbFileNames;
+			}
+		}
+	}
+
+	public string[] GS3_ThumbFileNames
+	{
+		get
+		{
+			switch (GSStatic.global_work_.language)
+			{
+			case Language.JAPAN:
+				return GS3_JP_ThumbFileNames;
+			case Language.USA:
+				return GS3_US_ThumbFileNames;
+			default:
+				return GS3_JP_ThumbFileNames;
+			}
 		}
 	}
 
@@ -295,7 +354,19 @@ public class moveCtrl : MonoBehaviour
 	public void load()
 	{
 		active = false;
-		string text = ((GSStatic.global_work_.language != 0) ? "u" : string.Empty);
+		string text;
+		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
+		{
+		case Language.JAPAN:
+			text = string.Empty;
+			break;
+		case Language.USA:
+			text = "u";
+			break;
+		default:
+			text = "u";
+			break;
+		}
 		cursor_.load("/menu/common/", "select_window" + text);
 		cursor_.spriteNo(0);
 		place_window_.load("/menu/common/", "noise_window");
@@ -327,19 +398,33 @@ public class moveCtrl : MonoBehaviour
 			Vector2 sizeDelta = select.item.text_.rectTransform.sizeDelta;
 			Vector3 localPosition = select.item.text_.transform.localPosition;
 			int fontSize;
-			if (GSStatic.global_work_.language == Language.JAPAN)
+			switch (GSStatic.global_work_.language)
 			{
+			case Language.JAPAN:
+			case Language.CHINA_S:
 				fontSize = 46;
 				sizeDelta.x = 640f;
 				localPosition.y = 0f;
 				select.item.touch_.SetColliderSize(new Vector2(720f, 60f));
-			}
-			else
-			{
+				break;
+			default:
 				fontSize = 37;
 				sizeDelta.x = 800f;
 				localPosition.y = 3f;
 				select.item.touch_.SetColliderSize(new Vector2(select.item.sprite_.sprite_renderer_.sprite.rect.size.x, 60f));
+				break;
+			case Language.KOREA:
+				fontSize = 38;
+				sizeDelta.x = 640f;
+				localPosition.y = 0f;
+				select.item.touch_.SetColliderSize(new Vector2(720f, 60f));
+				break;
+			case Language.CHINA_T:
+				fontSize = 40;
+				sizeDelta.x = 640f;
+				localPosition.y = 0f;
+				select.item.touch_.SetColliderSize(new Vector2(720f, 60f));
+				break;
 			}
 			select.item.text_.fontSize = fontSize;
 			select.item.text_.rectTransform.sizeDelta = sizeDelta;
@@ -514,8 +599,8 @@ public class moveCtrl : MonoBehaviour
 		is_play_ = true;
 		is_cancel_ = false;
 		select_animation_playing_ = false;
-		keyGuideCtrl.instance.open(keyGuideBase.Type.MOVE);
-		yield return open();
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(keyGuideBase.Type.MOVE));
+		yield return coroutineCtrl.instance.Play(open());
 		float key_wait = systemCtrl.instance.key_wait;
 		bool is_move_mode = false;
 		while (true)
@@ -580,8 +665,8 @@ public class moveCtrl : MonoBehaviour
 		}
 		InActiveMoveTouch();
 		select_animation_playing_ = true;
-		keyGuideCtrl.instance.close();
-		yield return close();
+		coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
+		yield return coroutineCtrl.instance.Play(close());
 		place_.end();
 		active = false;
 		is_play_ = false;
@@ -592,55 +677,55 @@ public class moveCtrl : MonoBehaviour
 	{
 		stop();
 		enumerator_play_ = CoroutinePlay(in_num, in_cursor_no);
-		StartCoroutine(enumerator_play_);
+		coroutineCtrl.instance.Play(enumerator_play_);
 	}
 
 	public void stop()
 	{
 		if (enumerator_play_ != null)
 		{
-			StopCoroutine(enumerator_play_);
+			coroutineCtrl.instance.Stop(enumerator_play_);
 			enumerator_play_ = null;
 		}
 		active = false;
 	}
 
-	public Coroutine open()
+	public IEnumerator open()
 	{
 		if (enumerator_open_ != null)
 		{
-			StopCoroutine(enumerator_open_);
+			coroutineCtrl.instance.Stop(enumerator_open_);
 			enumerator_open_ = null;
 		}
 		enumerator_open_ = CoroutineOpen();
-		return StartCoroutine(enumerator_open_);
+		return enumerator_open_;
 	}
 
 	public void open_stop()
 	{
 		if (enumerator_open_ != null)
 		{
-			StopCoroutine(enumerator_open_);
+			coroutineCtrl.instance.Stop(enumerator_open_);
 			enumerator_open_ = null;
 		}
 	}
 
-	public Coroutine close()
+	public IEnumerator close()
 	{
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
+			coroutineCtrl.instance.Stop(enumerator_close_);
 			enumerator_close_ = null;
 		}
 		enumerator_close_ = CoroutineClose();
-		return StartCoroutine(enumerator_close_);
+		return enumerator_close_;
 	}
 
 	public void close_stop()
 	{
 		if (enumerator_close_ != null)
 		{
-			StopCoroutine(enumerator_close_);
+			coroutineCtrl.instance.Stop(enumerator_close_);
 			enumerator_close_ = null;
 		}
 	}
@@ -851,7 +936,7 @@ public class moveCtrl : MonoBehaviour
 		place_.end();
 		uint num = GSStatic.global_work_.Map_data[GSStatic.global_work_.Room][cursor_no_ + 4];
 		uint num2 = get_area_image(GSStatic.global_work_.Map_data[GSStatic.global_work_.Room][cursor_no_ + 4]);
-		string in_name = ThumbFileNames[(int)GSStatic.global_work_.title, (int)GSStatic.global_work_.language][num2];
+		string in_name = ThumbFileNames[num2];
 		place_.load("/GS" + (int)(GSStatic.global_work_.title + 1) + "/thumb/", in_name);
 		place_.spriteNo(0);
 		if (GSStatic.global_work_.title == TitleId.GS1 && num >= 21)

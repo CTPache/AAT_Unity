@@ -393,13 +393,13 @@ public class scienceInvestigationCtrl : MonoBehaviour
 		return false;
 	}
 
-	public Coroutine Play(InvestigateType in_type, int in_obj_id, GameObject in_body)
+	public IEnumerator Play(InvestigateType in_type, int in_obj_id, GameObject in_body)
 	{
 		back_to_body_ = in_body;
 		return Play(in_type, in_obj_id);
 	}
 
-	public Coroutine Play(InvestigateType in_type, int in_obj_id)
+	public IEnumerator Play(InvestigateType in_type, int in_obj_id)
 	{
 		active = true;
 		is_play_ = true;
@@ -412,7 +412,7 @@ public class scienceInvestigationCtrl : MonoBehaviour
 		InitMembers(in_type);
 		poly_data_ = polyDataCtrl.instance.GetPolyData(in_obj_id - 1);
 		TouchInit();
-		return StartCoroutine(StatePlayCoroutine());
+		return StatePlayCoroutine();
 	}
 
 	private void TouchInit()
@@ -482,7 +482,12 @@ public class scienceInvestigationCtrl : MonoBehaviour
 		cursor_touch_area_.ActiveCollider();
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		UpdateCursorTouchObjectRotate();
 	}
@@ -524,20 +529,20 @@ public class scienceInvestigationCtrl : MonoBehaviour
 		}
 	}
 
-	public Coroutine Play()
+	public IEnumerator Play()
 	{
 		return Play(mode_type, poly_obj_id);
 	}
 
-	public Coroutine Resume(bool re_init = false)
+	public IEnumerator Resume(bool re_init = false)
 	{
 		InitMembers(investigate_type_.type_);
-		return StartCoroutine(StateResumeCoroutine(re_init));
+		return StateResumeCoroutine(re_init);
 	}
 
-	public Coroutine Close(bool in_fast = false)
+	public IEnumerator Close(bool in_fast = false)
 	{
-		return StartCoroutine(StateCloseCoroutine(in_fast));
+		return StateCloseCoroutine(in_fast);
 	}
 
 	private void InitMembers(InvestigateType in_type)
@@ -554,40 +559,56 @@ public class scienceInvestigationCtrl : MonoBehaviour
 
 	private IEnumerator StatePlayCoroutine()
 	{
-		yield return StartCoroutine(StateInitCoroutine());
+		yield return coroutineCtrl.instance.Play(StateInitCoroutine());
 		if (advCtrl.instance.sub_window_.tutorial_ == 1)
 		{
 			Routine routine = advCtrl.instance.sub_window_.GetCurrentRoutine();
-			yield return new WaitWhile(delegate
+			while (true)
 			{
 				if (routine.r.no_1 == 0 && routine.r.no_2 == 3)
 				{
-					return true;
+					yield return null;
+					continue;
 				}
-				return (routine.r.no_1 == 5 && (routine.r.no_2 == 0 || routine.r.no_2 == 1)) ? true : false;
-			});
-			yield return new WaitForSeconds(0.5f);
+				if (routine.r.no_1 == 5 && (routine.r.no_2 == 0 || routine.r.no_2 == 1))
+				{
+					yield return null;
+					continue;
+				}
+				break;
+			}
+			float time = 0f;
+			float wait = 0.5f;
+			while (true)
+			{
+				time += Time.deltaTime;
+				if (time > wait)
+				{
+					break;
+				}
+				yield return null;
+			}
 		}
 		messageBoardCtrl.instance.InActiveNormalMessageNextTouch();
-		yield return StartCoroutine(StateMainCoroutine());
+		yield return coroutineCtrl.instance.Play(StateMainCoroutine());
 	}
 
 	private IEnumerator StateResumeCoroutine(bool re_init)
 	{
 		if (re_init)
 		{
-			yield return StartCoroutine(fadeCtrl.instance.play_coroutine(20, false, Color.black));
+			yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(20, false, Color.black));
 			callback_manager_.OnInit();
-			yield return StartCoroutine(fadeCtrl.instance.play_coroutine(20, true, Color.black));
+			yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(20, true, Color.black));
 		}
-		yield return StartCoroutine(StateMainCoroutine());
+		yield return coroutineCtrl.instance.Play(StateMainCoroutine());
 	}
 
 	private IEnumerator StateInitCoroutine()
 	{
 		rotate_touch_area_.SetEnableCollider(false);
 		cursor_touch_area_.SetEnableCollider(false);
-		yield return StartCoroutine(fadeCtrl.instance.play_coroutine(30, false, Color.black));
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(30, false, Color.black));
 		if (back_to_body_ != null)
 		{
 			back_to_body_.SetActive(false);
@@ -602,7 +623,7 @@ public class scienceInvestigationCtrl : MonoBehaviour
 		if (keyGuideCtrl.instance.active)
 		{
 			standby_keyguid_type_ = keyGuideCtrl.instance.current_guide;
-			keyGuideCtrl.instance.close();
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 		}
 		BackupScenarioMessage();
 		LoadBackground();
@@ -620,7 +641,7 @@ public class scienceInvestigationCtrl : MonoBehaviour
 			Debug.LogError(message);
 			called_back_ = true;
 		}
-		yield return StartCoroutine(fadeCtrl.instance.play_coroutine(30, true, Color.black));
+		yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(30, true, Color.black));
 		is_play_ready = true;
 	}
 
@@ -635,17 +656,17 @@ public class scienceInvestigationCtrl : MonoBehaviour
 
 	private IEnumerator StateMainCoroutine()
 	{
-		yield return keyGuideCtrl.instance.open(investigate_type_.guide_);
+		yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(investigate_type_.guide_));
 		cursor_.sprite_renderer_.enabled = true;
 		rotate_touch_area_.SetEnableCollider(true);
 		cursor_touch_area_.SetEnableCollider(true);
 		guide_limit_ = 860f - keyGuideCtrl.instance.GetGuideWidth();
 		messageBoardCtrl.instance.InActiveNormalMessageNextTouch();
-		yield return StartCoroutine(StateMainInputCoroutine());
+		yield return coroutineCtrl.instance.Play(StateMainInputCoroutine());
 		cursor_.sprite_renderer_.enabled = false;
 		TouchSystem.TouchInActive();
-		yield return keyGuideCtrl.instance.close();
-		yield return StartCoroutine(StateMainCallbackCoroutine());
+		yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
+		yield return coroutineCtrl.instance.Play(StateMainCallbackCoroutine());
 	}
 
 	private IEnumerator StateMainInputCoroutine()
@@ -669,11 +690,24 @@ public class scienceInvestigationCtrl : MonoBehaviour
 			{
 				cursor_.sprite_renderer_.enabled = false;
 				rotate_touch_area_.SetEnableCollider(false);
-				yield return keyGuideCtrl.instance.close();
+				yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.close());
 				Routine routine = advCtrl.instance.sub_window_.GetCurrentRoutine();
-				yield return new WaitWhile(() => (routine.r.no_1 == 5 && (routine.r.no_2 == 2 || routine.r.no_2 == 3 || routine.r.no_2 == 4)) ? true : false);
-				yield return new WaitForSeconds(0.5f);
-				yield return keyGuideCtrl.instance.open(investigate_type_.guide_);
+				while (routine.r.no_1 == 5 && (routine.r.no_2 == 2 || routine.r.no_2 == 3 || routine.r.no_2 == 4))
+				{
+					yield return null;
+				}
+				float time = 0f;
+				float wait = 0.5f;
+				while (true)
+				{
+					time += Time.deltaTime;
+					if (time > wait)
+					{
+						break;
+					}
+					yield return null;
+				}
+				yield return coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(investigate_type_.guide_));
 				cursor_.sprite_renderer_.enabled = true;
 				rotate_touch_area_.SetEnableCollider(true);
 				messageBoardCtrl.instance.InActiveNormalMessageNextTouch();
@@ -686,14 +720,14 @@ public class scienceInvestigationCtrl : MonoBehaviour
 	{
 		if (is_ending_failed_)
 		{
-			Close();
+			coroutineCtrl.instance.Play(Close());
 		}
 		else if (called_check_)
 		{
 			callback_manager_.OnCheck();
 			if (callback_manager_.on_main != null)
 			{
-				yield return StartCoroutine(callback_manager_.on_main);
+				yield return coroutineCtrl.instance.Play(callback_manager_.on_main);
 			}
 		}
 		else if (called_back_)
@@ -707,27 +741,33 @@ public class scienceInvestigationCtrl : MonoBehaviour
 				messageBoardCtrl.instance.board(true, true);
 				callback_manager_.runnning_mesasge = true;
 				advCtrl.instance.sub_window_.req_ = SubWindow.Req.NONE;
-				yield return new WaitWhile(() => (advCtrl.instance.sub_window_.req_ != SubWindow.Req.MESS_EXIT) ? true : false);
+				while (advCtrl.instance.sub_window_.req_ != SubWindow.Req.MESS_EXIT)
+				{
+					yield return null;
+				}
 				GSStatic.global_work_.Mess_move_flag = 0;
 				advCtrl.instance.sub_window_.req_ = SubWindow.Req.NONE;
 				callback_manager_.runnning_mesasge = false;
 				messageBoardCtrl.instance.board(false, false);
 			}
-			Close();
+			coroutineCtrl.instance.Play(Close());
 		}
 		else if (called_present_)
 		{
 			last_message_active_ = false;
 			fadeCtrl.instance.play(3u, 1u, 4u);
 			Balloon.PlayTakeThat();
-			yield return new WaitWhile(() => objMoveCtrl.instance.is_play);
+			while (objMoveCtrl.instance.is_play)
+			{
+				yield return null;
+			}
 			objMoveCtrl.instance.stop(2);
 			if (GSStatic.global_work_.title == TitleId.GS1 && MessageSystem.GetActiveMessageWork().now_no == 183)
 			{
 				bgCtrl.instance.SetSprite(4095);
 				AnimationSystem.Instance.StopCharacters();
 			}
-			Close(called_present);
+			coroutineCtrl.instance.Play(Close(called_present));
 		}
 	}
 
@@ -738,11 +778,14 @@ public class scienceInvestigationCtrl : MonoBehaviour
 		if (advCtrl.instance.sub_window_.tutorial_ == 30)
 		{
 			fadeCtrl.instance.play(2u, (uint)fade_time2, 16u, 31u);
-			yield return new WaitWhile(() => !fadeCtrl.instance.is_end);
+			while (!fadeCtrl.instance.is_end)
+			{
+				yield return null;
+			}
 		}
 		else
 		{
-			yield return StartCoroutine(fadeCtrl.instance.play_coroutine(fade_time2, false, Color.black));
+			yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(fade_time2, false, Color.black));
 		}
 		Release();
 		background_renderer_.enabled = false;
@@ -764,12 +807,12 @@ public class scienceInvestigationCtrl : MonoBehaviour
 		}
 		if (standby_keyguid_type_ != 0)
 		{
-			keyGuideCtrl.instance.open(standby_keyguid_type_);
+			coroutineCtrl.instance.Play(keyGuideCtrl.instance.open(standby_keyguid_type_));
 		}
 		RecoveryScenarioMessage();
 		if (!IsEnding())
 		{
-			yield return StartCoroutine(fadeCtrl.instance.play_coroutine(fade_time2, true, Color.black));
+			yield return coroutineCtrl.instance.Play(fadeCtrl.instance.play_coroutine(fade_time2, true, Color.black));
 		}
 		active = false;
 		is_play_ = false;

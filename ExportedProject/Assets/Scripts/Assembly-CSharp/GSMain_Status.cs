@@ -343,7 +343,7 @@ public static class GSMain_Status
 				activeMessageWork.status2 &= ~MessageSystem.Status2.WAIT_PSY;
 				if (AnimationSystem.Instance.CharacterAnimationObject.transform.localPosition.x != 0f)
 				{
-					bgCtrl.instance.Slider();
+					coroutineCtrl.instance.Play(bgCtrl.instance.Slider());
 					activeMessageWork.status2 |= MessageSystem.Status2.WAIT_PSY;
 				}
 				else

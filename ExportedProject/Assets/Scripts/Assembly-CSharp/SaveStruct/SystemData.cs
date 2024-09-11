@@ -20,7 +20,7 @@ namespace SaveStruct
 		public static void New(out SystemData system_data)
 		{
 			system_data = default(SystemData);
-			system_data.save_ver = 4096;
+			system_data.save_ver = systemCtrl.instance.save_ver;
 			OpenScenarioData.New(out system_data.sce_data_);
 			OptionWork.New(out system_data.option_work_);
 			TrophyWork.New(out system_data.trophy_work_);
@@ -30,7 +30,7 @@ namespace SaveStruct
 
 		public void CopyFromStatic()
 		{
-			save_ver = GSStatic.save_ver;
+			save_ver = systemCtrl.instance.save_ver;
 			sce_data_.CopyFrom(GSStatic.open_sce_);
 			option_work_.CopyFrom(GSStatic.option_work);
 			trophy_work_.CopyFrom(GSStatic.trophy_data);

@@ -468,11 +468,11 @@ public class recordListCtrl : MonoBehaviour
 
 	public void infoLoad()
 	{
-		string text = ((GSStatic.global_work_.language != 0) ? "u" : string.Empty);
-		string in_name = "court_record_03" + GSUtility.GetPlatformResourceName() + text;
+		string resourceNameLanguage = GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
+		string in_name = "court_record_03" + GSUtility.GetPlatformResourceName() + resourceNameLanguage;
 		if (keyGuideBase.keyguid_pad_)
 		{
-			in_name = "court_record_02_xbox" + text;
+			in_name = "court_record_02_xbox" + resourceNameLanguage;
 		}
 		info_.load("/menu/common/", in_name);
 		if (!keyGuideBase.keyguid_pad_)
@@ -487,9 +487,9 @@ public class recordListCtrl : MonoBehaviour
 
 	public void load()
 	{
-		string text = ((GSStatic.global_work_.language != 0) ? "u" : string.Empty);
-		board_.load("/menu/common/", "record" + text);
-		title_.load("/menu/common/", "record" + text);
+		string resourceNameLanguage = GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language);
+		board_.load("/menu/common/", "record" + resourceNameLanguage);
+		title_.load("/menu/common/", "record" + resourceNameLanguage);
 		icon_base_.load("/menu/common/", "evidence_base");
 		board_.spriteNo(2);
 		title_.spriteNo(0);
@@ -536,27 +536,83 @@ public class recordListCtrl : MonoBehaviour
 		Vector3 localPosition3 = icon_name_.transform.localPosition;
 		Vector3 localPosition4 = comment_.body_.transform.localPosition;
 		Vector3 localPosition5 = info_.transform.localPosition;
-		localPosition.x = ((GSStatic.global_work_.language != 0) ? (-554f) : (-530f));
-		localPosition2.x = ((GSStatic.global_work_.language != 0) ? (-530f) : (-490f));
-		localPosition3.y = ((GSStatic.global_work_.language != 0) ? 167f : 180f);
-		localPosition4.x = ((GSStatic.global_work_.language != 0) ? 100f : 130f);
-		localPosition4.y = ((GSStatic.global_work_.language != 0) ? (-45f) : (-35f));
-		localPosition5.x = ((GSStatic.global_work_.language != 0) ? 610f : 557f);
+		Vector2 sizeDelta = icon_name_.rectTransform.sizeDelta;
+		Vector2 sizeDelta2 = comment_.line_[0].rectTransform.sizeDelta;
+		int fontSize;
+		int fontSize2;
+		switch (GSStatic.global_work_.language)
+		{
+		case Language.JAPAN:
+			localPosition.x = -530f;
+			localPosition2.x = -490f;
+			localPosition3.y = 180f;
+			localPosition4.x = 130f;
+			localPosition4.y = -35f;
+			localPosition5.x = 557f;
+			sizeDelta.x = 720f;
+			sizeDelta2.x = 700f;
+			fontSize = 64;
+			fontSize2 = 56;
+			break;
+		default:
+			localPosition.x = -554f;
+			localPosition2.x = -530f;
+			localPosition3.y = 167f;
+			localPosition4.x = 100f;
+			localPosition4.y = -45f;
+			localPosition5.x = 610f;
+			sizeDelta.x = 950f;
+			sizeDelta2.x = 850f;
+			fontSize = 50;
+			fontSize2 = 42;
+			break;
+		case Language.KOREA:
+			localPosition.x = -554f;
+			localPosition2.x = -530f;
+			localPosition3.y = 167f;
+			localPosition4.x = 100f;
+			localPosition4.y = -45f;
+			localPosition5.x = 618f;
+			sizeDelta.x = 950f;
+			sizeDelta2.x = 850f;
+			fontSize = 50;
+			fontSize2 = 42;
+			break;
+		case Language.CHINA_S:
+			localPosition.x = -530f;
+			localPosition2.x = -490f;
+			localPosition3.y = 190f;
+			localPosition4.x = 130f;
+			localPosition4.y = -35f;
+			localPosition5.x = 557f;
+			sizeDelta.x = 720f;
+			sizeDelta2.x = 700f;
+			fontSize = 60;
+			fontSize2 = 46;
+			break;
+		case Language.CHINA_T:
+			localPosition.x = -530f;
+			localPosition2.x = -490f;
+			localPosition3.y = 195f;
+			localPosition4.x = 130f;
+			localPosition4.y = -35f;
+			localPosition5.x = 557f;
+			sizeDelta.x = 720f;
+			sizeDelta2.x = 700f;
+			fontSize = 60;
+			fontSize2 = 44;
+			break;
+		}
 		title_.transform.localPosition = localPosition;
 		icon_.transform.parent.localPosition = localPosition2;
 		icon_name_.transform.localPosition = localPosition3;
 		comment_.body_.transform.localPosition = localPosition4;
 		info_.transform.localPosition = localPosition5;
-		Vector2 sizeDelta = icon_name_.rectTransform.sizeDelta;
-		sizeDelta.x = ((GSStatic.global_work_.language != 0) ? 950f : 720f);
 		icon_name_.rectTransform.sizeDelta = sizeDelta;
-		icon_name.fontSize = ((GSStatic.global_work_.language != 0) ? 50 : 64);
-		Vector2 sizeDelta2 = comment_.line_[0].rectTransform.sizeDelta;
-		sizeDelta2.x = ((GSStatic.global_work_.language != 0) ? 850f : 700f);
-		int fontSize = ((GSStatic.global_work_.language != 0) ? 42 : 56);
+		icon_name.fontSize = fontSize;
 		foreach (Text item2 in comment_.line_)
 		{
-			item2.fontSize = fontSize;
+			item2.fontSize = fontSize2;
 			item2.rectTransform.sizeDelta = sizeDelta2;
 		}
 		sprite_mask_.sprite = board_.sprite_renderer_.sprite;
@@ -861,14 +917,14 @@ public class recordListCtrl : MonoBehaviour
 		{
 			mainCtrl.instance.addText(item);
 		}
-		StartCoroutine(enumerator_record_);
+		coroutineCtrl.instance.Play(enumerator_record_);
 	}
 
 	private void stopRecord()
 	{
 		if (enumerator_record_ != null)
 		{
-			StopCoroutine(enumerator_record_);
+			coroutineCtrl.instance.Stop(enumerator_record_);
 			enumerator_record_ = null;
 		}
 	}
@@ -1007,12 +1063,12 @@ public class recordListCtrl : MonoBehaviour
 			{
 				soundCtrl.instance.PlaySE(49);
 				enumerator_change_ = CoroutineChange();
-				yield return StartCoroutine(enumerator_change_);
+				yield return coroutineCtrl.instance.Play(enumerator_change_);
 			}
 			if (page_changing)
 			{
 				recordPageChange();
-				yield return StartCoroutine(CoroutinePageChabge());
+				yield return coroutineCtrl.instance.Play(CoroutinePageChabge());
 			}
 			RecodeData recodeData = CurrentRecodeData();
 			if (!seal_key && recodeData.note_list_.Count > 1 && (padCtrl.instance.GetKey(KeyType.Left) || padCtrl.instance.GetKey(KeyType.StickL_Left) || (padCtrl.instance.GetWheelMoveUp() && padCtrl.instance.IsNextMove())))
@@ -1338,7 +1394,7 @@ public class recordListCtrl : MonoBehaviour
 
 	public void detailPlay()
 	{
-		StartCoroutine(detail_ctrl_.CoroutineViewDetail(detail_data_id_));
+		coroutineCtrl.instance.Play(detail_ctrl_.CoroutineViewDetail(detail_data_id_));
 	}
 
 	public bool scenarioChange()

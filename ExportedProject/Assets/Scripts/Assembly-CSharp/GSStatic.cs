@@ -2,7 +2,7 @@ using SaveStruct;
 
 public static class GSStatic
 {
-	public static int save_ver = 4096;
+	public static int save_ver = 0;
 
 	public static GlobalWork global_work_ = new GlobalWork();
 

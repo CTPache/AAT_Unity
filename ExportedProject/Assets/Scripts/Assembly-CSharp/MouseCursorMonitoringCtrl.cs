@@ -27,7 +27,12 @@ public class MouseCursorMonitoringCtrl : MonoBehaviour
 		window_rect_ = new Rect(0f, 0f, Screen.width, Screen.height);
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		Vector2 vector = padCtrl.instance.InputMousePosition();
 		window_rect_ = new Rect(0f, 0f, Screen.width, Screen.height);

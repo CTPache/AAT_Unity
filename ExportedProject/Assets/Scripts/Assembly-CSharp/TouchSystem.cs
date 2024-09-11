@@ -247,7 +247,12 @@ public class TouchSystem : MonoBehaviour
 		}
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Process();
+	}
+
+	private void Process()
 	{
 		UpdateTouch();
 	}

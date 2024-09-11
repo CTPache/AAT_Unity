@@ -253,17 +253,17 @@ public class GS1_sce4_opening : MonoBehaviour
 	{
 		if (enumerator_tomoe_ != null)
 		{
-			StopCoroutine(enumerator_tomoe_);
+			coroutineCtrl.instance.Stop(enumerator_tomoe_);
 		}
 		enumerator_tomoe_ = coroutine_tomoe_scroll();
-		StartCoroutine(enumerator_tomoe_);
+		coroutineCtrl.instance.Play(enumerator_tomoe_);
 	}
 
 	public void stop_tomoe_scroll()
 	{
 		if (enumerator_tomoe_ != null)
 		{
-			StopCoroutine(enumerator_tomoe_);
+			coroutineCtrl.instance.Stop(enumerator_tomoe_);
 			enumerator_tomoe_ = null;
 		}
 		body_active_ = false;
@@ -328,17 +328,17 @@ public class GS1_sce4_opening : MonoBehaviour
 	{
 		if (enumerator_biru_ != null)
 		{
-			StopCoroutine(enumerator_biru_);
+			coroutineCtrl.instance.Stop(enumerator_biru_);
 		}
 		enumerator_biru_ = coroutine_biru_scroll(in_wait);
-		StartCoroutine(enumerator_biru_);
+		coroutineCtrl.instance.Play(enumerator_biru_);
 	}
 
 	public void stop_biru_scroll()
 	{
 		if (enumerator_biru_ != null)
 		{
-			StopCoroutine(enumerator_biru_);
+			coroutineCtrl.instance.Stop(enumerator_biru_);
 			enumerator_biru_ = null;
 		}
 		if (biru_animation_ != null)
@@ -436,11 +436,11 @@ public class GS1_sce4_opening : MonoBehaviour
 	{
 		if (enumerator_black_knife_ != null)
 		{
-			StopCoroutine(enumerator_black_knife_);
+			coroutineCtrl.instance.Stop(enumerator_black_knife_);
 			enumerator_black_knife_ = null;
 		}
 		enumerator_black_knife_ = coroutine_black_knife();
-		StartCoroutine(enumerator_black_knife_);
+		coroutineCtrl.instance.Play(enumerator_black_knife_);
 	}
 
 	private IEnumerator coroutine_black_knife()
@@ -484,10 +484,10 @@ public class GS1_sce4_opening : MonoBehaviour
 	{
 		if (enumerator_movie_ != null)
 		{
-			StopCoroutine(enumerator_movie_);
+			coroutineCtrl.instance.Stop(enumerator_movie_);
 		}
 		enumerator_movie_ = coroutine_movie();
-		StartCoroutine(enumerator_movie_);
+		coroutineCtrl.instance.Play(enumerator_movie_);
 	}
 
 	private IEnumerator coroutine_movie()
@@ -516,13 +516,13 @@ public class GS1_sce4_opening : MonoBehaviour
 	{
 		if (enumerator_rain_ != null)
 		{
-			StopCoroutine(enumerator_rain_);
+			coroutineCtrl.instance.Stop(enumerator_rain_);
 			enumerator_rain_ = null;
 		}
 		if (in_play)
 		{
 			enumerator_rain_ = coroutine_rain(in_wait);
-			StartCoroutine(enumerator_rain_);
+			coroutineCtrl.instance.Play(enumerator_rain_);
 		}
 		else if (rain_animation_ != null)
 		{
@@ -810,7 +810,7 @@ public class GS1_sce4_opening : MonoBehaviour
 
 	public void GS3YahariFadeOutStart()
 	{
-		StartCoroutine(GS3YahariFadeOut());
+		coroutineCtrl.instance.Play(GS3YahariFadeOut());
 	}
 
 	private IEnumerator GS3YahariFadeOut()
