@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{98642CDB-A975-A20E-03A2-E6B5E682AD7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2017_4_8;UNITY_2017_4;UNITY_2017;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AirFloWiredPS3MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AirFloWiredPS3ProfileWin.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AmazonFireTVProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AmazonFireTVRemoteProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AndroidTVAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AndroidTVMiBoxRemoteProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AndroidTVProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AndroidTVRemoteProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AppleMFiProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AppleTVRemoteProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AppleTVWirelessControllerProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\AutoDiscover.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BeboncoolDA015CAAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BetopBTPAX1TAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BetopBTPGenericAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BindingListenOptions.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BindingSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BindingSourceListener.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BindingSourceRejectionType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BindingSourceType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BuffaloClassicAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BuffaloClassicMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\BuffaloClassicWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\CustomInputDeviceProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\DeadZone.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\DeadZoneFunc.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\DeviceBindingSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\DeviceBindingSourceListener.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\DragAxis.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\DroidBoxPS3AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\DroidBoxXboxAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoFC30ProAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoNES30ProAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoNES30ProMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoNES30ProWindowsProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoSFC30AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoSFC30MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoSFC30WindowsProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoSNES30AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoSNES30MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\EightBitdoSNES30WindowsProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\ExecutionerXProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\FixXBG301AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\FlareAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GameCubeMayflashWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GameCubeWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GameSirG3sAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GameSirG3wAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GameSirG4sAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GameStickLinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GameStickProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GenericAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GenericBlackBerryProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GenericLinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\GreenThrottleAtlasAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\HamaBlackForceWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\ICadePluginPath.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\IInputControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InControlException.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InControlInputModule.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InControlManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputControlMapping.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputControlSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputControlState.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputControlType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputDevice.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputDeviceClass.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputDeviceManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputDeviceProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputDeviceStyle.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputRange.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\InputRangeType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Internal\CodeWriter.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\IpegaPG9023AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\IpegaPG9025AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\IUpdateable.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Key.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\KeyBindingSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\KeyBindingSourceListener.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\KeyCombo.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\KeyInfo.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LevelUpBlackHawkWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LockAxis.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Logger.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF310LinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF310ModeDMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF310ModeDWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF310ModeXMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF310ModeXWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF510LinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF510ModeDMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF510ModeDWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF510ModeXMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF510ModeXWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF710LinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF710MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF710ModeDWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechF710ModeXWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechModeDAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechModeXAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogitechWingManWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogMessage.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\LogMessageType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MadCatzCTRLRAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MadCatzCTRLRAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MadCatzMicroCTRLRAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MarshalUtility.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MaxFireBlaze5Profile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MogaHeroPowerAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MogaProAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MogaProLinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MogaProMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MogaProPowerAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MogaProWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Mouse.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MouseBindingSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\MouseBindingSourceListener.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NatecGenesisP44Profile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Native.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeAnalogSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeButtonSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeDeviceDriverType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeDeviceInfo.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeDeviceTransportType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeInputDevice.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeInputDeviceManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeInputDeviceMatcher.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeInputDeviceProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeInputDeviceProfileList.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeInputOptions.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\AfterglowPrismaticXboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\AfterglowXbox360WindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\AirFloControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\AirFloPS3WindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\AtPlayControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\BatarangControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\BETAOPControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\BigBenControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\BrookNeoGeoConverterMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\BrookPS2ConverterMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\BuffaloClassicMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\BuffaloClassicWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EASportsControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EightBitdoNES30ProBTMacNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EightBitdoNES30ProUSBMacNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EightBitdoNES30ProWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EightBitdoSFC30MacNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EightBitdoSFC30WindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EightBitdoSNES30MacNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\EightBitdoSNES30WindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\GameCubeMayflashWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\GameStopControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\GuitarHeroControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriBlueSoloControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriDOA4ArcadeStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriEX2ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriFightingCommanderMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriFightingStickEX2MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriFightingStickVXMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriFightStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriHoriRealArcadeProIVMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriHoriRealArcadeProVHayabusaMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriPadEXTurboControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriPadUltimateMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriRealArcadeProEXMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriRealArcadeProEXPremiumVLXMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriRealArcadeProEXSEMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriRealArcadeProHayabusaMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriRealArcadeProVKaiFightingStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriRealArcadeProVXMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriRealArcadeProVXSAMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HoriXbox360GemPadExMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\HyperkinX91MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\IonDrumRockerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\JoytekXbox360ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\KonamiDancePadMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechChillStreamControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechDriveFXRacingWheelMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF310ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF310ModeDMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF310ModeDWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF310ModeXWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF510ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF510ModeDMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF510ModeDWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF510ModeXWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF710ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF710ModeDMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF710ModeDWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechF710ModeXWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechG920RacingWheelMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\LogitechThunderpadMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzArcadeStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzBrawlStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzCODControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzFightPadControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzFightPadMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzFightStickTE2MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzFightStickTESPlusMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzFPSProMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzMC2RacingWheelMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzMicroConControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzMicroControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzMLGFightStickTEMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzNeoFightStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzPortableDrumMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzProControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzSaitekAV8R02MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzSF4FightStickRound2TEMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzSF4FightStickSEMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzSF4FightStickTEMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzSoulCaliberFightStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzSSF4ChunLiFightStickTEMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MadCatzSSF4FightStickTEMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MatCatzControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MicrosoftXbox360ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MicrosoftXboxControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MicrosoftXboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MicrosoftXboxOneEliteControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MKKlassikFightStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MLGControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\MVCTEStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\NaconGC100XFControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\NintendoSwitchProMacNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\NintendoSwitchProWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\NVidiaShieldWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PCTWINSHOCKWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPAfterglowControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPBattlefieldXBoxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPMarvelControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPTitanfall2XboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPTronControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPVersusControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPXbox360ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPXboxOneArcadeStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PDPXboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PlayStation3MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PlayStation4MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PlayStation4WindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PowerAAirflowControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\POWERAFUS1ONTournamentControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PowerAMiniControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PowerAMiniProExControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PowerAMiniXboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\PowerASpectraIlluminatedControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\ProEXXbox360ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\ProEXXboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\QanbaFightStickPlusMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RazerAtroxArcadeStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RazerOnzaControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RazerOnzaTEControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RazerSabertoothEliteControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RazerServalWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RazerStrikeControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RazerWildcatControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RedOctaneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RockBandDrumsMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RockBandGuitarMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RockCandyControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RockCandyXbox360ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\RockCandyXboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\SaitekXbox360ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\SteamWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\ThrustMasterFerrari430RacingWheelMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\ThrustmasterFerrari458RacingWheelMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\ThrustMasterFerrari458SpiderRacingWheelMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\ThrustmasterGPXControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\TrustPredatorJoystickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\TSZPelicanControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\Xbox360ControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\Xbox360DriverMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\Xbox360MortalKombatFightStickMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\Xbox360WiredWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\Xbox360WirelessWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneControllerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneDriverMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneEliteWindows10AENativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneEliteWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneSMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneWindows10AENativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneWindows10NativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XboxOneWirelessAdapterWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XInputWindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XTR_G2_MacNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XTR_G2_WindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XTR55_G2_MacNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeProfile\XTR55_G2_WindowsNativeProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NativeVersionInfo.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NexusPlayerMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NexusPlayerProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NexusPlayerRemoteProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NexusPlayerWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NVidiaShield2016AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NVidiaShield2017AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NVidiaShieldWin10Profile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NVidiaShieldWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\NykoPlayPadProAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\OneAxisInputControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\OuyaAmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\OuyaEverywhereDevice.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\OuyaEverywhereDeviceManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\OuyaLinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\OuyaWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayerAction.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayerActionSet.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayerOneAxisAction.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayerTwoAxisAction.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation2WinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation3AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation3BWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation3LinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation3MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation3ShenghicWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation3WinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4AmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4AndroidXperiaZ5Profile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4LinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4MacBTProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4MacUSBProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4Profile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4SteamLinkMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStation4WinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\PlayStationVitaPSMProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\RazerServalForgeTVProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\RazerServalMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\RedSamuraiAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\RingBuffer.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SaitekAviatorWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SamsungGP20AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SingletonMonoBehavior.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SingletonPrefabAttribute.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SpeedlinkStrikeMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SpeedlinkStrikeWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SteelSeriesFreeAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SteelSeriesFreeLinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SteelSeriesFreeMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SteelSeriesFreeWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SteelSeriesStratusXLAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\SteelSeriesStratusXLWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TestInputManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\ThreadSafeQueue.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Touch.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchButtonControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchControlAnchor.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchInputDevice.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchPool.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchSprite.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchSpriteShape.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchStickControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchSwipeControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchTrackControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchUnitType.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TouchUtility.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\TwoAxisInputControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityAnalogSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityButtonSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityGyroAxisSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityInputDevice.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityInputDeviceManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityInputDeviceProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityInputDeviceProfileBase.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityInputDeviceProfileList.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityKeyCodeAxisSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityKeyCodeComboSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityKeyCodeSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityMouseAxisSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnityMouseButtonSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnknownDeviceBindingSource.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnknownDeviceBindingSourceListener.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\UnknownDeviceControl.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Utility.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\ValveStreamingWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\VersionInfo.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Xbox360AmazonProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Xbox360AndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Xbox360LinuxProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Xbox360MacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Xbox360RockCandyAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\Xbox360WinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneBluetoothAndroidProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneInputDevice.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneInputDeviceManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneWin10AEProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneWin10Profile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XboxOneWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XiamoiMacProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XiamoiWinProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XInputDevice.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XInputDeviceManager.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XTR_G2_MacUnityProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XTR_G2_WindowsUnityProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XTR55_G2_MacUnityProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\InControl\XTR55_G2_WindowsUnityProfile.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\Properties\AssemblyInfo.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\Window.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\ButtonState.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\GamePad.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\GamePadButtons.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\GamePadDPad.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\GamePadState.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\GamePadThumbSticks.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\GamePadTriggers.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\Imports.cs" />
+     <Compile Include="Assets\Plugins\Assembly-CSharp-firstpass\XInputDotNetPure\PlayerIndex.cs" />
+ <Reference Include="UnityEngine.CoreModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AccessibilityModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ParticleSystemModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PhysicsModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VehiclesModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ClothModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AIModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AnimationModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TextRenderingModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UIModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TerrainPhysicsModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.IMGUIModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ClusterInputModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ClusterRendererModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UNETModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UNETModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.DirectorModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityAnalyticsModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PerformanceReportingModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityConnectModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.WebModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.WebModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ARModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VRModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UIElementsModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.StyleSheetsModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.StyleSheetsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AssetBundleModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AudioModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.CrashReportingModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.GameCenterModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.GridModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ImageConversionModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.InputModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.JSONSerializeModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ParticlesLegacyModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticlesLegacyModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Physics2DModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ScreenCaptureModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SharedInternalsModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SpriteMaskModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SpriteShapeModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TerrainModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TilemapModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VideoModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.WindModule">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Timeline">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UIAutomation">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.GoogleAudioSpatializer">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SpatialTracking">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+ </Reference>
+ <Reference Include="Accessibility">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/Accessibility.dll</HintPath>
+ </Reference>
+ <Reference Include="ConsoleUtilsImport">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/ConsoleUtilsImport.dll</HintPath>
+ </Reference>
+ <Reference Include="DataPlatformImport">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/DataPlatformImport.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Tds">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/Mono.Data.Tds.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Posix">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/Mono.Posix.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.WebBrowser">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/Mono.WebBrowser.dll</HintPath>
+ </Reference>
+ <Reference Include="SonyNP">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/SonyNP.dll</HintPath>
+ </Reference>
+ <Reference Include="SonyPS4SaveData">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/SonyPS4SaveData.dll</HintPath>
+ </Reference>
+ <Reference Include="StorageImport">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/StorageImport.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Drawing">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/System.Drawing.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Windows.Forms">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/System.Windows.Forms.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEtx">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/UnityEtx.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityPluginLogImport">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/UnityPluginLogImport.dll</HintPath>
+ </Reference>
+ <Reference Include="UsersImport">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/UsersImport.dll</HintPath>
+ </Reference>
+ <Reference Include="XboxOneCommonImport">
+ <HintPath>C:/Users/UO264817/Desktop/AAT/DesSTEAMado/Assets/Plugins/XboxOneCommonImport.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Users/UO264817/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>C:/Users/UO264817/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/UnityEngine.Purchasing.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.StandardEvents">
+ <HintPath>C:/Users/UO264817/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
