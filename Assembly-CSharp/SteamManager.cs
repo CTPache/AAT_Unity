@@ -1,3 +1,5 @@
+
+/*
 using System;
 using System.Text;
 using Steamworks;
@@ -12,7 +14,7 @@ public class SteamManager : MonoBehaviour
 
 	private bool m_bInitialized;
 
-	private SteamAPIWarningMessageHook_t m_SteamAPIWarningMessageHook;
+	//private SteamAPIWarningMessageHook_t m_SteamAPIWarningMessageHook;
 
 	private static SteamManager Instance
 	{
@@ -38,7 +40,6 @@ public class SteamManager : MonoBehaviour
 	{
 		Debug.LogWarning(pchDebugText);
 	}
-
 	private void Awake()
 	{
 		if (s_instance != null)
@@ -119,3 +120,4 @@ public class SteamManager : MonoBehaviour
 		}
 	}
 }
+*/

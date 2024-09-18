@@ -1,9 +1,10 @@
-using Steamworks;
+//using Steamworks;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 public class SteamAuthSessionScript : SteamScriptBase
 {
+	/*
 	public delegate void OnAuthSession(bool success);
 
 	private static SteamAuthSessionScript s_instance_;
@@ -142,4 +143,5 @@ public class SteamAuthSessionScript : SteamScriptBase
 		}
 		return false;
 	}
+	*/
 }

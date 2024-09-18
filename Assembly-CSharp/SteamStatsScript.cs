@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Steamworks;
+//using Steamworks;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 public class SteamStatsScript : SteamScriptBase
 {
+	/*
 	public delegate void OnRequestRecived(ReadOnlyCollection<SteamStatsData> stats_list);
 
 	private static SteamStatsScript s_instance_;
@@ -205,4 +206,5 @@ public class SteamStatsScript : SteamScriptBase
 			}
 		}
 	}
+	*/
 }

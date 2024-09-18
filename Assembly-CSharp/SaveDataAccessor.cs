@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using SaveStruct;
-using Steamworks;
+//using Steamworks;
+using System.IO;
 using UnityEngine;
 
 public static class SaveDataAccessor
@@ -75,20 +76,22 @@ public static class SaveDataAccessor
 	public static byte[] Load(string file_name)
 	{
 		is_load_ = false;
-		byte[] array = null;
+		//byte[] array = null;
 		return load_bytes_;
 	}
 
 	public static void Delete(string file_name)
 	{
-		SteamRemoteStorage.FileDelete(file_name);
+		//SteamRemoteStorage.FileDelete(file_name);
+		File.Delete(file_name);
 		load_bytes_ = null;
 	}
 
 	public static bool IsExistSaveDataFile(string file_name)
 	{
 		bool flag = false;
-		return SteamRemoteStorage.FileExists(file_name);
+		//return SteamRemoteStorage.FileExists(file_name);
+		return File.Exists(file_name);
 	}
 
 	private static void OnSaveSteamData(bool success)

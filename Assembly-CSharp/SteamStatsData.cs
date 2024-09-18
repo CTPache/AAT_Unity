@@ -1,9 +1,10 @@
 using System;
-using Steamworks;
+//using Steamworks;
 
 [Serializable]
 public class SteamStatsData
 {
+	/*
 	private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 
 	public string api { get; private set; }
@@ -112,4 +113,5 @@ public class SteamStatsData
 	{
 		SteamUserStats.StoreStats();
 	}
+	*/
 }

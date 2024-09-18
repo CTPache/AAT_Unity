@@ -431,8 +431,9 @@ public class objMoveCtrl : MonoBehaviour
 		POS_W pOS_W2 = default(POS_W);
 		pOS_W.l = (short)random_seed_;
 		pOS_W2.l = (short)(pOS_W.l * 3);
-		ref hl b = ref pOS_W.b;
-		b.l += (sbyte)pOS_W2.b.h;
+        //ref hl b = ref pOS_W.b;
+        //b.l += (sbyte)pOS_W2.b.h;
+        pOS_W.b.l += (sbyte)pOS_W2.b.h;
 		pOS_W.b.h = pOS_W2.b.h;
 		random_seed_ = (uint)pOS_W.l;
 		return (uint)pOS_W.b.l;

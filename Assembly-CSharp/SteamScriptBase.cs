@@ -1,45 +1,46 @@
-using Steamworks;
+//using Steamworks;
 using UnityEngine;
 
 public class SteamScriptBase : MonoBehaviour
 {
-	private static GameObject s_gameObject_;
+    private static GameObject s_gameObject_;
 
-	private static GameObject s_gameObject
-	{
-		get
-		{
-			if (s_gameObject_ == null)
-			{
-				s_gameObject_ = new GameObject("SteamScripts");
-			}
-			return s_gameObject_;
-		}
-	}
+    private static GameObject s_gameObject
+    {
+        get
+        {
+            if (s_gameObject_ == null)
+            {
+                s_gameObject_ = new GameObject("SteamScripts");
+            }
+            return s_gameObject_;
+        }
+    }
 
-	protected CGameID game_id { get; private set; }
+    //protected CGameID game_id { get; private set; }
 
-	protected virtual Rect gui_layout_area
-	{
-		get
-		{
-			return new Rect(0f, 0f, 400f, 100f);
-		}
-	}
+    protected virtual Rect gui_layout_area
+    {
+        get
+        {
+            return new Rect(0f, 0f, 400f, 100f);
+        }
+    }
 
-	protected static T AddSteamScriptComponent<T>() where T : SteamScriptBase
-	{
-		return s_gameObject.AddComponent<T>();
-	}
+    protected static T AddSteamScriptComponent<T>() where T : SteamScriptBase
+    {
+        return s_gameObject.AddComponent<T>();
+    }
 
-	private void Awake()
-	{
-		if (s_gameObject_ == null)
-		{
-			s_gameObject_ = base.gameObject;
-		}
-		if (base.transform.parent == null)
-		{
+    private void Awake()
+    {
+        if (s_gameObject_ == null)
+        {
+            s_gameObject_ = base.gameObject;
+        }
+        if (base.transform.parent == null)
+        {
+            /*
 			SteamManager steamManager = Object.FindObjectOfType<SteamManager>();
 			if (steamManager == null)
 			{
@@ -49,10 +50,12 @@ public class SteamScriptBase : MonoBehaviour
 			{
 				base.transform.parent = steamManager.transform;
 			}
-		}
-		AwakeSteam();
-	}
+			*/
+        }
+        AwakeSteam();
+    }
 
+    /*
 	private void Start()
 	{
 		if (SteamManager.Initialized)
@@ -72,22 +75,7 @@ public class SteamScriptBase : MonoBehaviour
 		OnDeactive();
 	}
 
-	protected virtual void OnActive()
-	{
-		if (s_gameObject_ == null)
-		{
-			s_gameObject_ = base.gameObject;
-		}
-	}
-
-	protected virtual void OnDeactive()
-	{
-		if (!(s_gameObject_ != this))
-		{
-			s_gameObject_ = null;
-		}
-	}
-
+	
 	private void OnGUI()
 	{
 		if (SteamManager.Initialized)
@@ -104,20 +92,38 @@ public class SteamScriptBase : MonoBehaviour
 			StartSteam();
 		}
 	}
+	*/
 
-	protected virtual void AwakeSteam()
-	{
-	}
+    protected virtual void OnActive()
+    {
+        if (s_gameObject_ == null)
+        {
+            s_gameObject_ = base.gameObject;
+        }
+    }
 
-	protected virtual void StartSteam()
-	{
-	}
+    protected virtual void OnDeactive()
+    {
+        if (!(s_gameObject_ != this))
+        {
+            s_gameObject_ = null;
+        }
+    }
 
-	protected virtual void OnGUISteam(int x, int y, int w, int h)
-	{
-	}
 
-	public virtual void Init()
-	{
-	}
+    protected virtual void AwakeSteam()
+    {
+    }
+
+    protected virtual void StartSteam()
+    {
+    }
+
+    protected virtual void OnGUISteam(int x, int y, int w, int h)
+    {
+    }
+
+    public virtual void Init()
+    {
+    }
 }

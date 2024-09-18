@@ -311,10 +311,10 @@ public static class SubWindow_Tantei
 				{
 					inspectCtrl.instance.reset();
 				}
-				ref R r = ref routine.r;
+				//ref R r = ref routine.r;
 				byte b = 0;
 				GSStatic.global_work_.r.no_3 = b;
-				r.no_2 = b;
+				routine.r.no_2 = b;
 				routine.r.Set(5, 2, 2, 0);
 				if (GSStatic.tantei_work_.menu != 3)
 				{

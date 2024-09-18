@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Steamworks;
+//using Steamworks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -126,7 +126,7 @@ public class startCtrl : sceneCtrl
 		yield return null;
 		loadingCtrl.instance.init();
 		loadingCtrl.instance.play(loadingCtrl.Type.LOADING);
-		yield return coroutineCtrl.instance.Play(SteamCtrl.ShareFiles());
+//		yield return coroutineCtrl.instance.Play(SteamCtrl.ShareFiles());
 		if (SteamCtrl.IsShareFilesError)
 		{
 			yield return coroutineCtrl.instance.Play(loadingCtrl.instance.wait(1f));
@@ -245,8 +245,9 @@ public class startCtrl : sceneCtrl
 			}
 		}
 		uint save_data_account_id = SteamCtrl.GetSaveDataAccountID();
-		uint current_account_id = SteamUser.GetSteamID().GetAccountID().m_AccountID;
-		if (save_data_account_id != current_account_id)
+        //uint current_account_id = SteamUser.GetSteamID().GetAccountID().m_AccountID;
+		uint current_account_id = (uint)SteamCtrl.GetAccountID();
+        if (save_data_account_id != current_account_id)
 		{
 			fadeCtrl.instance.play(fadeCtrl.Status.FADE_OUT, 30u, 16u);
 			while (!fadeCtrl.instance.is_end)

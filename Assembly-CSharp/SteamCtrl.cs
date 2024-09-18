@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using Steamworks;
+//using Steamworks;
 using UnityEngine;
 
 public static class SteamCtrl
 {
-	public static bool IsShareFilesError;
+    public static bool IsShareFilesError;
 
-	public static bool IsReady { get; private set; }
+    public static bool IsReady { get; private set; }
 
-	public static bool IsFailed { get; private set; }
+    public static bool IsFailed { get; private set; }
 
-	public static void Init()
-	{
-		IsReady = false;
-		IsFailed = false;
-		if (!SteamManager.Initialized)
-		{
-			Application.Quit();
-			return;
-		}
+    public static void Init()
+    {
+        IsReady = false;
+        IsFailed = false;
+        /*
+        if (!SteamManager.Initialized)
+        {
+            Application.Quit();
+            return;
+        }
 		if (!SteamApps.BIsSubscribed())
 		{
 			Debug.Log("BIsSubscribed = False");
@@ -43,7 +44,7 @@ public static class SteamCtrl
 		stringBuilder.AppendLine("Is VAC Banned : " + SteamApps.BIsVACBanned());
 		Debug.Log(stringBuilder);
 		SteamAuthSessionScript.Instance.Init();
-		if (IsOnline())
+        if (IsOnline())
 		{
 			SteamAuthSessionScript.Instance.StartAuthSession(delegate(bool ok)
 			{
@@ -66,131 +67,139 @@ public static class SteamCtrl
 			SteamStorageScript.Instance.Init();
 			LoadAchievement();
 		}
-	}
+		*/
+        SteamStorageScript.Instance.Init();
+    }
 
-	public static SystemLanguage ConvertLanguage()
-	{
-		if (!SteamManager.Initialized)
-		{
-			return SystemLanguage.English;
-		}
-		switch (SteamApps.GetCurrentGameLanguage())
-		{
-		case "japanese":
-			return SystemLanguage.Japanese;
-		case "english":
-			return SystemLanguage.English;
-		case "schinese":
-			return SystemLanguage.ChineseSimplified;
-		case "tchinese":
-			return SystemLanguage.ChineseTraditional;
-		case "french":
-			return SystemLanguage.French;
-		case "german":
-			return SystemLanguage.German;
-		case "koreana":
-			return SystemLanguage.Korean;
-		default:
-			return SystemLanguage.English;
-		}
-	}
+    public static SystemLanguage ConvertLanguage()
+    {
+        /*
+        if (!SteamManager.Initialized)
+        {
+            return SystemLanguage.English;
+        }
+        switch (SteamApps.GetCurrentGameLanguage())
+        */
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.Japanese:
+            case SystemLanguage.English:
+            case SystemLanguage.ChineseSimplified:
+            case SystemLanguage.ChineseTraditional:
+            case SystemLanguage.French:
+            case SystemLanguage.German:
+            case SystemLanguage.Korean:
+                return Application.systemLanguage;
 
-	public static bool IsJapanIP()
-	{
-		return SteamManager.Initialized && SteamUtils.GetIPCountry().ToLower().Contains("jp");
-	}
+        default:
+                return SystemLanguage.English;
+        }
+    }
 
-	public static IEnumerator ShareFiles()
-	{
-		if (!IsOnline() || !IsCloudEnabled())
-		{
-			yield break;
-		}
-		IsShareFilesError = false;
-		string savedata_filename = SaveControl.GetSystemDataFileName();
-		int filecount = SteamRemoteStorage.GetFileCount();
-		for (int i = 0; i < filecount; i++)
-		{
-			int bytesize;
-			string filename = SteamRemoteStorage.GetFileNameAndSize(i, out bytesize);
-			if (filename != savedata_filename && filename != string.Empty)
-			{
-				SteamRemoteStorage.FileDelete(filename);
-				Debug.Log("Delete unused file : " + filename);
-				continue;
-			}
-			bool next_file = false;
-			if (SteamStorageScript.Instance.RequestShareFile(filename, delegate(byte[] data)
-			{
-				next_file = data != null;
-			}))
-			{
-				while (!next_file && !IsShareFilesError)
-				{
-					yield return null;
-				}
-				if (IsShareFilesError)
-				{
-					yield break;
-				}
-			}
-		}
-		yield return null;
-	}
+    public static bool IsJapanIP()
+    {
+        return Application.systemLanguage.Equals(SystemLanguage.Japanese);
+        //return SteamManager.Initialized; && SteamUtils.GetIPCountry().ToLower().Contains("jp");
+    }
 
-	public static void LoadAchievement()
-	{
-		SteamStatsScript.Instance.RequestCurrentStats(delegate(ReadOnlyCollection<SteamStatsData> stats_list)
-		{
-			IsReady = true;
-			IsFailed = stats_list == null;
-			Debug.Log("SteamCtrl LoadAchievement : " + (IsFailed ? "Failure" : "Success"));
-			if (!IsFailed)
-			{
-				List<bool> list = new List<bool> { false };
-				foreach (SteamStatsData item in stats_list)
-				{
-					list.Add(item.achieved);
-				}
-				TrophyCtrl.init(list.ToArray());
-			}
-		});
-	}
+    /*
+    public static IEnumerator ShareFiles()
+    {
+        if (!IsOnline() || !IsCloudEnabled())
+        {
+            yield break;
+        }
+        IsShareFilesError = false;
+        string savedata_filename = SaveControl.GetSystemDataFileName();
+        int filecount = SteamRemoteStorage.GetFileCount();
+        for (int i = 0; i < filecount; i++)
+        {
+            int bytesize;
+            string filename = SteamRemoteStorage.GetFileNameAndSize(i, out bytesize);
+            if (filename != savedata_filename && filename != string.Empty)
+            {
+                SteamRemoteStorage.FileDelete(filename);
+                Debug.Log("Delete unused file : " + filename);
+                continue;
+            }
+            bool next_file = false;
+            if (SteamStorageScript.Instance.RequestShareFile(filename, delegate (byte[] data)
+            {
+                next_file = data != null;
+            }))
+            {
+                while (!next_file && !IsShareFilesError)
+                {
+                    yield return null;
+                }
+                if (IsShareFilesError)
+                {
+                    yield break;
+                }
+            }
+        }
+        yield return null;
+    }
 
-	public static void SetAchievement(int trophy_id)
-	{
-		Debug.Log("SteamCtrl SetAchievement : trophy_id = " + trophy_id + " : IsReady = " + IsReady);
-		if (IsReady)
-		{
-			SteamStatsScript.Instance.SetAchievement(trophy_id);
-		}
-		else
-		{
-			TrophyCtrl.set_trophy(trophy_id, false);
-		}
-	}
+    public static void LoadAchievement()
+    {
+        SteamStatsScript.Instance.RequestCurrentStats(delegate (ReadOnlyCollection<SteamStatsData> stats_list)
+        {
+            IsReady = true;
+            IsFailed = stats_list == null;
+            Debug.Log("SteamCtrl LoadAchievement : " + (IsFailed ? "Failure" : "Success"));
+            if (!IsFailed)
+            {
+                List<bool> list = new List<bool> { false };
+                foreach (SteamStatsData item in stats_list)
+                {
+                    list.Add(item.achieved);
+                }
+                TrophyCtrl.init(list.ToArray());
+            }
+        });
+    }
+    */
 
-	public static uint GetSaveDataAccountID()
-	{
-		return (uint)GSStatic.reserve_data.reserve[1];
-	}
+        public static void SetAchievement(int trophy_id)
+    {
+        Debug.Log("SteamCtrl SetAchievement : trophy_id = " + trophy_id + " : IsReady = " + IsReady);
+        /*
+        if (IsReady)
+        {
+            SteamStatsScript.Instance.SetAchievement(trophy_id);
+        }
+        else
+        {
+        */
+            TrophyCtrl.set_trophy(trophy_id, false);
+        //}
+    }
 
-	public static int GetAccountID()
-	{
-		return (int)SteamUser.GetSteamID().GetAccountID().m_AccountID;
-	}
+    public static uint GetSaveDataAccountID()
+    {
+        return (uint)GSStatic.reserve_data.reserve[1];
+    }
 
-	public static bool IsOnline()
-	{
-		bool flag = SteamUser.BLoggedOn();
-		Debug.Log("SteamCtrl IsOnline = " + flag);
-		return flag;
-	}
+    public static int GetAccountID()
+    {
+        return 0;
+        //return (int)SteamUser.GetSteamID().GetAccountID().m_AccountID;
+    }
 
-	public static bool IsCloudEnabled()
-	{
-		bool flag = SteamRemoteStorage.IsCloudEnabledForAccount() && SteamRemoteStorage.IsCloudEnabledForApp();
-		Debug.Log("SteamCtrl IsCloudEnabled = " + flag);
-		return flag;
-	}
+    /*
+    public static bool IsOnline()
+    {
+        bool flag = SteamUser.BLoggedOn();
+        Debug.Log("SteamCtrl IsOnline = " + flag);
+        return flag;
+    }
+
+    public static bool IsCloudEnabled()
+    {
+        bool flag = SteamRemoteStorage.IsCloudEnabledForAccount() && SteamRemoteStorage.IsCloudEnabledForApp();
+        Debug.Log("SteamCtrl IsCloudEnabled = " + flag);
+        return flag;
+    }
+    */
 }
