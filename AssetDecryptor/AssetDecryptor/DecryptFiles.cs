@@ -42,24 +42,24 @@ class DecryptFiles
             {
                 try
                 {
-                    
-                        // Desencriptar el archivo
-                        byte[] decryptedData = LoadAndDecrypt(file);
 
-                        // Crear la estructura de subdirectorios en el directorio de salida
-                        string relativePath = Path.GetRelativePath(inputDirectory, file);
-                        string outputPath = Path.Combine(outputDirectory, relativePath);
-                        string outputDir = Path.GetDirectoryName(outputPath);
-                        if (!Directory.Exists(outputDir))
-                        {
-                            Directory.CreateDirectory(outputDir);
-                        }
+                    // Desencriptar el archivo
+                    byte[] decryptedData = LoadAndDecrypt(file);
 
-                        // Guardar los datos desencriptados en un nuevo archivo
-                        File.WriteAllBytes(outputPath, decryptedData);
+                    // Crear la estructura de subdirectorios en el directorio de salida
+                    string relativePath = Path.GetRelativePath(inputDirectory, file);
+                    string outputPath = Path.Combine(outputDirectory, relativePath);
+                    string outputDir = Path.GetDirectoryName(outputPath) ?? inputDirectory;
+                    if (!Directory.Exists(outputDir))
+                    {
+                        Directory.CreateDirectory(outputDir);
+                    }
 
-                        Console.WriteLine("Archivo desencriptado y guardado: " + outputPath);
-                    
+                    // Guardar los datos desencriptados en un nuevo archivo
+                    File.WriteAllBytes(outputPath, decryptedData);
+
+                    Console.WriteLine("Archivo desencriptado y guardado: " + outputPath);
+
                 }
                 catch (Exception ex)
                 {
@@ -75,14 +75,18 @@ class DecryptFiles
 
     static void Main(string[] args)
     {
-        if (args.Length < 2)
+        if (args.Length < 1)
         {
             Console.WriteLine("Uso: DecryptFiles <directorio_entrada> <directorio_salida>");
             return;
         }
 
         string inputDirectory = args[0];
-        string outputDirectory = args[1];
+        string outputDirectory;
+        if (args.Length < 2)
+            outputDirectory = args[1];
+        else
+            outputDirectory = inputDirectory;
 
         DecryptFilesInDirectory(inputDirectory, outputDirectory);
     }
