@@ -2,3 +2,5 @@
 Temp/*
 obj/*
 .vs/*
+Assets/StreamingAssets/*
+Library/*

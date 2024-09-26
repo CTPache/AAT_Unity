@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5BB7E9B2-DAAC-E6A6-6D4C-F52FF86D00FA}</ProjectGuid>
+    <ProjectGuid>{43533C38-817D-E5CC-9464-17C50F60B333}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -658,70 +658,70 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Accessibility">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/Accessibility.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/Accessibility.dll</HintPath>
  </Reference>
  <Reference Include="ConsoleUtilsImport">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/ConsoleUtilsImport.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/ConsoleUtilsImport.dll</HintPath>
  </Reference>
  <Reference Include="DataPlatformImport">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/DataPlatformImport.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/DataPlatformImport.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.Tds">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/Mono.Data.Tds.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/Mono.Data.Tds.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Posix">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/Mono.Posix.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/Mono.Posix.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Security">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/Mono.Security.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/Mono.Security.dll</HintPath>
  </Reference>
  <Reference Include="Mono.WebBrowser">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/Mono.WebBrowser.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/Mono.WebBrowser.dll</HintPath>
  </Reference>
  <Reference Include="SonyNP">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/SonyNP.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/SonyNP.dll</HintPath>
  </Reference>
  <Reference Include="SonyPS4SaveData">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/SonyPS4SaveData.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/SonyPS4SaveData.dll</HintPath>
  </Reference>
  <Reference Include="StorageImport">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/StorageImport.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/StorageImport.dll</HintPath>
  </Reference>
  <Reference Include="System.Configuration">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/System.Configuration.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/System.Configuration.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/System.Data.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="System.Drawing">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/System.Drawing.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/System.Drawing.dll</HintPath>
  </Reference>
  <Reference Include="System.EnterpriseServices">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/System.EnterpriseServices.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/System.EnterpriseServices.dll</HintPath>
  </Reference>
  <Reference Include="System.Security">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/System.Security.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/System.Security.dll</HintPath>
  </Reference>
  <Reference Include="System.Transactions">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/System.Transactions.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/System.Transactions.dll</HintPath>
  </Reference>
  <Reference Include="System.Windows.Forms">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/System.Windows.Forms.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/System.Windows.Forms.dll</HintPath>
  </Reference>
  <Reference Include="UnityEtx">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/UnityEtx.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/UnityEtx.dll</HintPath>
  </Reference>
  <Reference Include="UnityPluginLogImport">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/UnityPluginLogImport.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/UnityPluginLogImport.dll</HintPath>
  </Reference>
  <Reference Include="UsersImport">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/UsersImport.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/UsersImport.dll</HintPath>
  </Reference>
  <Reference Include="XboxOneCommonImport">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/Plugins/XboxOneCommonImport.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/Plugins/XboxOneCommonImport.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Users/UO264817/Desktop/AAT/ExportedProject/Assets/UnityPackages/JsonNet-Lite/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/UO264817/Documents/GitHub/AAT_Unity/Assets/UnityPackages/JsonNet-Lite/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/UO264817/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
@@ -735,7 +735,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{BC3C38AE-ED04-B288-BA63-7F92E64B03B8}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{BA820B83-814C-1173-F5CB-4E4D816959D4}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
