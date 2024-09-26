@@ -5,14 +5,6 @@ using UnityEngine;
 
 public static class SaveControl
 {
-	public const int MAX_SLOT = 10;
-
-	public const int MAX_REGION_NUM = 10;
-
-	public const int system_data_size_ = 884;
-
-	public const int game_data_size_ = 3252;
-
 	private static byte[] temp_data = (byte[])Enumerable.Empty<byte>();
 
 	public static bool is_load_
@@ -160,14 +152,14 @@ public static class SaveControl
 	{
 		return "systemdata";
 	}
-
+	/*
 	private static string GetGameDataFileName(int slot)
 	{
-		slot += (int)GSStatic.global_work_.language * 10;
+		slot += Language.languages.IndexOf(GSStatic.global_work_.language) * 10;
 		slot = Mathf.Clamp(slot, 0, 99);
 		return "gamedata_" + slot;
 	}
-
+	*/
 	private static void tempDataGet()
 	{
 		PresideData preside_data = default(PresideData);

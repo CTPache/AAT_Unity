@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class mainTitleCtrl : sceneCtrl
 {
 	[Serializable]
@@ -125,9 +126,9 @@ public class mainTitleCtrl : sceneCtrl
 		ReplaceFont.instance.ChangeFont(GSStatic.global_work_.language);
 		TextDataCtrl.SetLanguage(GSStatic.global_work_.language);
 		GSStatic.save_slot_language_ = GSStatic.global_work_.language;
-		if (GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA)
+		if (GSStatic.global_work_.language != "JAPAN" && GSStatic.global_work_.language != "USA")
 		{
-			if (GSStatic.global_work_.language == Language.FRANCE || GSStatic.global_work_.language == Language.CHINA_S)
+			if (GSStatic.global_work_.language == "FRANCE" || GSStatic.global_work_.language == "CHINA_S")
 			{
 				systemCtrl.instance.EnableDoubleQuotationAdjustoment(true);
 			}
@@ -157,17 +158,30 @@ public class mainTitleCtrl : sceneCtrl
 		main_title_.active = true;
 		load = false;
 		GSStatic.global_work_.lifegauge_init_hp();
-		main_title_.copyright_.load("/menu/title/", "copy", true);
-		main_title_.copyright_.spriteNo(0);
-		main_title_.copyright_.sprite_data_.Clear();
-		main_title_.title_back_.load("/menu/title/", "title_back");
-		select_plate_.body_active = false;
+        main_title_.copyright_.load("/menu/title/", "copy", false);
+        main_title_.copyright_.spriteNo(0);
+        main_title_.copyright_.sprite_data_.Clear();
+        main_title_.title_back_.load("/menu/title/", "title_back");
+        select_plate_.body_active = false;
 		soundCtrl.instance.PlayBGM(400);
 		advCtrl.instance.sub_window_.req_ = SubWindow.Req.NONE;
 		advCtrl.instance.sub_window_.busy_ = 0u;
 	}
 
-	public override void End()
+    public void loadLang()
+    {
+        //AssetBundleCtrl.instance.reloadAll(true);
+
+        main_title_.title_.load("/menu/title/", "title" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language), false, true);
+        main_title_.title_.spriteNo(0);
+        main_title_.title_.sprite_data_.Clear();
+
+        main_title_.copyright_.load("/menu/title/", "copy", false, true);
+        main_title_.copyright_.spriteNo(0);
+        main_title_.copyright_.sprite_data_.Clear();
+    }
+
+    public override void End()
 	{
 		select_plate_.End();
 		base.End();
@@ -345,7 +359,7 @@ public class mainTitleCtrl : sceneCtrl
 		Vector3 zero = Vector3.zero;
 		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 		{
-		case Language.JAPAN:
+		case "JAPAN":
 			num = 38;
 			zero = new Vector3(0f, 0f, -30f);
 			break;
@@ -356,7 +370,7 @@ public class mainTitleCtrl : sceneCtrl
 		}
 		select_plate_.SetTextFontsize(num);
 		select_plate_.SetTextPosition(zero);
-		main_title_.title_.load("/menu/title/", "title" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language), true);
+		main_title_.title_.load("/menu/title/", "title" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language), false);
 		main_title_.title_.spriteNo(0);
 		main_title_.title_.sprite_data_.Clear();
 	}

@@ -134,7 +134,7 @@ public class MovieController : MonoBehaviour
 		InitData(true);
 		screen.rectTransform.sizeDelta = new Vector2(1800f, 1125f);
 		use_camera_.clearFlags = CameraClearFlags.Depth;
-		AssetBundle taiho_bundle = AssetBundleCtrl.instance.load("/GS1/moviescriptable/", "film01_confront", false, false);
+		AssetBundle taiho_bundle = AssetBundleCtrl.instance.load("/GS1/moviescriptable/", "film01_confront", false);
 		ConfrontWithMovie.instance.SetScreenActivate();
 		auto_play = true;
 		now_speed = 1f;

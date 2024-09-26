@@ -217,10 +217,10 @@ public class episodeReleaseCtrl : MonoBehaviour
 		is_scroll_ = false;
 		switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 		{
-		case Language.JAPAN:
+		case "JAPAN":
 			messageBoardCtrl.instance.SetPos(0f, 42f);
 			break;
-		case Language.USA:
+		case "USA":
 			messageBoardCtrl.instance.SetPos(0f, 80f);
 			break;
 		default:

@@ -160,9 +160,10 @@ public class picePlateCtrl : MonoBehaviour
 
 	public void load()
 	{
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
-		case Language.JAPAN:
+		case "JAPAN":
 			board_.load("/menu/common/", "evidence_01");
 			icon_obj_.transform.localPosition = icon_pos_jpn_;
 			icon_name_.rectTransform.localPosition = name_position_jpn_;
@@ -188,7 +189,7 @@ public class picePlateCtrl : MonoBehaviour
 				item2.fontSize = comment_fontsize_usa_;
 			}
 			break;
-		case Language.CHINA_S:
+		case "CHINA_S":
 			board_.load("/menu/common/", "evidence_01");
 			icon_obj_.transform.localPosition = icon_pos_jpn_;
 			icon_name_.rectTransform.localPosition = name_position_chi_s_;
@@ -201,7 +202,7 @@ public class picePlateCtrl : MonoBehaviour
 				item3.fontSize = comment_fontsize_chi_s_;
 			}
 			break;
-		case Language.CHINA_T:
+		case "CHINA_T":
 			board_.load("/menu/common/", "evidence_01");
 			icon_obj_.transform.localPosition = icon_pos_jpn_;
 			icon_name_.rectTransform.localPosition = name_position_chi_t_;

@@ -6809,7 +6809,7 @@ public static class GSDemo
 					message_work.op_work[7] = 65532;
 					return;
 				}
-				if (message_work.all_work[1] == 0 || message_work.all_work[1] == 1 || GSStatic.global_work_.title != 0 || message_work.all_work[1] == 2 || message_work.all_work[1] == 3 || message_work.all_work[1] == 4 || message_work.all_work[1] != 5 || global_work_.language == Language.JAPAN || global_work_.language == Language.USA)
+				if (message_work.all_work[1] == 0 || message_work.all_work[1] == 1 || GSStatic.global_work_.title != 0 || message_work.all_work[1] == 2 || message_work.all_work[1] == 3 || message_work.all_work[1] == 4 || message_work.all_work[1] != 5 || global_work_.language == "JAPAN" || global_work_.language == "USA")
 				{
 				}
 				if (objWork != null)

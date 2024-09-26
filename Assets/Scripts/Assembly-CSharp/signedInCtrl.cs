@@ -68,13 +68,14 @@ public class signedInCtrl : MonoBehaviour
 	{
 		get
 		{
-			switch (GSStatic.global_work_.language)
+			string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+			switch (lang)
 			{
-			case Language.KOREA:
+			case "KOREA":
 				return 1f;
-			case Language.CHINA_S:
+			case "CHINA_S":
 				return 1f;
-			case Language.CHINA_T:
+			case "CHINA_T":
 				return 1f;
 			default:
 				return 0.8f;
@@ -123,9 +124,9 @@ public class signedInCtrl : MonoBehaviour
 		coroutineCtrl.instance.Play(play_enumerator_);
 	}
 
-	private void FontSizeSet(Language language)
+	private void FontSizeSet(string language)
 	{
-		int fontSize = ((language != Language.FRANCE) ? 40 : 38);
+		int fontSize = ((language != "FRANCE") ? 40 : 38);
 		text_.fontSize = fontSize;
 	}
 

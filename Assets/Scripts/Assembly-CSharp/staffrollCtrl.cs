@@ -326,21 +326,22 @@ public class staffrollCtrl : MonoBehaviour
 	{
 		get
 		{
-			switch (GSStatic.global_work_.language)
+			string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+			switch (lang)
 			{
-			case Language.JAPAN:
+			case "JAPAN":
 				return staffroll_list_j_;
-			case Language.USA:
+			case "USA":
 				return staffroll_list_u_;
-			case Language.FRANCE:
+			case "FRANCE":
 				return staffroll_list_f_;
-			case Language.GERMAN:
+			case "GERMAN":
 				return staffroll_list_g_;
-			case Language.KOREA:
+			case "KOREA":
 				return staffroll_list_k_;
-			case Language.CHINA_S:
+			case "CHINA_S":
 				return staffroll_list_s_;
-			case Language.CHINA_T:
+			case "CHINA_T":
 				return staffroll_list_t_;
 			default:
 				return staffroll_list_j_;

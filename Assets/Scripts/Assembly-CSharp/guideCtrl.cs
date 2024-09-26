@@ -96,12 +96,13 @@ public class guideCtrl : keyGuideBase
 	protected float guide_width_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
-			case Language.CHINA_S:
-			case Language.CHINA_T:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+			switch (lang)
+            {
+			case "JAPAN":
+			case "CHINA_S":
+			case "CHINA_T":
 				return guide_width_j_;
 			default:
 				return guide_width_u_;

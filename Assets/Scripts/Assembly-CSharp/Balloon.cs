@@ -147,9 +147,12 @@ public class Balloon
 
 	public static void ChangeLanguageObjection()
 	{
-		objMoveCtrl.instance.play(2);
-		ushort[] array = new ushort[7] { 81, 56, 57, 369, 150, 372, 65 };
-		ushort in_se_no = array[Random.Range(0, array.Length)];
-		soundCtrl.instance.PlaySE(in_se_no);
+        //ushort[] array = new ushort[7] { 81, 56, 57, 369, 150, 372, 65 };
+        //ushort in_se_no = array[Random.Range(0, array.Length)];
+
+        ushort in_se_no = 81;
+
+        objMoveCtrl.instance.play(2);
+		soundCtrl.instance.PlaySE(in_se_no, true, true);
 	}
 }

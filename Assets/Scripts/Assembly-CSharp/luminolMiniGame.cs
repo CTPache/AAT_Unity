@@ -879,7 +879,7 @@ public class luminolMiniGame : MonoBehaviour
 		bg_body_.transform.localPosition = Vector3.zero;
 		if (in_bg_no < bg_data_.data.Count && !(bg_data_.data[in_bg_no].name_ == string.Empty))
 		{
-			if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == Language.USA)
+			if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == "USA")
 			{
 				targetRenderer.sprite = SetCourtSprite("/GS1/BG/", bg_data_.data_language[(int)bg_data_.data[in_bg_no].language_]);
 			}

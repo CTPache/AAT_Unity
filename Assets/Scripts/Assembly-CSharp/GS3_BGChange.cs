@@ -152,7 +152,7 @@ public class GS3_BGChange : MonoBehaviour
 		{
 			bgCtrl.instance.SetSeal(3, false);
 			bgCtrl.instance.SetSeal(2);
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSStatic.global_work_.language == "USA")
 			{
 				bgCtrl.instance.SetSeal(5, false);
 				bgCtrl.instance.SetSeal(1);
@@ -167,7 +167,7 @@ public class GS3_BGChange : MonoBehaviour
 		{
 			bgCtrl.instance.SetSeal(2, false);
 			bgCtrl.instance.SetSeal(3);
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSStatic.global_work_.language == "USA")
 			{
 				bgCtrl.instance.SetSeal(1, false);
 				bgCtrl.instance.SetSeal(5);
@@ -233,7 +233,7 @@ public class GS3_BGChange : MonoBehaviour
 	{
 		if (!GSFlag.Check(0u, scenario_GS3.SCE2_0_GET_SHIGOTO))
 		{
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSStatic.global_work_.language == "USA")
 			{
 				bgCtrl.instance.SetSeal(12);
 			}
@@ -242,7 +242,7 @@ public class GS3_BGChange : MonoBehaviour
 				bgCtrl.instance.SetSeal(11);
 			}
 		}
-		else if (GSStatic.global_work_.language == Language.USA)
+		else if (GSStatic.global_work_.language == "USA")
 		{
 			bgCtrl.instance.SetSeal(12, false);
 		}
@@ -266,7 +266,7 @@ public class GS3_BGChange : MonoBehaviour
 
 	private static void Sce03_NewsBG()
 	{
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language == "USA")
 		{
 			bgCtrl.instance.SetSeal(15);
 		}
@@ -308,7 +308,7 @@ public class GS3_BGChange : MonoBehaviour
 
 	private static void Sce05_Oboro02BG()
 	{
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language == "USA")
 		{
 			bgCtrl.instance.SetSeal(24);
 		}
@@ -415,7 +415,7 @@ public class GS3_BGChange : MonoBehaviour
 	{
 		if (GSFlag.Check(0u, scenario_GS3.SCE3_0_MAPSHITEKI))
 		{
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSStatic.global_work_.language == "USA")
 			{
 				bgCtrl.instance.SetSeal(18);
 			}

@@ -49,13 +49,13 @@ namespace TextEffect
 				Vector2 centerPosition = GetCenterPosition(num4, stream);
 				if (text_.text[num5] == '“')
 				{
-					num3 = ((GSStatic.global_work_.language != Language.CHINA_S) ? (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_)) : (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_china_s_ : alignment_upperleft_quotation_diff_china_s_)));
+					num3 = ((GSStatic.global_work_.language != "CHINA_S") ? (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_)) : (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_china_s_ : alignment_upperleft_quotation_diff_china_s_)));
 				}
 				else if (num5 > 0 && text_.text[num5 - 1] == '”')
 				{
-					num3 = ((GSStatic.global_work_.language != Language.CHINA_S) ? (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_)) : (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_china_s_ : alignment_upperleft_quotation_diff_china_s_)));
+					num3 = ((GSStatic.global_work_.language != "CHINA_S") ? (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_ : alignment_upperleft_quotation_diff_)) : (num3 + ((alignment != 0) ? alignment_uppercenter_quotation_diff_china_s_ : alignment_upperleft_quotation_diff_china_s_)));
 				}
-				else if (GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA)
+				else if (GSStatic.global_work_.language != "JAPAN" && GSStatic.global_work_.language != "USA")
 				{
 					if (text_.text[num5] == 'ï')
 					{

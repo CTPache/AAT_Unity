@@ -93,10 +93,11 @@ public class seriesTitleSelectCtrl : sceneCtrl
 		title_back_.active = true;
 		int num = 0;
 		Vector3 zero = Vector3.zero;
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
-		case Language.JAPAN:
-		case Language.CHINA_S:
+		case "JAPAN":
+		case "CHINA_S":
 			num = 46;
 			zero = new Vector3(0f, 0f, -30f);
 			break;
@@ -104,8 +105,8 @@ public class seriesTitleSelectCtrl : sceneCtrl
 			num = 37;
 			zero = new Vector3(0f, 4f, -30f);
 			break;
-		case Language.KOREA:
-		case Language.CHINA_T:
+		case "KOREA":
+		case "CHINA_T":
 			num = 40;
 			zero = new Vector3(0f, 0f, -30f);
 			break;

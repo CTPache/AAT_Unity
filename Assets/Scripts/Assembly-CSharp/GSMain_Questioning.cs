@@ -180,7 +180,7 @@ public class GSMain_Questioning
 		if ((global_work.status_flag & 0x400u) != 0)
 		{
 		}
-		if ((GSStatic.message_work_.status & MessageSystem.Status.LOOP) != 0 && currentRoutine.r.no_0 != 14 && activeMessageWork.now_no - 1 != global_work.bk_start_mess && global_work.language != 0)
+		if ((GSStatic.message_work_.status & MessageSystem.Status.LOOP) != 0 && currentRoutine.r.no_0 != 14 && activeMessageWork.now_no - 1 != global_work.bk_start_mess && global_work.language != "JAPAN")
 		{
 		}
 	}

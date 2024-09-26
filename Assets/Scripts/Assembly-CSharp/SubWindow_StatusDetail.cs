@@ -713,7 +713,7 @@ public static class SubWindow_StatusDetail
 		switch (currentRoutine.r.no_2)
 		{
 		case 0:
-			if (GSUtility.GetLanguageLayoutType(global_work_.language) != 0)
+			if (GSUtility.GetLanguageLayoutType(global_work_.language) != "JAPAN")
 			{
 				if (routine_3d[0].h - 16 > -48)
 				{
@@ -946,7 +946,7 @@ public static class SubWindow_StatusDetail
 		case 1:
 			if (routine_3d[0].timer == 0)
 			{
-				if (GSUtility.GetLanguageLayoutType(global_work_.language) != 0)
+				if (GSUtility.GetLanguageLayoutType(global_work_.language) != "JAPAN")
 				{
 					if (routine_3d[0].h + 16 < 0)
 					{

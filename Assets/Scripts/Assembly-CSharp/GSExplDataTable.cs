@@ -257,7 +257,7 @@ public static class GSExplDataTable
 
 	public static string GetExplCharFilename(uint id)
 	{
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language == "USA")
 		{
 			uint sub_id = GetExplCharData(id).sub_id;
 			if (sub_id != 65535)

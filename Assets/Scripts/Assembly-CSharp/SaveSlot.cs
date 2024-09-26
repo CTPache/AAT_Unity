@@ -72,9 +72,9 @@ public class SaveSlot : MonoBehaviour
 		{
 			switch (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language))
 			{
-			case Language.JAPAN:
+			case "JAPAN":
 				return title_text_fontsize_jpn_;
-			case Language.USA:
+			case "USA":
 				return title_text_fontsize_usa_;
 			default:
 				return title_text_fontsize_usa_;
@@ -86,11 +86,12 @@ public class SaveSlot : MonoBehaviour
 	{
 		get
 		{
-			switch (GSStatic.global_work_.language)
+			string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+			switch (lang)
 			{
-			case Language.KOREA:
+			case "KOREA":
 				return 0.8f;
-			case Language.CHINA_S:
+			case "CHINA_S":
 				return 0.7f;
 			default:
 				return 0.6f;
@@ -120,7 +121,8 @@ public class SaveSlot : MonoBehaviour
 		mainCtrl.instance.addText(slot.scenario_);
 		mainCtrl.instance.addText(slot.time_);
 		mainCtrl.instance.addText(slot.title_);
-		if (GSStatic.save_data[num].in_data > 0)
+        //Debug.Log("SlotDataSet num: " + num);
+        if (GSStatic.save_data[num].in_data > 0)
 		{
 			slot.board_.spriteNo(3);
 			slot.save_active = true;
@@ -176,7 +178,7 @@ public class SaveSlot : MonoBehaviour
 
 	private void SlotTextSet(int slot_num)
 	{
-		if (GSStatic.global_work_.language == Language.FRANCE)
+		if (GSStatic.global_work_.language == "FRANCE")
 		{
 			slot.scenario_.fontSize = 40;
 		}

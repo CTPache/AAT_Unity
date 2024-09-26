@@ -72,7 +72,7 @@ public class GS2_BGChange : MonoBehaviour
 		}
 		if (!GSFlag.Check(0u, scenario_GS2.SCE2_MARI2))
 		{
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSStatic.global_work_.language == "USA")
 			{
 				bgCtrl.instance.SetSeal(3);
 			}
@@ -92,7 +92,7 @@ public class GS2_BGChange : MonoBehaviour
 	{
 		if (GSFlag.Check(0u, scenario_GS2.SCE2_POINT_SEAL_FLAG) || GSStatic.message_work_.now_no == scenario_GS2.SC1_04350)
 		{
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSStatic.global_work_.language == "USA")
 			{
 				bgCtrl.instance.SetSeal(6);
 			}
@@ -122,7 +122,7 @@ public class GS2_BGChange : MonoBehaviour
 	{
 		if (GSFlag.Check(0u, scenario_GS2.SCE401_SHIKISHIOBJ_FLG))
 		{
-			if (GSStatic.global_work_.language == Language.USA)
+			if (GSStatic.global_work_.language == "USA")
 			{
 				bgCtrl.instance.SetSeal(9);
 			}

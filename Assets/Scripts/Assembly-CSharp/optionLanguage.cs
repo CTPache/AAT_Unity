@@ -1,86 +1,68 @@
+using System.Collections.Generic;
+using System;
+using UnityEngine;
+
 public class optionLanguage : optionSelectItem
 {
-	public override void Init()
-	{
-		SetText(TextDataCtrl.GetText(TextDataCtrl.OptionTextID.ITEM_LANGUAGE));
-		select_text_ = new string[7]
-		{
-			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.JAPANESE),
-			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.ENGLISH),
-			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.FRENCH),
-			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.GERMAN),
-			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.KOREAN),
-			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.CHINESE_SIMPLIFIED),
-			TextDataCtrl.GetText(TextDataCtrl.OptionTextID.CHINESE_TRADITIONAL)
-		};
-		base.Init();
-		setting_value_ = GSStatic.option_work.language_type;
-	}
+    public override void Init()
+    {
+        SetText(TextDataCtrl.GetText(TextDataCtrl.OptionTextID.ITEM_LANGUAGE));
+        List<string> langs = new List<string>();
+        string[] originalLangs = {
+            TextDataCtrl.GetText(TextDataCtrl.OptionTextID.JAPANESE),
+            TextDataCtrl.GetText(TextDataCtrl.OptionTextID.ENGLISH),
+            TextDataCtrl.GetText(TextDataCtrl.OptionTextID.FRENCH),
+            TextDataCtrl.GetText(TextDataCtrl.OptionTextID.GERMAN),
+            TextDataCtrl.GetText(TextDataCtrl.OptionTextID.KOREAN),
+            TextDataCtrl.GetText(TextDataCtrl.OptionTextID.CHINESE_SIMPLIFIED),
+            TextDataCtrl.GetText(TextDataCtrl.OptionTextID.CHINESE_TRADITIONAL),
+        };
+        langs.AddRange(originalLangs);
+        langs.AddRange(LangPackCtrl.getMenuStrings(GSStatic.global_work_.language));
+        select_text_ = langs.ToArray();
+        max_value_size_ = select_text_.Length;
+        base.Init();
 
-	public override bool SelectDecision()
-	{
-		GSStatic.option_work.language_type = (ushort)setting_value_;
-		return GSStatic.global_work_.language != (Language)setting_value_;
-	}
+        setting_value_ = GSStatic.option_work.language_type;
+    }
 
-	public override void EnterValue()
-	{
-		ChangeLanguage();
-	}
+    public override bool SelectDecision()
+    {
+        GSStatic.option_work.language_type = (ushort)setting_value_;
+        Debug.Log("About to set the language to " + setting_value_);
+        return GSStatic.global_work_.language != Language.languages[setting_value_];
+    }
 
-	private bool ChangeLanguage()
-	{
-		GlobalWork global_work_ = GSStatic.global_work_;
-		Language language;
-		switch (setting_value_)
-		{
-		case 0:
-			language = Language.JAPAN;
-			break;
-		case 1:
-			language = Language.USA;
-			break;
-		case 2:
-			language = Language.FRANCE;
-			break;
-		case 3:
-			language = Language.GERMAN;
-			break;
-		case 4:
-			language = Language.KOREA;
-			break;
-		case 5:
-			language = Language.CHINA_S;
-			break;
-		case 6:
-			language = Language.CHINA_T;
-			break;
-		default:
-			language = Language.USA;
-			break;
-		}
-		if (global_work_.language != language)
-		{
-			global_work_.language = language;
-			ReplaceFont.instance.ChangeFont(global_work_.language);
-			TextDataCtrl.SetLanguage(global_work_.language);
-			return true;
-		}
-		return false;
-	}
+    public override void EnterValue()
+    {
+        ChangeLanguage();
+    }
 
-	public override void InitValueSet()
-	{
-		setting_value_ = GSStatic.option_work.language_type;
-		ChangeLanguage();
-	}
+    private bool ChangeLanguage()
+    {
+        string language = Language.languages[setting_value_];
+        if (GSStatic.global_work_.language != language)
+        {
+            GSStatic.global_work_.language = language;
+            ReplaceFont.instance.ChangeFont(GSStatic.global_work_.language);
+            TextDataCtrl.SetLanguage(GSStatic.global_work_.language);
+            return true;
+        }
+        return false;
+    }
 
-	public override bool ConfirmChange()
-	{
-		if (GSStatic.save_slot_language_ != GSStatic.global_work_.language)
-		{
-			return true;
-		}
-		return false;
-	}
+    public override void InitValueSet()
+    {
+        setting_value_ = GSStatic.option_work.language_type;
+        ChangeLanguage();
+    }
+
+    public override bool ConfirmChange()
+    {
+        if (GSStatic.save_slot_language_ != GSStatic.global_work_.language)
+        {
+            return true;
+        }
+        return false;
+    }
 }

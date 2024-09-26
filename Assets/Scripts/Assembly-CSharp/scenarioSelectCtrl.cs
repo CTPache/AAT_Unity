@@ -268,7 +268,8 @@ public class scenarioSelectCtrl : sceneCtrl
 			};
 			story_title_[i].active = ((i < story_cnt_) ? true : false);
 		}
-		open_num_ = ((clear_num_ >= story_cnt_) ? (clear_num_ - 1) : clear_num_);
+		clear_num_ = 5;//HACK: This unlocks every chapter forever
+        open_num_ = ((clear_num_ >= story_cnt_) ? (clear_num_ - 1) : clear_num_);
 		current_num_ = 0;
 		if (clear_num_ > 0)
 		{
@@ -633,9 +634,10 @@ public class scenarioSelectCtrl : sceneCtrl
 			text = TextDataCtrl.GetText(TextDataCtrl.TitleTextID.GS3_SCENARIO_NAME, in_story);
 			break;
 		}
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
-		case Language.JAPAN:
+		case "JAPAN":
 			start_text_[0].text = text + "\u3000" + start_text_base[0];
 			start_text_[1].text = start_text_base[1];
 			break;
@@ -643,16 +645,16 @@ public class scenarioSelectCtrl : sceneCtrl
 			start_text_[0].text = start_text_base[0] + text + start_text_base[1];
 			start_text_[1].text = string.Empty;
 			break;
-		case Language.GERMAN:
+		case "GERMAN":
 			start_text_[0].text = start_text_base[0] + "\"" + text + "\"";
 			start_text_[1].text = start_text_base[1];
 			break;
-		case Language.KOREA:
+		case "KOREA":
 			start_text_[0].text = text + start_text_base[0];
 			start_text_[1].text = start_text_base[1];
 			break;
-		case Language.CHINA_S:
-		case Language.CHINA_T:
+		case "CHINA_S":
+		case "CHINA_T":
 			start_text_[0].text = start_text_base[0];
 			start_text_[1].text = text + start_text_base[1];
 			break;

@@ -22,15 +22,16 @@ public class recordGuideCtrl : guideCtrl
 	public override void load()
 	{
 		base.load();
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
 		default:
 			guide_offset_x = 0f;
 			break;
-		case Language.USA:
-		case Language.FRANCE:
-		case Language.GERMAN:
-		case Language.KOREA:
+		case "USA":
+		case "FRANCE":
+		case "GERMAN":
+		case "KOREA":
 			guide_offset_x = 26f;
 			break;
 		}

@@ -165,7 +165,7 @@ public class systemCtrl : MonoBehaviour
 	private void Start()
 	{
 		doublequotation_adjustment_list_ = (Resources.FindObjectsOfTypeAll(typeof(DoubleQuotationAdjustment)) as DoubleQuotationAdjustment[]).Where((DoubleQuotationAdjustment c) => c.hideFlags == HideFlags.None).ToList();
-		EnableDoubleQuotationAdjustoment(GSStatic.save_slot_language_ == Language.JAPAN);
+		EnableDoubleQuotationAdjustoment(GSStatic.save_slot_language_ == "JAPAN");
 	}
 
 	private void Update()

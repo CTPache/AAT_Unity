@@ -540,9 +540,10 @@ public class recordListCtrl : MonoBehaviour
 		Vector2 sizeDelta2 = comment_.line_[0].rectTransform.sizeDelta;
 		int fontSize;
 		int fontSize2;
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
-		case Language.JAPAN:
+		case "JAPAN":
 			localPosition.x = -530f;
 			localPosition2.x = -490f;
 			localPosition3.y = 180f;
@@ -566,7 +567,7 @@ public class recordListCtrl : MonoBehaviour
 			fontSize = 50;
 			fontSize2 = 42;
 			break;
-		case Language.KOREA:
+		case "KOREA":
 			localPosition.x = -554f;
 			localPosition2.x = -530f;
 			localPosition3.y = 167f;
@@ -578,7 +579,7 @@ public class recordListCtrl : MonoBehaviour
 			fontSize = 50;
 			fontSize2 = 42;
 			break;
-		case Language.CHINA_S:
+		case "CHINA_S":
 			localPosition.x = -530f;
 			localPosition2.x = -490f;
 			localPosition3.y = 190f;
@@ -590,7 +591,7 @@ public class recordListCtrl : MonoBehaviour
 			fontSize = 60;
 			fontSize2 = 46;
 			break;
-		case Language.CHINA_T:
+		case "CHINA_T":
 			localPosition.x = -530f;
 			localPosition2.x = -490f;
 			localPosition3.y = 195f;

@@ -70,7 +70,7 @@ public static class GSMain_TanteiPart
 		{
 			GSScenario.GetSceInitProc()(global_work, true);
 		}
-		if (global_work.language == Language.JAPAN)
+		if (global_work.language == "JAPAN")
 		{
 		}
 		GSMain_Status.Status_init(global_work, GSStatic.status_work_);
@@ -530,7 +530,7 @@ public static class GSMain_TanteiPart
 			global_work.r.no_2 = 3;
 			break;
 		case PsylockRno.UNLOCK_ALL:
-			if (global_work.language != 0)
+			if (global_work.language != "JAPAN")
 			{
 			}
 			switch (global_work.r.no_3)

@@ -231,7 +231,7 @@ public class titleSelectPlate : MonoBehaviour
 	private void Init(int l_num, string bundle_name)
 	{
 		AssetBundleCtrl instance = AssetBundleCtrl.instance;
-		AssetBundle assetBundle = instance.load("/menu/common/", bundle_name, false, true, 0);
+		AssetBundle assetBundle = instance.load("/menu/common/", bundle_name, false, 0);
 		cursor_.sprite_data_.Clear();
 		cursor_.sprite_data_.AddRange(assetBundle.LoadAllAssets<Sprite>());
 		int num = ((l_num <= select_list_.Count) ? l_num : select_list_.Count);

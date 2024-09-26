@@ -165,7 +165,7 @@ public static class SubWindow_Human
 	public static void FromDetail(SubWindow sub_window)
 	{
 		Routine currentRoutine = sub_window.GetCurrentRoutine();
-		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.USA && currentRoutine.r.no_3 > 2)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == "USA" && currentRoutine.r.no_3 > 2)
 		{
 			switch (currentRoutine.r.no_2)
 			{

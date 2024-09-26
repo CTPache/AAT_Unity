@@ -940,7 +940,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 			string time = GSStatic.save_data[i].time;
 			if (!string.IsNullOrEmpty(time))
 			{
-				DateTime dateTime2 = GSUtility.DateTimeParse(time, GSStatic.global_work_.language);
+				DateTime dateTime2 = GSUtility.DateTimeParse(time, GSStatic.global_work_.languageFallback);
 				if (dateTime.CompareTo(dateTime2) == -1)
 				{
 					dateTime = dateTime2;
@@ -959,7 +959,7 @@ public class SaveLoadUICtrl : MonoBehaviour
 			string time = GSStatic.save_data[i].time;
 			if (!string.IsNullOrEmpty(time))
 			{
-				DateTime value = GSUtility.DateTimeParse(time, GSStatic.global_work_.language);
+				DateTime value = GSUtility.DateTimeParse(time, GSStatic.global_work_.languageFallback);
 				if (latest_save_time.CompareTo(value) == -1)
 				{
 					latest_save_time = value;

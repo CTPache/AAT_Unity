@@ -58,21 +58,22 @@ public class piceData
 	{
 		get
 		{
-			switch (GSStatic.global_work_.language)
+			string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+			switch (lang)
 			{
-			case Language.JAPAN:
+			case "JAPAN":
 				return name_id_j_;
-			case Language.USA:
+			case "USA":
 				return name_id_u_;
-			case Language.FRANCE:
+			case "FRANCE":
 				return name_id_g_;
-			case Language.GERMAN:
+			case "GERMAN":
 				return name_id_g_;
-			case Language.KOREA:
+			case "KOREA":
 				return name_id_j_;
-			case Language.CHINA_S:
+			case "CHINA_S":
 				return name_id_j_;
-			case Language.CHINA_T:
+			case "CHINA_T":
 				return name_id_j_;
 			default:
 				return name_id_j_;

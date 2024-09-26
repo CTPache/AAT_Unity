@@ -770,7 +770,7 @@ public class evidenceCallbackManager : MonoBehaviour
 		{
 			scienceInvestigationCtrl scienceInvestigationCtrl2 = scienceInvestigationCtrl.instance;
 			evidenceObjectManager evidence_manager = scienceInvestigationCtrl2.evidence_manager;
-			string in_prefab_name = ((GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA) ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0463") : ("itm0463" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
+			string in_prefab_name = ((GSStatic.global_work_.language != "JAPAN" && GSStatic.global_work_.language != "USA") ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0463") : ("itm0463" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
 			GameObject @object = evidence_manager.GetObject(in_prefab_name);
 			StModelSet stModelSet = evidence_manager.AddLoadEventModel(31);
 			stModelSet.active = true;
@@ -1150,7 +1150,7 @@ public class evidenceCallbackManager : MonoBehaviour
 			}
 			yield return null;
 		}
-		string model_name = ((GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA) ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0820") : ("itm0820" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
+		string model_name = ((GSStatic.global_work_.language != "JAPAN" && GSStatic.global_work_.language != "USA") ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0820") : ("itm0820" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
 		GameObject model = mng.GetObject(model_name);
 		model.SetActive(false);
 		for (int i = 1; i <= 3; i++)
@@ -1276,7 +1276,7 @@ public class evidenceCallbackManager : MonoBehaviour
 			}
 			yield return null;
 		}
-		string object_name = ((GSStatic.global_work_.language != 0 && GSStatic.global_work_.language != Language.USA) ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0830") : ("itm0830" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
+		string object_name = ((GSStatic.global_work_.language != "JAPAN" && GSStatic.global_work_.language != "USA") ? polyDataCtrl.instance.GetMultiObjNameFromJP("itm0830") : ("itm0830" + GSUtility.GetResourceNameLanguage(GSStatic.global_work_.language)));
 		GameObject model = mng.GetObject(object_name);
 		model.SetActive(false);
 		for (int i = 1; i <= 6; i++)

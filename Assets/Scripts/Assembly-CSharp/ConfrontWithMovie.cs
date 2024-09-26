@@ -893,15 +893,16 @@ public class ConfrontWithMovie : MonoBehaviour
 			return;
 		}
 		string text = "eff004";
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
-		case Language.USA:
-			text += GSUtility.GetResourceNameLanguage(Language.USA);
+		case "USA":
+			text += GSUtility.GetResourceNameLanguage("USA");
 			break;
 		default:
-			text = ReplaceLanguage.GetFileName("/GS1/minigame/", text, (int)GSStatic.global_work_.language);
+			text = ReplaceLanguage.GetFileName("/GS1/minigame/", text, Language.languages.IndexOf(GSStatic.global_work_.language));
 			break;
-		case Language.JAPAN:
+		case "JAPAN":
 			break;
 		}
 		List<string> list = new List<string>();

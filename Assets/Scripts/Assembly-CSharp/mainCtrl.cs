@@ -115,17 +115,17 @@ public class mainCtrl : MonoBehaviour
 	private void reset()
 	{
 		GlobalWork global_work_ = GSStatic.global_work_;
-		if (global_work_.language == Language.JAPAN)
+		if (global_work_.language == "JAPAN")
 		{
-			global_work_.language = Language.USA;
+			global_work_.language = "USA";
 		}
-		else if (global_work_.language == Language.USA)
+		else if (global_work_.language == "USA")
 		{
-			global_work_.language = Language.JAPAN;
+			global_work_.language = "JAPAN";
 		}
 		else
 		{
-			global_work_.language = Language.JAPAN;
+			global_work_.language = "JAPAN";
 		}
 		messageBoardCtrl.instance.init();
 		titleCtrlRoot.instance.active = true;
@@ -138,7 +138,7 @@ public class mainCtrl : MonoBehaviour
 		GSStatic.init();
 		GSStatic.global_work_.Random_seed = 3383;
 		GSStatic.global_work_.system_language = SteamCtrl.ConvertLanguage();
-		AnimationIdentifier.instance.LoadDictionary();
+		AnimationIdentifier.instance.LoadDictionary(Application.streamingAssetsPath);
 		while (!AnimationIdentifier.instance.isInitialized)
 		{
 			yield return null;

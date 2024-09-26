@@ -219,7 +219,7 @@ public class polyDataCtrl : MonoBehaviour
 	{
 		int num = -1;
 		string poly_prefab_name = poly.prefab_name;
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language == "USA")
 		{
 			usPolyData usPolyData2 = replace_table_.Find((usPolyData p) => p.us_name == poly.prefab_name);
 			if (usPolyData2 != null)
@@ -227,7 +227,7 @@ public class polyDataCtrl : MonoBehaviour
 				poly_prefab_name = usPolyData2.jp_name;
 			}
 		}
-		else if (GSStatic.global_work_.language != 0)
+		else if (GSStatic.global_work_.language != "JAPAN")
 		{
 			multilingualPolyData multilingualPolyData2 = multi_replace_table_.Find((multilingualPolyData p) => p.GetNameList().Contains(poly.prefab_name));
 			if (multilingualPolyData2 != null)
@@ -276,11 +276,11 @@ public class polyDataCtrl : MonoBehaviour
 	{
 		polyData polyData2 = table[obj_id];
 		polyData polyData3 = new polyData(polyData2.common_name, polyData2.prefab_name, polyData2.sub_prefab_name, polyData2.hit_prefab_name, polyData2.event_tbl, polyData2.col_obj_names);
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language == "USA")
 		{
 			ReplaceNameToUS(polyData3);
 		}
-		else if (GSStatic.global_work_.language == Language.JAPAN)
+		else if (GSStatic.global_work_.language == "JAPAN")
 		{
 			ReplaceNameToJP(polyData3);
 		}
@@ -293,7 +293,7 @@ public class polyDataCtrl : MonoBehaviour
 
 	private void ReplaceNameToUS(polyData poly)
 	{
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language == "USA")
 		{
 			usPolyData usPolyData2 = replace_table_.Find((usPolyData p) => p.jp_name == poly.prefab_name);
 			if (usPolyData2 != null)
@@ -310,7 +310,7 @@ public class polyDataCtrl : MonoBehaviour
 
 	private void ReplaceNameToJP(polyData poly)
 	{
-		if (GSStatic.global_work_.language != Language.USA)
+		if (GSStatic.global_work_.language != "USA")
 		{
 			usPolyData usPolyData2 = replace_table_.Find((usPolyData p) => p.us_name == poly.prefab_name);
 			if (usPolyData2 != null)
@@ -341,21 +341,22 @@ public class polyDataCtrl : MonoBehaviour
 
 	private string GetLanguagePolyName(multilingualPolyData poly)
 	{
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
-		case Language.JAPAN:
+		case "JAPAN":
 			return poly.jp_name;
 		default:
 			return poly.us_name;
-		case Language.FRANCE:
+		case "FRANCE":
 			return poly.fr_name;
-		case Language.GERMAN:
+		case "GERMAN":
 			return poly.ge_name;
-		case Language.KOREA:
+		case "KOREA":
 			return poly.ko_name;
-		case Language.CHINA_S:
+		case "CHINA_S":
 			return poly.ch_s_name;
-		case Language.CHINA_T:
+		case "CHINA_T":
 			return poly.ch_t_name;
 		}
 	}

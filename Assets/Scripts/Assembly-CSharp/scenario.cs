@@ -13672,9 +13672,6 @@ public static class scenario
 		new MUJYUN_CK_DATA(65535u, 65535u, 65535u, 255u, 255u)
 	};
 
-	public static string sce0_mdt_path = "GS1/scenario/sc0_text.mdt";
-
-	public static string sce0_mdt_path_u = "GS1/scenario/sc0_text_u.mdt";
 
 	public static uint[] Sce1_0_note_init_data = new uint[4] { NOTE_CHIHIRO, 254u, NOTE_BADGE, 255u };
 
@@ -13733,21 +13730,7 @@ public static class scenario
 		new MUJYUN_CK_DATA(65535u, 65535u, 65535u, 255u, 255u)
 	};
 
-	public static string sce1_0_mdt_path = "GS1/scenario/sc1_0_text.mdt";
-
-	public static string sce1_1_mdt_path = "GS1/scenario/sc1_1_text.mdt";
-
-	public static string sce1_2_mdt_path = "GS1/scenario/sc1_2_text.mdt";
-
-	public static string sce1_3_mdt_path = "GS1/scenario/sc1_3_text.mdt";
-
-	public static string sce1_0_mdt_path_u = "GS1/scenario/sc1_0_text_u.mdt";
-
-	public static string sce1_1_mdt_path_u = "GS1/scenario/sc1_1_text_u.mdt";
-
-	public static string sce1_2_mdt_path_u = "GS1/scenario/sc1_2_text_u.mdt";
-
-	public static string sce1_3_mdt_path_u = "GS1/scenario/sc1_3_text_u.mdt";
+	
 
 	public static SHOW_DATA[] Sce1_0_show_data = new SHOW_DATA[17]
 	{
@@ -14402,29 +14385,7 @@ public static class scenario
 		new MUJYUN_CK_DATA(65535u, 65535u, 65535u, 255u, 255u)
 	};
 
-	public static string sce2_0_mdt_path = "GS1/scenario/sc2_0_text.mdt";
 
-	public static string sce2_1_mdt_path = "GS1/scenario/sc2_1_text.mdt";
-
-	public static string sce2_2_mdt_path = "GS1/scenario/sc2_2_text.mdt";
-
-	public static string sce2_3_mdt_path = "GS1/scenario/sc2_3_text.mdt";
-
-	public static string sce2_4_mdt_path = "GS1/scenario/sc2_4_text.mdt";
-
-	public static string sce2_5_mdt_path = "GS1/scenario/sc2_5_text.mdt";
-
-	public static string sce2_0_mdt_path_u = "GS1/scenario/sc2_0_text_u.mdt";
-
-	public static string sce2_1_mdt_path_u = "GS1/scenario/sc2_1_text_u.mdt";
-
-	public static string sce2_2_mdt_path_u = "GS1/scenario/sc2_2_text_u.mdt";
-
-	public static string sce2_3_mdt_path_u = "GS1/scenario/sc2_3_text_u.mdt";
-
-	public static string sce2_4_mdt_path_u = "GS1/scenario/sc2_4_text_u.mdt";
-
-	public static string sce2_5_mdt_path_u = "GS1/scenario/sc2_5_text_u.mdt";
 
 	public static SHOW_DATA[] Sce2_0_show_data = new SHOW_DATA[11]
 	{
@@ -16170,30 +16131,6 @@ public static class scenario
 		new MUJYUN_CK_DATA(65535u, 65535u, 65535u, 255u, 255u)
 	};
 
-	public static string sce3_0_mdt_path = "GS1/scenario/sc3_0_text.mdt";
-
-	public static string sce3_1_mdt_path = "GS1/scenario/sc3_1_text.mdt";
-
-	public static string sce3_2_mdt_path = "GS1/scenario/sc3_2_text.mdt";
-
-	public static string sce3_3_mdt_path = "GS1/scenario/sc3_3_text.mdt";
-
-	public static string sce3_4_mdt_path = "GS1/scenario/sc3_4_text.mdt";
-
-	public static string sce3_5_mdt_path = "GS1/scenario/sc3_5_text.mdt";
-
-	public static string sce3_0_mdt_path_u = "GS1/scenario/sc3_0_text_u.mdt";
-
-	public static string sce3_1_mdt_path_u = "GS1/scenario/sc3_1_text_u.mdt";
-
-	public static string sce3_2_mdt_path_u = "GS1/scenario/sc3_2_text_u.mdt";
-
-	public static string sce3_3_mdt_path_u = "GS1/scenario/sc3_3_text_u.mdt";
-
-	public static string sce3_4_mdt_path_u = "GS1/scenario/sc3_4_text_u.mdt";
-
-	public static string sce3_5_mdt_path_u = "GS1/scenario/sc3_5_text_u.mdt";
-
 	public static SHOW_DATA[] Sce3_0_show_data = new SHOW_DATA[25]
 	{
 		new SHOW_DATA(6u, 255u, NOTE_BADGE, 4u, 0u, SC3_00090, SC3_00100),
@@ -17633,82 +17570,6 @@ public static class scenario
 		new MUJYUN_CK_DATA(SC4_69951, NOTE_SL9_LIST2, SC4_69970, 255u, 255u),
 		new MUJYUN_CK_DATA(65535u, 65535u, 65535u, 255u, 255u)
 	};
-
-	public static string sce4_0A_mdt_path = "GS1/scenario/sc4_0a_text.mdt";
-
-	public static string sce4_0B_mdt_path = "GS1/scenario/sc4_0b_text.mdt";
-
-	public static string sce4_1A_mdt_path = "GS1/scenario/sc4_1a_text.mdt";
-
-	public static string sce4_1B_mdt_path = "GS1/scenario/sc4_1b_text.mdt";
-
-	public static string sce4_1C_mdt_path = "GS1/scenario/sc4_1c_text.mdt";
-
-	public static string sce4_2A_mdt_path = "GS1/scenario/sc4_2a_text.mdt";
-
-	public static string sce4_2B_mdt_path = "GS1/scenario/sc4_2b_text.mdt";
-
-	public static string sce4_2C_mdt_path = "GS1/scenario/sc4_2c_text.mdt";
-
-	public static string sce4_3A_mdt_path = "GS1/scenario/sc4_3a_text.mdt";
-
-	public static string sce4_3B_mdt_path = "GS1/scenario/sc4_3b_text.mdt";
-
-	public static string sce4_3C_mdt_path = "GS1/scenario/sc4_3c_text.mdt";
-
-	public static string sce4_4A_mdt_path = "GS1/scenario/sc4_4a_text.mdt";
-
-	public static string sce4_4B_mdt_path = "GS1/scenario/sc4_4b_text.mdt";
-
-	public static string sce4_4C_mdt_path = "GS1/scenario/sc4_4c_text.mdt";
-
-	public static string sce4_5A_mdt_path = "GS1/scenario/sc4_5a_text.mdt";
-
-	public static string sce4_5B_mdt_path = "GS1/scenario/sc4_5b_text.mdt";
-
-	public static string sce4_5C_mdt_path = "GS1/scenario/sc4_5c_text.mdt";
-
-	public static string sce4_5D_mdt_path = "GS1/scenario/sc4_5d_text.mdt";
-
-	public static string ev0_mes_mdt_path = "GS1/scenario/ev0_mes.mdt";
-
-	public static string sce4_0A_mdt_path_u = "GS1/scenario/sc4_0a_text_u.mdt";
-
-	public static string sce4_0B_mdt_path_u = "GS1/scenario/sc4_0b_text_u.mdt";
-
-	public static string sce4_1A_mdt_path_u = "GS1/scenario/sc4_1a_text_u.mdt";
-
-	public static string sce4_1B_mdt_path_u = "GS1/scenario/sc4_1b_text_u.mdt";
-
-	public static string sce4_1C_mdt_path_u = "GS1/scenario/sc4_1c_text_u.mdt";
-
-	public static string sce4_2A_mdt_path_u = "GS1/scenario/sc4_2a_text_u.mdt";
-
-	public static string sce4_2B_mdt_path_u = "GS1/scenario/sc4_2b_text_u.mdt";
-
-	public static string sce4_2C_mdt_path_u = "GS1/scenario/sc4_2c_text_u.mdt";
-
-	public static string sce4_3A_mdt_path_u = "GS1/scenario/sc4_3a_text_u.mdt";
-
-	public static string sce4_3B_mdt_path_u = "GS1/scenario/sc4_3b_text_u.mdt";
-
-	public static string sce4_3C_mdt_path_u = "GS1/scenario/sc4_3c_text_u.mdt";
-
-	public static string sce4_4A_mdt_path_u = "GS1/scenario/sc4_4a_text_u.mdt";
-
-	public static string sce4_4B_mdt_path_u = "GS1/scenario/sc4_4b_text_u.mdt";
-
-	public static string sce4_4C_mdt_path_u = "GS1/scenario/sc4_4c_text_u.mdt";
-
-	public static string sce4_5A_mdt_path_u = "GS1/scenario/sc4_5a_text_u.mdt";
-
-	public static string sce4_5B_mdt_path_u = "GS1/scenario/sc4_5b_text_u.mdt";
-
-	public static string sce4_5C_mdt_path_u = "GS1/scenario/sc4_5c_text_u.mdt";
-
-	public static string sce4_5D_mdt_path_u = "GS1/scenario/sc4_5d_text_u.mdt";
-
-	public static string ev0_mes_mdt_path_u = "GS1/scenario/ev0_mes_u.mdt";
 
 	public static SHOW_DATA[] Sce4_0_show_data = new SHOW_DATA[19]
 	{
@@ -24111,7 +23972,7 @@ public static class scenario
 			{
 				GSScenario.Set_event(SC4_60510, SCE4_DEKA_1ST, is_reset);
 			}
-			if (GSUtility.GetLanguageLayoutType(global_work.language) == Language.USA)
+			if (GSUtility.GetLanguageLayoutType(global_work.language) == "USA")
 			{
 				for (int n = 0; n < Sce4_0_room006_usa_ck_mess_tbl.Length; n++)
 				{
@@ -24375,7 +24236,7 @@ public static class scenario
 				GSScenario.Set_char(44u, 376u, 376u, is_reset);
 				GSScenario.Set_event(SC4_63250, SCE42_FLAG_MES63250, is_reset);
 			}
-			if (GSUtility.GetLanguageLayoutType(global_work.language) == Language.USA)
+			if (GSUtility.GetLanguageLayoutType(global_work.language) == "USA")
 			{
 				for (int num4 = 0; num4 < Sce4_2_room006_usa_ck_mess_tbl.Length; num4++)
 				{
@@ -24745,7 +24606,7 @@ public static class scenario
 					}
 				}
 			}
-			if (GSUtility.GetLanguageLayoutType(global_work.language) == Language.USA)
+			if (GSUtility.GetLanguageLayoutType(global_work.language) == "USA")
 			{
 				for (int n = 0; n < Sce4_4_room006_usa_ck_mess_tbl.Length; n++)
 				{

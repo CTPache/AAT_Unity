@@ -901,7 +901,7 @@ public class piceDataCtrl : MonoBehaviour
 	private string GetIconFile(int in_note_no)
 	{
 		piceData piceData2 = note_data[in_note_no];
-		if (piceData2.file_language_id != 255 && GSStatic.global_work_.language == Language.USA)
+		if (piceData2.file_language_id != 255 && GSStatic.global_work_.language == "USA")
 		{
 			return icon_file_language_[piceData2.file_language_id] + "u";
 		}

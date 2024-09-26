@@ -154,7 +154,7 @@ namespace SaveStruct
 				GSScenario.sce_init sceInitProc = GSScenario.GetSceInitProc();
 				sceInitProc(GSStatic.global_work_, true);
 			}
-			language = (int)src.language;
+			language = Language.languages.IndexOf(src.language);
 			r.CopyFrom(ref src.r);
 			r_bk.CopyFrom(ref src.r_bk);
 			Mess_move_flag = src.Mess_move_flag;
@@ -236,7 +236,7 @@ namespace SaveStruct
 
 		public void CopyTo(global::GlobalWork dest)
 		{
-			dest.language = (Language)language;
+			dest.language = Language.languages[language];
 			r.CopyTo(ref dest.r);
 			r_bk.CopyTo(ref dest.r_bk);
 			dest.Mess_move_flag = Mess_move_flag;

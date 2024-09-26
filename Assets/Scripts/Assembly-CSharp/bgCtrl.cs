@@ -487,7 +487,7 @@ public class bgCtrl : MonoBehaviour
 
 	public string GetBGName(int in_bg_no)
 	{
-		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == Language.USA)
+		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == "USA")
 		{
 			return bg_data_.data_language[(int)bg_data_.data[in_bg_no].language_];
 		}
@@ -558,7 +558,7 @@ public class bgCtrl : MonoBehaviour
 					if (!seal_list_[num].active)
 					{
 						item.id_ = seal_no;
-						if (GSStatic.global_work_.language == Language.USA)
+						if (GSStatic.global_work_.language == "USA")
 						{
 							item.name_ = dataSeal.name_u_;
 							item.sprite_.sprite = SetCourtSprite(bg_path_, dataSeal.name_u_);
@@ -871,7 +871,7 @@ public class bgCtrl : MonoBehaviour
 			path_ = bg_path_;
 			name_ = bg_data_.data[in_bg_no].name_;
 		}
-		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == Language.USA)
+		if (bg_data_.data[in_bg_no].language_ != 32768 && GSStatic.global_work_.language == "USA")
 		{
 			targetRenderer.sprite = SetCourtSprite(bg_path_, bg_data_.data_language[(int)bg_data_.data[in_bg_no].language_]);
 		}

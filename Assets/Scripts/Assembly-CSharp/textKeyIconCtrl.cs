@@ -105,9 +105,9 @@ public class textKeyIconCtrl : MonoBehaviour
 	public string changeTextToIconSpase(string text)
 	{
 		string text2 = "\u3000";
-		Language language = GSStatic.global_work_.language;
+		string language = GSStatic.global_work_.language;
 		int num;
-		if (language == Language.CHINA_S || language == Language.CHINA_T || language == Language.JAPAN)
+		if (language == "CHINA_S" || language == "CHINA_T" || language == "JAPAN")
 		{
 			num = 3;
 		}

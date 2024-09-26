@@ -101,7 +101,7 @@ public class DIconController : MonoBehaviour
 		asset_budle_sprite_.end();
 		asset_budle_sprite_.remove();
 		asset_budle_sprite_.sprite_renderer_.sprite = null;
-		if (GSStatic.global_work_.language == Language.USA)
+		if (GSStatic.global_work_.language == "USA")
 		{
 			asset_budle_sprite_.load("/GS1/etc/", iconset_U[Dicon_id]);
 		}

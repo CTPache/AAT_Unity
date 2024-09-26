@@ -156,14 +156,15 @@ public class DyingMessageUtil : MonoBehaviour
 	private tagMG_CHECK_LINEPOINT[] mg_chk_die_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
-			case Language.CHINA_S:
-			case Language.CHINA_T:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+            switch (lang)
+            {
+			case "JAPAN":
+			case "CHINA_S":
+			case "CHINA_T":
 				return mg_chk_die_jp;
-			case Language.KOREA:
+			case "KOREA":
 				return mg_chk_die_korea;
 			default:
 				return mg_chk_die_us;

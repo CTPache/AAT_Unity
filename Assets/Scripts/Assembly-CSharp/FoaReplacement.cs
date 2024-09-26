@@ -33,22 +33,23 @@ public class FoaReplacement : ScriptableObject
 		foreach (ReplacedAnimationNames replace in replaces)
 		{
 			if (replace.Key == key)
-			{
-				switch (GSStatic.global_work_.language)
-				{
-				case Language.JAPAN:
+            {
+                string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+                switch (lang)
+                {
+				case "JAPAN":
 					return replace.InJapanese;
-				case Language.USA:
+				case "USA":
 					return replace.InEnglish;
-				case Language.FRANCE:
+				case "FRANCE":
 					return replace.InFrance;
-				case Language.GERMAN:
+				case "GERMAN":
 					return replace.InGerman;
-				case Language.KOREA:
+				case "KOREA":
 					return replace.InKorea;
-				case Language.CHINA_S:
+				case "CHINA_S":
 					return replace.InChina_s;
-				case Language.CHINA_T:
+				case "CHINA_T":
 					return replace.InChina_t;
 				default:
 					return replace.InEnglish;

@@ -151,7 +151,7 @@ public class GSDemo_gs3_op4
 			if (++dsp.timer >= 120)
 			{
 				dsp.wait = dsp.buff[dsp.bcount];
-				if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.JAPAN)
+				if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == "JAPAN")
 				{
 					dsp.bcount++;
 					dsp.count++;
@@ -319,7 +319,7 @@ public class GSDemo_gs3_op4
 	private static void Face_Disp(ushort type)
 	{
 		float num = 252f;
-		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != 0)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != "JAPAN")
 		{
 			num += 12f;
 		}

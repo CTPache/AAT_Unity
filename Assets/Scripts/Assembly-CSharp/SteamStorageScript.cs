@@ -129,36 +129,34 @@ public class SteamStorageScript : SteamScriptBase
 
     public void SaveRequest(string filename, byte[] savedata, OnSaveRequestRecived callback)
     {
-        if (!saving_)//&& !request_load_cache_.ContainsKey(filename))
+
+        /*if (!saving_)//&& !request_load_cache_.ContainsKey(filename))
+    {
+        /*
+        SteamAPICall_t steamAPICall_t = SteamRemoteStorage.FileWriteAsync(filename, savedata, (uint)savedata.Length);
+        if (steamAPICall_t != (SteamAPICall_t)0uL)
         {
-            /*
-            SteamAPICall_t steamAPICall_t = SteamRemoteStorage.FileWriteAsync(filename, savedata, (uint)savedata.Length);
-            if (steamAPICall_t != (SteamAPICall_t)0uL)
-            {
-                OnRemoteStorageFileWriteAsyncCompleteCallResult.Set(steamAPICall_t);
-                on_complete_save_request_ = callback;
-                saving_ = true;
-            }
-            else
-            {
-                callback(false);
-            }
-            */
-            try
-            {
-                File.WriteAllBytes(filename, savedata);
-                callback(true);
-                saving_ = true;
-            }
-            catch
-            {
-                callback(false);
-            }
+            OnRemoteStorageFileWriteAsyncCompleteCallResult.Set(steamAPICall_t);
+            on_complete_save_request_ = callback;
+            saving_ = true;
         }
         else
         {
             callback(false);
         }
+        */
+        try
+        {
+            File.WriteAllBytes(filename, savedata);
+            callback(true);
+            saving_ = true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+            callback(false);
+        }
+
     }
 
     public byte[] LoadSteamData(string filename)

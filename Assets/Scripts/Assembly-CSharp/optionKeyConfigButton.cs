@@ -94,7 +94,7 @@ public class optionKeyConfigButton : optionItem
 	public override void SetText(string text)
 	{
 		string text2 = text;
-		if (GSStatic.global_work_.language == Language.KOREA)
+		if (GSStatic.global_work_.language == "KOREA")
 		{
 			text2 = text.Replace(".", "・");
 		}

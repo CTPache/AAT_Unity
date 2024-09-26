@@ -56,14 +56,15 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 		for (int j = 0; j < vase_list_.Length; j++)
 		{
 			string text = array[j];
-			switch (GSStatic.global_work_.language)
+			string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+			switch (lang)
 			{
-			case Language.USA:
-			case Language.FRANCE:
-			case Language.GERMAN:
+			case "USA":
+			case "FRANCE":
+			case "GERMAN":
 				text += "u";
 				break;
-			case Language.KOREA:
+			case "KOREA":
 				text += "k";
 				break;
 			}

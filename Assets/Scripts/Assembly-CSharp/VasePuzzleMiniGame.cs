@@ -107,29 +107,29 @@ public class VasePuzzleMiniGame : MonoBehaviour
 
 	private const float PICE_FLICK_POWER = 10f;
 
-	private Dictionary<Language, PiecesStatus[]> pieces_noramal_map = new Dictionary<Language, PiecesStatus[]>();
+	private Dictionary<string, PiecesStatus[]> pieces_noramal_map = new Dictionary<string, PiecesStatus[]>();
 
-	private Dictionary<Language, PiecesStatus[]> pieces_clear_map = new Dictionary<Language, PiecesStatus[]>();
+	private Dictionary<string, PiecesStatus[]> pieces_clear_map = new Dictionary<string, PiecesStatus[]>();
 
 	public static VasePuzzleMiniGame instance { get; private set; }
 
 	private void Awake()
 	{
 		instance = this;
-		pieces_noramal_map.Add(Language.JAPAN, pieces_noramal_);
-		pieces_noramal_map.Add(Language.USA, pieces_noramal_u_);
-		pieces_noramal_map.Add(Language.FRANCE, pieces_noramal_u_);
-		pieces_noramal_map.Add(Language.GERMAN, pieces_noramal_u_);
-		pieces_noramal_map.Add(Language.KOREA, pieces_noramal_k_);
-		pieces_noramal_map.Add(Language.CHINA_S, pieces_noramal_);
-		pieces_noramal_map.Add(Language.CHINA_T, pieces_noramal_);
-		pieces_clear_map.Add(Language.JAPAN, pieces_clear_);
-		pieces_clear_map.Add(Language.USA, pieces_clear_u_);
-		pieces_clear_map.Add(Language.FRANCE, pieces_clear_u_);
-		pieces_clear_map.Add(Language.GERMAN, pieces_clear_u_);
-		pieces_clear_map.Add(Language.KOREA, pieces_clear_k_);
-		pieces_clear_map.Add(Language.CHINA_S, pieces_clear_);
-		pieces_clear_map.Add(Language.CHINA_T, pieces_clear_);
+		pieces_noramal_map.Add("JAPAN", pieces_noramal_);
+		pieces_noramal_map.Add("USA", pieces_noramal_u_);
+		pieces_noramal_map.Add("FRANCE", pieces_noramal_u_);
+		pieces_noramal_map.Add("GERMAN", pieces_noramal_u_);
+		pieces_noramal_map.Add("KOREA", pieces_noramal_k_);
+		pieces_noramal_map.Add("CHINA_S", pieces_noramal_);
+		pieces_noramal_map.Add("CHINA_T", pieces_noramal_);
+		pieces_clear_map.Add("JAPAN", pieces_clear_);
+		pieces_clear_map.Add("USA", pieces_clear_u_);
+		pieces_clear_map.Add("FRANCE", pieces_clear_u_);
+		pieces_clear_map.Add("GERMAN", pieces_clear_u_);
+		pieces_clear_map.Add("KOREA", pieces_clear_k_);
+		pieces_clear_map.Add("CHINA_S", pieces_clear_);
+		pieces_clear_map.Add("CHINA_T", pieces_clear_);
 	}
 
 	public void startVasePuzzle(bool in_clear_flag)

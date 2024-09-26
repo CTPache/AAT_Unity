@@ -546,14 +546,15 @@ public class FingerMiniGame : MonoBehaviour
 	private int profile_name_fontsize_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+            switch (lang)
+            {
+			case "JAPAN":
 				return 36;
-			case Language.USA:
+			case "USA":
 				return 32;
-			case Language.KOREA:
+			case "KOREA":
 				return 24;
 			default:
 				return 32;
@@ -564,12 +565,13 @@ public class FingerMiniGame : MonoBehaviour
 	private float profile_name_position_y_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+            switch (lang)
+            {
+			case "JAPAN":
 				return 40f;
-			case Language.USA:
+			case "USA":
 				return 35f;
 			default:
 				return 35f;
@@ -580,12 +582,13 @@ public class FingerMiniGame : MonoBehaviour
 	private float comp_result_background_position_y_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+            switch (lang)
+            {
+			case "JAPAN":
 				return -290f;
-			case Language.USA:
+			case "USA":
 				return -350f;
 			default:
 				return -350f;
@@ -1279,7 +1282,7 @@ public class FingerMiniGame : MonoBehaviour
 		fadeCtrl.instance.play(fadeCtrl.Status.FADE_IN, 1u, 8u);
 		comp_result_background_.sprite = ((!comp_hit_) ? comp_no_match_background_sprite_ : comp_match_background_sprite_);
 		comp_result_background_.enabled = true;
-		if (GSStatic.global_work_.language != 0)
+		if (GSStatic.global_work_.language != "JAPAN")
 		{
 			yield return coroutineCtrl.instance.Play(CompResultMessage_U_Coroutine());
 		}
@@ -1703,7 +1706,7 @@ public class FingerMiniGame : MonoBehaviour
 		}
 		marker_sprite_ = LoadAsset<Sprite>("/GS1/minigame/", "s2d012");
 		scan_line_sprite_ = LoadAsset<Sprite>("/GS1/minigame/", "etc404");
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		if (GSStatic.global_work_.language == "JAPAN")
 		{
 			comp_result_message_sprites_ = new Sprite[finger_sprite_word_name.Length];
 			for (int k = 0; k < comp_result_message_sprites_.Length; k++)
@@ -1747,7 +1750,7 @@ public class FingerMiniGame : MonoBehaviour
 		spriteRenderer3.enabled = false;
 		gameObject3.transform.localPosition = new Vector3(960f, comp_result_background_position_y_, -5f);
 		comp_result_background_ = spriteRenderer3;
-		if (GSStatic.global_work_.language == Language.JAPAN)
+		if (GSStatic.global_work_.language == "JAPAN")
 		{
 			comp_result_message_images_ = new SpriteRenderer[6];
 			for (int num = 0; num < comp_result_message_images_.Length; num++)

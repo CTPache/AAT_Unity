@@ -47,17 +47,18 @@ public class SaveConfirmationWindow : MonoBehaviour
 	{
 		get
 		{
-			switch (GSStatic.global_work_.language)
+			string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+			switch (lang)
 			{
-			case Language.FRANCE:
+			case "FRANCE":
 				return 0.65f;
-			case Language.GERMAN:
+			case "GERMAN":
 				return 0.65f;
-			case Language.KOREA:
+			case "KOREA":
 				return 1f;
-			case Language.CHINA_S:
+			case "CHINA_S":
 				return 1f;
-			case Language.CHINA_T:
+			case "CHINA_T":
 				return 0.8f;
 			default:
 				return 0.5f;
@@ -253,12 +254,13 @@ public class SaveConfirmationWindow : MonoBehaviour
 			in_data = GSStatic.save_data[slot_num_].in_data
 		};
 		string time_text;
-		switch (GSStatic.global_work_.language)
+		string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+		switch (lang)
 		{
-		case Language.FRANCE:
+		case "FRANCE":
 			time_text = DateTime.Now.ToString("dd/MM/yyyy\nHH:mm:ss");
 			break;
-		case Language.GERMAN:
+		case "GERMAN":
 			time_text = DateTime.Now.ToString("dd.MM.yyyy\nHH:mm:ss");
 			break;
 		default:

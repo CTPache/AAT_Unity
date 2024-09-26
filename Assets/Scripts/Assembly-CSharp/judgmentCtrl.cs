@@ -46,22 +46,23 @@ public class judgmentCtrl : MonoBehaviour
 	private int not_count_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+            switch (lang)
+            {
+			case "JAPAN":
 				return 1;
-			case Language.KOREA:
+			case "KOREA":
 				return 1;
-			case Language.CHINA_S:
+			case "CHINA_S":
 				return 1;
-			case Language.CHINA_T:
+			case "CHINA_T":
 				return 1;
-			case Language.USA:
+			case "USA":
 				return 3;
-			case Language.FRANCE:
+			case "FRANCE":
 				return 3;
-			case Language.GERMAN:
+			case "GERMAN":
 				return 5;
 			default:
 				return 3;
@@ -72,22 +73,23 @@ public class judgmentCtrl : MonoBehaviour
 	private int guilty_count_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+            switch (lang)
+            {
+			case "JAPAN":
 				return 1;
-			case Language.KOREA:
+			case "KOREA":
 				return 1;
-			case Language.CHINA_S:
+			case "CHINA_S":
 				return 1;
-			case Language.CHINA_T:
+			case "CHINA_T":
 				return 1;
-			case Language.USA:
+			case "USA":
 				return 6;
-			case Language.FRANCE:
+			case "FRANCE":
 				return 8;
-			case Language.GERMAN:
+			case "GERMAN":
 				return 8;
 			default:
 				return 6;
@@ -227,7 +229,7 @@ public class judgmentCtrl : MonoBehaviour
 			item.transform.localScale = localScale;
 			item.active = false;
 		}
-		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.JAPAN)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == "JAPAN")
 		{
 			sprite_L.sprite_renderer_.sprite = sprite_data_[(in_type != 1) ? 2 : 0];
 			sprite_R.sprite_renderer_.sprite = sprite_data_[(in_type == 1) ? 1 : 3];
@@ -238,7 +240,7 @@ public class judgmentCtrl : MonoBehaviour
 			sprite_flash_.active = true;
 			return;
 		}
-		Vector2[] array = ((GSStatic.global_work_.language == Language.FRANCE) ? ((in_type != 0) ? new Vector2[8]
+		Vector2[] array = ((GSStatic.global_work_.language == "FRANCE") ? ((in_type != 0) ? new Vector2[8]
 		{
 			new Vector2(-740f, 30f),
 			new Vector2(-490f, 30f),
@@ -261,7 +263,7 @@ public class judgmentCtrl : MonoBehaviour
 			new Vector2(410f, -200f),
 			new Vector2(590f, -200f),
 			new Vector2(750f, -200f)
-		}) : ((GSStatic.global_work_.language == Language.GERMAN) ? ((in_type != 0) ? new Vector2[8]
+		}) : ((GSStatic.global_work_.language == "GERMAN") ? ((in_type != 0) ? new Vector2[8]
 		{
 			new Vector2(-770f, 30f),
 			new Vector2(-530f, 30f),
@@ -326,7 +328,7 @@ public class judgmentCtrl : MonoBehaviour
 		is_not_guilty_play_ = true;
 		is_guilty_play_ = true;
 		result_active = true;
-		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == Language.JAPAN)
+		if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == "JAPAN")
 		{
 			enumerator_sub_ = CoroutineJapanese(in_type);
 		}

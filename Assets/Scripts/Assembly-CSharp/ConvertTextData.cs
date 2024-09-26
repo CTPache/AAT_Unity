@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 public class ConvertTextData
 {
@@ -13,7 +14,7 @@ public class ConvertTextData
 
 	private Data[] data_;
 
-	public ConvertTextData(byte[] bytes, Language language)
+	public ConvertTextData(byte[] bytes, string language)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 		List<Data> list = new List<Data>();
@@ -39,7 +40,7 @@ public class ConvertTextData
 			string text;
 			switch (language)
 			{
-			case Language.JAPAN:
+			case "JAPAN":
 				text = stringBuilder.ToString();
 				break;
 			default:
@@ -50,6 +51,7 @@ public class ConvertTextData
 			item.text = text;
 			stringBuilder.Length = 0;
 			list.Add(item);
+			//Debug.Log(text);
 		}
 		data_ = list.ToArray();
 	}

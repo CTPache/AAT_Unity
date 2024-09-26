@@ -295,29 +295,29 @@ public class DyingMessageMiniGame : MonoBehaviour
 		_chengeStaete(SwDiemesProc.sw_die_mes_main);
 	}
 
-	private bool _checkDieMessage(Language in_language)
+	private bool _checkDieMessage(string in_language)
 	{
 		switch (in_language)
 		{
-		case Language.JAPAN:
-		case Language.CHINA_S:
-		case Language.CHINA_T:
+		case "JAPAN":
+		case "CHINA_S":
+		case "CHINA_T":
 			return DyingMessageUtil.instance.checkDieMessage_jp();
-		case Language.KOREA:
+		case "KOREA":
 			return DyingMessageUtil.instance.checkDieMessage_korea();
 		default:
 			return DyingMessageUtil.instance.checkDieMessage_us();
 		}
 	}
 
-	private void _loadAssetBundle(Language in_language)
+	private void _loadAssetBundle(string in_language)
 	{
 		List<string> list2;
 		switch (in_language)
 		{
-		case Language.JAPAN:
-		case Language.CHINA_S:
-		case Language.CHINA_T:
+		case "JAPAN":
+		case "CHINA_S":
+		case "CHINA_T":
 		{
 			List<string> list = new List<string>();
 			list.Add("eff029");
@@ -338,7 +338,7 @@ public class DyingMessageMiniGame : MonoBehaviour
 			list2 = list;
 			break;
 		}
-		case Language.KOREA:
+		case "KOREA":
 		{
 			List<string> list = new List<string>();
 			list.Add("eff029k");
@@ -411,12 +411,13 @@ public class DyingMessageMiniGame : MonoBehaviour
 	}
 
 	private void _setSpritePosition()
-	{
-		switch (GSStatic.global_work_.language)
-		{
-		case Language.JAPAN:
-		case Language.CHINA_S:
-		case Language.CHINA_T:
+    {
+        string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+        switch (lang)
+        {
+		case "JAPAN":
+		case "CHINA_S":
+		case "CHINA_T":
 			sprite_list_[0].Key.transform.localPosition = new Vector3(-28f, 374f, -10f);
 			sprite_list_[1].Key.transform.localPosition = new Vector3(-335f, 306f, -10f);
 			sprite_list_[2].Key.transform.localPosition = new Vector3(192f, 294f, -10f);
@@ -433,7 +434,7 @@ public class DyingMessageMiniGame : MonoBehaviour
 			sprite_list_[13].Key.transform.localPosition = new Vector3(545f, -440f, -10f);
 			sprite_list_[14].Key.transform.localPosition = new Vector3(-66f, -433f, -10f);
 			break;
-		case Language.KOREA:
+		case "KOREA":
 			sprite_list_[0].Key.transform.localPosition = new Vector3(-571f, 324f, -10f);
 			sprite_list_[1].Key.transform.localPosition = new Vector3(-565f, -156f, -10f);
 			sprite_list_[2].Key.transform.localPosition = new Vector3(-440f, 264f, -10f);
@@ -470,14 +471,15 @@ public class DyingMessageMiniGame : MonoBehaviour
 	private void SetPointRange()
 	{
 		Vector2[] array;
-		switch (GSStatic.global_work_.language)
-		{
-		case Language.JAPAN:
-		case Language.CHINA_S:
-		case Language.CHINA_T:
+        string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+        switch (lang)
+        {
+		case "JAPAN":
+		case "CHINA_S":
+		case "CHINA_T":
 			array = touch_range_JPN_;
 			break;
-		case Language.KOREA:
+		case "KOREA":
 			array = touch_range_KOREA_;
 			break;
 		default:
@@ -497,12 +499,13 @@ public class DyingMessageMiniGame : MonoBehaviour
 	}
 
 	private void SetPointRangeOffset(int _no)
-	{
-		switch (GSStatic.global_work_.language)
-		{
-		case Language.JAPAN:
-		case Language.CHINA_S:
-		case Language.CHINA_T:
+    {
+        string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+        switch (lang)
+        {
+		case "JAPAN":
+		case "CHINA_S":
+		case "CHINA_T":
 		{
 			touch_range_list_[_no].transform.localPosition = sprite_list_[_no].Key.transform.localPosition;
 			float x2 = touch_range_JPN_[_no].x / 2f;
@@ -523,7 +526,7 @@ public class DyingMessageMiniGame : MonoBehaviour
 			}
 			break;
 		}
-		case Language.KOREA:
+		case "KOREA":
 			touch_range_list_[_no].transform.localPosition = sprite_list_[_no].Key.transform.localPosition;
 			break;
 		default:
@@ -544,11 +547,12 @@ public class DyingMessageMiniGame : MonoBehaviour
 	{
 		float num = 0f;
 		float num2 = 0f;
-		switch (GSStatic.global_work_.language)
-		{
-		case Language.JAPAN:
-		case Language.CHINA_S:
-		case Language.CHINA_T:
+        string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+        switch (lang)
+        {
+		case "JAPAN":
+		case "CHINA_S":
+		case "CHINA_T":
 			switch (_count)
 			{
 			case 0:
@@ -560,7 +564,7 @@ public class DyingMessageMiniGame : MonoBehaviour
 			}
 			touch_range_JPN_[_count] = new Vector2(_x + num, _y + num2);
 			break;
-		case Language.KOREA:
+		case "KOREA":
 			touch_range_KOREA_[_count] = new Vector2(_x + num, _y + num2);
 			break;
 		default:

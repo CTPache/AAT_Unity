@@ -32,16 +32,17 @@ public class keyGuideCtrl : keyGuideBoard
 	protected override float board_width_
 	{
 		get
-		{
-			switch (GSStatic.global_work_.language)
-			{
-			case Language.JAPAN:
-			case Language.KOREA:
-			case Language.CHINA_S:
-			case Language.CHINA_T:
+        {
+            string lang = Language.langFallback[GSStatic.global_work_.language].ToUpper();
+            switch (lang)
+            {
+			case "JAPAN":
+			case "KOREA":
+			case "CHINA_S":
+			case "CHINA_T":
 				return board_width_j_;
-			case Language.FRANCE:
-			case Language.GERMAN:
+			case "FRANCE":
+			case "GERMAN":
 				return board_width_u_;
 			default:
 				return board_width_u_;

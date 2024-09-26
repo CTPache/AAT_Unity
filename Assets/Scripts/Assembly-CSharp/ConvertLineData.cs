@@ -21,7 +21,7 @@ public class ConvertLineData
 		}
 	}
 
-	public ConvertLineData(byte[] bytes, Language language)
+	public ConvertLineData(byte[] bytes, String language)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 		List<Data> list = new List<Data>();
@@ -55,7 +55,7 @@ public class ConvertLineData
 				string text;
 				switch (language)
 				{
-				case Language.JAPAN:
+				case "JAPAN":
 					text = stringBuilder.ToString();
 					break;
 				default:

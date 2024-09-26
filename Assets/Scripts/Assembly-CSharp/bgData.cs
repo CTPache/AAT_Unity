@@ -903,8 +903,8 @@ public class bgData : MonoBehaviour
 	{
 		get
 		{
-			Language language = GSStatic.global_work_.language;
-			if (language == Language.USA)
+			string language = GSStatic.global_work_.language;
+			if (language == "USA")
 			{
 				return bg_data_u_;
 			}

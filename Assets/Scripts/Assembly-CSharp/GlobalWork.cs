@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -45,9 +46,11 @@ public class GlobalWork
 
 	private uint System_timer;
 
-	public Language language;
+	public string language;
 
-	private byte disp_select_flag;
+    public string languageFallback;
+
+    private byte disp_select_flag;
 
 	private byte old_Language_flag;
 
@@ -415,9 +418,10 @@ public class GlobalWork
 	}
 
 	public void init()
-	{
-		language = Language.JAPAN;
-		r.init();
+    {
+        language = "USA";
+        languageFallback = Language.langFallback[language];
+        r.init();
 		r_bk.init();
 		Cursol = 0;
 		system_language = SystemLanguage.Afrikaans;

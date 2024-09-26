@@ -60,8 +60,6 @@ public class componentCtrl : MonoBehaviour
     {
         foreach (PrefabData item in prefab_data_)
         {
-            Debug.Log("loading PrefabData:" + item.prefab_.name);
-
             GameObject gameObject = Instantiate(item.prefab_);
             if (item.type_ == 0)
             {

@@ -336,7 +336,7 @@ public static class GSMain
 	private static void Mess_window_main()
 	{
 		MessageWork activeMessageWork = MessageSystem.GetActiveMessageWork();
-		if (GSStatic.global_work_.language != 0)
+		if (GSStatic.global_work_.language != "JAPAN")
 		{
 		}
 		if (GSStatic.global_work_.title == TitleId.GS1)

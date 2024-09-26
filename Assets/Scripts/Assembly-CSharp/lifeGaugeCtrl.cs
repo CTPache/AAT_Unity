@@ -667,7 +667,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 		int recover_count = 0;
 		int old_life = GetOldLife();
 		int now_life = GetNowLife() - 1;
-		Vector3 use_position = ((GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != Language.USA) ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
+		Vector3 use_position = ((GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != "USA") ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
 		while (move_enumerator_ != null)
 		{
 			yield return null;
@@ -717,7 +717,7 @@ public class lifeGaugeCtrl : MonoBehaviour
 	{
 		float gauge_pos_X = 0f;
 		float another_pos_X = 0f;
-		Vector3 gauge_psy_active_pos = ((GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != Language.USA) ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
+		Vector3 gauge_psy_active_pos = ((GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) != "USA") ? gauge_psy_jpn_active_pos : gauge_psy_usa_active_pos);
 		float gauge_pos_Y = ((!is_recover_flag_) ? gauge_active_pos.y : gauge_psy_active_pos.y);
 		gauge_mode_ = (_act ? 1 : 0);
 		if (is_recover_flag_)
