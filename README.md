@@ -2,7 +2,7 @@
 
 ## Running the project
 ### From the Unity Editor
-* Using UnityHub import this repo as a project.
+* Using UnityHub import this as a project (clone the repository and add project from disk).
 * Open it, wait until the project loads.
 * Copy the StreamingAssets directory from the game (``PWAAT_Data/StreamingAssets``) in the Assets directory.
 * Execute the Asset Decryptor on that directory (``assetDecryptor.exe ./Assets/StreamingAssets/``).
