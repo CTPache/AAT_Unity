@@ -1,4 +1,4 @@
-# Phoenix Wright Ace Attorney Trilogy - Modding/Translating tools
+# Phoenix Wright Ace Attorney Trilogy - Modding/Translating project
 
 ## Running the project
 ### From the Unity Editor
