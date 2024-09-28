@@ -47,7 +47,7 @@ public static class LangPackCtrl
 
     public static void Init()
     {
-        if (Directory.Exists(LangPacksDirectory))
+       if (Directory.Exists(LangPacksDirectory))
         {
             string[] LangPackDirs = Directory.GetDirectories(LangPacksDirectory);
             foreach (string langPackDir in LangPackDirs)

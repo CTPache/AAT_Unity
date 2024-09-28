@@ -40,6 +40,7 @@ public class ReplaceFont : MonoBehaviour
             fontData = this.GetFontData(fontTyop);
         }
         this.current_font_ = fontTyop;
+        current_font_data = fontData;
         this.ChangeFont(fontData);
     }
 
@@ -110,6 +111,7 @@ public class ReplaceFont : MonoBehaviour
 
     private ReplaceFont.FontType current_font_;
 
+    public Font current_font_data;
 
     private enum FontType
     {
