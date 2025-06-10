@@ -82,7 +82,7 @@ public class optionCtrl : MonoBehaviour
     private List<optionItem> available_option_all_ = new List<optionItem>();
 
     [SerializeField]
-    private List<optionKeyConfigButton> key_config_button_ = new List<optionKeyConfigButton>();
+    public List<optionKeyConfigButton> key_config_button_ = new List<optionKeyConfigButton>();
 
     private bool is_default_;
 
@@ -114,77 +114,77 @@ public class optionCtrl : MonoBehaviour
     };
 
     [SerializeField]
-    private GameObject body_;
+    public GameObject body_;
 
     [SerializeField]
-    private List<optionItem> option_item_ = new List<optionItem>();
+    public List<optionItem> option_item_ = new List<optionItem>();
 
     [SerializeField]
-    private List<optionItem> option_item_sub_ = new List<optionItem>();
+    public List<optionItem> option_item_sub_ = new List<optionItem>();
 
     [SerializeField]
-    private List<AssetBundleSprite> line_list_ = new List<AssetBundleSprite>();
+    public List<AssetBundleSprite> line_list_ = new List<AssetBundleSprite>();
 
     [SerializeField]
-    private List<AssetBundleSprite> sub_menu_line_list_ = new List<AssetBundleSprite>();
+    public List<AssetBundleSprite> sub_menu_line_list_ = new List<AssetBundleSprite>();
 
     [SerializeField]
-    private AssetBundleSprite bg_;
+    public AssetBundleSprite bg_;
 
     [SerializeField]
-    private AssetBundleSprite menu_window_;
+    public AssetBundleSprite menu_window_;
 
     [SerializeField]
-    private AssetBundleSprite sub_menu_window_;
+    public AssetBundleSprite sub_menu_window_;
 
     [SerializeField]
-    private AssetBundleSprite message_window_;
+    public AssetBundleSprite message_window_;
 
     [SerializeField]
-    private List<Text> title_back_text_ = new List<Text>();
+    public List<Text> title_back_text_ = new List<Text>();
 
     [SerializeField]
-    private List<AssetBundleSprite> page_guid_;
+    public List<AssetBundleSprite> page_guid_;
 
     [SerializeField]
-    private float top_pos_;
+    public float top_pos_;
 
     [SerializeField]
-    private float top_space_;
+    public float top_space_;
 
     [SerializeField]
-    private float item_space_;
+    public float item_space_;
 
     private float item_space_sub_ = 54f;
 
     [SerializeField]
-    private optionKeyGuide key_guide_;
+    public optionKeyGuide key_guide_;
 
     [SerializeField]
-    private titleSelectPlate confirmation_select_;
+    public titleSelectPlate confirmation_select_;
 
     [SerializeField]
-    private AssetBundleSprite mask_;
+    public AssetBundleSprite mask_;
 
     [SerializeField]
-    private GameObject obj_move_prefab_;
+    public GameObject obj_move_prefab_;
 
     [SerializeField]
-    private Canvas canvas_;
+    public Canvas canvas_;
 
     [SerializeField]
-    private arrowCtrl arrow_ctrl_;
+    public arrowCtrl arrow_ctrl_;
 
     [SerializeField]
-    private Transform menu_root_;
+    public Transform menu_root_;
 
     private OptionState state_;
 
     [SerializeField]
-    private textKeyIconCtrl key_icon_;
+    public textKeyIconCtrl key_icon_;
 
     [SerializeField]
-    private Text icon_text_;
+    public Text icon_text_;
 
     private bool is_shake_ = true;
 

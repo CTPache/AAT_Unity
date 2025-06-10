@@ -9,7 +9,7 @@ public class optionKeyConfig : optionItem
 	public int list_count_;
 
 	[SerializeField]
-	protected AssetBundleSprite ander_line_;
+public AssetBundleSprite ander_line_;
 
 	public override optionCtrl.CurrentPoint GetCurrentPoint()
 	{

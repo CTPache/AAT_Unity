@@ -6,10 +6,10 @@ public class cutInCtrl : MonoBehaviour
 	private static cutInCtrl instance_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> sprite_list_;
+public List<AssetBundleSprite> sprite_list_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	public static cutInCtrl instance
 	{

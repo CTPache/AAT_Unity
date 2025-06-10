@@ -36,37 +36,37 @@ public class lifeGaugeCtrl : MonoBehaviour
 	private const int GAUGE_NUM = 10;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private GameObject gauge_;
+public GameObject gauge_;
 
 	[SerializeField]
-	private AnimationCurve move_curve_;
+public AnimationCurve move_curve_;
 
 	[SerializeField]
-	private AnimationCurve alpha_curve_;
+public AnimationCurve alpha_curve_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> frame_list_;
+public List<AssetBundleSprite> frame_list_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> gauge_blue_;
+public List<AssetBundleSprite> gauge_blue_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> gauge_red_;
+public List<AssetBundleSprite> gauge_red_;
 
 	[SerializeField]
-	private Material material_default_;
+public Material material_default_;
 
 	[SerializeField]
-	private Material material_white_;
+public Material material_white_;
 
 	[SerializeField]
-	private AssetBundleSprite explosion_sprite_1_;
+public AssetBundleSprite explosion_sprite_1_;
 
 	[SerializeField]
-	private AssetBundleSprite explosion_sprite_2_;
+public AssetBundleSprite explosion_sprite_2_;
 
 	private bool fadeout_dropfrag_;
 

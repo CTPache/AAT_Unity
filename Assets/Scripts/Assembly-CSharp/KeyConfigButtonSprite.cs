@@ -17,7 +17,7 @@ public class KeyConfigButtonSprite : MonoBehaviour
 	public AssetBundleSprite key_sprite_diseble;
 
 	[SerializeField]
-	protected AssetBundleSprite ander_line_;
+public AssetBundleSprite ander_line_;
 
 	public void Init(bool quarter)
 	{

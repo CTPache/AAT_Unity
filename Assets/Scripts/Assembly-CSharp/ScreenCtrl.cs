@@ -8,10 +8,10 @@ public class ScreenCtrl : MonoBehaviour
 	private static ScreenCtrl instance_;
 
 	[SerializeField]
-	private List<Transform> quake_targets_ = new List<Transform>();
+public List<Transform> quake_targets_ = new List<Transform>();
 
 	[SerializeField]
-	private RawImage movie_rendere_;
+public RawImage movie_rendere_;
 
 	private List<Transform> quake_list_ = new List<Transform>();
 

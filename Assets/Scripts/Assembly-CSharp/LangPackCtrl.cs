@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System;
 public static class LangPackCtrl
 {
@@ -47,7 +46,8 @@ public static class LangPackCtrl
 
     public static void Init()
     {
-       if (Directory.Exists(LangPacksDirectory))
+
+        if (Directory.Exists(LangPacksDirectory))
         {
             string[] LangPackDirs = Directory.GetDirectories(LangPacksDirectory);
             foreach (string langPackDir in LangPackDirs)
@@ -77,7 +77,7 @@ public static class LangPackCtrl
                 {
                     try
                     {
-                        Font font = AssetBundle.LoadFromFile(langPackDir + "/" + l.font + ".unity3d").LoadAllAssets<Font>().FirstOrDefault<Font>();
+                        Font font = Resources.Load<Font>(l.font);
                         customFonts.Add(l.lang, font);
                     }
                     catch (Exception e) { Debug.Log(e); }
@@ -87,7 +87,7 @@ public static class LangPackCtrl
         }
     }
 
-    internal static void AddInternationalFiles(string key, LanguageFileName value, string asset_name)
+    public static void AddInternationalFiles(string key, LanguageFileName value, string asset_name)
     {
         foreach (string lang in langs.Keys)
         {
@@ -105,7 +105,7 @@ public static class LangPackCtrl
         }
     }
 
-    internal static IEnumerable<string> getMenuStrings(string c_lang)
+    public static IEnumerable<string> getMenuStrings(string c_lang)
     {
         List<string> ret = new List<string>();
         foreach (string lang in menuStrings.Keys)
@@ -123,7 +123,7 @@ public static class LangPackCtrl
     }
 
     //Font logic
-    internal static int GetFontSize(string language)
+    public static int GetFontSize(string language)
     {
         if (fontSizes.ContainsKey(language))
         {
@@ -133,7 +133,7 @@ public static class LangPackCtrl
     }
 
 
-    internal static int GetTanteiFontSize(string language)
+    public static int GetTanteiFontSize(string language)
     {
         switch (language)
         {
@@ -155,7 +155,7 @@ public static class LangPackCtrl
         return GetTanteiFontSize(Language.langFallback[language]);
     }
 
-    internal static Font GetFontAsset(string lang)
+    public static Font GetFontAsset(string lang)
     {
         if (customFonts.ContainsKey(lang))
         {
@@ -166,12 +166,12 @@ public static class LangPackCtrl
 
 
     //PcView Logic
-    internal static ushort[] GetFontCountArray(string lang)
+    public static ushort[] GetFontCountArray(string lang)
     {
         return pcviews[lang].fontCountArray;
     }
 
-    internal static float GetFontFillAmount(string lang, int font_type, int disp_count)
+    public static float GetFontFillAmount(string lang, int font_type, int disp_count)
     {
         if (pcviews[lang].fontFillAmount != null)
         {
@@ -180,12 +180,12 @@ public static class LangPackCtrl
         }
         return 0f;
     }
-    internal static float GetFontSpritePosition_X(string lang)
+    public static float GetFontSpritePosition_X(string lang)
     {
         return pcviews[lang].fontSpritePositionX;
     }
 
-    internal static float[] GetFontSpritePosition_Y(string lang, int in_type)
+    public static float[] GetFontSpritePosition_Y(string lang, int in_type)
     {
         if (pcviews[lang].fontSpritePositionY != null)
             if (pcviews[lang].fontSpritePositionY[in_type] != null)
@@ -193,7 +193,7 @@ public static class LangPackCtrl
         return null;
     }
 
-    internal static Vector3 Get_OBJ_OP4_008_DiffPosition(string lang)
+    public static Vector3 Get_OBJ_OP4_008_DiffPosition(string lang)
     {
         if (pcviews[lang].OBJ_OP4_008_DiffPosition != null)
         {
@@ -203,7 +203,7 @@ public static class LangPackCtrl
         return Vector3.zero;
     }
 
-    internal static Vector2 GetFacePhotoPosition(string lang)
+    public static Vector2 GetFacePhotoPosition(string lang)
     {
         if (pcviews[lang].facePhotoPosition != null)
         {
@@ -213,7 +213,7 @@ public static class LangPackCtrl
         return new Vector2(0, 0);
     }
 
-    internal static float GetCursorPosition(string lang)
+    public static float GetCursorPosition(string lang)
     {
         return pcviews[lang].cursorPosition;
     }

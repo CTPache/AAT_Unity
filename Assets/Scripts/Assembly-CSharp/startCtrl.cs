@@ -9,16 +9,16 @@ using UnityEngine.UI;
 public class startCtrl : sceneCtrl
 {
     [SerializeField]
-    private Text push_text_;
+public Text push_text_;
 
     [SerializeField]
-    private AnimationCurve alpha_curve_ = new AnimationCurve();
+public AnimationCurve alpha_curve_ = new AnimationCurve();
 
     [SerializeField]
-    private textKeyIconCtrl key_icon_;
+public textKeyIconCtrl key_icon_;
 
     [SerializeField]
-    private Text icon_text_;
+public Text icon_text_;
 
     public static startCtrl instance { get; private set; }
 

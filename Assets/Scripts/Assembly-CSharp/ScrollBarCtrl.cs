@@ -22,7 +22,7 @@ public class ScrollBarCtrl : MonoBehaviour
 	private Vector2 bar_def_size = default(Vector2);
 
 	[SerializeField]
-	private ScrollBar scrl_bar_;
+public ScrollBar scrl_bar_;
 
 	public float scroll_bar_normalize
 	{

@@ -41,67 +41,67 @@ public class bgCtrl : MonoBehaviour
 	private static bgCtrl instance_;
 
 	[SerializeField]
-	private bgData bg_data_;
+public bgData bg_data_;
 
 	[SerializeField]
-	private SpriteRenderer sprite_renderer_;
+public SpriteRenderer sprite_renderer_;
 
 	[SerializeField]
-	private SpriteRenderer sub_sprite_;
+public SpriteRenderer sub_sprite_;
 
 	[SerializeField]
-	private SpriteRenderer fore_renderer_;
+public SpriteRenderer fore_renderer_;
 
 	[SerializeField]
-	private SpriteRenderer seal_renderer_;
+public SpriteRenderer seal_renderer_;
 
 	[SerializeField]
-	private List<SealData> seal_list_ = new List<SealData>();
+public List<SealData> seal_list_ = new List<SealData>();
 
 	[SerializeField]
-	private List<SpriteRenderer> scrool_sprite_ = new List<SpriteRenderer>();
+public List<SpriteRenderer> scrool_sprite_ = new List<SpriteRenderer>();
 
 	[SerializeField]
-	private List<SpriteRenderer> parts_sprite_;
+public List<SpriteRenderer> parts_sprite_;
 
 	[SerializeField]
-	private RawImage cutup_sprite_;
+public RawImage cutup_sprite_;
 
 	[SerializeField]
-	private SpriteRenderer image_;
+public SpriteRenderer image_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private GameObject cutup_scroll_;
+public GameObject cutup_scroll_;
 
 	[SerializeField]
-	private AnimationCurve scroll_rate = new AnimationCurve();
+public AnimationCurve scroll_rate = new AnimationCurve();
 
 	[SerializeField]
-	private Material default_material_;
+public Material default_material_;
 
 	[SerializeField]
-	private Material invert_color_material_;
+public Material invert_color_material_;
 
 	[SerializeField]
-	private Material grayscale_material_;
+public Material grayscale_material_;
 
 	[SerializeField]
-	private Material sepia_material_;
+public Material sepia_material_;
 
 	[SerializeField]
-	private Material black_material_;
+public Material black_material_;
 
 	[SerializeField]
-	private Material white_material_;
+public Material white_material_;
 
 	[SerializeField]
-	private SpriteRenderer ending_table_;
+public SpriteRenderer ending_table_;
 
 	[SerializeField]
-	private SpriteRenderer red_bg_;
+public SpriteRenderer red_bg_;
 
 	private Sprite sprite_data_;
 

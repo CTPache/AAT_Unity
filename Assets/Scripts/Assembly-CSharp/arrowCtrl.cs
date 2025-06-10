@@ -50,7 +50,7 @@ public class arrowCtrl : MonoBehaviour
 	}
 
 	[SerializeField]
-	private List<ArrowIcon> arrow_list_ = new List<ArrowIcon>();
+public List<ArrowIcon> arrow_list_ = new List<ArrowIcon>();
 
 	private bool is_arrow_;
 

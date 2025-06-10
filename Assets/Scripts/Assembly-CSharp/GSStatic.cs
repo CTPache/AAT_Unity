@@ -132,5 +132,6 @@ public static class GSStatic
         {
             save_data_temp[k].init();
         }
+        ModCtrl.Init();
     }
 }

@@ -170,40 +170,40 @@ public class tanteiMenu : MonoBehaviour
     private static tanteiMenu instance_;
 
     [SerializeField]
-    private GameObject body_;
+public GameObject body_;
 
     [SerializeField]
-    private GameObject menu_;
+public GameObject menu_;
 
     [SerializeField]
-    private AssetBundleSprite menu_bg_;
+public AssetBundleSprite menu_bg_;
 
     [SerializeField]
-    private AssetBundleSprite cursor_;
+public AssetBundleSprite cursor_;
 
     [SerializeField]
-    private List<SelectPlate> select_list_ = new List<SelectPlate>();
+public List<SelectPlate> select_list_ = new List<SelectPlate>();
 
     [SerializeField]
-    private SelectCurve select_curve_;
+public SelectCurve select_curve_;
 
     [SerializeField]
-    private InputTouch check_touch_;
+public InputTouch check_touch_;
 
     [SerializeField]
-    private InputTouch moving_touch_;
+public InputTouch moving_touch_;
 
     [SerializeField]
-    private InputTouch speak_touch_;
+public InputTouch speak_touch_;
 
     [SerializeField]
-    private InputTouch point_out_touch_;
+public InputTouch point_out_touch_;
 
     [SerializeField]
-    private selectPlateCtrl.EnterCurve enter_curve_;
+public selectPlateCtrl.EnterCurve enter_curve_;
 
     [SerializeField]
-    private selectPlateCtrl.EnableCurve enable_curve_;
+public selectPlateCtrl.EnableCurve enable_curve_;
 
     private IEnumerator enumerator_play_;
 

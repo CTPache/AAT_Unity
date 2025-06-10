@@ -24,19 +24,19 @@ public class keyGuideBoard : keyGuideBase
 	private bool debug_is_disp_ = true;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private Transform symbol_body_;
+public Transform symbol_body_;
 
 	[SerializeField]
-	private AssetBundleSprite board_;
+public AssetBundleSprite board_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> rot_symbol_list_;
+public List<AssetBundleSprite> rot_symbol_list_;
 
 	[SerializeField]
-	private Curve curve_ = new Curve();
+public Curve curve_ = new Curve();
 
 	private Type current_guide_;
 

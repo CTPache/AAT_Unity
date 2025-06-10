@@ -62,58 +62,58 @@ public class KinkoMiniGame : MonoBehaviour
 	private uint next_message_ = 133u;
 
 	[SerializeField]
-	private Transform body_;
+public Transform body_;
 
 	[SerializeField]
-	private List<SpriteRenderer> panel_list_;
+public List<SpriteRenderer> panel_list_;
 
 	[SerializeField]
-	private List<SpriteRenderer> button_list_;
+public List<SpriteRenderer> button_list_;
 
 	[SerializeField]
-	private AssetBundleSprite label_text_;
+public AssetBundleSprite label_text_;
 
 	[SerializeField]
-	private AssetBundleSprite bg_sprite_;
+public AssetBundleSprite bg_sprite_;
 
 	[SerializeField]
-	private AssetBundleSprite cursor_sprite_;
+public AssetBundleSprite cursor_sprite_;
 
 	[SerializeField]
-	private AnimationSprite check_cursor_sprite_;
+public AnimationSprite check_cursor_sprite_;
 
 	[SerializeField]
-	private AssetBundleSprite comp_cur_down_;
+public AssetBundleSprite comp_cur_down_;
 
 	[SerializeField]
-	private AssetBundleSprite comp_cur_up_;
+public AssetBundleSprite comp_cur_up_;
 
 	[SerializeField]
-	private GameObject open_anum_;
+public GameObject open_anum_;
 
 	[SerializeField]
-	private Evaluator open_evaluator_;
+public Evaluator open_evaluator_;
 
 	[SerializeField]
-	private AssetBundleSprite result_sprite_;
+public AssetBundleSprite result_sprite_;
 
 	[SerializeField]
-	private AssetBundleSprite open_bg_sprite_;
+public AssetBundleSprite open_bg_sprite_;
 
 	[SerializeField]
-	private AssetBundleSprite opne_handle_sprite_;
+public AssetBundleSprite opne_handle_sprite_;
 
 	[SerializeField]
-	private AssetBundleSprite opne_lamp_sprite_;
+public AssetBundleSprite opne_lamp_sprite_;
 
 	[SerializeField]
-	private List<InputTouch> kinko_number_touch_list_ = new List<InputTouch>();
+public List<InputTouch> kinko_number_touch_list_ = new List<InputTouch>();
 
 	[SerializeField]
-	private InputTouch kinko_back_touch_;
+public InputTouch kinko_back_touch_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> lamp_ = new List<AssetBundleSprite>();
+public List<AssetBundleSprite> lamp_ = new List<AssetBundleSprite>();
 
 	private int trans_frame;
 

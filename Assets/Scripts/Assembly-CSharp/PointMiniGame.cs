@@ -17,20 +17,20 @@ public class PointMiniGame : MonoBehaviour
 	private const float DRAG_NECESSARY_POWER = 40f;
 
 	[SerializeField]
-	private float appear_time_;
+public float appear_time_;
 
 	[SerializeField]
-	private InputTouch touch_;
+public InputTouch touch_;
 
 	[SerializeField]
-	private InputTouch cursor_touch_;
+public InputTouch cursor_touch_;
 
 	[SerializeField]
-	private GameObject touch_area_;
+public GameObject touch_area_;
 
 	[Header("Debug")]
 	[SerializeField]
-	private bool debug_show_area_;
+public bool debug_show_area_;
 
 	private EXPL_CK_DATA expl_ck_data_;
 

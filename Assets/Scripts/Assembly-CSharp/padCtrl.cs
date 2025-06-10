@@ -44,13 +44,13 @@ public class padCtrl : MonoBehaviour
 	private bool[] trigger_right = new bool[3];
 
 	[SerializeField]
-	private NintendoSDKPad nintendo_pad_;
+public NintendoSDKPad nintendo_pad_;
 
 	[SerializeField]
-	private MenuTest debug_menu_;
+public MenuTest debug_menu_;
 
 	[SerializeField]
-	private Text text_;
+public Text text_;
 
 	private Vector2 axis_pos_L_ = Vector2.zero;
 

@@ -44,27 +44,27 @@ public class ConfrontWithMovie : MonoBehaviour
 	}
 
 	[SerializeField]
-	private MovieController movie_controller_;
+public MovieController movie_controller_;
 
 	[SerializeField]
-	private MovieCollisionPlayer collision_player_;
+public MovieCollisionPlayer collision_player_;
 
 	[SerializeField]
-	private FingerCursor cursor_;
+public FingerCursor cursor_;
 
 	[SerializeField]
-	private Camera system_camera_;
+public Camera system_camera_;
 
 	[SerializeField]
-	private keyGuideCtrl key_guide_;
+public keyGuideCtrl key_guide_;
 
 	private keyGuideCtrl movie_key_guide;
 
 	[SerializeField]
-	private Canvas parent_canvas;
+public Canvas parent_canvas;
 
 	[SerializeField]
-	private Camera movie_camera_;
+public Camera movie_camera_;
 
 	private List<KeyValuePair<GameObject, RawImage>> sprite_list_ = new List<KeyValuePair<GameObject, RawImage>>();
 

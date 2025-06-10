@@ -28,7 +28,7 @@ public class guideCtrl : keyGuideBase
 	private bool debug_is_disp_ = true;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	private int guide_cnt;
 
@@ -39,7 +39,7 @@ public class guideCtrl : keyGuideBase
 	private GuideType next_guide_;
 
 	[SerializeField]
-	private Curve curve_ = new Curve();
+public Curve curve_ = new Curve();
 
 	private IEnumerator enumerator_open_close_;
 
@@ -48,22 +48,22 @@ public class guideCtrl : keyGuideBase
 	private IEnumerator enumerator_close_;
 
 	[SerializeField]
-	protected float guide_width_j_ = 200f;
+public float guide_width_j_ = 200f;
 
 	[SerializeField]
-	protected float guide_width_u_ = 250f;
+public float guide_width_u_ = 250f;
 
 	[SerializeField]
-	protected float guide_pos_y_ = -120f;
+public float guide_pos_y_ = -120f;
 
 	[SerializeField]
-	protected float slide_out_pos_x_ = 860f;
+public float slide_out_pos_x_ = 860f;
 
 	[SerializeField]
-	protected AssetBundleSprite sprite_guide_;
+public AssetBundleSprite sprite_guide_;
 
 	[SerializeField]
-	protected AssetBundleSprite sprite_line_;
+public AssetBundleSprite sprite_line_;
 
 	public GuideType current_guide
 	{

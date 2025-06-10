@@ -43,14 +43,16 @@ public class AssetBundleCtrl : MonoBehaviour
 
         //Debug.Log("Loading AssetBunde: " + in_path + in_name);
         in_name = ReplaceLanguage.GetFileName(in_path, in_name, in_language);
+        AssetBundleData toRemove = null;
         foreach (AssetBundleData item in common_list_)
         {
             if (item.path_ == in_path && item.name_ == in_name)
             {
-                return item.bundle_;
+                if (!force)
+                    return item.bundle_;
+                toRemove = item;
             }
         }
-        AssetBundleData toRemove = null;
         foreach (AssetBundleData item in asset_list_)
         {
             if (item.path_ == in_path && item.name_ == in_name)
@@ -77,7 +79,8 @@ public class AssetBundleCtrl : MonoBehaviour
             //Debug.Log("Failed to load " + path + in_name + ", falling back");
             path = Application.streamingAssetsPath + in_path;
         }
-        string text = path + in_name + ".unity3d";
+        string text = ModCtrl.load(in_name, in_path, in_language) ?? path + in_name + ".unity3d";
+        Debug.Log("Loading " + text);
         assetBundleData.bundle_ = AssetBundle.LoadFromFile(text);
         if (is_common)
         {
@@ -90,39 +93,6 @@ public class AssetBundleCtrl : MonoBehaviour
         return assetBundleData.bundle_;
 
     }
-
-    public bool reloadAll(bool common = false)
-    {
-        List<string[]> assets = new List<string[]>();
-        if (common)
-        {
-            foreach (var asset in common_list_)
-            {
-                assets.Add(new string[] { asset.path_, asset.name_ });
-                if (asset.bundle_ != null)
-                {
-                    asset.bundle_.Unload(true);
-                }
-            }
-            common_list_.Clear();
-            Resources.UnloadUnusedAssets();
-        }
-        else
-        {
-            foreach (var asset in asset_list_)
-            {
-                assets.Add(new string[] { asset.path_, asset.name_ });
-            }
-            end();
-        }
-        foreach (var asset in assets)
-        {
-            load(asset[0], asset[1], common);
-        }
-
-        return true;
-    }
-
 
     public void remove(string in_path, string in_name, int in_language = -1)
     {

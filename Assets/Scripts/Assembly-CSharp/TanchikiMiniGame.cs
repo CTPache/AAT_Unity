@@ -3,7 +3,7 @@ using UnityEngine;
 public class TanchikiMiniGame : MonoBehaviour
 {
 	[SerializeField]
-	private TanchikiRadioWave radio_wave_;
+public TanchikiRadioWave radio_wave_;
 
 	private MiniGameCursor cursor_;
 

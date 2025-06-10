@@ -4,7 +4,7 @@ using UnityEngine;
 public class FrameCtrl : MonoBehaviour
 {
 	[SerializeField]
-	private List<RectTransform> fram_list_ = new List<RectTransform>();
+public List<RectTransform> fram_list_ = new List<RectTransform>();
 
 	private void Start()
 	{

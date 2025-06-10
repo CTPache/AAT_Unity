@@ -4,7 +4,7 @@ using UnityEngine;
 public class sceneCtrl : MonoBehaviour
 {
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	private bool is_end_;
 

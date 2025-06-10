@@ -5,7 +5,7 @@ public class rotBG : MonoBehaviour
 	private static rotBG instance_;
 
 	[SerializeField]
-	private RectTransform bg_sprite_transform_;
+public RectTransform bg_sprite_transform_;
 
 	private bool rotFlg;
 

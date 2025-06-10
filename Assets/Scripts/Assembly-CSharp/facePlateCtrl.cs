@@ -41,7 +41,7 @@ public class facePlateCtrl : plateCtrlBase
 	};
 
 	[SerializeField]
-	private AssetBundleSprite icon_base2_;
+public AssetBundleSprite icon_base2_;
 
 	public static facePlateCtrl instance { get; private set; }
 

@@ -8,7 +8,7 @@ public class itemPlateCtrl : plateCtrlBase
 	public AssetBundleSprite sStatusEffectSprite;
 
 	[SerializeField]
-	private AssetBundleSprite sStatusEffectSprite_bg_;
+public AssetBundleSprite sStatusEffectSprite_bg_;
 
 	public static itemPlateCtrl instance
 	{

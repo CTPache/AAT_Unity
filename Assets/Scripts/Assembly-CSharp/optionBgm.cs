@@ -20,7 +20,7 @@ public class optionBgm : optionItem
 	private int setting_value_;
 
 	[SerializeField]
-	private OptionGauge gauge_;
+public OptionGauge gauge_;
 
 	public override void Init()
 	{

@@ -66,10 +66,10 @@ public class soundCtrl : MonoBehaviour
     public float option_set_se_rate = 1f;
 
     [SerializeField]
-    private List<AudioSource> list_SE_ = new List<AudioSource>();
+public List<AudioSource> list_SE_ = new List<AudioSource>();
 
     [SerializeField]
-    private List<AudioSource> list_BGM_ = new List<AudioSource>();
+public List<AudioSource> list_BGM_ = new List<AudioSource>();
 
     private List<AssetBundleClip> asset_SE_ = new List<AssetBundleClip>();
 

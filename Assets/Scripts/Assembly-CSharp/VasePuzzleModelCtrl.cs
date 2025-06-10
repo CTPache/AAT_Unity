@@ -7,7 +7,7 @@ public class VasePuzzleModelCtrl : MonoBehaviour
 	private AssetBundle l_vase_bundle;
 
 	[SerializeField]
-	private Transform vase_base_;
+public Transform vase_base_;
 
 	private GameObject[] pieces_list_;
 

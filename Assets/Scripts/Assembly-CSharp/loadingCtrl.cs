@@ -18,19 +18,19 @@ public class loadingCtrl : MonoBehaviour
 	private float start_time_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private AssetBundleSprite window_;
+public AssetBundleSprite window_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> icon_ = new List<AssetBundleSprite>();
+public List<AssetBundleSprite> icon_ = new List<AssetBundleSprite>();
 
 	[SerializeField]
-	private AssetBundleSprite mask_;
+public AssetBundleSprite mask_;
 
 	[SerializeField]
-	private Text text_;
+public Text text_;
 
 	private IEnumerator play_enumerator_;
 

@@ -8,31 +8,31 @@ public class VaseShowMiniGame : MonoBehaviour
 	private static VaseShowMiniGame instance_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private GameObject vase_camera_;
+public GameObject vase_camera_;
 
 	[SerializeField]
-	private GameObject vase_;
+public GameObject vase_;
 
 	[SerializeField]
-	private evidenceObjectManager evidence_manager_;
+public evidenceObjectManager evidence_manager_;
 
 	[SerializeField]
-	private AssetBundleSprite taiho_kun_;
+public AssetBundleSprite taiho_kun_;
 
 	[SerializeField]
-	private AssetBundleSprite bg_sprite_;
+public AssetBundleSprite bg_sprite_;
 
 	[SerializeField]
-	private InputTouch touch_;
+public InputTouch touch_;
 
 	[SerializeField]
-	private GameObject debug_;
+public GameObject debug_;
 
 	[SerializeField]
-	private List<Text> debug_text_;
+public List<Text> debug_text_;
 
 	private Vector3 vase_rotate_ = new Vector3(0f, 0f, 0f);
 

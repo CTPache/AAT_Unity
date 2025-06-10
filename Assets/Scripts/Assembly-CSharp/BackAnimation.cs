@@ -6,10 +6,10 @@ public class BackAnimation : MonoBehaviour
 	private static BackAnimation instance_;
 
 	[SerializeField]
-	private RawImage irregular_image_;
+public RawImage irregular_image_;
 
 	[SerializeField]
-	private Camera canvas_camera_;
+public Camera canvas_camera_;
 
 	public static BackAnimation instance
 	{

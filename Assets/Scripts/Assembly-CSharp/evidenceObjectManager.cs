@@ -5,22 +5,22 @@ using UnityEngine;
 public class evidenceObjectManager : MonoBehaviour
 {
 	[SerializeField]
-	private Material dev_coll_maetrial_;
+public Material dev_coll_maetrial_;
 
 	[SerializeField]
-	private Material dev_coll_maetrial_nuke;
+public Material dev_coll_maetrial_nuke;
 
 	[SerializeField]
-	private Material ret_coll_maetrial_;
+public Material ret_coll_maetrial_;
 
 	[SerializeField]
-	private Transform operete_trans_;
+public Transform operete_trans_;
 
 	[SerializeField]
-	private Transform model_parent_;
+public Transform model_parent_;
 
 	[SerializeField]
-	private AnimationCurve curve_;
+public AnimationCurve curve_;
 
 	private List<AssetBundleCtrl.AssetBundleData> asset_list_ = new List<AssetBundleCtrl.AssetBundleData>();
 

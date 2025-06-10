@@ -4,10 +4,10 @@ using UnityEngine;
 public class MovieCollisionPlayer : MonoBehaviour, IRectHolder
 {
 	[SerializeField]
-	private List<RectTransform> collision_rects;
+public List<RectTransform> collision_rects;
 
 	[SerializeField]
-	private MovieController frame_source;
+public MovieController frame_source;
 
 	private List<MovieCollision> collision_datas = new List<MovieCollision>();
 

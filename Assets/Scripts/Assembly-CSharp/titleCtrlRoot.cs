@@ -27,16 +27,16 @@ public class titleCtrlRoot : MonoBehaviour
 	}
 
 	[SerializeField]
-	private List<sceneCtrl> scene_list_ = new List<sceneCtrl>();
+public List<sceneCtrl> scene_list_ = new List<sceneCtrl>();
 
 	[SerializeField]
-	private dataSystem data_system_;
+public dataSystem data_system_;
 
 	[SerializeField]
-	private GameObject root_;
+public GameObject root_;
 
 	[SerializeField]
-	private Camera title_camera_;
+public Camera title_camera_;
 
 	private fadeCtrl fade_ctrl_;
 

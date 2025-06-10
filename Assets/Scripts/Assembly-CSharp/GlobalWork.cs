@@ -81,7 +81,7 @@ public class GlobalWork
 	public SystemLanguage system_language;
 
 	[SerializeField]
-	private byte Mess_move_flag_;
+public byte Mess_move_flag_;
 
 	public byte message_active_window;
 

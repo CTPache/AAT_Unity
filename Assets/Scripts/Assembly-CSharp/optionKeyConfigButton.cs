@@ -12,7 +12,7 @@ public class optionKeyConfigButton : optionItem
 	public KeyCode current_key_code;
 
 	[SerializeField]
-	private KeyConfigButtonSprite button_sprite_;
+public KeyConfigButtonSprite button_sprite_;
 
 	private bool init_;
 

@@ -5,19 +5,19 @@ using UnityEngine.UI;
 public class SavePriorConfirmation : MonoBehaviour
 {
 	[SerializeField]
-	private Text[] confirmation_text_;
+public Text[] confirmation_text_;
 
 	[SerializeField]
-	private AssetBundleSprite message_window_;
+public AssetBundleSprite message_window_;
 
 	[SerializeField]
-	private AssetBundleSprite bg_;
+public AssetBundleSprite bg_;
 
 	[SerializeField]
-	private titleSelectPlate select_plate_;
+public titleSelectPlate select_plate_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	private IEnumerator enumerator_confirmation_;
 

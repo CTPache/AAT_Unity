@@ -7,49 +7,49 @@ public class AnimationCameraManager : MonoBehaviour
 	private static AnimationCameraManager instance_;
 
 	[SerializeField]
-	private Camera root_camera_;
+public Camera root_camera_;
 
 	[SerializeField]
-	private RenderTexture root_texture_;
+public RenderTexture root_texture_;
 
 	[SerializeField]
-	private Camera irregular_depth_camera_;
+public Camera irregular_depth_camera_;
 
 	[SerializeField]
-	private RenderTexture irregular_depth_texture_;
+public RenderTexture irregular_depth_texture_;
 
 	[SerializeField]
-	private RawImage irregular_image_;
+public RawImage irregular_image_;
 
 	[SerializeField]
-	private Camera canvas_camera_;
+public Camera canvas_camera_;
 
 	[SerializeField]
-	private Camera main_camera_;
+public Camera main_camera_;
 
 	[SerializeField]
-	private Transform quake_targets_;
+public Transform quake_targets_;
 
 	[SerializeField]
-	private Transform quake_targets_mapicon_;
+public Transform quake_targets_mapicon_;
 
 	[SerializeField]
-	private SpriteRenderer fade_targets_;
+public SpriteRenderer fade_targets_;
 
 	[SerializeField]
-	private List<SpriteRenderer> parts_sprite_;
+public List<SpriteRenderer> parts_sprite_;
 
 	[SerializeField]
-	private Transform instance_parent_;
+public Transform instance_parent_;
 
 	[SerializeField]
-	private GameObject demo_;
+public GameObject demo_;
 
 	[SerializeField]
-	private SpriteRenderer ending_table_;
+public SpriteRenderer ending_table_;
 
 	[SerializeField]
-	private List<SpriteRenderer> front_sprites_ = new List<SpriteRenderer>();
+public List<SpriteRenderer> front_sprites_ = new List<SpriteRenderer>();
 
 	private AnimationRenderTarget previous_render_target;
 

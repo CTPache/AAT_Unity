@@ -125,13 +125,13 @@ public class DyingMessageUtil : MonoBehaviour
 	};
 
 	[SerializeField]
-	private MiniGameCursor cursor_;
+public MiniGameCursor cursor_;
 
 	[SerializeField]
-	private Transform line_point_base_;
+public Transform line_point_base_;
 
 	[SerializeField]
-	private DyingMessageMiniGame dyingmessage;
+public DyingMessageMiniGame dyingmessage;
 
 	private DebugMiniGameGSPoint4Hit debug_hit_;
 

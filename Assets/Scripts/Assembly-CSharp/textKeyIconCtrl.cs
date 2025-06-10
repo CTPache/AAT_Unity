@@ -49,7 +49,7 @@ public class textKeyIconCtrl : MonoBehaviour
 	private const int TEST_SPACE_USA = 9;
 
 	[SerializeField]
-	private KeyIcon[] key_icon_;
+public KeyIcon[] key_icon_;
 
 	private float old_text_width_;
 

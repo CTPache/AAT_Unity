@@ -6,13 +6,13 @@ public class endingMaskCtrl : MonoBehaviour
 	private static endingMaskCtrl instance_;
 
 	[SerializeField]
-	private RawImage image_;
+public RawImage image_;
 
 	[SerializeField]
-	private Material default_;
+public Material default_;
 
 	[SerializeField]
-	private Material mask_;
+public Material mask_;
 
 	public static endingMaskCtrl instance
 	{

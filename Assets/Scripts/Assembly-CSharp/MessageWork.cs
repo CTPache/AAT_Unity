@@ -5,7 +5,7 @@ using UnityEngine;
 public class MessageWork
 {
 	[SerializeField]
-	private MessageSystem.Status status_;
+public MessageSystem.Status status_;
 
 	public MessageSystem.Status2 status2;
 
@@ -26,7 +26,7 @@ public class MessageWork
 	public WindowType message_type;
 
 	[SerializeField]
-	private byte message_trans_flag_;
+public byte message_trans_flag_;
 
 	public byte message_se_character_count;
 
@@ -63,7 +63,7 @@ public class MessageWork
 	public byte speaker_id;
 
 	[SerializeField]
-	private byte mess_win_rno_;
+public byte mess_win_rno_;
 
 	public byte cursor;
 

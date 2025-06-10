@@ -3,16 +3,16 @@ using UnityEngine;
 public class PostEffectObject : MonoBehaviour
 {
 	[SerializeField]
-	private Material grayscale_;
+public Material grayscale_;
 
 	[SerializeField]
-	private Material sepia_;
+public Material sepia_;
 
 	[SerializeField]
-	private Material black_;
+public Material black_;
 
 	[SerializeField]
-	private Material red_;
+public Material red_;
 
 	private Material ctrl_material_;
 

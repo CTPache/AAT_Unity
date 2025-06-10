@@ -5,7 +5,7 @@ using UnityEngine;
 public class TouchSystem : MonoBehaviour
 {
 	[SerializeField]
-	private List<Camera> touch_camera_list_ = new List<Camera>();
+public List<Camera> touch_camera_list_ = new List<Camera>();
 
 	private static KeyType touched_type_ = KeyType.None;
 

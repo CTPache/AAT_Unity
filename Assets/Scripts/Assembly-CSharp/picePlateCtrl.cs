@@ -29,34 +29,34 @@ public class picePlateCtrl : MonoBehaviour
 	private static picePlateCtrl instance_;
 
 	[SerializeField]
-	private AssetBundleSprite board_;
+public AssetBundleSprite board_;
 
 	[SerializeField]
-	private AssetBundleSprite icon_;
+public AssetBundleSprite icon_;
 
 	[SerializeField]
-	private AssetBundleSprite icon_base_;
+public AssetBundleSprite icon_base_;
 
 	[SerializeField]
-	private SpriteRenderer mask_;
+public SpriteRenderer mask_;
 
 	[SerializeField]
-	private Text icon_name_;
+public Text icon_name_;
 
 	[SerializeField]
-	private Comment comment_;
+public Comment comment_;
 
 	[SerializeField]
-	private PiceCurve pice_curve_ = new PiceCurve();
+public PiceCurve pice_curve_ = new PiceCurve();
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private GameObject icon_obj_;
+public GameObject icon_obj_;
 
 	[SerializeField]
-	private InputTouch touch_;
+public InputTouch touch_;
 
 	private bool is_play_;
 

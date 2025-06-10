@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class DebugMemory : MonoBehaviour
 {
 	[SerializeField]
-	private Text text_;
+public Text text_;
 
 	private float CPU;
 

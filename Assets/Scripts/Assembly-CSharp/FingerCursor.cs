@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FingerCursor : MonoBehaviour
 {
 	[SerializeField]
-	private Image finger_image;
+public Image finger_image;
 
 	public bool ChangeSpriteIfHovering;
 
@@ -27,13 +27,13 @@ public class FingerCursor : MonoBehaviour
 	private Sprite hit_cursor_image;
 
 	[SerializeField]
-	private RectTransform touch_rect;
+public RectTransform touch_rect;
 
 	[SerializeField]
-	private InputTouch touch_;
+public InputTouch touch_;
 
 	[SerializeField]
-	private InputTouch cursor_touch_;
+public InputTouch cursor_touch_;
 
 	private Vector3 old_finger_position_ = default(Vector3);
 

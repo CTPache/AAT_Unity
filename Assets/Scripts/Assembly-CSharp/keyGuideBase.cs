@@ -344,7 +344,7 @@ public class keyGuideBase : MonoBehaviour
     protected float guide_space_ = 100f;
 
     [SerializeField]
-    protected List<GuideIcon> guide_list_ = new List<GuideIcon>();
+public List<GuideIcon> guide_list_ = new List<GuideIcon>();
 
     private Vector2 NORMAL_GUDE_TOUCH_OFFSET = new Vector2(85f, 0f);
 

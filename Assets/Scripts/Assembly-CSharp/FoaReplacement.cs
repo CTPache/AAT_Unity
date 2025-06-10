@@ -26,7 +26,7 @@ public class FoaReplacement : ScriptableObject
 	}
 
 	[SerializeField]
-	private List<ReplacedAnimationNames> replaces;
+public List<ReplacedAnimationNames> replaces;
 
 	public string Replace(string key)
 	{

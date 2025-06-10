@@ -5,7 +5,7 @@ public class storySelectCtrl : MonoBehaviour
 	private static storySelectCtrl instance_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	public static storySelectCtrl instance
 	{

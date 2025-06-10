@@ -6,7 +6,7 @@ public class debugLogger : MonoBehaviour
 	private static debugLogger instance_;
 
 	[SerializeField]
-	private List<string> tag_list_ = new List<string>();
+public List<string> tag_list_ = new List<string>();
 
 	public static debugLogger instance
 	{

@@ -66,22 +66,22 @@ public class selectPlateCtrl : MonoBehaviour
     private static selectPlateCtrl instance_;
 
     [SerializeField]
-    private List<SelectPlate> select_list_ = new List<SelectPlate>();
+public List<SelectPlate> select_list_ = new List<SelectPlate>();
 
     [SerializeField]
-    private AssetBundleSprite cursor_;
+public AssetBundleSprite cursor_;
 
     [SerializeField]
-    private GameObject body_;
+public GameObject body_;
 
     [SerializeField]
-    private EnterCurve enter_curve_ = new EnterCurve();
+public EnterCurve enter_curve_ = new EnterCurve();
 
     [SerializeField]
-    private EnableCurve enable_curve_ = new EnableCurve();
+public EnableCurve enable_curve_ = new EnableCurve();
 
     [SerializeField]
-    private SpriteRenderer mask_;
+public SpriteRenderer mask_;
 
     public float alpha_;
 

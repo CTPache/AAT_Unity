@@ -371,6 +371,17 @@ GameObject:
   - component: {fileID: 61447320347831497}
   - component: {fileID: 114249873888016997}
   - component: {fileID: 114901449571403326}
+  - component: {fileID: 114698418693378084}
+  - component: {fileID: 114805419893458208}
+  - component: {fileID: 114714837123651316}
+  - component: {fileID: 114695116170024514}
+  - component: {fileID: 114868499666784530}
+  - component: {fileID: 114219451650560326}
+  - component: {fileID: 114577462400802526}
+  - component: {fileID: 114214629829437832}
+  - component: {fileID: 114479068698626752}
+  - component: {fileID: 114074414908938332}
+  - component: {fileID: 114790055919207960}
   m_Layer: 8
   m_Name: messageBoard
   m_TagString: NotHitSome
@@ -933,7 +944,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1177326627790462}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74c6ba8d2f859be82e107679b91953cc, type: 3}
   m_Name: 
@@ -943,6 +954,17 @@ MonoBehaviour:
   alignment_uppercenter_quotation_diff_: 25
   alignment_uppercenter_quotation_diff_china_s_: 24
   diaeresis_i_diff_: 2.8
+--- !u!114 &114074414908938332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114085899102870275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,7 +985,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
@@ -996,7 +1018,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
@@ -1029,7 +1051,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
@@ -1048,7 +1070,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1526986200183211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74c6ba8d2f859be82e107679b91953cc, type: 3}
   m_Name: 
@@ -1078,7 +1100,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -1091,6 +1113,47 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &114214629829437832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: 
+  name_plate_language_: 
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: "\r\n===================================\r\n"
+  selectPlateChanged: 1
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 1
+  sprite_nameChanged: 1
+  body_activeChanged: 1
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
 --- !u!114 &114216796646268233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,6 +1240,47 @@ MonoBehaviour:
     sprite_no_: 0
     path_: 
     name_: 
+--- !u!114 &114219451650560326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: 
+  name_plate_language_: 
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: "\r\n===================================\r\n"
+  selectPlateChanged: 1
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 1
+  sprite_nameChanged: 1
+  body_activeChanged: 1
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
 --- !u!114 &114249873888016997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,6 +1293,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   box_collider_2d_: {fileID: 61447320347831497}
+--- !u!114 &114479068698626752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: 
+  name_plate_language_: 
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: "\r\n===================================\r\n"
+  selectPlateChanged: 1
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 1
+  sprite_nameChanged: 1
+  body_activeChanged: 1
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
 --- !u!114 &114485657232667828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,7 +1354,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
@@ -1222,6 +1367,47 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &114577462400802526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: 
+  name_plate_language_: 
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: "\r\n===================================\r\n"
+  selectPlateChanged: 1
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 1
+  sprite_nameChanged: 1
+  body_activeChanged: 1
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
 --- !u!114 &114600143221752061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,7 +1426,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977689037199340}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74c6ba8d2f859be82e107679b91953cc, type: 3}
   m_Name: 
@@ -1270,7 +1456,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
@@ -1283,6 +1469,88 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &114695116170024514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: 
+  name_plate_language_: 
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: 
+  selectPlateChanged: 0
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 0
+  sprite_nameChanged: 0
+  body_activeChanged: 0
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
+--- !u!114 &114698418693378084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: /GS1/etc/
+  name_plate_language_: USA
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: "\r\n===================================\r\n"
+  selectPlateChanged: 1
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 1
+  sprite_nameChanged: 1
+  body_activeChanged: 1
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
 --- !u!114 &114713281231503712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,7 +1571,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -1316,6 +1584,47 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &114714837123651316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: /GS1/etc/
+  name_plate_language_: USA
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: "\r\n===================================\r\n"
+  selectPlateChanged: 1
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 1
+  sprite_nameChanged: 1
+  body_activeChanged: 1
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
 --- !u!114 &114718388993647347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,6 +1637,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   box_collider_2d_: {fileID: 61240872722799489}
+--- !u!114 &114790055919207960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_id_tbl: 310000000600000006000000000000001400000004000000120000000100000027000000030000000000000005000000090000000e0000000a000000130000000c0000000d0000001c000000180000001b0000001a000000010000001d000000190000002f00000025000000240000002b000000130000000f0000003100000028000000290000002c0000002d000000000000000100000031000000310000003100000001000000020000000100000014000000310000000100000011000000150000000800000007000000100000000b000000160000001700000031000000310000000d0000001f0000001e00000020000000210000002200000026000000230000002a000000310000002e00000030000000
+  msg_key_icon_: {fileID: 0}
+  guide_ctrl_: {fileID: 0}
+  sprite_list_: []
+  arrow_list_: []
+  line_list_: []
+  text_: {fileID: 0}
+  body_: {fileID: 0}
+  left_arrow_touch_: {fileID: 0}
+  message_board_touch_: {fileID: 0}
+  quake_targets_: {fileID: 0}
+  is_arrow_: 0
+  name_plate_path_: 
+  name_plate_language_: 
+  <touch_skip_flag>k__BackingField: 0
+  <scrollViewGO>k__BackingField: {fileID: 0}
+  <reviewText>k__BackingField: {fileID: 0}
+  reviewString: "\r\n===================================\r\n"
+  selectPlateChanged: 1
+  lastKeyZLState: 0
+  lastL2State: 0
+  sprite_boardChanged: 1
+  sprite_nameChanged: 1
+  body_activeChanged: 1
+  isAutoMessage: 0
+  isDelayToMessaged: 0
+  autoText: {fileID: 0}
+  isHideScrollView: 0
+  fastMessage: 0
+  autoMessageDelayTime: 3
+--- !u!114 &114805419893458208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114816007559657356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1352,6 +1713,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   box_collider_2d_: {fileID: 61000759809216475}
+--- !u!114 &114868499666784530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723197492085208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114889747382450124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,7 +1804,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
@@ -1773,7 +2145,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 145209ea64510b2498c5a32073f86bd7, type: 3}
+    m_Font: {fileID: 12800000, guid: f86a43f37fe78c54b85adb13451610bd, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0

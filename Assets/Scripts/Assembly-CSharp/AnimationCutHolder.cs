@@ -34,7 +34,7 @@ public class AnimationCutHolder : MonoBehaviour
 	}
 
 	[SerializeField]
-	private int max_cache;
+public int max_cache;
 
 	private Dictionary<string, string> animation_name_to_bundle_name = new Dictionary<string, string>();
 

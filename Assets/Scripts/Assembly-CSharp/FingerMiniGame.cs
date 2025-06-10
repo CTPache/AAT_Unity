@@ -343,11 +343,11 @@ public class FingerMiniGame : MonoBehaviour
 	private static readonly int[] finger_mes_pos1 = new int[4] { 20, 116, 212, 308 };
 
 	[SerializeField]
-	private float cursor_appear_time_;
+public float cursor_appear_time_;
 
 	[Header("Select")]
 	[SerializeField]
-	private GameObject select_root_;
+public GameObject select_root_;
 
 	private Vector2[] select_finger_offset_ = new Vector2[3]
 	{
@@ -365,81 +365,81 @@ public class FingerMiniGame : MonoBehaviour
 
 	[Header("Main")]
 	[SerializeField]
-	private GameObject main_root_;
+public GameObject main_root_;
 
 	[SerializeField]
-	private SpriteRenderer background_;
+public SpriteRenderer background_;
 
 	[SerializeField]
-	private MeshRenderer render_image_;
+public MeshRenderer render_image_;
 
 	[SerializeField]
-	private MeshRenderer temporary_image_;
+public MeshRenderer temporary_image_;
 
 	[SerializeField]
-	private GameObject dicovery_cursor_root_;
+public GameObject dicovery_cursor_root_;
 
 	[SerializeField]
-	private SpriteRenderer[] discovery_cursor_ = new SpriteRenderer[4];
+public SpriteRenderer[] discovery_cursor_ = new SpriteRenderer[4];
 
 	[Header("CompMain")]
 	[SerializeField]
-	private GameObject comp_main_root_;
+public GameObject comp_main_root_;
 
 	[SerializeField]
-	private MeshRenderer comp_left_image_;
+public MeshRenderer comp_left_image_;
 
 	[SerializeField]
-	private MeshRenderer comp_right_image_;
+public MeshRenderer comp_right_image_;
 
 	[SerializeField]
-	private Vector2 comp_mesh_size_;
+public Vector2 comp_mesh_size_;
 
 	[SerializeField]
-	private Vector2 discover_offset_;
+public Vector2 discover_offset_;
 
 	[SerializeField]
-	private Vector2 discover_scale_;
+public Vector2 discover_scale_;
 
 	[SerializeField]
-	private SpriteRenderer bar_image_;
+public SpriteRenderer bar_image_;
 
 	[SerializeField]
-	private SpriteRenderer info_frame_image_;
+public SpriteRenderer info_frame_image_;
 
 	[SerializeField]
-	private Text[] info_texts_;
+public Text[] info_texts_;
 
 	[SerializeField]
-	private SpriteRenderer left_arrow_image_;
+public SpriteRenderer left_arrow_image_;
 
 	[SerializeField]
-	private SpriteRenderer right_arrow_image_;
+public SpriteRenderer right_arrow_image_;
 
 	[SerializeField]
-	private SpriteRenderer[] comp_select_frame_images_;
+public SpriteRenderer[] comp_select_frame_images_;
 
 	[SerializeField]
-	private SpriteRenderer[] comp_select_icon_images_;
+public SpriteRenderer[] comp_select_icon_images_;
 
 	[SerializeField]
-	private Transform comp_sprite_root_;
+public Transform comp_sprite_root_;
 
 	[SerializeField]
-	private InputTouch touch_right_arrow_;
+public InputTouch touch_right_arrow_;
 
 	[SerializeField]
-	private InputTouch touch_left_arrow_;
+public InputTouch touch_left_arrow_;
 
 	[SerializeField]
-	private InputTouch touch_infoframe_;
+public InputTouch touch_infoframe_;
 
 	[SerializeField]
-	private List<InputTouch> touch_icon_list_ = new List<InputTouch>();
+public List<InputTouch> touch_icon_list_ = new List<InputTouch>();
 
 	[Header("Debug")]
 	[SerializeField]
-	private bool debug_show_area_;
+public bool debug_show_area_;
 
 	private readonly Vector2 SCREEN_SIZE = new Vector2(1920f, 1080f);
 

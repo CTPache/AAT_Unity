@@ -39,22 +39,22 @@ public class seriesTitleSelectCtrl : sceneCtrl
 	}
 
 	[SerializeField]
-	private titleSelectPlate select_plate_;
+public titleSelectPlate select_plate_;
 
 	[SerializeField]
-	private AssetBundleSprite title_back_;
+public AssetBundleSprite title_back_;
 
 	[SerializeField]
-	private GameObject title_list_body_;
+public GameObject title_list_body_;
 
 	[SerializeField]
-	private List<Title> title_list_;
+public List<Title> title_list_;
 
 	[SerializeField]
-	private arrowCtrl arrow_ctrl_;
+public arrowCtrl arrow_ctrl_;
 
 	[SerializeField]
-	private Text select_plate_text_;
+public Text select_plate_text_;
 
 	private IEnumerator coroutine_copyrightfade_;
 

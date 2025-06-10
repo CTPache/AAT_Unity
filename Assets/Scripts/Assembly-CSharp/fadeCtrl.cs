@@ -27,7 +27,7 @@ public class fadeCtrl : MonoBehaviour
 	private static fadeCtrl instance_;
 
 	[SerializeField]
-	private List<SpriteRenderer> target_list_ = new List<SpriteRenderer>();
+public List<SpriteRenderer> target_list_ = new List<SpriteRenderer>();
 
 	private State[] states = new State[3];
 

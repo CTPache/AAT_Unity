@@ -27,16 +27,16 @@ public class staffrollCtrl : MonoBehaviour
 	}
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private SpriteRenderer background_sprite_;
+public SpriteRenderer background_sprite_;
 
 	[SerializeField]
-	private SpriteRenderer staffroll_sprite_;
+public SpriteRenderer staffroll_sprite_;
 
 	[SerializeField]
-	private MeshRenderer render_image_;
+public MeshRenderer render_image_;
 
 	private Sprite[] staffroll_sprite_data_;
 

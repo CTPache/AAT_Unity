@@ -171,25 +171,25 @@ public class creditCtrl : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject body_;
+public GameObject body_;
 
     [SerializeField]
-    private Image background_;
+public Image background_;
 
     [SerializeField]
-    private Image image_;
+public Image image_;
 
     [SerializeField]
-    private guideCtrl guide_ctrl_;
+public guideCtrl guide_ctrl_;
 
     [SerializeField]
-    private RectTransform text_parent_;
+public RectTransform text_parent_;
 
     [SerializeField]
-    private Text text_object_template_;
+public Text text_object_template_;
 
     [SerializeField]
-    private RectTransform credit_logo_parent_;
+public RectTransform credit_logo_parent_;
 
     [Header("Setting")]
     [SerializeField]

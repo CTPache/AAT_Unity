@@ -15,21 +15,21 @@ public class AnimationSystem : MonoBehaviour
 	public Transform instance_parent;
 
 	[SerializeField]
-	private AnimationObject animation_object_prefab;
+public AnimationObject animation_object_prefab;
 
 	[SerializeField]
-	private AnimationCutHolder holder_instance;
+public AnimationCutHolder holder_instance;
 
 	[SerializeField]
-	private AnimationCameraManager camera_manager;
+public AnimationCameraManager camera_manager;
 
 	public const int max_holding_animation = 18;
 
 	[SerializeField]
-	private AnimationObject characters_animation_object;
+public AnimationObject characters_animation_object;
 
 	[SerializeField]
-	private List<AnimationObject> other_animation_objects;
+public List<AnimationObject> other_animation_objects;
 
 	public bool is_aiga_mozaic_anim_;
 

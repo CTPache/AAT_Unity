@@ -8,10 +8,10 @@ public class AnimationDictionary : ScriptableObject
 	public class TextureAnmNameRelation
 	{
 		[SerializeField]
-		private string key;
+public string key;
 
 		[SerializeField]
-		private List<string> values;
+public List<string> values;
 
 		public string Key
 		{
@@ -31,7 +31,7 @@ public class AnimationDictionary : ScriptableObject
 	}
 
 	[SerializeField]
-	private List<TextureAnmNameRelation> relations;
+public List<TextureAnmNameRelation> relations;
 
 	public List<TextureAnmNameRelation> Relations
 	{

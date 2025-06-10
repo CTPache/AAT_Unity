@@ -17,22 +17,22 @@ public class plateCtrlBase : MonoBehaviour
 	public const ushort WIN_ITEM_COLOR_MASK = 2;
 
 	[SerializeField]
-	private AssetBundleSprite icon_;
+public AssetBundleSprite icon_;
 
 	[SerializeField]
-	private AssetBundleSprite icon_base_;
+public AssetBundleSprite icon_base_;
 
 	[SerializeField]
-	private ItemCurve item_curve_ = new ItemCurve();
+public ItemCurve item_curve_ = new ItemCurve();
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private Material default_material_;
+public Material default_material_;
 
 	[SerializeField]
-	private Material grayscale_material_;
+public Material grayscale_material_;
 
 	private bool is_play_;
 

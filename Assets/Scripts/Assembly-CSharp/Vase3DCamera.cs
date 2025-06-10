@@ -3,10 +3,10 @@ using UnityEngine;
 public class Vase3DCamera : MonoBehaviour
 {
 	[SerializeField]
-	private Camera target_camera_;
+public Camera target_camera_;
 
 	[SerializeField]
-	private float adjust_ratio_;
+public float adjust_ratio_;
 
 	private int last_screen_width_;
 

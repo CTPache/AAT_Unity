@@ -3,7 +3,7 @@ using UnityEngine;
 public class GSDemo_gs3_op5_mask : MonoBehaviour
 {
 	[SerializeField]
-	private AssetBundleSprite[] sprites_;
+public AssetBundleSprite[] sprites_;
 
 	public static GSDemo_gs3_op5_mask instance { get; private set; }
 

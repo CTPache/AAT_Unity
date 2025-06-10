@@ -60,61 +60,61 @@ public class SaveLoadUICtrl : MonoBehaviour
 	private string[] announce_text_list_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private SaveSlot[] slot_list_ = new SaveSlot[10];
+public SaveSlot[] slot_list_ = new SaveSlot[10];
 
 	[SerializeField]
-	private GameObject slot_list_body_;
+public GameObject slot_list_body_;
 
 	[SerializeField]
-	private AssetBundleSprite cursor_;
+public AssetBundleSprite cursor_;
 
 	[SerializeField]
-	private AssetBundleSprite bg_;
+public AssetBundleSprite bg_;
 
 	[SerializeField]
-	private AssetBundleSprite bg_fade_;
+public AssetBundleSprite bg_fade_;
 
 	[SerializeField]
-	private float slot_top_;
+public float slot_top_;
 
 	[SerializeField]
-	private float slot_space_;
+public float slot_space_;
 
 	[SerializeField]
-	private AnimationCurve move_curve_ = new AnimationCurve();
+public AnimationCurve move_curve_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnimationCurve over_move_curve_ = new AnimationCurve();
+public AnimationCurve over_move_curve_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnnounceOperation announce_;
+public AnnounceOperation announce_;
 
 	[SerializeField]
-	private SaveConfirmationWindow save_window_;
+public SaveConfirmationWindow save_window_;
 
 	[SerializeField]
-	private ScrollBarCtrl scrl_bar_;
+public ScrollBarCtrl scrl_bar_;
 
 	[SerializeField]
-	private AssetBundleSprite mask_;
+public AssetBundleSprite mask_;
 
 	[SerializeField]
-	private SpriteMask save_data_mask_;
+public SpriteMask save_data_mask_;
 
 	[SerializeField]
-	private SaveKeyGuide key_guide_;
+public SaveKeyGuide key_guide_;
 
 	[SerializeField]
-	private SavePriorConfirmation prior_cfm_;
+public SavePriorConfirmation prior_cfm_;
 
 	[SerializeField]
-	private List<InputTouch> slot_touch_list_ = new List<InputTouch>();
+public List<InputTouch> slot_touch_list_ = new List<InputTouch>();
 
 	[SerializeField]
-	private float scroll_move_resistance_ = 1f;
+public float scroll_move_resistance_ = 1f;
 
 	private const float DRAG_POWER = 10f;
 

@@ -4,3 +4,4 @@ obj/*
 .vs/*
 Assets/StreamingAssets/*
 Library/*
+systemdata

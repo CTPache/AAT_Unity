@@ -4,13 +4,13 @@ using UnityEngine.UI;
 public class TanchikiRadioWave : MonoBehaviour
 {
 	[SerializeField]
-	private RectTransform rect_transform_;
+public RectTransform rect_transform_;
 
 	[SerializeField]
-	private Image icon_;
+public Image icon_;
 
 	[SerializeField]
-	private InputTouch touch_wave_;
+public InputTouch touch_wave_;
 
 	private Sprite[] icon_sprites_;
 

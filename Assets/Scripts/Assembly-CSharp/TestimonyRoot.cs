@@ -4,10 +4,10 @@ using UnityEngine;
 public class TestimonyRoot : MonoBehaviour
 {
 	[SerializeField]
-	private Evaluator testimonyIconEvaluator;
+public Evaluator testimonyIconEvaluator;
 
 	[SerializeField]
-	private SpriteRenderer testimonyIcon;
+public SpriteRenderer testimonyIcon;
 
 	public static TestimonyRoot instance { get; private set; }
 

@@ -37,37 +37,37 @@ public class mainTitleCtrl : sceneCtrl
 	private int select_type_;
 
 	[SerializeField]
-	private MainTitle main_title_;
+	public MainTitle main_title_;
 
 	[SerializeField]
-	private titleSelectPlate select_plate_;
+	public titleSelectPlate select_plate_;
 
 	[SerializeField]
-	private Text push_text_;
+public Text push_text_;
 
 	[SerializeField]
-	private AnimationCurve alpha_curve_ = new AnimationCurve();
+public AnimationCurve alpha_curve_ = new AnimationCurve();
 
 	[SerializeField]
-	private titleSelectPlate game_end_select_;
+public titleSelectPlate game_end_select_;
 
 	[SerializeField]
-	private AssetBundleSprite mask_;
+public AssetBundleSprite mask_;
 
 	[SerializeField]
-	private AssetBundleSprite message_window_;
+public AssetBundleSprite message_window_;
 
 	[SerializeField]
-	private List<Text> message_text_list_ = new List<Text>();
+public List<Text> message_text_list_ = new List<Text>();
 
 	[SerializeField]
-	private Text select_plate_text_00_;
+public Text select_plate_text_00_;
 
 	[SerializeField]
-	private Text select_plate_text_01_;
+public Text select_plate_text_01_;
 
 	[SerializeField]
-	private Text select_plate_text_02_;
+public Text select_plate_text_02_;
 
 	public static mainTitleCtrl instance { get; private set; }
 
@@ -350,8 +350,8 @@ public class mainTitleCtrl : sceneCtrl
 			{
 				TextDataCtrl.GetText(TextDataCtrl.TitleTextID.NEW_GAME),
 				TextDataCtrl.GetText(TextDataCtrl.TitleTextID.CONTINUE),
-				TextDataCtrl.GetText(TextDataCtrl.TitleTextID.OPTION),
-				TextDataCtrl.GetText(TextDataCtrl.TitleTextID.EXIT)
+                TextDataCtrl.GetText(TextDataCtrl.TitleTextID.OPTION),
+                TextDataCtrl.GetText(TextDataCtrl.TitleTextID.EXIT)
 			}
 		};
 		select_plate_.mainTitleInit(select_text_[select_type_], "select_button", select_type_);

@@ -31,13 +31,13 @@ public class optionSave : optionItem
 	private int cursor_num_;
 
 	[SerializeField]
-	private List<OptionSelectPlate> select_plate_ = new List<OptionSelectPlate>();
+public List<OptionSelectPlate> select_plate_ = new List<OptionSelectPlate>();
 
 	[SerializeField]
-	private AssetBundleSprite cursor_;
+public AssetBundleSprite cursor_;
 
 	[SerializeField]
-	private selectPlateCtrl.EnableCurve enable_curve_;
+public selectPlateCtrl.EnableCurve enable_curve_;
 
 	public override void Init()
 	{

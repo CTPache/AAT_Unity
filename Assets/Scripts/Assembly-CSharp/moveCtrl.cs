@@ -147,37 +147,37 @@ public class moveCtrl : MonoBehaviour
     };
 
     [SerializeField]
-    private GameObject body_;
+public GameObject body_;
 
     [SerializeField]
-    private AssetBundleSprite cursor_;
+public AssetBundleSprite cursor_;
 
     [SerializeField]
-    private Place place_;
+public Place place_;
 
     [SerializeField]
-    private List<SelectPlate> select_list_ = new List<SelectPlate>();
+public List<SelectPlate> select_list_ = new List<SelectPlate>();
 
     [SerializeField]
-    private GameObject select_;
+public GameObject select_;
 
     [SerializeField]
-    private Curve curve_ = new Curve();
+public Curve curve_ = new Curve();
 
     [SerializeField]
-    private AssetBundleSprite place_window_;
+public AssetBundleSprite place_window_;
 
     [SerializeField]
-    private AnimationSprite place_noise_;
+public AnimationSprite place_noise_;
 
     [SerializeField]
-    private AssetBundleSprite mask_;
+public AssetBundleSprite mask_;
 
     [SerializeField]
-    private selectPlateCtrl.EnterCurve enter_curve_;
+public selectPlateCtrl.EnterCurve enter_curve_;
 
     [SerializeField]
-    private selectPlateCtrl.EnableCurve enable_curve_;
+public selectPlateCtrl.EnableCurve enable_curve_;
 
     private IEnumerator enumerator_play_;
 

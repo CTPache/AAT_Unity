@@ -18,10 +18,10 @@ public class optionCredit : optionItem
 	}
 
 	[SerializeField]
-	protected OptionSelectCredit select_;
+public OptionSelectCredit select_;
 
 	[SerializeField]
-	private selectPlateCtrl.EnableCurve enable_curve_;
+public selectPlateCtrl.EnableCurve enable_curve_;
 
 	public override void Init()
 	{

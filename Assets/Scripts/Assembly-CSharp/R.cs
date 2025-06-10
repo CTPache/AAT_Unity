@@ -5,16 +5,16 @@ using UnityEngine;
 public struct R
 {
 	[SerializeField]
-	private byte no_0_;
+public byte no_0_;
 
 	[SerializeField]
-	private byte no_1_;
+public byte no_1_;
 
 	[SerializeField]
-	private byte no_2_;
+public byte no_2_;
 
 	[SerializeField]
-	private byte no_3_;
+public byte no_3_;
 
 	public byte no_0
 	{

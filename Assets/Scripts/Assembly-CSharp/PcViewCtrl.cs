@@ -332,31 +332,31 @@ public class PcViewCtrl : MonoBehaviour
     public int deb_count;
 
     [SerializeField]
-    private List<FontImageData> font_sprite_ = new List<FontImageData>();
+public List<FontImageData> font_sprite_ = new List<FontImageData>();
 
     [SerializeField]
-    private List<Image> icon_sprite_list_ = new List<Image>();
+public List<Image> icon_sprite_list_ = new List<Image>();
 
     [SerializeField]
-    private SpriteRenderer line_sprite_;
+public SpriteRenderer line_sprite_;
 
     [SerializeField]
     public GameObject body_;
 
     [SerializeField]
-    private AssetBundleSprite[] font_load_sprites_;
+public AssetBundleSprite[] font_load_sprites_;
 
     [SerializeField]
-    private AssetBundleSprite[] face_sprites_;
+public AssetBundleSprite[] face_sprites_;
 
     [SerializeField]
-    private AssetBundleSprite cursor_sprites_;
+public AssetBundleSprite cursor_sprites_;
 
     [SerializeField]
-    private Transform cursor_root_;
+public Transform cursor_root_;
 
     [SerializeField]
-    private AssetBundleSprite bg_;
+public AssetBundleSprite bg_;
 
     public RectTransform rect_transform_;
 

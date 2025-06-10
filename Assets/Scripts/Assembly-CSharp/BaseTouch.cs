@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseTouch : MonoBehaviour
 {
 	[SerializeField]
-	private BoxCollider2D box_collider_2d_;
+public BoxCollider2D box_collider_2d_;
 
 	public Action<TouchParameter> touch_event { protected get; set; }
 

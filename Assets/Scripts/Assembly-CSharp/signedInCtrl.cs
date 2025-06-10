@@ -11,16 +11,16 @@ public class signedInCtrl : MonoBehaviour
 	private const int FRANCE_FONT_SIZE = 38;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private AssetBundleSprite window_;
+public AssetBundleSprite window_;
 
 	[SerializeField]
-	private AssetBundleSprite mask_;
+public AssetBundleSprite mask_;
 
 	[SerializeField]
-	private Text text_;
+public Text text_;
 
 	private IEnumerator play_enumerator_;
 

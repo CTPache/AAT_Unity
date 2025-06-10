@@ -15,13 +15,13 @@ public class EffectData : ScriptableObject
 	}
 
 	[SerializeField]
-	private string anm_name;
+public string anm_name;
 
 	[SerializeField]
-	private EFFECT_TYPE effect_type;
+public EFFECT_TYPE effect_type;
 
 	[SerializeField]
-	private int sequence_num;
+public int sequence_num;
 
 	public string AnmName
 	{

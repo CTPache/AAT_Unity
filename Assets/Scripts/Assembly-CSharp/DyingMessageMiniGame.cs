@@ -15,16 +15,16 @@ public class DyingMessageMiniGame : MonoBehaviour
 	}
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private bool force_clear_;
+public bool force_clear_;
 
 	[SerializeField]
-	private GameObject prefab_touch_range_;
+public GameObject prefab_touch_range_;
 
 	[SerializeField]
-	private GameObject touch_points_;
+public GameObject touch_points_;
 
 	private List<GameObject> touch_range_list_ = new List<GameObject>();
 
@@ -47,7 +47,7 @@ public class DyingMessageMiniGame : MonoBehaviour
 	private List<KeyValuePair<GameObject, AssetBundleSprite>> sprite_list_ = new List<KeyValuePair<GameObject, AssetBundleSprite>>();
 
 	[SerializeField]
-	private Canvas main_canvas_;
+public Canvas main_canvas_;
 
 	public static DyingMessageMiniGame instance { get; private set; }
 

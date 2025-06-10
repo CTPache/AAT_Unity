@@ -31,7 +31,7 @@ public class scenarioSelectCtrl : sceneCtrl
 	}
 
 	[SerializeField]
-	private bool debug_;
+public bool debug_;
 
 	private bool is_back_;
 
@@ -54,62 +54,62 @@ public class scenarioSelectCtrl : sceneCtrl
 	private string[] start_text_base;
 
 	[SerializeField]
-	private AssetBundleSprite select_cursor;
+public AssetBundleSprite select_cursor;
 
 	[SerializeField]
-	private titleSelectPlate confirmation_select_;
+public titleSelectPlate confirmation_select_;
 
 	[SerializeField]
-	private arrowCtrl arrow_ctrl_;
+public arrowCtrl arrow_ctrl_;
 
 	[SerializeField]
-	private float title_space_ = 730f;
+public float title_space_ = 730f;
 
 	[SerializeField]
-	private GameObject story_list_body_;
+public GameObject story_list_body_;
 
 	[SerializeField]
-	private List<storyTitle> story_title_ = new List<storyTitle>();
+public List<storyTitle> story_title_ = new List<storyTitle>();
 
 	[SerializeField]
-	private AssetBundleSprite story_mask_;
+public AssetBundleSprite story_mask_;
 
 	[SerializeField]
-	private AssetBundleSprite story_focus_R_;
+public AssetBundleSprite story_focus_R_;
 
 	[SerializeField]
-	private AssetBundleSprite story_focus_L_;
+public AssetBundleSprite story_focus_L_;
 
 	[SerializeField]
-	private AssetBundleSprite text_window_;
+public AssetBundleSprite text_window_;
 
 	[SerializeField]
-	private List<Text> start_text_ = new List<Text>();
+public List<Text> start_text_ = new List<Text>();
 
 	[SerializeField]
-	private AssetBundleSprite mask_;
+public AssetBundleSprite mask_;
 
 	[SerializeField]
-	private AssetBundleSprite focus_R_;
+public AssetBundleSprite focus_R_;
 
 	[SerializeField]
-	private AssetBundleSprite focus_L_;
+public AssetBundleSprite focus_L_;
 
 	[SerializeField]
-	private AssetBundleSprite back_ground_;
+public AssetBundleSprite back_ground_;
 
 	[SerializeField]
-	private SpriteMask sprite_mask_;
+public SpriteMask sprite_mask_;
 
 	[SerializeField]
-	private AnimationCurve focus_scale_curve_ = new AnimationCurve();
+public AnimationCurve focus_scale_curve_ = new AnimationCurve();
 
 	[SerializeField]
 	[Tooltip("１つ隣の画像へスライドするまでの時間(フレーム数：60 = 1秒)")]
 	private int slide_time_ = 24;
 
 	[SerializeField]
-	private AnimationCurve curve_ = new AnimationCurve();
+public AnimationCurve curve_ = new AnimationCurve();
 
 	private IEnumerator enumerator_confirmation_;
 

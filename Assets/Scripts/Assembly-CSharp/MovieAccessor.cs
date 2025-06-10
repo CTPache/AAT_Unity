@@ -15,17 +15,17 @@ public class MovieAccessor : MonoBehaviour
 	private VideoPlayer videoPlayer;
 
 	[SerializeField]
-	private RawImage image_;
+public RawImage image_;
 
 	public bool keepAsLastFrame_;
 
 	private AssetBundle bundle;
 
 	[SerializeField]
-	private MeshRenderer switch_screen_body;
+public MeshRenderer switch_screen_body;
 
 	[SerializeField]
-	private Camera use_camera;
+public Camera use_camera;
 
 	public int end_frame;
 

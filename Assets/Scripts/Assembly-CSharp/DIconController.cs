@@ -10,10 +10,10 @@ public class DIconController : MonoBehaviour
 	private List<string> iconset_U = new List<string> { "etc04e", "etc04fu", "etc050u" };
 
 	[SerializeField]
-	private Transform dicon_trs_;
+public Transform dicon_trs_;
 
 	[SerializeField]
-	private AssetBundleSprite asset_budle_sprite_;
+public AssetBundleSprite asset_budle_sprite_;
 
 	public const ushort RNO_DICON_NO_DISP = 0;
 

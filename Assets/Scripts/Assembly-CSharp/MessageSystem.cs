@@ -238,27 +238,27 @@ public class MessageSystem
     private static bool is_mosaic_run_;
 
     [SerializeField]
-    private RectTransform text_area_;
+public RectTransform text_area_;
 
     [SerializeField]
-    private Text[] ui_texts_ = new Text[2];
+public Text[] ui_texts_ = new Text[2];
 
     [SerializeField]
-    private MessageWork active_work_;
+public MessageWork active_work_;
 
     [SerializeField]
-    private uint debug_skip_mdt_index_;
+public uint debug_skip_mdt_index_;
 
     [SerializeField]
-    private uint debug_mdt_index_;
+public uint debug_mdt_index_;
 
     [SerializeField]
-    private ushort debug_next_no_;
+public ushort debug_next_no_;
 
     public GameObject psylock_destroy_effect_prefab_;
 
     [SerializeField]
-    private bool debug_no_key_wait_;
+public bool debug_no_key_wait_;
 
     private static readonly CodeProc[] code_proc_table;
 
@@ -2963,14 +2963,9 @@ public class MessageSystem
             messageBoardCtrl.instance.Close();
             short num = (short)message_work.mdt_data.GetMessage(message_work.mdt_index);
             short num2 = (short)message_work.mdt_data.GetMessage(message_work.mdt_index + 1);
-            if (num == 0 && num2 == 142)
-            {
-                num = num;
-            }
-            else if (num > 0)
+            if (!(num == 0 && num2 == 142) && (num > 0))
             {
                 num = (short)((float)num * 6.75f);
-                num = num;
             }
             num2 = (short)((float)(-num2 + 128) * 4.2f + 190f);
             if (GSUtility.GetLanguageLayoutType(GSStatic.global_work_.language) == "USA")

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class NintendoSDKPad : MonoBehaviour
 {
 	[SerializeField]
-	private Text text_;
+public Text text_;
 
 	public Text text
 	{

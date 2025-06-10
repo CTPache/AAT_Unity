@@ -8,13 +8,13 @@ public class advCtrl : MonoBehaviour
     private static advCtrl instance_;
 
     [SerializeField]
-    private GameObject body_;
+public GameObject body_;
 
     [SerializeField]
-    private Camera adv_camera_;
+public Camera adv_camera_;
 
     [SerializeField]
-    private int DebugOverrideScenario = -1;
+public int DebugOverrideScenario = -1;
 
     private IEnumerator scenario_enumerator_;
 

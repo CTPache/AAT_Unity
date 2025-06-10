@@ -7,31 +7,31 @@ using UnityEngine.UI;
 public class MenuTest : MonoBehaviour
 {
 	[SerializeField]
-	private Button button_;
+public Button button_;
 
 	[SerializeField]
-	private DebugMenu.uGUI.Menu menu_;
+public DebugMenu.uGUI.Menu menu_;
 
 	[SerializeField]
-	private NintendoSDKPad nintendo_pad_;
+public NintendoSDKPad nintendo_pad_;
 
 	[SerializeField]
-	private List<guideCtrl> l_guide_ = new List<guideCtrl>();
+public List<guideCtrl> l_guide_ = new List<guideCtrl>();
 
 	[SerializeField]
-	private List<keyGuideCtrl> l_key_guide_ = new List<keyGuideCtrl>();
+public List<keyGuideCtrl> l_key_guide_ = new List<keyGuideCtrl>();
 
 	[SerializeField]
-	private IndicateRevision revision_;
+public IndicateRevision revision_;
 
 	[SerializeField]
-	private Text input_hisotry_type_;
+public Text input_hisotry_type_;
 
 	[SerializeField]
-	private Text show_save_status_;
+public Text show_save_status_;
 
 	[SerializeField]
-	private GameObject debug_memory_;
+public GameObject debug_memory_;
 
 	public static bool dont_open_;
 

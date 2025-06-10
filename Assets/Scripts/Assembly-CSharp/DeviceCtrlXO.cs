@@ -9,13 +9,13 @@ public class DeviceCtrlXO : MonoBehaviour
 	public class GamerTag
 	{
 		[SerializeField]
-		private Text text_;
+public Text text_;
 
 		[SerializeField]
-		private Image pic_;
+public Image pic_;
 
 		[SerializeField]
-		private GameObject body_;
+public GameObject body_;
 
 		public bool active
 		{
@@ -65,10 +65,10 @@ public class DeviceCtrlXO : MonoBehaviour
 	private static DeviceCtrlXO instance_;
 
 	[SerializeField]
-	private GamerTag gamer_tag_;
+public GamerTag gamer_tag_;
 
 	[SerializeField]
-	private Text text_;
+public Text text_;
 
 	public static DeviceCtrlXO instance
 	{

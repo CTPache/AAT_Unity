@@ -5,25 +5,25 @@ using UnityEngine.UI;
 public class MiniGameCursor : MonoBehaviour
 {
 	[SerializeField]
-	private Canvas canvas_;
+public Canvas canvas_;
 
 	[SerializeField]
-	private RectTransform cursor_parent_;
+public RectTransform cursor_parent_;
 
 	[SerializeField]
-	private RectTransform cursor_;
+public RectTransform cursor_;
 
 	[SerializeField]
-	private Image icon_;
+public Image icon_;
 
 	[SerializeField]
-	private float cursor_speed_;
+public float cursor_speed_;
 
 	[SerializeField]
-	private InputTouch touch_cursor_;
+public InputTouch touch_cursor_;
 
 	[SerializeField]
-	private Canvas cursor_canvas_;
+public Canvas cursor_canvas_;
 
 	private Vector3 cursor_position_;
 

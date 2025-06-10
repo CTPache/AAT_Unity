@@ -7,10 +7,10 @@ public class titleCtrl : MonoBehaviour
 	private static titleCtrl instance_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private Text text_;
+public Text text_;
 
 	public static titleCtrl instance
 	{

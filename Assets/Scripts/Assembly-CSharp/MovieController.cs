@@ -15,10 +15,10 @@ public class MovieController : MonoBehaviour
 	}
 
 	[SerializeField]
-	private RawImage screen;
+public RawImage screen;
 
 	[SerializeField]
-	private Camera use_camera_;
+public Camera use_camera_;
 
 	private AssetBundle bundle;
 

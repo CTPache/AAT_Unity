@@ -95,64 +95,64 @@ public class recordListCtrl : MonoBehaviour
 	private const int KEY_DOWN_COUNT_FIRST = 16;
 
 	[SerializeField]
-	private AssetBundleSprite board_;
+public AssetBundleSprite board_;
 
 	[SerializeField]
-	private AssetBundleSprite info_;
+public AssetBundleSprite info_;
 
 	[SerializeField]
-	private InputTouch info_touch_;
+public InputTouch info_touch_;
 
 	[SerializeField]
-	private AssetBundleSprite icon_;
+public AssetBundleSprite icon_;
 
 	[SerializeField]
-	private AssetBundleSprite icon_base_;
+public AssetBundleSprite icon_base_;
 
 	[SerializeField]
-	private AssetBundleSprite title_;
+public AssetBundleSprite title_;
 
 	[SerializeField]
-	private SpriteRenderer mask_;
+public SpriteRenderer mask_;
 
 	[SerializeField]
-	private SpriteMask sprite_mask_;
+public SpriteMask sprite_mask_;
 
 	[SerializeField]
-	private Text icon_name_;
+public Text icon_name_;
 
 	[SerializeField]
-	private Comment comment_;
+public Comment comment_;
 
 	[SerializeField]
-	private List<RecordIcon> record_list_ = new List<RecordIcon>();
+public List<RecordIcon> record_list_ = new List<RecordIcon>();
 
 	[SerializeField]
-	private GameObject record_list_obj_;
+public GameObject record_list_obj_;
 
 	[SerializeField]
-	private RecordCurve record_curve_ = new RecordCurve();
+public RecordCurve record_curve_ = new RecordCurve();
 
 	[SerializeField]
-	private RecordSlideCurve record_slide_curve_ = new RecordSlideCurve();
+public RecordSlideCurve record_slide_curve_ = new RecordSlideCurve();
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private arrowCtrl arrow_ctrl_;
+public arrowCtrl arrow_ctrl_;
 
 	[SerializeField]
-	private recordGuideCtrl record_guide_;
+public recordGuideCtrl record_guide_;
 
 	[SerializeField]
-	private float slide_dist_x_;
+public float slide_dist_x_;
 
 	[SerializeField]
-	private recordDetailCtrl detail_ctrl_;
+public recordDetailCtrl detail_ctrl_;
 
 	[SerializeField]
-	private Camera board_camera_;
+public Camera board_camera_;
 
 	private int page_cnt_;
 

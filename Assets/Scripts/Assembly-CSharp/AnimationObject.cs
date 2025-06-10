@@ -133,13 +133,13 @@ public class AnimationObject : MonoBehaviour
 	}
 
 	[SerializeField]
-	private string playingAnimationName_;
+public string playingAnimationName_;
 
 	[SerializeField]
-	private SpriteRenderer spriteOriginal_;
+public SpriteRenderer spriteOriginal_;
 
 	[SerializeField]
-	private SortingGroup rootSortingGroup_;
+public SortingGroup rootSortingGroup_;
 
 	private List<AnimSpriteData> spriteInstances_ = new List<AnimSpriteData>();
 
@@ -160,16 +160,16 @@ public class AnimationObject : MonoBehaviour
 	private bool is_fadeIn;
 
 	[SerializeField]
-	private Material default_;
+public Material default_;
 
 	[SerializeField]
-	private Material grayscale_;
+public Material grayscale_;
 
 	[SerializeField]
-	private Material sepia_;
+public Material sepia_;
 
 	[SerializeField]
-	private Material black_;
+public Material black_;
 
 	private IEnumerator spefEnumerator;
 

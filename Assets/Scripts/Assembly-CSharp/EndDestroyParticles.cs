@@ -4,7 +4,7 @@ using UnityEngine;
 public class EndDestroyParticles : MonoBehaviour
 {
 	[SerializeField]
-	private ParticleSystem parical_system_;
+public ParticleSystem parical_system_;
 
 	private void OnEnable()
 	{

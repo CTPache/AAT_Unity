@@ -68,36 +68,36 @@ public class messageBoardCtrl : MonoBehaviour
     };
 
     [SerializeField]
-    private textKeyIconCtrl msg_key_icon_;
+public textKeyIconCtrl msg_key_icon_;
 
     private ushort touch_skip_frame;
 
     [SerializeField]
-    private guideCtrl guide_ctrl_;
+public guideCtrl guide_ctrl_;
 
     [SerializeField]
-    private List<AssetBundleSprite> sprite_list_ = new List<AssetBundleSprite>();
+public List<AssetBundleSprite> sprite_list_ = new List<AssetBundleSprite>();
 
     [SerializeField]
-    private List<ArrowIcon> arrow_list_ = new List<ArrowIcon>();
+public List<ArrowIcon> arrow_list_ = new List<ArrowIcon>();
 
     [SerializeField]
-    private List<Text> line_list_ = new List<Text>();
+public List<Text> line_list_ = new List<Text>();
 
     [SerializeField]
-    private GameObject text_;
+public GameObject text_;
 
     [SerializeField]
-    private GameObject body_;
+public GameObject body_;
 
     [SerializeField]
-    private InputTouch left_arrow_touch_;
+public InputTouch left_arrow_touch_;
 
     [SerializeField]
-    private InputTouch message_board_touch_;
+public InputTouch message_board_touch_;
 
     [SerializeField]
-    private Transform quake_targets_;
+public Transform quake_targets_;
 
     private bool is_arrow_;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class logoCtrl : sceneCtrl
 {
 	[SerializeField]
-	private AssetBundleSprite logo_;
+public AssetBundleSprite logo_;
 
 	private void Init()
 	{

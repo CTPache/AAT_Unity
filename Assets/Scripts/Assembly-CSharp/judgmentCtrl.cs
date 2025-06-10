@@ -5,31 +5,31 @@ using UnityEngine;
 public class judgmentCtrl : MonoBehaviour
 {
 	[SerializeField]
-	private List<AssetBundleSprite> sprite_list_;
+public List<AssetBundleSprite> sprite_list_;
 
 	[SerializeField]
-	private AssetBundleSprite sprite_flash_;
+public AssetBundleSprite sprite_flash_;
 
 	[SerializeField]
-	private AnimationCurve curve_L_ = new AnimationCurve();
+public AnimationCurve curve_L_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnimationCurve curve_R_ = new AnimationCurve();
+public AnimationCurve curve_R_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnimationCurve curve_USA_ = new AnimationCurve();
+public AnimationCurve curve_USA_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnimationCurve curve_flash_ = new AnimationCurve();
+public AnimationCurve curve_flash_ = new AnimationCurve();
 
 	[SerializeField]
-	private GameObject effect_;
+public GameObject effect_;
 
 	[SerializeField]
-	private GameObject result_;
+public GameObject result_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	private List<Sprite> sprite_data_;
 

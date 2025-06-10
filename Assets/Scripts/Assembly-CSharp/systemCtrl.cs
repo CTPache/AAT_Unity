@@ -23,13 +23,13 @@ public class systemCtrl : MonoBehaviour
 	private static systemCtrl instance_;
 
 	[SerializeField]
-	private Camera system_camera_;
+public Camera system_camera_;
 
 	[SerializeField]
-	private Camera front_camera_;
+public Camera front_camera_;
 
 	[SerializeField]
-	private SpriteRenderer front_image_;
+public SpriteRenderer front_image_;
 
 	private List<DoubleQuotationAdjustment> doublequotation_adjustment_list_ = new List<DoubleQuotationAdjustment>();
 

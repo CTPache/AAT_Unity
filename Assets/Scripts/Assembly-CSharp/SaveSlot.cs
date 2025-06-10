@@ -48,7 +48,7 @@ public class SaveSlot : MonoBehaviour
 	private Vector3 slot_num_def_pos_ = default(Vector3);
 
 	[SerializeField]
-	private Slot slot_;
+public Slot slot_;
 
 	[SerializeField]
 	[Tooltip("日本語版\nタイトル名のフォントサイズ")]

@@ -78,16 +78,16 @@ public class NoiseCtrl : MonoBehaviour
 	public List<SpriteRenderer> noise_list_ = new List<SpriteRenderer>();
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private GameObject noise_body_;
+public GameObject noise_body_;
 
 	[SerializeField]
-	private Transform bg_body_;
+public Transform bg_body_;
 
 	[SerializeField]
-	private SpriteRenderer bright_sprite_;
+public SpriteRenderer bright_sprite_;
 
 	private const int E_OP4_DEMO_LINE = 3;
 

@@ -403,17 +403,17 @@ public class SubWindow
     public SubWindowCursor cursor_ = new SubWindowCursor();
 
     [SerializeField]
-    private Req req;
+public Req req;
 
     [SerializeField]
-    private byte stack;
+public byte stack;
 
     public BarReq bar_req_;
 
     public byte cursor_change_;
 
     [SerializeField]
-    private uint busy;
+public uint busy;
 
     public ObjFlag[] obj_flag_ = new ObjFlag[96];
 
@@ -1609,21 +1609,21 @@ public class SubWindow
                 }
                 break;
             case 3:
-                switch (routine.r.no_2)
+                //switch (routine.r.no_2)
                 {
                 }
                 break;
             case 4:
                 break;
             case 5:
-                switch (routine.r.no_2)
+                //switch (routine.r.no_2)
                 {
                 }
                 break;
             case 6:
                 break;
             case 7:
-                switch (routine.r.no_2)
+                //switch (routine.r.no_2)
                 {
                 }
                 break;

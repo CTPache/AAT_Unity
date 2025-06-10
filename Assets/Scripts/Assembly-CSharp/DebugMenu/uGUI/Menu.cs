@@ -6,28 +6,28 @@ namespace DebugMenu.uGUI
 	public class Menu : DebugMenu.Menu
 	{
 		[SerializeField]
-		private int item_width_;
+public int item_width_;
 
 		[SerializeField]
-		private int item_height_;
+public int item_height_;
 
 		[SerializeField]
-		private Color frame_color_ = Color.white;
+public Color frame_color_ = Color.white;
 
 		[SerializeField]
-		private Color selected_frame_color_ = Color.yellow;
+public Color selected_frame_color_ = Color.yellow;
 
 		[SerializeField]
-		private Font text_font_;
+public Font text_font_;
 
 		[SerializeField]
-		private int text_font_size_;
+public int text_font_size_;
 
 		[SerializeField]
-		private Color text_color_ = Color.black;
+public Color text_color_ = Color.black;
 
 		[SerializeField]
-		private Color selected_text_color_ = Color.black;
+public Color selected_text_color_ = Color.black;
 
 		private Group current_ugui_;
 

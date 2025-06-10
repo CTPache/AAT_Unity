@@ -34,10 +34,10 @@ public class SaveConfirmationWindow : MonoBehaviour
 	private bool is_save;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private ConfirmationWindow window_;
+public ConfirmationWindow window_;
 
 	public bool is_open { get; private set; }
 

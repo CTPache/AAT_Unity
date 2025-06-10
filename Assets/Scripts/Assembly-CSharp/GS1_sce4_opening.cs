@@ -55,22 +55,22 @@ public class GS1_sce4_opening : MonoBehaviour
 	}
 
 	[SerializeField]
-	private AssetBundleSprite[] sprites_;
+public AssetBundleSprite[] sprites_;
 
 	[SerializeField]
-	private AssetBundleSprite[] front_sprites_;
+public AssetBundleSprite[] front_sprites_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private GameObject front_body_;
+public GameObject front_body_;
 
 	[SerializeField]
-	private RawImage movie_renderer_;
+public RawImage movie_renderer_;
 
 	[SerializeField]
-	private SpriteRenderer front_image_;
+public SpriteRenderer front_image_;
 
 	private AnimationObject rain_animation_;
 

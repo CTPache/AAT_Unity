@@ -61,65 +61,65 @@ public class luminolMiniGame : MonoBehaviour
 	public const int MOV_PLAY_REVERSE = 1;
 
 	[SerializeField]
-	private bgData bg_data_;
+public bgData bg_data_;
 
 	[SerializeField]
-	private Transform body_;
+public Transform body_;
 
 	[SerializeField]
-	private RectTransform sc_body_;
+public RectTransform sc_body_;
 
 	[SerializeField]
-	private RectTransform bg_body_;
+public RectTransform bg_body_;
 
 	[SerializeField]
-	private RectTransform icon_;
+public RectTransform icon_;
 
 	[SerializeField]
-	private SpriteRenderer icon_image_;
+public SpriteRenderer icon_image_;
 
 	[SerializeField]
-	private float appear_time_;
+public float appear_time_;
 
 	[SerializeField]
-	private float cursor_speed_;
+public float cursor_speed_;
 
 	[SerializeField]
-	private Transform effect_prefabs_;
+public Transform effect_prefabs_;
 
 	[SerializeField]
-	private Transform blood_stain_prefabs_;
+public Transform blood_stain_prefabs_;
 
 	[SerializeField]
-	private List<luminolBloodstain> active_blood_ = new List<luminolBloodstain>();
+public List<luminolBloodstain> active_blood_ = new List<luminolBloodstain>();
 
 	[SerializeField]
-	private List<luminolBloodstain> blood_ = new List<luminolBloodstain>();
+public List<luminolBloodstain> blood_ = new List<luminolBloodstain>();
 
 	[SerializeField]
-	private SpriteRenderer bg_sprite_;
+public SpriteRenderer bg_sprite_;
 
 	[SerializeField]
-	private Transform blood_parent_;
+public Transform blood_parent_;
 
 	[SerializeField]
-	private Transform blood_parent_right_;
+public Transform blood_parent_right_;
 
 	[SerializeField]
-	private Transform blood_parent_left_;
+public Transform blood_parent_left_;
 
 	[SerializeField]
-	private Material m_default_;
+public Material m_default_;
 
 	[SerializeField]
-	private Material m_red_;
+public Material m_red_;
 
 	[SerializeField]
-	private InputTouch touch_area_;
+public InputTouch touch_area_;
 
 	[Header("Debug")]
 	[SerializeField]
-	private bool debug_show_area_;
+public bool debug_show_area_;
 
 	private int base_bg_id_;
 

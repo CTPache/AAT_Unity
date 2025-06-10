@@ -7,22 +7,22 @@ public class doorCtrl : MonoBehaviour
 	private static doorCtrl instance_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private Camera camera_;
+public Camera camera_;
 
 	[SerializeField]
-	private List<SpriteRenderer> sprite_list_ = new List<SpriteRenderer>();
+public List<SpriteRenderer> sprite_list_ = new List<SpriteRenderer>();
 
 	[SerializeField]
-	private AnimationCurve camera_y_ = new AnimationCurve();
+public AnimationCurve camera_y_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnimationCurve camera_z_ = new AnimationCurve();
+public AnimationCurve camera_z_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnimationCurve door_y_ = new AnimationCurve();
+public AnimationCurve door_y_ = new AnimationCurve();
 
 	private IEnumerator enumerator_close_;
 

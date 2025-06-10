@@ -32,20 +32,14 @@ public class ReplaceFont : MonoBehaviour
         Font fontData = LangPackCtrl.GetFontAsset(language);
         Debug.Log(string.Concat(new object[] { "ReplaceFont AllChangeFont current=", this.current_font_, " next=", fontTyop }));
         if (fontData == null)
-        {
-            if (this.current_font_ == fontTyop)
-            {
-                return;
-            }
             fontData = this.GetFontData(fontTyop);
-        }
+        current_font_data_ = fontData;
         this.current_font_ = fontTyop;
-        current_font_data = fontData;
         this.ChangeFont(fontData);
     }
 
 
-    private void ChangeFont(Font font_data)
+    public void ChangeFont(Font font_data)
     {
         for (int i = 0; i < this.text_objects_.Count; i++)
         {
@@ -82,8 +76,6 @@ public class ReplaceFont : MonoBehaviour
                 return ReplaceFont.FontType.CHINESE_S;
             case "CHINA_T":
                 return ReplaceFont.FontType.CHINESE_T;
-            case "SPANISH":
-                return ReplaceFont.FontType.CUSTOM;
             default:
                 return ReplaceFont.FontType.DEFAULT;
         }
@@ -91,27 +83,26 @@ public class ReplaceFont : MonoBehaviour
 
 
     [SerializeField]
-    private Font default_font_data_;
+    public Font default_font_data_;
 
 
     [SerializeField]
-    private Font korea_font_data_;
+    public Font korea_font_data_;
 
 
     [SerializeField]
-    private Font chinese_s_font_data_;
+    public Font chinese_s_font_data_;
 
 
     [SerializeField]
-    private Font chinese_t_font_data_;
+    public Font chinese_t_font_data_;
 
 
-    private List<Text> text_objects_ = new List<Text>();
+    public List<Text> text_objects_ = new List<Text>();
 
+    private FontType current_font_;
 
-    private ReplaceFont.FontType current_font_;
-
-    public Font current_font_data;
+    public Font current_font_data_;
 
     private enum FontType
     {

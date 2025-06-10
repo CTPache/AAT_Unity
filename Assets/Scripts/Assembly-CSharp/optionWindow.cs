@@ -26,10 +26,10 @@ public class optionWindow : optionItem
     private string[] select_text_;
 
     [SerializeField]
-    private OptionSelectButton select_;
+public OptionSelectButton select_;
 
     [SerializeField]
-    private float select_space_;
+public float select_space_;
 
     private List<float> change_alpha_rate_ = new List<float> { 1f, 0.88f, 0.76f };
 

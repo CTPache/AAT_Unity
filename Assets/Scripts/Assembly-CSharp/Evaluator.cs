@@ -5,7 +5,7 @@ using UnityEngine;
 public class Evaluator : MonoBehaviour
 {
 	[SerializeField]
-	private AnimationCurve curve;
+public AnimationCurve curve;
 
 	public List<UnityEngine.Object> receivers;
 

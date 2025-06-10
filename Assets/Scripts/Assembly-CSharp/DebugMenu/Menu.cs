@@ -6,10 +6,10 @@ namespace DebugMenu
 	public class Menu : MonoBehaviour
 	{
 		[SerializeField]
-		private int input_repeat_delay_frame_ = 15;
+public int input_repeat_delay_frame_ = 15;
 
 		[SerializeField]
-		private int input_repeat_frame_ = 5;
+public int input_repeat_frame_ = 5;
 
 		private Group root_ = new Group("Root");
 

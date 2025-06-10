@@ -22,10 +22,10 @@ public class optionSkip : optionItem
 	private string[] select_text_;
 
 	[SerializeField]
-	private OptionSelectButton select_;
+public OptionSelectButton select_;
 
 	[SerializeField]
-	private float select_space_;
+public float select_space_;
 
 	public override void Init()
 	{

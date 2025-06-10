@@ -10,10 +10,10 @@ public class evidenceCallbackManager : MonoBehaviour
 	private delegate void CheckFanc();
 
 	[SerializeField]
-	private AnimationCurve liner_;
+public AnimationCurve liner_;
 
 	[SerializeField]
-	private AnimationCurve curve_;
+public AnimationCurve curve_;
 
 	private readonly List<InitFanc> init_func_list_ = new List<InitFanc>
 	{

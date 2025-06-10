@@ -4,13 +4,13 @@ using UnityEngine;
 public class SeData : ScriptableObject
 {
 	[SerializeField]
-	private string anm_name;
+public string anm_name;
 
 	[SerializeField]
-	private string se_name;
+public string se_name;
 
 	[SerializeField]
-	private int sequence_num;
+public int sequence_num;
 
 	public string AnmName
 	{

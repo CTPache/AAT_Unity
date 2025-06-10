@@ -26,10 +26,10 @@ public class optionSelectItem : optionItem
     protected int max_value_size_;
 
     [SerializeField]
-    protected OptionSelectLanguage select_;
+    public OptionSelectLanguage select_;
 
     [SerializeField]
-    private float guide_space_;
+    public float guide_space_;
     private bool isInit;
 
     public override void Init()

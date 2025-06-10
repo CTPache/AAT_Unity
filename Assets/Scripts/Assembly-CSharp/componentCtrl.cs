@@ -17,22 +17,22 @@ public class componentCtrl : MonoBehaviour
     private static componentCtrl instance_;
 
     [SerializeField]
-    private List<PrefabData> prefab_data_ = new List<PrefabData>();
+public List<PrefabData> prefab_data_ = new List<PrefabData>();
 
     [SerializeField]
-    private Canvas canvas_;
+public Canvas canvas_;
 
     [SerializeField]
-    private GameObject root_;
+public GameObject root_;
 
     [SerializeField]
-    private GameObject system_;
+public GameObject system_;
 
     [SerializeField]
-    private GameObject adv_canvas_;
+public GameObject adv_canvas_;
 
     [SerializeField]
-    private GameObject adv_body_;
+public GameObject adv_body_;
 
     private List<GameObject> obj_list_ = new List<GameObject>();
 

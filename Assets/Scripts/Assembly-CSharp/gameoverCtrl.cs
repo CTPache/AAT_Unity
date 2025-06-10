@@ -6,13 +6,13 @@ public class gameoverCtrl : MonoBehaviour
 	private static gameoverCtrl instance_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> sprite_list_;
+public List<AssetBundleSprite> sprite_list_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private GameObject door_;
+public GameObject door_;
 
 	private bool is_play_;
 

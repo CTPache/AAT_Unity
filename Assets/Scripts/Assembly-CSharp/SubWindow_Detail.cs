@@ -92,7 +92,7 @@ public static class SubWindow_Detail
 	private static void PageChange(SubWindow sub_window)
 	{
 		Routine currentRoutine = sub_window.GetCurrentRoutine();
-		switch (currentRoutine.r.no_2)
+		//switch (currentRoutine.r.no_2)
 		{
 		}
 	}
@@ -164,7 +164,7 @@ public static class SubWindow_Detail
 	private static void Back(SubWindow sub_window)
 	{
 		Routine currentRoutine = sub_window.GetCurrentRoutine();
-		switch (currentRoutine.r.no_2)
+		//switch (currentRoutine.r.no_2)
 		{
 		}
 	}
@@ -190,7 +190,7 @@ public static class SubWindow_Detail
 	private static void Tutorial(SubWindow sub_window)
 	{
 		Routine currentRoutine = sub_window.GetCurrentRoutine();
-		switch (currentRoutine.r.no_2)
+		//switch (currentRoutine.r.no_2)
 		{
 		}
 	}

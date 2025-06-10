@@ -1,0 +1,25 @@
+{
+    "lang": "RUS",
+    "fallback": "USA",
+    "sufix": "_u",
+    "font":"Linux Libertine G",
+    "fontTanteiSize":8,
+    "menuStrings": {
+        "JAPAN": "ロシア語",
+        "USA": "Russian",
+        "GERMAN": "Russisch",
+        "FRANCE": "Russe",
+        "KOREA": "러시아어",
+        "CHINA_T": "俄語",
+        "CHINA_S": "俄语",
+        "SPANISH": "Ruso",
+        "BRAZIL": "Russo",
+        "VIETNAM": "Nga",
+        "RUS": "Русский",
+        "ARABIC":"الروسية"
+    },
+    "international_files_common": {},
+    "international_files_gs1": {},
+    "international_files_gs2": {},
+    "international_files_gs3": {}
+}

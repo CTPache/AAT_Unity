@@ -4,7 +4,7 @@ using UnityEngine;
 public class cautionCtrl : sceneCtrl
 {
 	[SerializeField]
-	private AssetBundleSprite caution_;
+public AssetBundleSprite caution_;
 
 	private void Init()
 	{

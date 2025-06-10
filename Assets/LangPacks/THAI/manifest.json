@@ -1,0 +1,20 @@
+{
+    "lang": "THAI",
+    "fallback": "USA",
+    "sufix": "_u",
+    "menuStrings": {
+        "JAPAN": "THAI",
+        "USA": "THAI",
+        "GERMAN": "THAI",
+        "FRANCE": "THAI",
+        "KOREA": "THAI",
+        "CHINA_T": "THAI",
+        "CHINA_S": "THAI",
+        "SPANISH": "THAI",
+        "BRAZIL": "THAI"
+    },
+    "international_files_common": {},
+    "international_files_gs1": {},
+    "international_files_gs2": {},
+    "international_files_gs3": {}
+}

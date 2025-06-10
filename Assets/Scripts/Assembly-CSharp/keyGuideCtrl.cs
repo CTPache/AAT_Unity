@@ -5,13 +5,13 @@ public class keyGuideCtrl : keyGuideBoard
 	private static keyGuideCtrl instance_;
 
 	[SerializeField]
-	protected float board_width_j_ = 200f;
+public float board_width_j_ = 200f;
 
 	[SerializeField]
-	protected float board_width_u_ = 250f;
+public float board_width_u_ = 250f;
 
 	[SerializeField]
-	protected float board_width_f_ = 320f;
+public float board_width_f_ = 320f;
 
 	public static keyGuideCtrl instance
 	{

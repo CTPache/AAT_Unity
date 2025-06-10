@@ -29,17 +29,17 @@ public class luminolBloodstain : MonoBehaviour
 	public GameObject cursor_obj_;
 
 	[SerializeField]
-	private AssetBundleSprite[] cursor_;
+public AssetBundleSprite[] cursor_;
 
 	[SerializeField]
-	private Transform cursor_root_;
+public Transform cursor_root_;
 
 	public Evaluator evaluator_;
 
 	public Action anim_end_call_back_;
 
 	[SerializeField]
-	private InputTouch cursor_touch_;
+public InputTouch cursor_touch_;
 
 	private IEnumerator enumerator_;
 

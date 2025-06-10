@@ -10,16 +10,16 @@ public class inspectCtrl : MonoBehaviour
 	private LineRenderer[] debug_area_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private AssetBundleSprite cursor_;
+public AssetBundleSprite cursor_;
 
 	[SerializeField]
-	private InputTouch touch_;
+public InputTouch touch_;
 
 	[SerializeField]
-	private InputTouch cursor_touch_;
+public InputTouch cursor_touch_;
 
 	private IEnumerator enumerator_play_;
 
@@ -77,7 +77,7 @@ public class inspectCtrl : MonoBehaviour
 
 	[Header("Debug")]
 	[SerializeField]
-	private bool debug_show_area_;
+public bool debug_show_area_;
 
 	public static inspectCtrl instance
 	{

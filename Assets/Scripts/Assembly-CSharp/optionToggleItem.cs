@@ -22,10 +22,10 @@ public class optionToggleItem : optionItem
 	protected string[] select_text_;
 
 	[SerializeField]
-	protected OptionSelectButton select_;
+public OptionSelectButton select_;
 
 	[SerializeField]
-	private float select_space_;
+public float select_space_;
 
 	public override void Init()
 	{

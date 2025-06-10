@@ -6,19 +6,19 @@ namespace TextEffect
 	public class DoubleQuotationAdjustment : BaseMessageTextEffect
 	{
 		[SerializeField]
-		private float alignment_upperleft_quotation_diff_ = 34f;
+public float alignment_upperleft_quotation_diff_ = 34f;
 
 		[SerializeField]
-		private float alignment_upperleft_quotation_diff_china_s_ = 32f;
+public float alignment_upperleft_quotation_diff_china_s_ = 32f;
 
 		[SerializeField]
-		private float alignment_uppercenter_quotation_diff_ = 25f;
+public float alignment_uppercenter_quotation_diff_ = 25f;
 
 		[SerializeField]
-		private float alignment_uppercenter_quotation_diff_china_s_ = 24f;
+public float alignment_uppercenter_quotation_diff_china_s_ = 24f;
 
 		[SerializeField]
-		private float diaeresis_i_diff_ = 2.8f;
+public float diaeresis_i_diff_ = 2.8f;
 
 		private const char BEGIN_QUOTATION = '“';
 

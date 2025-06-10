@@ -96,7 +96,7 @@ public class objMoveCtrl : MonoBehaviour
     }
 
     [SerializeField]
-    private AssetBundleSprite[] obj_;
+public AssetBundleSprite[] obj_;
 
     private IEnumerator enumerator_balloon_;
 

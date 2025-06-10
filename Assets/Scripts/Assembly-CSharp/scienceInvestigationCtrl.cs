@@ -40,34 +40,34 @@ public class scienceInvestigationCtrl : MonoBehaviour
 
 	[Space(20f)]
 	[SerializeField]
-	private Camera camera_;
+public Camera camera_;
 
 	[SerializeField]
-	private GameObject body_;
+public GameObject body_;
 
 	[SerializeField]
-	private SpriteRenderer background_renderer_;
+public SpriteRenderer background_renderer_;
 
 	[SerializeField]
-	private evidenceObjectManager evidence_manager_;
+public evidenceObjectManager evidence_manager_;
 
 	[SerializeField]
-	private evidenceCallbackManager callback_manager_;
+public evidenceCallbackManager callback_manager_;
 
 	[SerializeField]
-	private AssetBundleSprite cursor_;
+public AssetBundleSprite cursor_;
 
 	[SerializeField]
-	private RectTransform movable_area_;
+public RectTransform movable_area_;
 
 	[SerializeField]
-	private Rect taboo_area_ = default(Rect);
+public Rect taboo_area_ = default(Rect);
 
 	[SerializeField]
-	private InputTouch rotate_touch_area_;
+public InputTouch rotate_touch_area_;
 
 	[SerializeField]
-	private InputTouch cursor_touch_area_;
+public InputTouch cursor_touch_area_;
 
 	[SerializeField]
 	[Range(0f, 100f)]
@@ -94,10 +94,10 @@ public class scienceInvestigationCtrl : MonoBehaviour
 	private float ray_adjust_x_;
 
 	[SerializeField]
-	private float drag_offset_ = 30f;
+public float drag_offset_ = 30f;
 
 	[SerializeField]
-	private Camera science_camera_;
+public Camera science_camera_;
 
 	private GameObject back_to_body_;
 

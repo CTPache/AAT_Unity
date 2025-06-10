@@ -6,16 +6,16 @@ public class recordGuideCtrl : guideCtrl
 	private int cnt;
 
 	[SerializeField]
-	private GameObject left_end_guide_;
+public GameObject left_end_guide_;
 
 	[SerializeField]
-	private float page_guide_space_;
+public float page_guide_space_;
 
 	[SerializeField]
-	private List<AssetBundleSprite> page_guide_list_ = new List<AssetBundleSprite>();
+public List<AssetBundleSprite> page_guide_list_ = new List<AssetBundleSprite>();
 
 	[SerializeField]
-	private SpriteRenderer guide_bg_var_;
+public SpriteRenderer guide_bg_var_;
 
 	private float guide_offset_x = 26f;
 

@@ -17,25 +17,25 @@ public class recordDetailCtrl : MonoBehaviour
 	private keyGuideBase.Type standby_keyguid_type_;
 
 	[SerializeField]
-	private AnimationCurve in_ = new AnimationCurve();
+public AnimationCurve in_ = new AnimationCurve();
 
 	[SerializeField]
-	private AnimationCurve out_ = new AnimationCurve();
+public AnimationCurve out_ = new AnimationCurve();
 
 	[SerializeField]
-	private AssetBundleSprite detail_sprite_;
+public AssetBundleSprite detail_sprite_;
 
 	[SerializeField]
-	private AssetBundleSprite fade_mask_;
+public AssetBundleSprite fade_mask_;
 
 	[SerializeField]
-	private arrowCtrl arrow_ctrl_;
+public arrowCtrl arrow_ctrl_;
 
 	[SerializeField]
-	private GameObject movie_player_;
+public GameObject movie_player_;
 
 	[SerializeField]
-	private InputTouch touch_;
+public InputTouch touch_;
 
 	private piceDetailData detailData_;
 

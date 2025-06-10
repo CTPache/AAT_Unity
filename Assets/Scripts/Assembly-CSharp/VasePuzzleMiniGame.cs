@@ -17,7 +17,7 @@ public class VasePuzzleMiniGame : MonoBehaviour
 	}
 
 	[SerializeField]
-	private PiecesStatus[] pieces_status_;
+public PiecesStatus[] pieces_status_;
 
 	private PiecesStatus[] pieces_noramal_ = new PiecesStatus[8]
 	{
@@ -71,13 +71,13 @@ public class VasePuzzleMiniGame : MonoBehaviour
 	};
 
 	[SerializeField]
-	private bool force_clear_;
+public bool force_clear_;
 
 	[SerializeField]
-	private bool SCE4_FLAG_JAR_PUZZZLE_on;
+public bool SCE4_FLAG_JAR_PUZZZLE_on;
 
 	[SerializeField]
-	private bool rondom_rotate_off_;
+public bool rondom_rotate_off_;
 
 	private Proc proc_id_;
 

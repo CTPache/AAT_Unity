@@ -17,16 +17,16 @@ public class AnmData : ScriptableObject
 		}
 
 		[SerializeField]
-		private int use_sprite_group;
+public int use_sprite_group;
 
 		[SerializeField]
-		private int keep_frame;
+public int keep_frame;
 
 		[SerializeField]
-		private int attribute;
+public int attribute;
 
 		[SerializeField]
-		private Vector2 coord;
+public Vector2 coord;
 
 		public int UseSpriteGroup
 		{
@@ -68,53 +68,53 @@ public class AnmData : ScriptableObject
 		public class Sprite
 		{
 			[SerializeField]
-			private int u;
+public int u;
 
 			[SerializeField]
-			private int v;
+public int v;
 
 			[SerializeField]
-			private int w;
+public int w;
 
 			[SerializeField]
-			private int h;
+public int h;
 
 			[SerializeField]
-			private int offset_x;
+public int offset_x;
 
 			[SerializeField]
-			private int offset_y;
-
-			[HideInInspector]
-			[SerializeField]
-			private int x;
+public int offset_y;
 
 			[HideInInspector]
 			[SerializeField]
-			private int y;
-
-			[InspectorReadonly]
-			[SerializeField]
-			private Vector2 uv;
-
-			[InspectorReadonly]
-			[SerializeField]
-			private Vector2 wh;
-
-			[InspectorReadonly]
-			[SerializeField]
-			private Vector2 offset;
+public int x;
 
 			[HideInInspector]
 			[SerializeField]
-			private Vector2 xy;
+public int y;
 
 			[InspectorReadonly]
 			[SerializeField]
-			private float rot;
+public Vector2 uv;
+
+			[InspectorReadonly]
+			[SerializeField]
+public Vector2 wh;
+
+			[InspectorReadonly]
+			[SerializeField]
+public Vector2 offset;
+
+			[HideInInspector]
+			[SerializeField]
+public Vector2 xy;
+
+			[InspectorReadonly]
+			[SerializeField]
+public float rot;
 
 			[SerializeField]
-			private bool value_fixed;
+public bool value_fixed;
 
 			public int U
 			{
@@ -190,7 +190,7 @@ public class AnmData : ScriptableObject
 		}
 
 		[SerializeField]
-		private List<Sprite> sprites;
+public List<Sprite> sprites;
 
 		private const int CenterTexture = 864;
 
