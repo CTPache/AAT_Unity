@@ -60,7 +60,7 @@ Optional fields:
 A mod will work similarly to a language pack, except it doesn't require a manifest, as all the language-specific things won’t be used.  
 The structure of a mod will match that of `StreamingAssets`, and mods will load in alphabetical order (so the asset selected will be from the mod with the highest priority). You can adjust the mod loading priority by naming them with a numerical prefix.
 
-A mod can also run custom code — see the [Mod Example](ModExample/).
+A mod can also run custom code — see the [Mod Example](ModExample/). It is important to give your mod a distinct assembly name.
 
 > As a good practice, I recommend ALWAYS shipping your mods with the source code.  
 > And if you're a user, DO NOT RUN ANYTHING YOU DON'T TRUST.
