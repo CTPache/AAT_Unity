@@ -57,7 +57,7 @@ public static class LangPackCtrl
                 LangPack l = Newtonsoft.Json.JsonConvert.DeserializeObject<LangPack>(File.ReadAllText(langPackDir + "\\manifest.json"));
                 Language.languages.Add(l.lang);
                 Language.langFallback.Add(l.lang, l.fallback);
-                Language.sufixes.Add(l.lang, l.sufix);
+                Language.suffixes.Add(l.lang, l.suffix);
                 Dictionary<string, Dictionary<string, string>> resources = new Dictionary<string, Dictionary<string, string>>();
                 resources.Add("international_files_common", l.international_files_common);
                 resources.Add("international_files_gs1", l.international_files_gs1);
