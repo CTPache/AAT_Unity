@@ -1,7 +1,7 @@
 {
     "lang": "SPANISH",
     "fallback": "GERMAN",
-    "sufix": "_g",
+    "suffix": "_g",
     "menuStrings": {
         "JAPAN": "スペイン語",
         "USA": "Spanish",
