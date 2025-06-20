@@ -15,7 +15,7 @@ public static class Language
     "CHINA_T" });
 
     public static Dictionary<string, string> langFallback = new Dictionary<string, string>();
-    public static Dictionary<string, string> sufixes = new Dictionary<string, string>();
+    public static Dictionary<string, string> suffixes = new Dictionary<string, string>();
 
     public static void Init()
     {
@@ -49,6 +49,6 @@ public static class Language
 
     internal static string getSufix(string language)
     {
-        return sufixes[language];
+        return suffixes[language];
     }
 }
